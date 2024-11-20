@@ -167,11 +167,11 @@ import ForgotpasswordThree from '../feature-module/pages/forgotpassword/forgotpa
 // import Resetpassword from "../feature-module/pages/resetpassword/resetpassword";
 // import ResetpasswordTwo from "../feature-module/pages/resetpassword/resetpasswordTwo";
 import ResetpasswordThree from '../feature-module/pages/resetpassword/resetpasswordThree';
-import EmailVerification from '../feature-module/pages/emailverification/emailverification';
-import EmailverificationTwo from '../feature-module/pages/emailverification/emailverificationTwo';
+// import EmailVerification from '../feature-module/pages/emailverification/emailverification';
+// import EmailverificationTwo from '../feature-module/pages/emailverification/emailverificationTwo';
 import EmailverificationThree from '../feature-module/pages/emailverification/emailverificationThree';
-import Twostepverification from '../feature-module/pages/twostepverification/twostepverification';
-import TwostepverificationTwo from '../feature-module/pages/twostepverification/twostepverificationTwo';
+// import Twostepverification from '../feature-module/pages/twostepverification/twostepverification';
+// import TwostepverificationTwo from '../feature-module/pages/twostepverification/twostepverificationTwo';
 import TwostepverificationThree from '../feature-module/pages/twostepverification/twostepverificationThree';
 import Lockscreen from '../feature-module/pages/lockscreen';
 import Error404 from '../feature-module/pages/errorpages/error404';
@@ -1507,20 +1507,20 @@ export const pagesRoute = [
 		element: <ResetpasswordThree />,
 		route: Route,
 	},
-	{
-		id: 12,
-		path: routes.emailverification,
-		name: 'emailverification',
-		element: <EmailVerification />,
-		route: Route,
-	},
-	{
-		id: 12,
-		path: routes.emailverificationTwo,
-		name: 'emailverificationTwo',
-		element: <EmailverificationTwo />,
-		route: Route,
-	},
+	// {
+	// 	id: 12,
+	// 	path: routes.emailverification,
+	// 	name: 'emailverification',
+	// 	element: <EmailVerification />,
+	// 	route: Route,
+	// },
+	// {
+	// 	id: 12,
+	// 	path: routes.emailverificationTwo,
+	// 	name: 'emailverificationTwo',
+	// 	element: <EmailverificationTwo />,
+	// 	route: Route,
+	// },
 	{
 		id: 13,
 		path: routes.emailverificationThree,
@@ -1528,20 +1528,20 @@ export const pagesRoute = [
 		element: <EmailverificationThree />,
 		route: Route,
 	},
-	{
-		id: 14,
-		path: routes.twostepverification,
-		name: 'twostepverification',
-		element: <Twostepverification />,
-		route: Route,
-	},
-	{
-		id: 15,
-		path: routes.twostepverificationTwo,
-		name: 'twostepverificationTwo',
-		element: <TwostepverificationTwo />,
-		route: Route,
-	},
+	// {
+	// 	id: 14,
+	// 	path: routes.twostepverification,
+	// 	name: 'twostepverification',
+	// 	element: <Twostepverification />,
+	// 	route: Route,
+	// },
+	// {
+	// 	id: 15,
+	// 	path: routes.twostepverificationTwo,
+	// 	name: 'twostepverificationTwo',
+	// 	element: <TwostepverificationTwo />,
+	// 	route: Route,
+	// },
 	{
 		id: 16,
 		path: routes.twostepverificationThree,

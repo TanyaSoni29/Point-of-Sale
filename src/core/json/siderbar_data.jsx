@@ -572,19 +572,19 @@ export const SidebarData = [
 						submenu: true,
 						showSubRoute: false,
 						submenuItems: [
-							{
-								label: 'Cover',
-								link: '/email-verification',
-								showSubRoute: false,
-							},
-							{
-								label: 'Illustration',
-								link: '/email-verification-2',
-								showSubRoute: false,
-							},
+							// {
+							// 	label: 'Cover',
+							// 	link: '/email-verification',
+							// 	showSubRoute: false,
+							// },
+							// {
+							// 	label: 'Illustration',
+							// 	link: '/email-verification-2',
+							// 	showSubRoute: false,
+							// },
 							{
 								label: 'Basic',
-								link: '/email-verification-3',
+								link: '/email-verification',
 								showSubRoute: false,
 							},
 						],
@@ -594,19 +594,19 @@ export const SidebarData = [
 						submenu: true,
 						showSubRoute: false,
 						submenuItems: [
-							{
-								label: 'Cover',
-								link: '/two-step-verification',
-								showSubRoute: false,
-							},
-							{
-								label: 'Illustration',
-								link: '/two-step-verification-2',
-								showSubRoute: false,
-							},
+							// {
+							// 	label: 'Cover',
+							// 	link: '/two-step-verification',
+							// 	showSubRoute: false,
+							// },
+							// {
+							// 	label: 'Illustration',
+							// 	link: '/two-step-verification-2',
+							// 	showSubRoute: false,
+							// },
 							{
 								label: 'Basic',
-								link: '/two-step-verification-3',
+								link: '/two-step-verification',
 								showSubRoute: false,
 							},
 						],

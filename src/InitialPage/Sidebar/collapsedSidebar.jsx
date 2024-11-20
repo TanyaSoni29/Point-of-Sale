@@ -1031,14 +1031,14 @@ const CollapsedSidebar = () => {
 											<span className='menu-arrow inside-submenu' />
 										</Link>
 										<ul>
-											<li>
+											{/* <li>
 												<Link to='email-verification'>Cover</Link>
 											</li>
 											<li>
 												<Link to='email-verification-2'>Illustration</Link>
-											</li>
+											</li> */}
 											<li>
-												<Link to='email-verification-3'>Basic</Link>
+												<Link to='email-verification'>Basic</Link>
 											</li>
 										</ul>
 									</li>
@@ -1048,14 +1048,14 @@ const CollapsedSidebar = () => {
 											<span className='menu-arrow inside-submenu' />
 										</Link>
 										<ul>
-											<li>
+											{/* <li>
 												<Link to='two-step-verification'>Cover</Link>
 											</li>
 											<li>
 												<Link to='two-step-verification-2'>Illustration</Link>
-											</li>
+											</li> */}
 											<li>
-												<Link to='two-step-verification-3'>Basic</Link>
+												<Link to='two-step-verification'>Basic</Link>
 											</li>
 										</ul>
 									</li>
