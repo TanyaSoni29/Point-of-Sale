@@ -156,8 +156,8 @@ import Profile from "../feature-module/pages/profile";
 // import Signin from "../feature-module/pages/login/signin";
 // import SigninTwo from "../feature-module/pages/login/signinTwo";
 import SigninThree from "../feature-module/pages/login/signinThree";
-import RegisterTwo from "../feature-module/pages/register/registerTwo";
-import Register from "../feature-module/pages/register/register";
+// import RegisterTwo from "../feature-module/pages/register/registerTwo";
+// import Register from "../feature-module/pages/register/register";
 import RegisterThree from "../feature-module/pages/register/registerThree";
 import Forgotpassword from "../feature-module/pages/forgotpassword/forgotpassword";
 import ForgotpasswordTwo from "../feature-module/pages/forgotpassword/forgotpasswordTwo";
@@ -1442,20 +1442,20 @@ export const pagesRoute = [
     element: <SigninThree />,
     route: Route,
   },
-  {
-    id: 4,
-    path: routes.register,
-    name: "register",
-    element: <Register />,
-    route: Route,
-  },
-  {
-    id: 5,
-    path: routes.registerTwo,
-    name: "registerTwo",
-    element: <RegisterTwo />,
-    route: Route,
-  },
+  // {
+  //   id: 4,
+  //   path: routes.register,
+  //   name: "register",
+  //   element: <Register />,
+  //   route: Route,
+  // },
+  // {
+  //   id: 5,
+  //   path: routes.registerTwo,
+  //   name: "registerTwo",
+  //   element: <RegisterTwo />,
+  //   route: Route,
+  // },
   {
     id: 6,
     path: routes.registerThree,
