@@ -997,14 +997,14 @@ const CollapsedSidebar = () => {
 											<span className='menu-arrow inside-submenu' />
 										</Link>
 										<ul>
-											<li>
+											{/* <li>
 												<Link to='forgot-password'>Cover</Link>
 											</li>
 											<li>
 												<Link to='forgot-password-2'>Illustration</Link>
-											</li>
+											</li> */}
 											<li>
-												<Link to='forgot-password-3'>Basic</Link>
+												<Link to='forgot-password'>Basic</Link>
 											</li>
 										</ul>
 									</li>
@@ -1014,14 +1014,14 @@ const CollapsedSidebar = () => {
 											<span className='menu-arrow inside-submenu' />
 										</Link>
 										<ul>
-											<li>
+											{/* <li>
 												<Link to='reset-password'>Cover</Link>
 											</li>
 											<li>
 												<Link to='reset-password-2'>Illustration</Link>
-											</li>
+											</li> */}
 											<li>
-												<Link to='reset-password-3'>Basic</Link>
+												<Link to='reset-password'>Basic</Link>
 											</li>
 										</ul>
 									</li>

@@ -536,15 +536,15 @@ export const SidebarData = [
 						submenu: true,
 						showSubRoute: false,
 						submenuItems: [
-							{ label: 'Cover', link: '/forgot-password', showSubRoute: false },
-							{
-								label: 'Illustration',
-								link: '/forgot-password-2',
-								showSubRoute: false,
-							},
+							// { label: 'Cover', link: '/forgot-password', showSubRoute: false },
+							// {
+							// 	label: 'Illustration',
+							// 	link: '/forgot-password-2',
+							// 	showSubRoute: false,
+							// },
 							{
 								label: 'Basic',
-								link: '/forgot-password-3',
+								link: '/forgot-password',
 								showSubRoute: false,
 							},
 						],
@@ -554,15 +554,15 @@ export const SidebarData = [
 						submenu: true,
 						showSubRoute: false,
 						submenuItems: [
-							{ label: 'Cover', link: '/reset-password', showSubRoute: false },
-							{
-								label: 'Illustration',
-								link: '/reset-password-2',
-								showSubRoute: false,
-							},
+							// { label: 'Cover', link: '/reset-password', showSubRoute: false },
+							// {
+							// 	label: 'Illustration',
+							// 	link: '/reset-password-2',
+							// 	showSubRoute: false,
+							// },
 							{
 								label: 'Basic',
-								link: '/reset-password-3',
+								link: '/reset-password',
 								showSubRoute: false,
 							},
 						],
