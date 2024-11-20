@@ -153,8 +153,8 @@ import QuotationList from "../feature-module/sales/quotationlist";
 import Notes from "../feature-module/Application/notes";
 import FileManager from "../feature-module/Application/filemanager";
 import Profile from "../feature-module/pages/profile";
-import Signin from "../feature-module/pages/login/signin";
-import SigninTwo from "../feature-module/pages/login/signinTwo";
+// import Signin from "../feature-module/pages/login/signin";
+// import SigninTwo from "../feature-module/pages/login/signinTwo";
 import SigninThree from "../feature-module/pages/login/signinThree";
 import RegisterTwo from "../feature-module/pages/register/registerTwo";
 import Register from "../feature-module/pages/register/register";
@@ -1388,13 +1388,13 @@ export const publicRoutes = [
     element: <Navigate to="/" />,
     route: Route,
   },
-  {
-    id: 117,
-    path: '/',
-    name: 'Root',
-    element: <Navigate to="/signin" />,
-    route: Route,
-  },
+  // {
+  //   id: 117,
+  //   path: '/',
+  //   name: 'Root',
+  //   element: <Navigate to="/signin" />,
+  //   route: Route,
+  // },
   {
     id: 118,
     path: routes.banksettingsgrid,
@@ -1421,20 +1421,20 @@ export const posRoutes = [
 ];
 
 export const pagesRoute = [
-  {
-    id: 1,
-    path: routes.signin,
-    name: "signin",
-    element: <Signin />,
-    route: Route,
-  },
-  {
-    id: 2,
-    path: routes.signintwo,
-    name: "signintwo",
-    element: <SigninTwo />,
-    route: Route,
-  },
+  // {
+  //   id: 1,
+  //   path: routes.signin,
+  //   name: "signin",
+  //   element: <Signin />,
+  //   route: Route,
+  // },
+  // {
+  //   id: 2,
+  //   path: routes.signintwo,
+  //   name: "signintwo",
+  //   element: <SigninTwo />,
+  //   route: Route,
+  // },
   {
     id: 3,
     path: routes.signinthree,
