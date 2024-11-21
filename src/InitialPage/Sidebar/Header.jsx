@@ -6,7 +6,10 @@ import FeatherIcon from 'feather-icons-react';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { Search, Settings, User, XCircle } from 'react-feather';
 import { all_routes } from '../../Router/all_routes';
-
+import LogoImg from '../../assets/img/logo.png';
+import LogoWhiteImg from '../../assets/img/logo-white.png';
+import LogoSmallImg from '../../assets/img/logo-small.png';
+import Avatar1Img from "../../assets/img/profiles/avator1.jpg"
 const Header = () => {
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
@@ -134,28 +137,31 @@ const Header = () => {
 						to='/dashboard'
 						className='logo logo-normal'
 					>
-						<ImageWithBasePath
+						{/* <ImageWithBasePath
 							src='assets/img/logo.png'
 							alt='img'
-						/>
+						/> */}
+						<img src={LogoImg} />
 					</Link>
 					<Link
 						to='/dashboard'
 						className='logo logo-white'
 					>
-						<ImageWithBasePath
+						{/* <ImageWithBasePath
 							src='assets/img/logo-white.png'
 							alt='img'
-						/>
+						/> */}
+						<img src={LogoWhiteImg} />
 					</Link>
 					<Link
 						to='/dashboard'
 						className='logo-small'
 					>
-						<ImageWithBasePath
+						{/* <ImageWithBasePath
 							src='assets/img/logo-small.png'
 							alt='img'
-						/>
+						/> */}
+						<img src={LogoSmallImg} />
 					</Link>
 					<Link
 						id='toggle_btn'
@@ -276,11 +282,12 @@ const Header = () => {
 											<li>
 												<Link to='#'>
 													Aron Varu
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														src='assets/img/profiles/avator1.jpg'
 														alt
 														className='img-fluid'
-													/>
+													/> */}
+                          <img src={Avatar1Img} />
 												</Link>
 											</li>
 											<li>

@@ -501,119 +501,119 @@ export const SidebarData = [
 				icon: <Icon.User />,
 				showSubRoute: false,
 			},
-			{
-				label: 'Authentication',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.Shield />,
-				submenuItems: [
-					{
-						label: 'Login',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// { label: "Cover", link: "/signin", showSubRoute: false },
-							// { label: "Illustration", link: "/signin-2", showSubRoute: false },
-							{ label: 'Basic', link: '/signin', showSubRoute: false },
-						],
-					},
-					{
-						label: 'Register',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// { label: "Cover", link: "/register", showSubRoute: false },
-							// {
-							//   label: "Illustration",
-							//   link: "/register-2",
-							//   showSubRoute: false,
-							// },
-							{ label: 'Basic', link: '/register', showSubRoute: false },
-						],
-					},
-					{
-						label: 'Forgot Password',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// { label: 'Cover', link: '/forgot-password', showSubRoute: false },
-							// {
-							// 	label: 'Illustration',
-							// 	link: '/forgot-password-2',
-							// 	showSubRoute: false,
-							// },
-							{
-								label: 'Basic',
-								link: '/forgot-password',
-								showSubRoute: false,
-							},
-						],
-					},
-					{
-						label: 'Reset Password',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// { label: 'Cover', link: '/reset-password', showSubRoute: false },
-							// {
-							// 	label: 'Illustration',
-							// 	link: '/reset-password-2',
-							// 	showSubRoute: false,
-							// },
-							{
-								label: 'Basic',
-								link: '/reset-password',
-								showSubRoute: false,
-							},
-						],
-					},
-					{
-						label: 'Email Verification',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// {
-							// 	label: 'Cover',
-							// 	link: '/email-verification',
-							// 	showSubRoute: false,
-							// },
-							// {
-							// 	label: 'Illustration',
-							// 	link: '/email-verification-2',
-							// 	showSubRoute: false,
-							// },
-							{
-								label: 'Basic',
-								link: '/email-verification',
-								showSubRoute: false,
-							},
-						],
-					},
-					{
-						label: '2 Step Verification',
-						submenu: true,
-						showSubRoute: false,
-						submenuItems: [
-							// {
-							// 	label: 'Cover',
-							// 	link: '/two-step-verification',
-							// 	showSubRoute: false,
-							// },
-							// {
-							// 	label: 'Illustration',
-							// 	link: '/two-step-verification-2',
-							// 	showSubRoute: false,
-							// },
-							{
-								label: 'Basic',
-								link: '/two-step-verification',
-								showSubRoute: false,
-							},
-						],
-					},
-					{ label: 'Lock Screen', link: '/lock-screen', showSubRoute: false },
-				],
-			},
+			// {
+			// 	label: 'Authentication',
+			// 	submenu: true,
+			// 	showSubRoute: false,
+			// 	icon: <Icon.Shield />,
+			// 	submenuItems: [
+			// 		{
+			// 			label: 'Login',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// { label: "Cover", link: "/signin", showSubRoute: false },
+			// 				// { label: "Illustration", link: "/signin-2", showSubRoute: false },
+			// 				{ label: 'Basic', link: '/signin', showSubRoute: false },
+			// 			],
+			// 		},
+			// 		{
+			// 			label: 'Register',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// { label: "Cover", link: "/register", showSubRoute: false },
+			// 				// {
+			// 				//   label: "Illustration",
+			// 				//   link: "/register-2",
+			// 				//   showSubRoute: false,
+			// 				// },
+			// 				{ label: 'Basic', link: '/register', showSubRoute: false },
+			// 			],
+			// 		},
+			// 		{
+			// 			label: 'Forgot Password',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// { label: 'Cover', link: '/forgot-password', showSubRoute: false },
+			// 				// {
+			// 				// 	label: 'Illustration',
+			// 				// 	link: '/forgot-password-2',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				{
+			// 					label: 'Basic',
+			// 					link: '/forgot-password',
+			// 					showSubRoute: false,
+			// 				},
+			// 			],
+			// 		},
+			// 		{
+			// 			label: 'Reset Password',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// { label: 'Cover', link: '/reset-password', showSubRoute: false },
+			// 				// {
+			// 				// 	label: 'Illustration',
+			// 				// 	link: '/reset-password-2',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				{
+			// 					label: 'Basic',
+			// 					link: '/reset-password',
+			// 					showSubRoute: false,
+			// 				},
+			// 			],
+			// 		},
+			// 		{
+			// 			label: 'Email Verification',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// {
+			// 				// 	label: 'Cover',
+			// 				// 	link: '/email-verification',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				// {
+			// 				// 	label: 'Illustration',
+			// 				// 	link: '/email-verification-2',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				{
+			// 					label: 'Basic',
+			// 					link: '/email-verification',
+			// 					showSubRoute: false,
+			// 				},
+			// 			],
+			// 		},
+			// 		{
+			// 			label: '2 Step Verification',
+			// 			submenu: true,
+			// 			showSubRoute: false,
+			// 			submenuItems: [
+			// 				// {
+			// 				// 	label: 'Cover',
+			// 				// 	link: '/two-step-verification',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				// {
+			// 				// 	label: 'Illustration',
+			// 				// 	link: '/two-step-verification-2',
+			// 				// 	showSubRoute: false,
+			// 				// },
+			// 				{
+			// 					label: 'Basic',
+			// 					link: '/two-step-verification',
+			// 					showSubRoute: false,
+			// 				},
+			// 			],
+			// 		},
+			// 		{ label: 'Lock Screen', link: '/lock-screen', showSubRoute: false },
+			// 	],
+			// },
 			{
 				label: 'Error Pages',
 				submenu: true,

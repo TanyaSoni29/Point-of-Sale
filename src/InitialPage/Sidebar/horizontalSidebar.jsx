@@ -26,7 +26,7 @@ const HorizontalSidebar = () => {
 	const [subActive11, setsubActive11] = useState(false);
 	const [subActive12, setsubActive12] = useState(false);
 	const [subActive13, setsubActive13] = useState(false);
-	const [subActive14, setSubActive14] = useState(false);
+	// const [subActive14, setSubActive14] = useState(false);
 	const [subActive15, setSubActive15] = useState(false);
 	const [subActive16, setSubActive16] = useState(false);
 	const [subActive17, setSubActive17] = useState(false);
@@ -80,9 +80,9 @@ const HorizontalSidebar = () => {
 		setsubActive13(!subActive13);
 	};
 
-	const handleSubClick14 = () => {
-		setSubActive14(!subActive14);
-	};
+	// const handleSubClick14 = () => {
+	// 	setSubActive14(!subActive14);
+	// };
 
 	const handleSubClick15 = () => {
 		setSubActive15(!subActive15);
@@ -871,7 +871,7 @@ const HorizontalSidebar = () => {
 									<span>Profile</span>
 								</Link>
 							</li>
-							<li className='submenu'>
+							{/* <li className='submenu'>
 								<Link
 									to='#'
 									onClick={handleSubClick14}
@@ -893,7 +893,7 @@ const HorizontalSidebar = () => {
                       <li>
                         <Link to="signin-2">Illustration</Link>
                       </li> */}
-											<li>
+							{/* <li>
 												<Link to='signin'>Basic</Link>
 											</li>
 										</ul>
@@ -902,15 +902,15 @@ const HorizontalSidebar = () => {
 										<Link to='#'>
 											Register
 											<span className='menu-arrow inside-submenu' />
-										</Link>
-										<ul>
-											{/* <li>
+										</Link> */}
+							{/* <ul> */}
+							{/* <li>
                         <Link to="register">Cover</Link>
                       </li> */}
-											{/* <li>
+							{/* <li>
                         <Link to="register-2">Illustration</Link>
                       </li> */}
-											<li>
+							{/* <li>
 												<Link to='register'>Basic</Link>
 											</li>
 										</ul>
@@ -920,14 +920,14 @@ const HorizontalSidebar = () => {
 											Forgot Password
 											<span className='menu-arrow inside-submenu' />
 										</Link>
-										<ul>
-											{/* <li>
+										<ul> */}
+							{/* <li>
 												<Link to='forgot-password'>Cover</Link>
 											</li>
 											<li>
 												<Link to='forgot-password-2'>Illustration</Link>
 											</li> */}
-											<li>
+							{/* <li>
 												<Link to='forgot-password'>Basic</Link>
 											</li>
 										</ul>
@@ -937,14 +937,14 @@ const HorizontalSidebar = () => {
 											Reset Password
 											<span className='menu-arrow inside-submenu' />
 										</Link>
-										<ul>
-											{/* <li>
+										<ul> */}
+							{/* <li>
 												<Link to='reset-password'>Cover</Link>
 											</li>
 											<li>
 												<Link to='reset-password-2'>Illustration</Link>
 											</li> */}
-											<li>
+							{/* <li>
 												<Link to='reset-password'>Basic</Link>
 											</li>
 										</ul>
@@ -986,8 +986,8 @@ const HorizontalSidebar = () => {
 									<li>
 										<Link to='lock-screen'>Lock Screen</Link>
 									</li>
-								</ul>
-							</li>
+								</ul> */}
+							{/* </li> */}
 							<li className='submenu'>
 								<Link
 									to='#'

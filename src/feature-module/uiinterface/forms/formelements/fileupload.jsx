@@ -113,12 +113,12 @@ const FileUpload = () => {
 
                     <div
                       className="custom-file-container__image-preview"
-                      style={{
-                        backgroundImage:
-                          "../../../../../public/assets/img/icons/download.svg(" +
-                          "../../../../../public/assets/img/icons/download.svg" +
-                          ")",
-                      }}
+                      // style={{
+                      //   backgroundImage:
+                      //     "../../../../../public/assets/img/icons/download.svg(" +
+                      //     "../../../../../public/assets/img/icons/download.svg" +
+                      //     ")",
+                      // }}
                     ></div>
                   </div>
                 </div>

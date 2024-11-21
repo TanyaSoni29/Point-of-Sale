@@ -8,7 +8,7 @@
     display: -ms-flexbox;
     display: flex;
     &.bg-img {
-        background-image: url(../../../../public/assets/img/authentication/login-img.jpg);
+        background-image: url(../../../assets/img/authentication/login-img.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
@@ -17,16 +17,16 @@
             backdrop-filter: blur(17px);
         }
         &.register-wrap {
-            background-image: url(../../../../public/assets/img/authentication/register-img.jpg);
+            background-image: url(../../../assets/img/authentication/register-img.jpg);
         }
         &.forgot-pass-wrap {
-            background-image: url(../../../../public/assets/img/authentication/forgot-password-img.jpg);
+            background-image: url(../../../assets/img/authentication/forgot-password-img.jpg);
         }
         &.reset-pass-wrap {
-            background-image: url(../../../../public/assets/img/authentication/reset-password-img.jpg);
+            background-image: url(../../../assets/img/authentication/reset-password-img.jpg);
         }
         &.email-veri-wrap {
-            background-image: url(../../../../public/assets/img/authentication/email-verification-img.jpg);
+            background-image: url(../../../assets/img/authentication/email-verification-img.jpg);
         }
     }
     .login-content {

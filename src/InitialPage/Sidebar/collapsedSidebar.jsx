@@ -952,10 +952,10 @@ const CollapsedSidebar = () => {
 								</Link>
 							</li>
 							<li className='submenu'>
-								<Link to='#'>
+								{/* <Link to='#'>
 									<span>Authentication</span>
 									<span className='menu-arrow' />
-								</Link>
+								</Link> */}
 								<ul>
 									<li className='submenu submenu-two'>
 										<Link to='#'>
