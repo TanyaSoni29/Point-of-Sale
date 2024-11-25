@@ -122,6 +122,7 @@ export const all_routes = {
 	storagesettings: '/storage-settings',
 	banipaddress: '/ban-ip-address',
 	generalsettings: '/general-settings',
+	storesettings: '/store-list',
 	securitysettings: '/security-settings',
 	notification: '/notification',
 	connectedapps: '/connected-apps',

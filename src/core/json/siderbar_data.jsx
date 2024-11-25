@@ -302,13 +302,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Locations',
-				link: '/store-list',
-				icon: <Icon.Home />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Locations',
+			// 	link: '/store-list',
+			// 	icon: <Icon.Home />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Workshop',
 				link: '/warehouse',
@@ -319,81 +319,81 @@ export const SidebarData = [
 		],
 	},
 
-	{
-		label: 'HRM',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'HRM',
-		submenuItems: [
-			{
-				label: 'Employees',
-				link: '/employees-grid',
-				icon: <Icon.Users />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Departments',
-				link: '/department-grid',
-				icon: <Icon.User />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Designations',
-				link: '/designation',
-				icon: <Icon.UserCheck />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Shifts',
-				link: '/shift',
-				icon: <Icon.Shuffle />,
-				showSubRoute: false,
-			},
+	// {
+	// 	label: 'HRM',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'HRM',
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Employees',
+	// 			link: '/employees-grid',
+	// 			icon: <Icon.Users />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Departments',
+	// 			link: '/department-grid',
+	// 			icon: <Icon.User />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Designations',
+	// 			link: '/designation',
+	// 			icon: <Icon.UserCheck />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Shifts',
+	// 			link: '/shift',
+	// 			icon: <Icon.Shuffle />,
+	// 			showSubRoute: false,
+	// 		},
 
-			{
-				label: 'Attendance',
-				link: '#',
-				icon: <Icon.Clock />,
-				showSubRoute: false,
-				submenu: true,
+	// 		{
+	// 			label: 'Attendance',
+	// 			link: '#',
+	// 			icon: <Icon.Clock />,
+	// 			showSubRoute: false,
+	// 			submenu: true,
 
-				submenuItems: [
-					{ label: 'Employee', link: '/attendance-employee' },
-					{ label: 'Admin', link: '/attendance-admin' },
-				],
-			},
-			{
-				label: 'Leaves',
-				link: '#',
-				icon: <Icon.Calendar />,
-				showSubRoute: false,
-				submenu: true,
-				submenuItems: [
-					{ label: 'Employee Leaves', link: '/leaves-employee' },
-					{ label: 'Admin Leaves', link: '/leaves-admin' },
-					{ label: 'Leave Types', link: '/leave-types' },
-				],
-			},
-			{
-				label: 'Holidays',
-				link: '/holidays',
-				icon: <Icon.CreditCard />,
-				showSubRoute: false,
-			},
+	// 			submenuItems: [
+	// 				{ label: 'Employee', link: '/attendance-employee' },
+	// 				{ label: 'Admin', link: '/attendance-admin' },
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Leaves',
+	// 			link: '#',
+	// 			icon: <Icon.Calendar />,
+	// 			showSubRoute: false,
+	// 			submenu: true,
+	// 			submenuItems: [
+	// 				{ label: 'Employee Leaves', link: '/leaves-employee' },
+	// 				{ label: 'Admin Leaves', link: '/leaves-admin' },
+	// 				{ label: 'Leave Types', link: '/leave-types' },
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Holidays',
+	// 			link: '/holidays',
+	// 			icon: <Icon.CreditCard />,
+	// 			showSubRoute: false,
+	// 		},
 
-			// {
-			// 	label: 'Payroll',
-			// 	link: '#',
-			// 	icon: <Icon.DollarSign />,
-			// 	showSubRoute: false,
-			// 	submenu: true,
-			// 	submenuItems: [
-			// 		{ label: 'Employee Salary', link: '/payroll-list' },
-			// 		{ label: 'Payslip', link: '/payslip' },
-			// 	],
-			// },
-		],
-	},
+	// 		// {
+	// 		// 	label: 'Payroll',
+	// 		// 	link: '#',
+	// 		// 	icon: <Icon.DollarSign />,
+	// 		// 	showSubRoute: false,
+	// 		// 	submenu: true,
+	// 		// 	submenuItems: [
+	// 		// 		{ label: 'Employee Salary', link: '/payroll-list' },
+	// 		// 		{ label: 'Payslip', link: '/payslip' },
+	// 		// 	],
+	// 		// },
+	// 	],
+	// },
 	{
 		label: 'Reports',
 		submenuOpen: true,
@@ -481,313 +481,314 @@ export const SidebarData = [
 				icon: <Icon.UserCheck />,
 				showSubRoute: false,
 			},
-			{
-				label: 'Delete Account Request',
-				link: '/delete-account',
-				icon: <Icon.Lock />,
-				showSubRoute: false,
-			},
-		],
-	},
-	{
-		label: 'Pages',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'Pages',
-		submenuItems: [
-			{
-				label: 'Profile',
-				link: '/profile',
-				icon: <Icon.User />,
-				showSubRoute: false,
-			},
 			// {
-			// 	label: 'Authentication',
-			// 	submenu: true,
-			// 	showSubRoute: false,
-			// 	icon: <Icon.Shield />,
-			// 	submenuItems: [
-			// 		{
-			// 			label: 'Login',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// { label: "Cover", link: "/signin", showSubRoute: false },
-			// 				// { label: "Illustration", link: "/signin-2", showSubRoute: false },
-			// 				{ label: 'Basic', link: '/signin', showSubRoute: false },
-			// 			],
-			// 		},
-			// 		{
-			// 			label: 'Register',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// { label: "Cover", link: "/register", showSubRoute: false },
-			// 				// {
-			// 				//   label: "Illustration",
-			// 				//   link: "/register-2",
-			// 				//   showSubRoute: false,
-			// 				// },
-			// 				{ label: 'Basic', link: '/register', showSubRoute: false },
-			// 			],
-			// 		},
-			// 		{
-			// 			label: 'Forgot Password',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// { label: 'Cover', link: '/forgot-password', showSubRoute: false },
-			// 				// {
-			// 				// 	label: 'Illustration',
-			// 				// 	link: '/forgot-password-2',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				{
-			// 					label: 'Basic',
-			// 					link: '/forgot-password',
-			// 					showSubRoute: false,
-			// 				},
-			// 			],
-			// 		},
-			// 		{
-			// 			label: 'Reset Password',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// { label: 'Cover', link: '/reset-password', showSubRoute: false },
-			// 				// {
-			// 				// 	label: 'Illustration',
-			// 				// 	link: '/reset-password-2',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				{
-			// 					label: 'Basic',
-			// 					link: '/reset-password',
-			// 					showSubRoute: false,
-			// 				},
-			// 			],
-			// 		},
-			// 		{
-			// 			label: 'Email Verification',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// {
-			// 				// 	label: 'Cover',
-			// 				// 	link: '/email-verification',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				// {
-			// 				// 	label: 'Illustration',
-			// 				// 	link: '/email-verification-2',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				{
-			// 					label: 'Basic',
-			// 					link: '/email-verification',
-			// 					showSubRoute: false,
-			// 				},
-			// 			],
-			// 		},
-			// 		{
-			// 			label: '2 Step Verification',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				// {
-			// 				// 	label: 'Cover',
-			// 				// 	link: '/two-step-verification',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				// {
-			// 				// 	label: 'Illustration',
-			// 				// 	link: '/two-step-verification-2',
-			// 				// 	showSubRoute: false,
-			// 				// },
-			// 				{
-			// 					label: 'Basic',
-			// 					link: '/two-step-verification',
-			// 					showSubRoute: false,
-			// 				},
-			// 			],
-			// 		},
-			// 		{ label: 'Lock Screen', link: '/lock-screen', showSubRoute: false },
-			// 	],
-			// },
-			// {
-			// 	label: 'Error Pages',
-			// 	submenu: true,
-			// 	showSubRoute: false,
-			// 	icon: <Icon.FileMinus />,
-			// 	submenuItems: [
-			// 		{ label: '404 Error', link: '/error-404', showSubRoute: false },
-			// 		{ label: '500 Error', link: '/error-500', showSubRoute: false },
-			// 	],
-			// },
-			// {
-			//   label: "Places",
-			//   submenu: true,
-			//   showSubRoute: false,
-			//   icon: <Icon.Map />,
-			//   submenuItems: [
-			//     { label: "Countries", link: "countries",showSubRoute: false },
-			//     { label: "States", link: "states",showSubRoute: false }
-			//   ]
-			// },
-			// {
-			// 	label: 'Blank Page',
-			// 	link: '/blank-page',
-			// 	icon: <Icon.File />,
-			// 	showSubRoute: false,
-			// },
-			// {
-			// 	label: 'Coming Soon',
-			// 	link: '/coming-soon',
-			// 	icon: <Icon.Send />,
-			// 	showSubRoute: false,
-			// },
-			// {
-			// 	label: 'Under Maintenance',
-			// 	link: '/under-maintenance',
-			// 	icon: <Icon.AlertTriangle />,
+			// 	label: 'Delete Account Request',
+			// 	link: '/delete-account',
+			// 	icon: <Icon.Lock />,
 			// 	showSubRoute: false,
 			// },
 		],
 	},
+	// {
+	// 	label: 'Pages',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'Pages',
+	// 	submenuItems: [
+	// 		// {
+	// 		// 	label: 'Profile',
+	// 		// 	link: '/profile',
+	// 		// 	icon: <Icon.User />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Authentication',
+	// 		// 	submenu: true,
+	// 		// 	showSubRoute: false,
+	// 		// 	icon: <Icon.Shield />,
+	// 		// 	submenuItems: [
+	// 		// 		{
+	// 		// 			label: 'Login',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// { label: "Cover", link: "/signin", showSubRoute: false },
+	// 		// 				// { label: "Illustration", link: "/signin-2", showSubRoute: false },
+	// 		// 				{ label: 'Basic', link: '/signin', showSubRoute: false },
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{
+	// 		// 			label: 'Register',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// { label: "Cover", link: "/register", showSubRoute: false },
+	// 		// 				// {
+	// 		// 				//   label: "Illustration",
+	// 		// 				//   link: "/register-2",
+	// 		// 				//   showSubRoute: false,
+	// 		// 				// },
+	// 		// 				{ label: 'Basic', link: '/register', showSubRoute: false },
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{
+	// 		// 			label: 'Forgot Password',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// { label: 'Cover', link: '/forgot-password', showSubRoute: false },
+	// 		// 				// {
+	// 		// 				// 	label: 'Illustration',
+	// 		// 				// 	link: '/forgot-password-2',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				{
+	// 		// 					label: 'Basic',
+	// 		// 					link: '/forgot-password',
+	// 		// 					showSubRoute: false,
+	// 		// 				},
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{
+	// 		// 			label: 'Reset Password',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// { label: 'Cover', link: '/reset-password', showSubRoute: false },
+	// 		// 				// {
+	// 		// 				// 	label: 'Illustration',
+	// 		// 				// 	link: '/reset-password-2',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				{
+	// 		// 					label: 'Basic',
+	// 		// 					link: '/reset-password',
+	// 		// 					showSubRoute: false,
+	// 		// 				},
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{
+	// 		// 			label: 'Email Verification',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// {
+	// 		// 				// 	label: 'Cover',
+	// 		// 				// 	link: '/email-verification',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				// {
+	// 		// 				// 	label: 'Illustration',
+	// 		// 				// 	link: '/email-verification-2',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				{
+	// 		// 					label: 'Basic',
+	// 		// 					link: '/email-verification',
+	// 		// 					showSubRoute: false,
+	// 		// 				},
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{
+	// 		// 			label: '2 Step Verification',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				// {
+	// 		// 				// 	label: 'Cover',
+	// 		// 				// 	link: '/two-step-verification',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				// {
+	// 		// 				// 	label: 'Illustration',
+	// 		// 				// 	link: '/two-step-verification-2',
+	// 		// 				// 	showSubRoute: false,
+	// 		// 				// },
+	// 		// 				{
+	// 		// 					label: 'Basic',
+	// 		// 					link: '/two-step-verification',
+	// 		// 					showSubRoute: false,
+	// 		// 				},
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{ label: 'Lock Screen', link: '/lock-screen', showSubRoute: false },
+	// 		// 	],
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Error Pages',
+	// 		// 	submenu: true,
+	// 		// 	showSubRoute: false,
+	// 		// 	icon: <Icon.FileMinus />,
+	// 		// 	submenuItems: [
+	// 		// 		{ label: '404 Error', link: '/error-404', showSubRoute: false },
+	// 		// 		{ label: '500 Error', link: '/error-500', showSubRoute: false },
+	// 		// 	],
+	// 		// },
+	// 		// {
+	// 		//   label: "Places",
+	// 		//   submenu: true,
+	// 		//   showSubRoute: false,
+	// 		//   icon: <Icon.Map />,
+	// 		//   submenuItems: [
+	// 		//     { label: "Countries", link: "countries",showSubRoute: false },
+	// 		//     { label: "States", link: "states",showSubRoute: false }
+	// 		//   ]
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Blank Page',
+	// 		// 	link: '/blank-page',
+	// 		// 	icon: <Icon.File />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Coming Soon',
+	// 		// 	link: '/coming-soon',
+	// 		// 	icon: <Icon.Send />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Under Maintenance',
+	// 		// 	link: '/under-maintenance',
+	// 		// 	icon: <Icon.AlertTriangle />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 	],
+	// },
 
-	{
-		label: 'Settings',
-		submenu: true,
-		showSubRoute: false,
-		submenuHdr: 'Settings',
-		submenuItems: [
-			{
-				label: 'General Settings',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.Settings />,
-				submenuItems: [
-					{ label: 'Profile', link: '/general-settings' },
-					{ label: 'Security', link: '/security-settings' },
-					{ label: 'Notifications', link: '/notification' },
-					{ label: 'Connected Apps', link: '/connected-apps' },
-				],
-			},
-			{
-				label: 'Website Settings',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.Globe />,
-				submenuItems: [
-					{
-						label: 'System Settings',
-						link: '/system-settings',
-						showSubRoute: false,
-					},
-					{
-						label: 'Company Settings',
-						link: '/company-settings',
-						showSubRoute: false,
-					},
-					{
-						label: 'Localization',
-						link: '/localization-settings',
-						showSubRoute: false,
-					},
-					{ label: 'Prefixes', link: '/prefixes', showSubRoute: false },
-					{ label: 'Preference', link: '/preference', showSubRoute: false },
-					{ label: 'Appearance', link: '/appearance', showSubRoute: false },
-					{
-						label: 'Social Authentication',
-						link: '/social-authentication',
-						showSubRoute: false,
-					},
-					{
-						label: 'Language',
-						link: '/language-settings',
-						showSubRoute: false,
-					},
-				],
-			},
-			{
-				label: 'App Settings',
-				submenu: true,
+	// {
+	// 	label: 'Settings',
+	// 	submenu: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'Settings',
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'General Settings',
+	// 			submenu: true,
+	// 			showSubRoute: false,
+	// 			icon: <Icon.Settings />,
+	// 			submenuItems: [
+	// 				{ label: 'Profile', link: '/general-settings' },
+	// 				{ label: 'Store', link: '/store-list' },
+	// 				{ label: 'Security', link: '/security-settings' },
+	// 				{ label: 'Notifications', link: '/notification' },
+	// 				{ label: 'Connected Apps', link: '/connected-apps' },
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Website Settings',
+	// 			submenu: true,
+	// 			showSubRoute: false,
+	// 			icon: <Icon.Globe />,
+	// 			submenuItems: [
+	// 				{
+	// 					label: 'System Settings',
+	// 					link: '/system-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{
+	// 					label: 'Company Settings',
+	// 					link: '/company-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{
+	// 					label: 'Localization',
+	// 					link: '/localization-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{ label: 'Prefixes', link: '/prefixes', showSubRoute: false },
+	// 				{ label: 'Preference', link: '/preference', showSubRoute: false },
+	// 				{ label: 'Appearance', link: '/appearance', showSubRoute: false },
+	// 				{
+	// 					label: 'Social Authentication',
+	// 					link: '/social-authentication',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{
+	// 					label: 'Language',
+	// 					link: '/language-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'App Settings',
+	// 			submenu: true,
 
-				showSubRoute: false,
-				icon: <Icon.Smartphone />,
-				submenuItems: [
-					{ label: 'Invoice', link: '/invoice-settings', showSubRoute: false },
-					{ label: 'Printer', link: '/printer-settings', showSubRoute: false },
-					{ label: 'POS', link: '/pos-settings', showSubRoute: false },
-					{
-						label: 'Custom Fields',
-						link: '/custom-fields',
-						showSubRoute: false,
-					},
-				],
-			},
-			{
-				label: 'System Settings',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.Monitor />,
-				submenuItems: [
-					{ label: 'Email', link: '/email-settings', showSubRoute: false },
-					{ label: 'SMS Gateways', link: '/sms-gateway', showSubRoute: false },
-					{ label: 'OTP', link: '/otp-settings', showSubRoute: false },
-					{
-						label: 'GDPR Cookies',
-						link: '/gdpr-settings',
-						showSubRoute: false,
-					},
-				],
-			},
-			{
-				label: 'Financial Settings',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.DollarSign />,
-				submenuItems: [
-					{
-						label: 'Payment Gateway',
-						link: '/payment-gateway-settings',
-						showSubRoute: false,
-					},
-					{
-						label: 'Bank Accounts',
-						link: '/bank-settings-grid',
-						showSubRoute: false,
-					},
-					{ label: 'Tax Rates', link: '/tax-rates', showSubRoute: false },
-					{
-						label: 'Currencies',
-						link: '/currency-settings',
-						showSubRoute: false,
-					},
-				],
-			},
-			{
-				label: 'Other Settings',
-				submenu: true,
-				showSubRoute: false,
-				icon: <Icon.Hexagon />,
-				submenuItems: [
-					{ label: 'Storage', link: '/storage-settings', showSubRoute: false },
-					{
-						label: 'Ban IP Address',
-						link: '/ban-ip-address',
-						showSubRoute: false,
-					},
-				],
-			},
-			{
-				label: 'Logout',
-				link: '/signin',
-				icon: <Icon.LogOut />,
-				showSubRoute: false,
-			},
-		],
-	},
+	// 			showSubRoute: false,
+	// 			icon: <Icon.Smartphone />,
+	// 			submenuItems: [
+	// 				{ label: 'Invoice', link: '/invoice-settings', showSubRoute: false },
+	// 				{ label: 'Printer', link: '/printer-settings', showSubRoute: false },
+	// 				{ label: 'POS', link: '/pos-settings', showSubRoute: false },
+	// 				{
+	// 					label: 'Custom Fields',
+	// 					link: '/custom-fields',
+	// 					showSubRoute: false,
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'System Settings',
+	// 			submenu: true,
+	// 			showSubRoute: false,
+	// 			icon: <Icon.Monitor />,
+	// 			submenuItems: [
+	// 				{ label: 'Email', link: '/email-settings', showSubRoute: false },
+	// 				{ label: 'SMS Gateways', link: '/sms-gateway', showSubRoute: false },
+	// 				{ label: 'OTP', link: '/otp-settings', showSubRoute: false },
+	// 				{
+	// 					label: 'GDPR Cookies',
+	// 					link: '/gdpr-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Financial Settings',
+	// 			submenu: true,
+	// 			showSubRoute: false,
+	// 			icon: <Icon.DollarSign />,
+	// 			submenuItems: [
+	// 				{
+	// 					label: 'Payment Gateway',
+	// 					link: '/payment-gateway-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{
+	// 					label: 'Bank Accounts',
+	// 					link: '/bank-settings-grid',
+	// 					showSubRoute: false,
+	// 				},
+	// 				{ label: 'Tax Rates', link: '/tax-rates', showSubRoute: false },
+	// 				{
+	// 					label: 'Currencies',
+	// 					link: '/currency-settings',
+	// 					showSubRoute: false,
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Other Settings',
+	// 			submenu: true,
+	// 			showSubRoute: false,
+	// 			icon: <Icon.Hexagon />,
+	// 			submenuItems: [
+	// 				{ label: 'Storage', link: '/storage-settings', showSubRoute: false },
+	// 				{
+	// 					label: 'Ban IP Address',
+	// 					link: '/ban-ip-address',
+	// 					showSubRoute: false,
+	// 				},
+	// 			],
+	// 		},
+	// 		{
+	// 			label: 'Logout',
+	// 			link: '/signin',
+	// 			icon: <Icon.LogOut />,
+	// 			showSubRoute: false,
+	// 		},
+	// 	],
+	// },
 
 	// {
 	// 	label: 'UI Interface',
