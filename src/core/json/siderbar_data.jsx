@@ -74,13 +74,13 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Low Stocks',
-				link: '/low-stocks',
-				icon: <Icon.TrendingDown />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Low Stocks',
+			// 	link: '/low-stocks',
+			// 	icon: <Icon.TrendingDown />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Category',
 				link: '/category-list',
@@ -102,13 +102,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Units',
-				link: '/units',
-				icon: <Icon.Speaker />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Units',
+			// 	link: '/units',
+			// 	icon: <Icon.Speaker />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Variant Attributes',
 				link: '/variant-attributes',
@@ -146,6 +146,13 @@ export const SidebarData = [
 		submenu: true,
 		showSubRoute: false,
 		submenuItems: [
+			{
+				label: 'Reorder Label',
+				link: '/low-stocks',
+				icon: <Icon.TrendingDown />,
+				showSubRoute: false,
+				submenu: false,
+			},
 			{
 				label: 'Manage Stock',
 				link: '/manage-stocks',
@@ -301,6 +308,18 @@ export const SidebarData = [
 				icon: <Icon.Users />,
 				showSubRoute: false,
 				submenu: false,
+			},
+			{
+				label: 'Users',
+				link: '/users',
+				icon: <Icon.UserCheck />,
+				showSubRoute: false,
+			},
+			{
+				label: 'Roles & Permissions',
+				link: '/roles-permissions',
+				icon: <Icon.UserCheck />,
+				showSubRoute: false,
 			},
 			// {
 			// 	label: 'Locations',
@@ -463,32 +482,32 @@ export const SidebarData = [
 		],
 	},
 
-	{
-		label: 'User Management',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'User Management',
-		submenuItems: [
-			{
-				label: 'Users',
-				link: '/users',
-				icon: <Icon.UserCheck />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Roles & Permissions',
-				link: '/roles-permissions',
-				icon: <Icon.UserCheck />,
-				showSubRoute: false,
-			},
-			// {
-			// 	label: 'Delete Account Request',
-			// 	link: '/delete-account',
-			// 	icon: <Icon.Lock />,
-			// 	showSubRoute: false,
-			// },
-		],
-	},
+	// {
+	// 	label: 'User Management',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'User Management',
+	// 	submenuItems: [
+	// 		// {
+	// 		// 	label: 'Users',
+	// 		// 	link: '/users',
+	// 		// 	icon: <Icon.UserCheck />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Roles & Permissions',
+	// 		// 	link: '/roles-permissions',
+	// 		// 	icon: <Icon.UserCheck />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Delete Account Request',
+	// 		// 	link: '/delete-account',
+	// 		// 	icon: <Icon.Lock />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 	],
+	// },
 	// {
 	// 	label: 'Pages',
 	// 	submenuOpen: true,
