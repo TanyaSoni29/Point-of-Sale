@@ -67,13 +67,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Expired Products',
-				link: '/expired-products',
-				icon: <Icon.Codesandbox />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Expired Products',
+			// 	link: '/expired-products',
+			// 	icon: <Icon.Codesandbox />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Low Stocks',
 				link: '/low-stocks',
@@ -116,13 +116,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Warranties',
-				link: '/warranty',
-				icon: <Icon.Bookmark />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Warranties',
+			// 	link: '/warranty',
+			// 	icon: <Icon.Bookmark />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Print Barcode',
 				link: '/barcode',
@@ -303,14 +303,14 @@ export const SidebarData = [
 				submenu: false,
 			},
 			{
-				label: 'Stores',
+				label: 'Locations',
 				link: '/store-list',
 				icon: <Icon.Home />,
 				showSubRoute: false,
 				submenu: false,
 			},
 			{
-				label: 'Warehouses',
+				label: 'Workshop',
 				link: '/warehouse',
 				icon: <Icon.Archive />,
 				showSubRoute: false,
