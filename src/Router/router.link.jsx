@@ -177,8 +177,8 @@ import Lockscreen from '../feature-module/pages/lockscreen';
 import Error404 from '../feature-module/pages/errorpages/error404';
 import Error500 from '../feature-module/pages/errorpages/error500';
 import Blankpage from '../feature-module/pages/blankpage';
-import Comingsoon from '../feature-module/pages/comingsoon';
-import Undermaintainence from '../feature-module/pages/undermaintainence';
+// import Comingsoon from '../feature-module/pages/comingsoon';
+// import Undermaintainence from '../feature-module/pages/undermaintainence';
 import Users from '../feature-module/usermanagement/users';
 import RolesPermissions from '../feature-module/usermanagement/rolespermissions';
 import Permissions from '../feature-module/usermanagement/permissions';
@@ -1570,18 +1570,18 @@ export const pagesRoute = [
 		element: <Error500 />,
 		route: Route,
 	},
-	{
-		id: 20,
-		path: routes.comingsoon,
-		name: 'comingsoon',
-		element: <Comingsoon />,
-		route: Route,
-	},
-	{
-		id: 21,
-		path: routes.undermaintenance,
-		name: 'undermaintenance',
-		element: <Undermaintainence />,
-		route: Route,
-	},
+	// {
+	// 	id: 20,
+	// 	path: routes.comingsoon,
+	// 	name: 'comingsoon',
+	// 	element: <Comingsoon />,
+	// 	route: Route,
+	// },
+	// {
+	// 	id: 21,
+	// 	path: routes.undermaintenance,
+	// 	name: 'undermaintenance',
+	// 	element: <Undermaintainence />,
+	// 	route: Route,
+	// },
 ];
