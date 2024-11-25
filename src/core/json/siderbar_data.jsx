@@ -448,12 +448,12 @@ export const SidebarData = [
 				icon: <Icon.BarChart />,
 				showSubRoute: false,
 			},
-			{
-				label: 'Tax Report',
-				link: '/tax-report',
-				icon: <Icon.Database />,
-				showSubRoute: false,
-			},
+			// {
+			// 	label: 'Tax Report',
+			// 	link: '/tax-report',
+			// 	icon: <Icon.Database />,
+			// 	showSubRoute: false,
+			// },
 			{
 				label: 'Profit & Loss',
 				link: '/profit-loss-report',
