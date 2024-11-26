@@ -3,13 +3,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
-import { Search, Settings, User, XCircle } from 'react-feather';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
+import { Home, Search, Settings, User, XCircle } from 'react-feather';
 import { all_routes } from '../../Router/all_routes';
 import LogoImg from '../../assets/img/logo.png';
 import LogoWhiteImg from '../../assets/img/logo-white.png';
 import LogoSmallImg from '../../assets/img/logo-small.png';
-import Avatar1Img from "../../assets/img/profiles/avator1.jpg"
+import ProfileImg from '../../assets/img/profiles/profile.png';
+import LogOutImg from '../../assets/img/icons/log-out.svg';
 const Header = () => {
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
@@ -287,26 +288,37 @@ const Header = () => {
 														alt
 														className='img-fluid'
 													/> */}
-                          <img src={Avatar1Img} />
+													<img
+														src={ProfileImg}
+														alt='img'
+													/>
 												</Link>
 											</li>
 											<li>
 												<Link to='#'>
 													Jonita
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														src='assets/img/profiles/avatar-01.jpg'
 														alt
 														className='img-fluid'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</Link>
 											</li>
 											<li>
 												<Link to='#'>
 													Aaron
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														src='assets/img/profiles/avatar-10.jpg'
 														alt
 														className='img-fluid'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</Link>
 											</li>
@@ -327,11 +339,12 @@ const Header = () => {
 						>
 							<span className='user-info'>
 								<span className='user-letter'>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/store/store-01.png'
 										alt='Store Logo'
 										className='img-fluid'
-									/>
+									/> */}
+									<Home />
 								</span>
 								<span className='user-detail'>
 									<span className='user-name'>Select Store</span>
@@ -343,61 +356,65 @@ const Header = () => {
 								to='#'
 								className='dropdown-item'
 							>
-								<ImageWithBasePath
+								{/* <ImageWithBasePath
 									src='assets/img/store/store-01.png'
 									alt='Store Logo'
 									className='img-fluid'
-								/>{' '}
-								Grocery Alpha
+								/>{' '} */}
+								<Home />{' '}
+								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
 							<Link
 								to='#'
 								className='dropdown-item'
 							>
-								<ImageWithBasePath
+								{/* <ImageWithBasePath
 									src='assets/img/store/store-02.png'
 									alt='Store Logo'
 									className='img-fluid'
-								/>{' '}
-								Grocery Apex
+								/>{' '} */}
+								<Home />{' '}
+								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
 							<Link
 								to='#'
 								className='dropdown-item'
 							>
-								<ImageWithBasePath
+								{/* <ImageWithBasePath
 									src='assets/img/store/store-03.png'
 									alt='Store Logo'
 									className='img-fluid'
-								/>{' '}
-								Grocery Bevy
+								/>{' '} */}
+								<Home />{' '}
+								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
 							<Link
 								to='#'
 								className='dropdown-item'
 							>
-								<ImageWithBasePath
+								{/* <ImageWithBasePath
 									src='assets/img/store/store-04.png'
 									alt='Store Logo'
 									className='img-fluid'
-								/>{' '}
-								Grocery Eden
+								/>{' '} */}
+								<Home />{' '}
+								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
 						</div>
 					</li>
 					{/* /Select Store */}
 
 					{/* Flag */}
-					<li className='nav-item dropdown has-arrow flag-nav nav-item-box'>
+					{/* <li className='nav-item dropdown has-arrow flag-nav nav-item-box'>
 						<Link
 							className='nav-link dropdown-toggle'
 							data-bs-toggle='dropdown'
 							to='#'
 							role='button'
-						>
-							{/* <i data-feather="globe" /> */}
-							{/* <FeatherIcon icon="globe" /> */}
-							<ImageWithBasePath
+						> */}
+					{/* <i data-feather="globe" /> */}
+					{/* <FeatherIcon icon="globe" /> */}
+					{/* <ImageWithBasePath
 								src='assets/img/flags/us.png'
 								alt='img'
 								height={16}
@@ -449,7 +466,7 @@ const Header = () => {
 								German
 							</Link>
 						</div>
-					</li>
+					</li> */}
 					{/* /Flag */}
 					<li className='nav-item nav-item-box'>
 						<Link
@@ -462,13 +479,13 @@ const Header = () => {
 							<FeatherIcon icon='maximize' />
 						</Link>
 					</li>
-					<li className='nav-item nav-item-box'>
-						<Link to='/email'>
-							{/* <i data-feather="mail" /> */}
-							<FeatherIcon icon='mail' />
+					{/* <li className='nav-item nav-item-box'>
+						<Link to='/email'> */}
+					{/* <i data-feather="mail" /> */}
+					{/* <FeatherIcon icon='mail' />
 							<span className='badge rounded-pill'>1</span>
 						</Link>
-					</li>
+					</li> */}
 					{/* Notifications */}
 					<li className='nav-item dropdown nav-item-box'>
 						<Link
@@ -497,9 +514,13 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														alt='img'
 														src='assets/img/profiles/avatar-02.jpg'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</span>
 												<div className='media-body flex-grow-1'>
@@ -523,9 +544,13 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														alt='img'
 														src='assets/img/profiles/avatar-03.jpg'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</span>
 												<div className='media-body flex-grow-1'>
@@ -549,9 +574,13 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														alt='img'
 														src='assets/img/profiles/avatar-06.jpg'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</span>
 												<div className='media-body flex-grow-1'>
@@ -578,9 +607,13 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														alt='img'
 														src='assets/img/profiles/avatar-17.jpg'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</span>
 												<div className='media-body flex-grow-1'>
@@ -604,9 +637,13 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													<ImageWithBasePath
+													{/* <ImageWithBasePath
 														alt='img'
 														src='assets/img/profiles/avatar-13.jpg'
+													/> */}
+													<img
+														src={ProfileImg}
+														alt='img'
 													/>
 												</span>
 												<div className='media-body flex-grow-1'>
@@ -648,10 +685,14 @@ const Header = () => {
 						>
 							<span className='user-info'>
 								<span className='user-letter'>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/profiles/avator1.jpg'
 										alt='img'
 										className='img-fluid'
+									/> */}
+									<img
+										src={ProfileImg}
+										alt='img'
 									/>
 								</span>
 								<span className='user-detail'>
@@ -664,8 +705,12 @@ const Header = () => {
 							<div className='profilename'>
 								<div className='profileset'>
 									<span className='user-img'>
-										<ImageWithBasePath
+										{/* <ImageWithBasePath
 											src='assets/img/profiles/avator1.jpg'
+											alt='img'
+										/> */}
+										<img
+											src={ProfileImg}
 											alt='img'
 										/>
 										<span className='status online' />
@@ -694,8 +739,13 @@ const Header = () => {
 									className='dropdown-item logout pb-0'
 									to='/signin'
 								>
-									<ImageWithBasePath
-										src='assets/img/icons/log-out.svg'
+									{/* <ImageWithBasePath
+										src={LogOutImg}
+										alt='img'
+										className='me-2'
+									/> */}
+									<img
+										src={LogOutImg}
 										alt='img'
 										className='me-2'
 									/>
