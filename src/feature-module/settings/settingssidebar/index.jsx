@@ -5,8 +5,9 @@ import Scrollbars from 'react-custom-scrollbars-2';
 import { all_routes } from '../../../Router/all_routes';
 import { Link, useLocation } from 'react-router-dom';
 import {
-	Airplay,
+	// Airplay,
 	Archive,
+	FileText,
 	Server,
 	Settings,
 } from 'feather-icons-react/build/IconComponents';
@@ -17,15 +18,21 @@ const SettingsSideBar = (props) => {
 	const location = useLocation();
 
 	const [isGeneralSettingsOpen, setIsGeneralSettingsOpen] = useState(false);
-	const [isWebsiteSettingsOpen, setIsWebsiteSettingsOpen] = useState(false);
+	// const [isWebsiteSettingsOpen, setIsWebsiteSettingsOpen] = useState(false);
 
 	const toggleGeneralSettings = () => {
 		setIsGeneralSettingsOpen(!isGeneralSettingsOpen);
 	};
 
-	const toggleWebsiteSettings = () => {
-		setIsWebsiteSettingsOpen(!isWebsiteSettingsOpen);
+	const [isUsersSettingsOpen, setIsUsersSettingsOpen] = useState(false);
+	// const [isWebsiteSettingsOpen, setIsWebsiteSettingsOpen] = useState(false);
+
+	const toggleUsersSettings = () => {
+		setIsUsersSettingsOpen(!isUsersSettingsOpen);
 	};
+	// const toggleWebsiteSettings = () => {
+	// 	setIsWebsiteSettingsOpen(!isWebsiteSettingsOpen);
+	// };
 
 	const [isAppSettingsOpen, setIsAppSettingsOpen] = useState(false);
 
@@ -39,6 +46,11 @@ const SettingsSideBar = (props) => {
 	const [isFinancialSettingsOpen, setIsFinancialSettingsOpen] = useState(false);
 	const toggleFinancialSettings = () => {
 		setIsFinancialSettingsOpen((prev) => !prev);
+	};
+	const [isPOSettingsOpen, setIsPOSettingsOpen] = useState(false);
+
+	const togglePOSettings = () => {
+		setIsPOSettingsOpen((prev) => !prev);
 	};
 
 	const [isOtherSettingsOpen, setIsOtherSettingsOpen] = useState(false);
@@ -91,7 +103,7 @@ const SettingsSideBar = (props) => {
 														display: isGeneralSettingsOpen ? 'block' : 'none',
 													}}
 												>
-													<li>
+													{/* <li>
 														<Link
 															to={route.generalsettings}
 															className={
@@ -102,7 +114,7 @@ const SettingsSideBar = (props) => {
 														>
 															Profile
 														</Link>
-													</li>
+													</li> */}
 													<li>
 														<Link
 															to={route.storesettings}
@@ -115,7 +127,7 @@ const SettingsSideBar = (props) => {
 															Store
 														</Link>
 													</li>
-													<li>
+													{/* <li>
 														<Link
 															to={route.securitysettings}
 															className={
@@ -126,7 +138,7 @@ const SettingsSideBar = (props) => {
 														>
 															Security
 														</Link>
-													</li>
+													</li> */}
 													<li>
 														<Link
 															to={route.notification}
@@ -148,12 +160,52 @@ const SettingsSideBar = (props) => {
 																	: ''
 															}
 														>
-															Connected Apps
+															Connected APIs
 														</Link>
 													</li>
 												</ul>
 											</li>
 											<li className='submenu'>
+												<Link
+													to='#'
+													onClick={toggleUsersSettings}
+												>
+													<FileText />
+													<span>Users Settings</span>
+													<span className='menu-arrow' />
+												</Link>
+												<ul
+													style={{
+														display: isUsersSettingsOpen ? 'block' : 'none',
+													}}
+												>
+													<li>
+														<Link
+															// to={route.storagesettings}
+															className={
+																location.pathname === route.storagesettings
+																	? 'active'
+																	: ''
+															}
+														>
+															Users
+														</Link>
+													</li>
+													<li>
+														<Link
+															// to={route.banipaddress}
+															className={
+																location.pathname === route.banipaddress
+																	? 'active'
+																	: ''
+															}
+														>
+															Users
+														</Link>
+													</li>
+												</ul>
+											</li>
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={toggleWebsiteSettings}
@@ -264,7 +316,7 @@ const SettingsSideBar = (props) => {
 														</Link>
 													</li>
 												</ul>
-											</li>
+											</li> */}
 											<li className='submenu'>
 												<Link
 													to='#'
@@ -315,7 +367,7 @@ const SettingsSideBar = (props) => {
 															POS
 														</Link>
 													</li>
-													<li>
+													{/* <li>
 														<Link
 															to={route.customfields}
 															className={
@@ -326,7 +378,7 @@ const SettingsSideBar = (props) => {
 														>
 															Custom Fields
 														</Link>
-													</li>
+													</li> */}
 												</ul>
 											</li>
 											<li className='submenu'>
@@ -422,7 +474,7 @@ const SettingsSideBar = (props) => {
 															Payment Gateway
 														</Link>
 													</li>
-													<li>
+													{/* <li>
 														<Link
 															to={route.banksettingslist}
 															className={
@@ -433,8 +485,8 @@ const SettingsSideBar = (props) => {
 														>
 															Bank Accounts
 														</Link>
-													</li>
-													<li>
+													</li> */}
+													{/* <li>
 														<Link
 															to={route.taxrates}
 															className={
@@ -445,8 +497,8 @@ const SettingsSideBar = (props) => {
 														>
 															Tax Rates
 														</Link>
-													</li>
-													<li>
+													</li> */}
+													{/* <li>
 														<Link
 															to={route.currencysettings}
 															className={
@@ -456,6 +508,46 @@ const SettingsSideBar = (props) => {
 															}
 														>
 															Currencies
+														</Link>
+													</li> */}
+												</ul>
+											</li>
+											<li className='submenu'>
+												<Link
+													to='#'
+													onClick={togglePOSettings}
+												>
+													<FileText />
+													<span>PO Settings</span>
+													<span className='menu-arrow' />
+												</Link>
+												<ul
+													style={{
+														display: isPOSettingsOpen ? 'block' : 'none',
+													}}
+												>
+													<li>
+														<Link
+															// to={route.storagesettings}
+															className={
+																location.pathname === route.storagesettings
+																	? 'active'
+																	: ''
+															}
+														>
+															PO
+														</Link>
+													</li>
+													<li>
+														<Link
+															// to={route.banipaddress}
+															className={
+																location.pathname === route.banipaddress
+																	? 'active'
+																	: ''
+															}
+														>
+															PO
 														</Link>
 													</li>
 												</ul>
