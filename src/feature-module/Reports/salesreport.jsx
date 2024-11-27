@@ -6,6 +6,7 @@ import { Filter, Sliders, Box, Zap } from "react-feather";
 import Select from "react-select";
 import { salesreportdata } from "../../core/json/salesreportdata";
 import Table from "../../core/pagination/datatable";
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 
 const SalesReport = () => {
@@ -131,10 +132,14 @@ const SalesReport = () => {
                     onClick={toggleFilterVisibility}
                   />
                   <span onClick={toggleFilterVisibility}>
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/closes.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+											src={CloseImg}
+											alt='img'
+										/>
                   </span>
                 </Link>
               </div>

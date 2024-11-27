@@ -1,12 +1,13 @@
 import React, { useState } from "react";
 import Breadcrumbs from "../../core/breadcrumbs";
-import ImageWithBasePath from "../../core/img/imagewithbasebath";
+// import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { Link } from "react-router-dom";
 import { Filter, Sliders, StopCircle, User, Calendar } from "react-feather";
 import Select from "react-select";
 import DateRangePicker from "react-bootstrap-daterangepicker";
 import { invoicereportsdata } from "../../core/json/invoicereportsdata";
 import Table from "../../core/pagination/datatable";
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 const Invoicereport = () => {
   const data = invoicereportsdata;
@@ -169,10 +170,14 @@ const Invoicereport = () => {
                     onClick={toggleFilterVisibility}
                   />
                   <span onClick={toggleFilterVisibility}>
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/closes.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+											src={CloseImg}
+											alt='img'
+										/>
                   </span>
                 </Link>
               </div>

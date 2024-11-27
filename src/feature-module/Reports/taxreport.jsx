@@ -10,6 +10,8 @@ import DateRangePicker from "react-bootstrap-daterangepicker";
 import Breadcrumbs from "../../core/breadcrumbs";
 import { purchasetaxreport, taxreportdata } from "../../core/json/taxreport";
 import Table from "../../core/pagination/datatable";
+import CloseImg from '../../assets/img/icons/closes.svg';
+
 
 const TaxReport = () => {
   const data = taxreportdata;
@@ -262,10 +264,14 @@ const TaxReport = () => {
                           onClick={toggleFilterVisibility}
                         />
                         <span onClick={toggleFilterVisibility}>
-                          <ImageWithBasePath
+                          {/* <ImageWithBasePath
                             src="assets/img/icons/closes.svg"
                             alt="img"
-                          />
+                          /> */}
+                          <img
+											src={CloseImg}
+											alt='img'
+										/>
                         </span>
                       </Link>
                     </div>
@@ -381,10 +387,14 @@ const TaxReport = () => {
                           onClick={toggleFilterVisibilityTwo}
                         />
                         <span onClick={toggleFilterVisibilityTwo}>
-                          <ImageWithBasePath
+                          {/* <ImageWithBasePath
                             src="assets/img/icons/closes.svg"
                             alt="img"
-                          />
+                          /> */}
+                          <img
+											src={CloseImg}
+											alt='img'
+										/>
                         </span>
                       </Link>
                     </div>

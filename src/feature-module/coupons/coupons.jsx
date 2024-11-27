@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import ImageWithBasePath from "../../core/img/imagewithbasebath";
+// import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import {
   Calendar,
   ChevronUp,
@@ -17,6 +17,9 @@ import EditCoupons from "../../core/modals/coupons/editcoupons";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import { DatePicker } from "antd";
+import PdfImg from '../../assets/img/icons/pdf.svg';
+import ExcelImg from '../../assets/img/icons/excel.svg';
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 const Coupons = () => {
   const dispatch = useDispatch();
@@ -115,20 +118,28 @@ const Coupons = () => {
               <li>
                 <OverlayTrigger placement="top" overlay={renderTooltip}>
                   <Link>
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/pdf.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+										src={PdfImg}
+										alt='img'
+									/>
                   </Link>
                 </OverlayTrigger>
               </li>
               <li>
                 <OverlayTrigger placement="top" overlay={renderExcelTooltip}>
                   <Link data-bs-toggle="tooltip" data-bs-placement="top">
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/excel.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+										src={ExcelImg}
+										alt='img'
+									/>
                   </Link>
                 </OverlayTrigger>
               </li>
@@ -203,10 +214,14 @@ const Coupons = () => {
                         onClick={toggleFilterVisibility}
                       />
                       <span onClick={toggleFilterVisibility}>
-                        <ImageWithBasePath
+                        {/* <ImageWithBasePath
                           src="assets/img/icons/closes.svg"
                           alt="img"
-                        />
+                        /> */}
+                        <img
+										src={CloseImg}
+										alt='img'
+									/>
                       </span>
                     </Link>
                     <div className="layout-hide-box">

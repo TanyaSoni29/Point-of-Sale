@@ -8,6 +8,7 @@ import DateRangePicker from "react-bootstrap-daterangepicker";
 import Breadcrumbs from "../../core/breadcrumbs";
 import { incomedata } from "../../core/json/incomedata";
 import Table from "../../core/pagination/datatable";
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 const IncomeReport = () => {
   const data = incomedata;
@@ -157,10 +158,14 @@ const IncomeReport = () => {
                     onClick={toggleFilterVisibility}
                   />
                   <span onClick={toggleFilterVisibility}>
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/closes.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+											src={CloseImg}
+											alt='img'
+										/>
                   </span>
                 </Link>
               </div>
