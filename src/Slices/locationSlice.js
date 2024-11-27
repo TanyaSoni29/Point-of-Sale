@@ -1,7 +1,7 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { getAllLocations } from '../service/operations/LocationApi';
+import { getAllLocations } from '../service/operations/locationApi';
 
 const initialState = {
 	locations: [],

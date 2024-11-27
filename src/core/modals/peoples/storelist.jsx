@@ -10,7 +10,7 @@ import withReactContent from "sweetalert2-react-content";
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 import Breadcrumbs from "../../breadcrumbs";
 import CustomerModal from "./customerModal";
-import CloseImg from '../../assets/img/icons/closes.svg';
+import CloseImg from '../../../assets/img/icons/closes.svg';
 
 
 const StoreList = () => {

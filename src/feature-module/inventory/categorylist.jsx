@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 // import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { Link } from 'react-router-dom';
@@ -17,7 +17,7 @@ import {
 import { useDispatch, useSelector } from 'react-redux';
 import { setToogleHeader } from '../../core/redux/action';
 import Select from 'react-select';
-import { DatePicker } from 'antd';
+import { DatePicker, Switch } from 'antd';
 import AddCategoryList from '../../core/modals/inventory/addcategorylist';
 import EditCategoryList from '../../core/modals/inventory/editcategorylist';
 import withReactContent from 'sweetalert2-react-content';
@@ -26,11 +26,14 @@ import Table from '../../core/pagination/datatable';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { refreshCategories, updateCategory } from '../../Slices/categorySlice';
+import { updateCategories } from '../../service/operations/categoryApi';
 
 const CategoryList = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
 	const { categories } = useSelector((state) => state.category);
+	const { token } = useSelector((state) => state.auth);
 
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
@@ -99,31 +102,75 @@ const CategoryList = () => {
 		</Tooltip>
 	);
 
+	const handleToggle = async (category, field, checked) => {
+		try {
+			const newData = {
+				...category,
+				[field]: checked,
+			};
+			const response = await updateCategories(token, newData);
+			if (response?.success) {
+				dispatch(updateCategory(newData));
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
+			title: 'Code',
+			dataIndex: 'code',
+			sorter: (a, b) => a.code.localeCompare(b.code),
+		},
+		{
 			title: 'Category',
-			dataIndex: 'category',
-			sorter: (a, b) => a.category.length - b.category.length,
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localeCompare(b.name),
 		},
 		{
-			title: 'Category Slug',
-			dataIndex: 'categoryslug',
-			sorter: (a, b) => a.categoryslug.length - b.categoryslug.length,
-		},
-		{
-			title: 'Created On',
-			dataIndex: 'createdon',
-			sorter: (a, b) => a.createdon.length - b.createdon.length,
-		},
-		{
-			title: 'Status',
-			dataIndex: 'status',
-			render: (text) => (
-				<span className='badge badge-linesuccess'>
-					<Link to='#'> {text}</Link>
-				</span>
+			title: 'Main Category',
+			dataIndex: 'a',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'a', checked)} // API call handler
+				/>
 			),
-			sorter: (a, b) => a.status.length - b.status.length,
+			sorter: (a, b) => a.a - b.a,
+		},
+		{
+			title: 'Sub Category',
+			dataIndex: 'b',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'b', checked)} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.a - b.a,
+		},
+		{
+			title: 'Sub Category 2',
+			dataIndex: 'c',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'c', checked)} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.a - b.a,
+		},
+		{
+			title: 'Major',
+			dataIndex: 'major',
+			render: (value, record) => (
+				<Switch
+					checked={value}
+					onChange={(checked) => handleToggle(record, 'major', checked)}
+				/>
+			),
+			sorter: (a, b) => a.major - b.major,
 		},
 		{
 			title: 'Actions',
@@ -185,6 +232,11 @@ const CategoryList = () => {
 			}
 		});
 	};
+
+	useEffect(() => {
+		dispatch(refreshCategories());
+	}, [dispatch]);
+
 	return (
 		<div>
 			<div className='page-wrapper'>

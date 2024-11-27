@@ -77,7 +77,7 @@ export const getCategory = async (token, categoryId) => {
 	return result;
 };
 
-export const updateCategory = async (token, data) => {
+export const updateCategories = async (token, data) => {
 	try {
 		const response = await apiConnector('PUT', UPDATE_CATEGORY, data, {
 			'Authorization': `Bearer ${token}`,
@@ -86,7 +86,7 @@ export const updateCategory = async (token, data) => {
 
 		console.log('Update CATEGORY API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update category");
+		if (response.status !== 200) throw new Error("Couldn't update category");
 
 		toast.success('Category updated successfully');
 		return response?.data;

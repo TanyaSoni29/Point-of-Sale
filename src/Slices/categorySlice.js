@@ -1,10 +1,11 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { categorylist } from '../core/json/categorylistdata';
+// import { categorylist } from '../core/json/categorylistdata';
+import { GetAllCategories } from '../service/operations/categoryApi';
 
 const initialState = {
-	categories: categorylist,
+	categories: [],
 	category: null,
 	loading: false,
 };
@@ -33,7 +34,10 @@ const categoriesSlice = createSlice({
 				(category) => category.id === action.payload.id
 			);
 			if (index !== -1) {
-				state.categories[index] = action.payload;
+				state.categories[index] = {
+					...state.categories[index],
+					...action.payload,
+				};
 			}
 			state.loading = false;
 		},
@@ -46,17 +50,17 @@ const categoriesSlice = createSlice({
 	},
 });
 
-// export function refreshCategories() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh categories:', error);
-// 		}
-// 	};
-// }
+export function refreshCategories() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await GetAllCategories(token);
+			dispatch(setCategories(response));
+		} catch (error) {
+			console.error('Failed to refresh categories:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,
