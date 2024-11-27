@@ -2,7 +2,14 @@
 
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
+import PrinterImg from '../../assets/img/icons/printer.svg';
+import MenuIconImg from '../../assets/img/icons/menu-icon.svg';
+import ProductImg from '../../assets/img/icons/product.svg';
+import Sales1Img from '../../assets/img/icons/sales1.svg';
+import Purchase1Img from '../../assets/img/icons/purchase1.svg';
+import Users1Img from '../../assets/img/icons/users1.svg';
+import CalendarsImg from '../../assets/img/icons/calendars.svg';
 
 const CollapsedSidebar = () => {
 	const [isActive, setIsActive] = useState(false);
@@ -67,8 +74,12 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='true'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/menu-icon.svg'
+										alt='img'
+									/> */}
+									<img
+										src={MenuIconImg}
 										alt='img'
 									/>
 								</Link>
@@ -86,8 +97,12 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='false'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/product.svg'
+										alt='img'
+									/> */}
+									<img
+										src={ProductImg}
 										alt='img'
 									/>
 								</Link>
@@ -105,9 +120,13 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='false'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/sales1.svg'
 										alt
+									/> */}
+									<img
+										src={Sales1Img}
+										alt='img'
 									/>
 								</Link>
 							</li>
@@ -124,9 +143,13 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='true'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/purchase1.svg'
 										alt
+									/> */}
+									<img
+										src={Purchase1Img}
+										alt='img'
 									/>
 								</Link>
 							</li>
@@ -143,9 +166,13 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='true'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/users1.svg'
 										alt
+									/> */}
+									<img
+										src={Users1Img}
+										alt='img'
 									/>
 								</Link>
 							</li>
@@ -162,9 +189,13 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='true'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/calendars.svg'
 										alt
+									/> */}
+									<img
+										src={CalendarsImg}
+										alt='img'
 									/>
 								</Link>
 							</li>
@@ -181,9 +212,13 @@ const CollapsedSidebar = () => {
 									role='tab'
 									aria-selected='true'
 								>
-									<ImageWithBasePath
+									{/* <ImageWithBasePath
 										src='assets/img/icons/printer.svg'
 										alt=''
+									/> */}
+									<img
+										src={PrinterImg}
+										alt='img'
 									/>
 								</Link>
 							</li>

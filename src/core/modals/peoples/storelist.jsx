@@ -7,9 +7,11 @@ import { useSelector } from "react-redux";
 import Table from "../../../core/pagination/datatable";
 import Swal from "sweetalert2";
 import withReactContent from "sweetalert2-react-content";
-import ImageWithBasePath from "../../img/imagewithbasebath";
+// import ImageWithBasePath from "../../img/imagewithbasebath";
 import Breadcrumbs from "../../breadcrumbs";
 import CustomerModal from "./customerModal";
+import CloseImg from '../../assets/img/icons/closes.svg';
+
 
 const StoreList = () => {
   const data = useSelector((state) => state.customerdata);
@@ -172,10 +174,14 @@ const StoreList = () => {
                     onClick={toggleFilterVisibility}
                   />
                   <span onClick={toggleFilterVisibility}>
-                    <ImageWithBasePath
+                    {/* <ImageWithBasePath
                       src="assets/img/icons/closes.svg"
                       alt="img"
-                    />
+                    /> */}
+                    <img
+											src={CloseImg}
+											alt='img'
+										/>
                   </span>
                 </Link>
               </div>
