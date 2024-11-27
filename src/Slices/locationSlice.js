@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllLocations } from '../service/operations/LocationApi';
 
 const initialState = {
 	locations: [],
@@ -45,17 +46,17 @@ const locationsSlice = createSlice({
 	},
 });
 
-// export function refreshLocations() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh locations:', error);
-// 		}
-// 	};
-// }
+export function refreshLocations() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await getAllLocations(token);
+			dispatch(setLocations(response));
+		} catch (error) {
+			console.error('Failed to refresh locations:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,

@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllMakes } from '../service/operations/MakesApi';
 
 const initialState = {
 	makes: [],
@@ -43,17 +44,17 @@ const makesSlice = createSlice({
 	},
 });
 
-// export function refreshMakes() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh makes:', error);
-// 		}
-// 	};
-// }
+export function refreshMakes() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await getAllMakes(token);
+			dispatch(setMakes(response));
+		} catch (error) {
+			console.error('Failed to refresh makes:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,

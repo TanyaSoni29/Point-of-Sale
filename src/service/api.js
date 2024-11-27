@@ -1,4 +1,3 @@
-
 /** @format */
 
 const BASE_URL = process.env.REACT_APP_BASE_URL;
@@ -57,4 +56,12 @@ export const suppliersEndpoints = {
 	GET_SUPPLIER: (id) => `${BASE_URL}/Suppliers/GetSupplier/${id}`,
 	UPDATE_SUPPLIER: `${BASE_URL}/Suppliers/Update`,
 	DELETE_SUPPLIER: (id) => `${BASE_URL}/Suppliers/Delete/${id}`,
+};
+
+export const productEndpoints = {
+	CREATE_PRODUCT: `${BASE_URL}/Products/Create`,
+	GET_ALL_PRODUCTS: `${BASE_URL}/Products/GetAllProducts`,
+	GET_PRODUCT: (id) => `${BASE_URL}/Products/GetProduct/${id}`,
+	UPDATE_PRODUCT: `${BASE_URL}/Products/Update`,
+	DELETE_PRODUCT: (id) => `${BASE_URL}/Products/Delete/${id}`,
 };
