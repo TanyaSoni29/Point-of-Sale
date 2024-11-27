@@ -2,7 +2,7 @@
 
 import React, { useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { Link } from 'react-router-dom';
 import {
 	Calendar,
@@ -23,6 +23,9 @@ import EditCategoryList from '../../core/modals/inventory/editcategorylist';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import Table from '../../core/pagination/datatable';
+import PdfImg from '../../assets/img/icons/pdf.svg';
+import ExcelImg from '../../assets/img/icons/excel.svg';
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 const CategoryList = () => {
 	const dispatch = useDispatch();
@@ -200,8 +203,12 @@ const CategoryList = () => {
 									overlay={renderTooltip}
 								>
 									<Link>
-										<ImageWithBasePath
+										{/* <ImageWithBasePath
 											src='assets/img/icons/pdf.svg'
+											alt='img'
+										/> */}
+										<img
+											src={PdfImg}
 											alt='img'
 										/>
 									</Link>
@@ -216,8 +223,13 @@ const CategoryList = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 									>
-										<ImageWithBasePath
+										{/* <ImageWithBasePath
 											src='assets/img/icons/excel.svg'
+											alt='img'
+										/> */}
+
+										<img
+											src={ExcelImg}
 											alt='img'
 										/>
 									</Link>
@@ -317,8 +329,12 @@ const CategoryList = () => {
 											onClick={toggleFilterVisibility}
 										/>
 										<span onClick={toggleFilterVisibility}>
-											<ImageWithBasePath
+											{/* <ImageWithBasePath
 												src='assets/img/icons/closes.svg'
+												alt='img'
+											/> */}
+											<img
+												src={CloseImg}
 												alt='img'
 											/>
 										</span>
