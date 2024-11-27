@@ -28,9 +28,10 @@ import { setToogleHeader } from '../../core/redux/action';
 import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
+import CloseImg from '../../assets/img/icons/closes.svg';
 
 const ProductList = () => {
-	const dataSource = useSelector((state) => state.product_list);
+	const { products } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
 
@@ -391,8 +392,12 @@ const ProductList = () => {
 										onClick={toggleFilterVisibility}
 									/>
 									<span onClick={toggleFilterVisibility}>
-										<ImageWithBasePath
+										{/* <ImageWithBasePath
 											src='assets/img/icons/closes.svg'
+											alt='img'
+										/> */}
+										<img
+											src={CloseImg}
 											alt='img'
 										/>
 									</span>
@@ -495,7 +500,7 @@ const ProductList = () => {
 						<div className='table-responsive'>
 							<Table
 								columns={columns}
-								dataSource={dataSource}
+								dataSource={products}
 							/>
 						</div>
 					</div>

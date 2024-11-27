@@ -242,7 +242,7 @@ const StoreList = () => {
                 columns={columns}
                 dataSource={data}
                 rowKey={(record) => record.id}
-                // pagination={true}
+                pagination={true}
               />
             </div>
           </div>
