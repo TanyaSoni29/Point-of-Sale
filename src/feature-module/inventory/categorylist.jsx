@@ -125,6 +125,14 @@ const CategoryList = () => {
 		}
 	};
 
+	const handleEdit = async (category) => {
+		try {
+			console.log(category);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Code',
@@ -192,6 +200,7 @@ const CategoryList = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-category'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
