@@ -117,6 +117,14 @@ const CategoryList = () => {
 		}
 	};
 
+	const handleDelete = async (category) => {
+		try {
+			console.log(category);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Code',
@@ -176,7 +184,7 @@ const CategoryList = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -193,6 +201,7 @@ const CategoryList = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
