@@ -66,3 +66,11 @@ export const productEndpoints = {
 	UPDATE_PRODUCT: `${BASE_URL}/Products/Update`,
 	DELETE_PRODUCT: (id) => `${BASE_URL}/Products/Delete/${id}`,
 };
+
+export const customerEndpoints = {
+	CREATE_CUSTOMER: `${BASE_URL}/Customers/Create`,
+	GET_ALL_CUSTOMERS: `${BASE_URL}/Customers/GetAllCustomers`,
+	GET_CUSTOMER: (id) => `${BASE_URL}/Customers/GetCustomer/${id}`,
+	UPDATE_CUSTOMER: `${BASE_URL}/Customers/Update`,
+	DELETE_CUSTOMER: (id) => `${BASE_URL}/Customers/Delete/${id}`,
+};
