@@ -40,6 +40,7 @@ const CategoryList = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
 	};
 	const [selectedDate, setSelectedDate] = useState(new Date());
+	const [searchQuery, setSearchQuery] = useState('');
 	const handleDateChange = (date) => {
 		setSelectedDate(date);
 	};
@@ -255,6 +256,12 @@ const CategoryList = () => {
 		dispatch(refreshCategories());
 	}, [dispatch]);
 
+	const filterCategory = categories?.filter(
+		(category) =>
+			category?.name?.toLowerCase().includes(searchQuery.toLowerCase()) ||
+			category?.code?.toLowerCase().includes(searchQuery.toLowerCase())
+	);
+
 	return (
 		<div>
 			<div className='page-wrapper'>
@@ -375,6 +382,8 @@ const CategoryList = () => {
 											type='text'
 											placeholder='Search'
 											className='form-control form-control-sm formsearch'
+											onChange={(e) => setSearchQuery(e.target.value)}
+											value={searchQuery}
 										/>
 										<Link
 											to
@@ -485,7 +494,7 @@ const CategoryList = () => {
 							<div className='table-responsive'>
 								<Table
 									columns={columns}
-									dataSource={categories}
+									dataSource={filterCategory}
 								/>
 							</div>
 						</div>
