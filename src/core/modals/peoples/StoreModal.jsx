@@ -34,6 +34,7 @@ const StoreModal = () => {
 				address1: data.address1,
 				address2: data.address2,
 				address3: data.address3,
+				address4: data.address4,
 			};
 			const response = await updateLocation(token, newData);
 			console.log(response);
@@ -356,6 +357,22 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
+											<div className='col-lg-12 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Address 4</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.address4}
+														{...editRegister('address4', {
+															required: true,
+														})}
+													/>
+													{editErrors.address4 && (
+														<p className=''>{editErrors.address4.message}</p>
+													)}
+												</div>
+											</div>
 											{/* <div className='col-lg-6 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>City</label>
@@ -374,7 +391,7 @@ const StoreModal = () => {
 													/>
 												</div>
 											</div> */}
-											<div className='col-lg-12'>
+											{/* <div className='col-lg-12'>
 												<div className='mb-0 input-blocks'>
 													<label className='form-label'>Descriptions</label>
 													<textarea
@@ -383,7 +400,7 @@ const StoreModal = () => {
 													/>
 													<p>Maximum 60 Characters</p>
 												</div>
-											</div>
+											</div> */}
 										</div>
 										<div className='modal-footer-btn'>
 											<button
