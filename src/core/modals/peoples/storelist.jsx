@@ -11,14 +11,15 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 import Breadcrumbs from '../../breadcrumbs';
-import CustomerModal from './customerModal';
 import CloseImg from '../../../assets/img/icons/closes.svg';
 import {
 	refreshLocations,
+	setLocation,
 	updateLocations,
 } from '../../../Slices/locationSlice';
 import { updateLocation } from '../../../service/operations/locationApi';
 import { Switch } from 'antd';
+import StoreModal from './StoreModal';
 
 const StoreList = () => {
 	const { token } = useSelector((state) => state.auth);
@@ -48,21 +49,17 @@ const StoreList = () => {
 		{ label: 'USA', value: 'USA' },
 	];
 
-	const handleDelete = async (stock) => {
+	const handleDelete = async (location) => {
 		try {
 			showConfirmationAlert();
-			console.log(stock);
+			console.log(location);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const handleEdit = async (stock) => {
-		try {
-			console.log(stock);
-		} catch (error) {
-			console.log(error);
-		}
+	const handleEdit = async (location) => {
+		dispatch(setLocation(location));
 	};
 
 	const handleToggle = async (location, field, checked) => {
@@ -87,13 +84,13 @@ const StoreList = () => {
 
 	const columns = [
 		{
-			title: 'Store Code',
+			title: 'Location Code',
 			dataIndex: 'code',
 			sorter: (a, b) => a.code.localeCompare(b.code),
 			render: (value) => (value ? value : '-'),
 		},
 		{
-			title: 'Store Name',
+			title: 'Location',
 			dataIndex: 'name',
 			sorter: (a, b) => a.name.localeCompare(b.name),
 			render: (value) => (value ? value : '-'),
@@ -320,7 +317,7 @@ const StoreList = () => {
 				</div>
 				{/* /product list */}
 			</div>
-			<CustomerModal />
+			<StoreModal />
 		</div>
 	);
 };
