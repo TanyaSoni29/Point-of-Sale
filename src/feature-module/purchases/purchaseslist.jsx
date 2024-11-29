@@ -41,6 +41,24 @@ const PurchasesList = () => {
 	const handleSearch = (e) => {
 		setSearchText(e.target.value);
 	};
+
+	const handleEdit = async (purchaseData) => {
+		try {
+			console.log(purchaseData);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
+	const handleDelete = async (purchaseData) => {
+		try {
+			showConfirmationAlert();
+			console.log(purchaseData);
+		} catch (error) {
+			console.error(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'SupplierName',
@@ -107,7 +125,7 @@ const PurchasesList = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -123,6 +141,7 @@ const PurchasesList = () => {
 							className='me-2 p-2'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -132,7 +151,7 @@ const PurchasesList = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
