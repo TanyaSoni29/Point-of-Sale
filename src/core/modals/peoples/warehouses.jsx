@@ -58,6 +58,24 @@ const WareHouses = () => {
 	const handleSearch = (e) => {
 		setSearchText(e.target.value);
 	};
+
+	const handleDelete = async (warehouse) => {
+		try {
+			showConfirmationAlert();
+			console.log(warehouse);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (warehouse) => {
+		try {
+			console.log(warehouse);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Warehouse',
@@ -115,7 +133,7 @@ const WareHouses = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -134,6 +152,7 @@ const WareHouses = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -143,7 +162,7 @@ const WareHouses = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
