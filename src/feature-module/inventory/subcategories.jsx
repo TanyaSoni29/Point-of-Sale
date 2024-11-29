@@ -97,6 +97,23 @@ const SubCategories = () => {
 			Collapse
 		</Tooltip>
 	);
+
+	const handleDelete = async (subCategory) => {
+		try {
+			console.log(subCategory);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (subCategory) => {
+		try {
+			console.log(subCategory);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Image',
@@ -146,7 +163,7 @@ const SubCategories = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -154,6 +171,7 @@ const SubCategories = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-category'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -163,6 +181,7 @@ const SubCategories = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
