@@ -71,6 +71,23 @@ const ProductList = () => {
 		{ value: '13000', label: '$13,000.00' },
 	];
 
+	const handleDelete = async (product) => {
+		try {
+			showConfirmationAlert();
+			console.log(product);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (product) => {
+		try {
+			console.log(product);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Product',
@@ -146,7 +163,7 @@ const ProductList = () => {
 		{
 			title: 'Action',
 			dataIndex: 'action',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<div className='input-block add-lists'></div>
@@ -159,13 +176,14 @@ const ProductList = () => {
 						<Link
 							className='me-2 p-2'
 							to={route.editproduct}
+							onClick={() => handleEdit(record)}
 						>
 							<Edit className='feather-edit' />
 						</Link>
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<Trash2 className='feather-trash-2' />
 						</Link>
