@@ -96,6 +96,23 @@ const Users = () => {
 		</Tooltip>
 	);
 
+	const handleDelete = async (user) => {
+		try {
+			showConfirmationAlert();
+			console.log(user);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (user) => {
+		try {
+			console.log(user);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'User Name',
@@ -158,7 +175,7 @@ const Users = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -175,6 +192,7 @@ const Users = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -188,7 +206,7 @@ const Users = () => {
 							<i
 								data-feather='trash-2'
 								className='feather-trash-2'
-								onClick={showConfirmationAlert}
+								onClick={() => handleDelete(record)}
 							></i>
 						</Link>
 					</div>
