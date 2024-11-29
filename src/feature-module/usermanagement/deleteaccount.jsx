@@ -64,6 +64,15 @@ const DeleteAccount = () => {
 		{ value: 'oldest', label: 'Oldest' },
 	];
 
+	const handleDelete = async (data) => {
+		try {
+			showConfirmationAlert();
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'User Name',
@@ -98,13 +107,13 @@ const DeleteAccount = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'

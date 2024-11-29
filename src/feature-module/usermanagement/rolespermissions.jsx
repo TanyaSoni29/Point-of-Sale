@@ -85,6 +85,24 @@ const RolesPermissions = () => {
 			Collapse
 		</Tooltip>
 	);
+
+	const handleDelete = async (data) => {
+		try {
+			showConfirmationAlert();
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (data) => {
+		try {
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Role Name',
@@ -101,7 +119,7 @@ const RolesPermissions = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -109,6 +127,7 @@ const RolesPermissions = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -131,7 +150,7 @@ const RolesPermissions = () => {
 							<i
 								data-feather='trash-2'
 								className='feather-trash-2'
-								onClick={showConfirmationAlert}
+								onClick={() => handleDelete(record)}
 							></i>
 						</Link>
 					</div>
