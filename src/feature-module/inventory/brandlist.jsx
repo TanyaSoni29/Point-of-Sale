@@ -97,6 +97,23 @@ const BrandList = () => {
 			Collapse
 		</Tooltip>
 	);
+
+	const handleEdit = async (brand) => {
+		try {
+			console.log(brand);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleDelete = async (brand) => {
+		try {
+			console.log(brand);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Brand',
@@ -142,7 +159,7 @@ const BrandList = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -150,6 +167,7 @@ const BrandList = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-brand'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -159,6 +177,7 @@ const BrandList = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
