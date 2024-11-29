@@ -57,6 +57,23 @@ const StockAdjustment = () => {
 		{ value: 'Gravely', label: 'Gravely' },
 	];
 
+	const handleDelete = async (stock) => {
+		try {
+			showConfirmationAlert();
+			console.log(stock);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (stock) => {
+		try {
+			console.log(stock);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Warehouse',
@@ -133,7 +150,7 @@ const StockAdjustment = () => {
 		{
 			title: 'Action',
 			dataIndex: 'action',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<div className='input-block add-lists'></div>
@@ -143,6 +160,7 @@ const StockAdjustment = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<Edit className='feather-edit' />
 						</Link>
@@ -150,7 +168,7 @@ const StockAdjustment = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<Trash2 className='feather-trash-2' />
 						</Link>
