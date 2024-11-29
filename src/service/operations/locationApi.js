@@ -86,7 +86,7 @@ export const updateLocation = async (token, data) => {
 
 		console.log('Update LOCATION API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update location");
+		if (response.status !== 200) throw new Error("Couldn't update location");
 
 		toast.success('Location updated successfully');
 		return response?.data;

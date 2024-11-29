@@ -13,10 +13,15 @@ import withReactContent from 'sweetalert2-react-content';
 import Breadcrumbs from '../../breadcrumbs';
 import CustomerModal from './customerModal';
 import CloseImg from '../../../assets/img/icons/closes.svg';
-import { refreshLocations } from '../../../Slices/locationSlice';
+import {
+	refreshLocations,
+	updateLocations,
+} from '../../../Slices/locationSlice';
+import { updateLocation } from '../../../service/operations/locationApi';
+import { Switch } from 'antd';
 
 const StoreList = () => {
-	// const data = useSelector((state) => state.customerdata);
+	const { token } = useSelector((state) => state.auth);
 	const { locations } = useSelector((state) => state.location);
 	const dispatch = useDispatch();
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -60,43 +65,69 @@ const StoreList = () => {
 		}
 	};
 
+	const handleToggle = async (location, field, checked) => {
+		try {
+			const newData = {
+				...location,
+				[field]: checked,
+			};
+			const response = await updateLocation(token, newData);
+			console.log(response);
+			if (response?.success) {
+				dispatch(updateLocations(newData));
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	useEffect(() => {
 		dispatch(refreshLocations());
 	}, [dispatch]);
 
 	const columns = [
 		{
+			title: 'Store Code',
+			dataIndex: 'code',
+			sorter: (a, b) => a.code.localeCompare(b.code),
+			render: (value) => (value ? value : '-'),
+		},
+		{
 			title: 'Store Name',
-			dataIndex: 'CustomerName',
-			sorter: (a, b) => a.CustomerName.length - b.CustomerName.length,
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localeCompare(b.name),
+			render: (value) => (value ? value : '-'),
 		},
-		{
-			title: 'Code',
-			dataIndex: 'Code',
-			sorter: (a, b) => a.Code.length - b.Code.length,
-		},
-		{
-			title: 'Store',
-			dataIndex: 'Customer',
-			sorter: (a, b) => a.Customer.length - b.Customer.length,
-		},
+		// {
+		// 	title: 'Store',
+		// 	dataIndex: 'Customer',
+		// 	sorter: (a, b) => a.Customer.length - b.Customer.length,
+		// },
 
 		{
 			title: 'Email',
-			dataIndex: 'Email',
-			sorter: (a, b) => a.Email.length - b.Email.length,
+			dataIndex: 'adminEmail',
+			sorter: (a, b) => a.adminEmail.length - b.adminEmail.length,
+			render: (value) => (value ? value : '-'),
 		},
 
 		{
 			title: 'Phone',
-			dataIndex: 'Phone',
-			sorter: (a, b) => a.Phone.length - b.Phone.length,
+			dataIndex: 'mainTelephone',
+			sorter: (a, b) => a.mainTelephone.length - b.mainTelephone.length,
+			render: (value) => (value ? value : '-'),
 		},
 
 		{
-			title: 'Country',
-			dataIndex: 'Country',
-			sorter: (a, b) => a.Country.length - b.Country.length,
+			title: 'Active',
+			dataIndex: 'isActive',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'isActive', checked)} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.a - b.a,
 		},
 
 		{

@@ -28,7 +28,7 @@ const locationsSlice = createSlice({
 			state.locations.push(action.payload);
 			state.loading = false;
 		},
-		updateLocation: (state, action) => {
+		updateLocations: (state, action) => {
 			const index = state.locations.findIndex(
 				(location) => location.id === action.payload.id
 			);
@@ -63,7 +63,7 @@ export const {
 	setLocations,
 	setLocation,
 	addLocation,
-	updateLocation,
+	updateLocations,
 	removeLocation,
 } = locationsSlice.actions;
 export default locationsSlice.reducer;
