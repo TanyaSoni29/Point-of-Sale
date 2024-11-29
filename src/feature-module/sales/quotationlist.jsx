@@ -94,6 +94,24 @@ const QuotationList = () => {
 			Collapse
 		</Tooltip>
 	);
+
+	const handleDelete = async (data) => {
+		try {
+			showConfirmationAlert();
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (data) => {
+		try {
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Product Name',
@@ -137,7 +155,7 @@ const QuotationList = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -151,6 +169,7 @@ const QuotationList = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -160,7 +179,7 @@ const QuotationList = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'

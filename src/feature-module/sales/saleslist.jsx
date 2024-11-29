@@ -159,6 +159,24 @@ const SalesList = () => {
 			}
 		});
 	};
+
+	const handleDelete = async (data) => {
+		try {
+			showConfirmationAlert();
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (data) => {
+		try {
+			console.log(data);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'CustomerName',
@@ -229,7 +247,7 @@ const SalesList = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='text-center'>
 					<Link
 						className='action-set'
@@ -263,6 +281,7 @@ const SalesList = () => {
 								className='dropdown-item'
 								data-bs-toggle='modal'
 								data-bs-target='#edit-sales-new'
+								onClick={() => handleEdit(record)}
 							>
 								<i
 									data-feather='edit'
@@ -315,7 +334,7 @@ const SalesList = () => {
 							<Link
 								to='#'
 								className='dropdown-item confirm-text mb-0'
-								onClick={showConfirmationAlert}
+								onClick={() => handleDelete(record)}
 							>
 								<i
 									data-feather='trash-2'
