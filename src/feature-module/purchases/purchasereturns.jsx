@@ -30,6 +30,24 @@ import CloseImg from '../../assets/img/icons/closes.svg';
 const PurchaseReturns = () => {
 	const purchasereturndata = purchasesreturn;
 	const [searchText, setSearchText] = useState('');
+
+	const handleDelete = async (record) => {
+		try {
+			showConfirmationAlert();
+			console.log(record);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleEdit = async (record) => {
+		try {
+			console.log(record);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+	
 	const columns = [
 		{
 			title: 'Image',
@@ -112,7 +130,7 @@ const PurchaseReturns = () => {
 			title: 'Actions',
 			dataIndex: 'actions',
 			key: 'actions',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<Link
@@ -120,6 +138,7 @@ const PurchaseReturns = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-sales-new'
+							onClick={() => handleEdit(record)}
 						>
 							<i
 								data-feather='edit'
@@ -129,7 +148,7 @@ const PurchaseReturns = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<i
 								data-feather='trash-2'
