@@ -28,7 +28,8 @@ export const locationEndpoints = {
 
 export const inventoryEndpoints = {
 	CREATE_INVENTORY: `${BASE_URL}/Inventory/Create`,
-	GET_INVENTORY_BY_PART_NO: `${BASE_URL}/Inventory/ByPartNo`,
+	GET_INVENTORY_BY_PART_NO: (partNum) =>
+		`${BASE_URL}/Inventory/ByPartNo?partno=${partNum}`,
 	GET_INVENTORY_BY_LOCATION: `${BASE_URL}/Inventory/ByLocation`,
 	UPDATE_INVENTORY: `${BASE_URL}/Inventory/Update`,
 	INVENTORY_BULK_UPDATE: `${BASE_URL}/Inventory/BulkUpdate`,
