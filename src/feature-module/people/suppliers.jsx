@@ -40,6 +40,23 @@ const Suppliers = () => {
 		{ label: 'USA', value: 'USA' },
 	];
 
+	const handleEdit = async (customer) => {
+		try {
+			console.log(customer);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
+	const handleDelete = async (customer) => {
+		try {
+			showConfirmationAlert();
+			console.log(customer);
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
 			title: 'Supplier Name',
@@ -87,7 +104,7 @@ const Suppliers = () => {
 		{
 			title: 'Action',
 			dataIndex: 'action',
-			render: () => (
+			render: (_, record) => (
 				<div className='action-table-data'>
 					<div className='edit-delete-action'>
 						<div className='input-block add-lists'></div>
@@ -104,6 +121,7 @@ const Suppliers = () => {
 							to='#'
 							data-bs-toggle='modal'
 							data-bs-target='#edit-units'
+							onClick={() => handleEdit(record)}
 						>
 							<Edit className='feather-edit' />
 						</Link>
@@ -111,7 +129,7 @@ const Suppliers = () => {
 						<Link
 							className='confirm-text p-2'
 							to='#'
-							onClick={showConfirmationAlert}
+							onClick={() => handleDelete(record)}
 						>
 							<Trash2 className='feather-trash-2' />
 						</Link>
