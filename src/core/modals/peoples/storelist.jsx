@@ -1,11 +1,11 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Filter, Sliders } from 'react-feather';
 import Select from 'react-select';
 import { Edit, Eye, Globe, Trash2, User } from 'react-feather';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from '../../../core/pagination/datatable';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
@@ -13,10 +13,12 @@ import withReactContent from 'sweetalert2-react-content';
 import Breadcrumbs from '../../breadcrumbs';
 import CustomerModal from './customerModal';
 import CloseImg from '../../../assets/img/icons/closes.svg';
+import { refreshLocations } from '../../../Slices/locationSlice';
 
 const StoreList = () => {
-	const data = useSelector((state) => state.customerdata);
-
+	// const data = useSelector((state) => state.customerdata);
+	const { locations } = useSelector((state) => state.location);
+	const dispatch = useDispatch();
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
@@ -57,6 +59,10 @@ const StoreList = () => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		dispatch(refreshLocations());
+	}, [dispatch]);
 
 	const columns = [
 		{
@@ -274,7 +280,7 @@ const StoreList = () => {
 							<Table
 								className='table datanew'
 								columns={columns}
-								dataSource={data}
+								dataSource={locations}
 								rowKey={(record) => record.id}
 								pagination={true}
 							/>
