@@ -147,7 +147,7 @@ export const SidebarData = [
 		showSubRoute: false,
 		submenuItems: [
 			{
-				label: 'Reorder Label',
+				label: 'Reorder Level',
 				link: '/low-stocks',
 				icon: <Icon.TrendingDown />,
 				showSubRoute: false,
