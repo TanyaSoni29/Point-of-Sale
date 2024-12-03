@@ -267,7 +267,7 @@ const Breadcrumbs = (props) => {
 		location.pathname == '/expense-category' ||
 		location.pathname == '/customers' ||
 		location.pathname == '/warehouse' ||
-		location.pathname == '/store-list' ||
+		location.pathname == '/location-list' ||
 		location.pathname == '/suppliers' ||
 		location.pathname == '/manage-stocks' ||
 		location.pathname == '/stock-adjustment'
