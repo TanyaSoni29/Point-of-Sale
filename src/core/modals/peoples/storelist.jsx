@@ -197,9 +197,9 @@ const StoreList = () => {
 		<div className='page-wrapper'>
 			<div className='content'>
 				<Breadcrumbs
-					maintitle='Store List'
-					subtitle='Manage Your Store'
-					addButton='Add Store'
+					maintitle='Location List'
+					subtitle='Manage Your Locations'
+					addButton='Add Location'
 				/>
 
 				{/* /product list */}
