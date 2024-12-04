@@ -1,22 +1,23 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumbs from '../../core/breadcrumbs';
 import { Link } from 'react-router-dom';
 import { Filter, Sliders } from 'react-feather';
 // import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import Select from 'react-select';
 import { Edit, Eye, Globe, Trash2, User } from 'react-feather';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from '../../core/pagination/datatable';
 import CustomerModal from '../../core/modals/peoples/customerModal';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { refreshCustomers } from '../../Slices/customerSlice';
 
 const Customers = () => {
 	const { customers } = useSelector((state) => state.customers);
-
+	const dispatch = useDispatch();
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
@@ -57,6 +58,10 @@ const Customers = () => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		dispatch(refreshCustomers());
+	}, [dispatch]);
 
 	const columns = [
 		{

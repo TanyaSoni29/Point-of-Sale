@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllCustomers } from '../service/operations/customersApi';
 
 const initialState = {
 	customers: [],
@@ -45,17 +46,17 @@ const customersSlice = createSlice({
 	},
 });
 
-// export function refreshCustomers() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh customers:', error);
-// 		}
-// 	};
-// }
+export function refreshCustomers() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await getAllCustomers(token);
+			dispatch(setCustomers(response));
+		} catch (error) {
+			console.error('Failed to refresh customers:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,
