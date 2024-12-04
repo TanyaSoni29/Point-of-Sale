@@ -15,7 +15,7 @@ import withReactContent from 'sweetalert2-react-content';
 import CloseImg from '../../assets/img/icons/closes.svg';
 
 const Customers = () => {
-	const data = useSelector((state) => state.customerdata);
+	const { customers } = useSelector((state) => state.customers);
 
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
@@ -274,7 +274,7 @@ const Customers = () => {
 							<Table
 								className='table datanew'
 								columns={columns}
-								dataSource={data}
+								dataSource={customers}
 							/>
 						</div>
 					</div>
