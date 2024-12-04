@@ -13,7 +13,7 @@ import {
 	StopCircle,
 	Trash2,
 } from 'feather-icons-react/build/IconComponents';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
@@ -29,6 +29,7 @@ import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { refreshProduct } from '../../Slices/ProductListSlice';
 
 const ProductList = () => {
 	const { products } = useSelector((state) => state.product);
@@ -87,6 +88,10 @@ const ProductList = () => {
 			console.log(error);
 		}
 	};
+
+	useEffect(() => {
+		dispatch(refreshProduct());
+	}, [dispatch]);
 
 	const columns = [
 		{

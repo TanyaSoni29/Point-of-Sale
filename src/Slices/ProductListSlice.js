@@ -2,6 +2,7 @@
 
 import { createSlice } from '@reduxjs/toolkit';
 import { productlistdata } from '../core/json/productlistdata';
+import { getAllProducts } from '../service/operations/productApi';
 
 const initialState = {
 	products: productlistdata,
@@ -46,17 +47,17 @@ const productSlice = createSlice({
 	},
 });
 
-// export function refreshProduct() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh products:', error);
-// 		}
-// 	};
-// }
+export function refreshProduct() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await getAllProducts(token);
+			dispatch(setProducts(response));
+		} catch (error) {
+			console.error('Failed to refresh products:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,
