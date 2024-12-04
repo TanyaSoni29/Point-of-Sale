@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom/dist';
 import AddBrand from '../../core/modals/inventory/addbrand';
@@ -26,9 +26,10 @@ import withReactContent from 'sweetalert2-react-content';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { refreshMakes } from '../../Slices/MakesSlice';
 
 const BrandList = () => {
-	const dataSource = useSelector((state) => state.brand_list);
+	const { makes } = useSelector((state) => state.makes);
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
 
@@ -97,6 +98,10 @@ const BrandList = () => {
 			Collapse
 		</Tooltip>
 	);
+
+	useEffect(() => {
+		dispatch(refreshMakes());
+	}, [dispatch]);
 
 	const handleEdit = async (brand) => {
 		try {
@@ -451,7 +456,7 @@ const BrandList = () => {
 							<div className='table-responsive'>
 								<Table
 									columns={columns}
-									dataSource={dataSource}
+									dataSource={makes}
 								/>
 							</div>
 						</div>
