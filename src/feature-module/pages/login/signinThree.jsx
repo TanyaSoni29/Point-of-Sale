@@ -1,8 +1,8 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 // import ImageWithBasePath from '../../../core/img/imagewithbasebath';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { all_routes } from '../../../Router/all_routes';
 import MailImg from '../../../assets/img/icons/mail.svg';
 import LogoImg from '../../../assets/img/logo.png';
@@ -10,13 +10,43 @@ import LogoWhiteImg from '../../../assets/img/logo-white.png';
 import facebookLogoImg from '../../../assets/img/icons/facebook-logo.svg';
 import GoogleImgLogo from '../../../assets/img/icons/google.png';
 import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
+import { useForm } from 'react-hook-form';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../service/operations/authApi';
 const SigninThree = () => {
+	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const route = all_routes;
 	const [isPasswordVisible, setPasswordVisible] = useState(false);
-
+	const [rememberMe, setRememberMe] = useState(false);
 	const togglePasswordVisibility = () => {
 		setPasswordVisible((prevState) => !prevState);
 	};
+
+	const {
+		register,
+		handleSubmit,
+		reset,
+		formState: { errors, isSubmitSuccessful },
+	} = useForm();
+
+	const onSubmit = (data) => {
+		dispatch(login(data.userName, data.password, navigate));
+	};
+
+	const handleRememberMe = (e) => {
+		setRememberMe(e.target.checked);
+	};
+
+	useEffect(() => {
+		if (isSubmitSuccessful) {
+			reset({
+				userName: '',
+				password: '',
+			});
+		}
+	}, [reset, isSubmitSuccessful]);
+
 	return (
 		<div className='main-wrapper'>
 			<div className='account-content'>
@@ -34,7 +64,7 @@ const SigninThree = () => {
 									<img src={LogoWhiteImg} />
 								</Link>
 							</div>
-							<form>
+							<form onSubmit={handleSubmit(onSubmit)}>
 								<div className='login-userset'>
 									<div className='login-userheading'>
 										<h3>Sign In</h3>
@@ -49,7 +79,9 @@ const SigninThree = () => {
 											<input
 												type='text'
 												className='form-control'
+												{...register('userName', { required: true })}
 											/>
+											{errors?.userName && <p>{errors?.userName?.message}</p>}
 											{/* <ImageWithBasePath
 												src='assets/img/icons/mail.svg'
 												alt='img'
@@ -62,8 +94,10 @@ const SigninThree = () => {
 										<div className='pass-group'>
 											<input
 												type={isPasswordVisible ? 'text' : 'password'}
+												{...register('password', { required: true })}
 												className='pass-input form-control'
 											/>
+											{errors?.password && <p>{errors?.password?.message}</p>}
 											<span
 												className={`fas toggle-password ${
 													isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'
@@ -77,7 +111,11 @@ const SigninThree = () => {
 											<div className='col-6'>
 												<div className='custom-control custom-checkbox'>
 													<label className='checkboxs ps-4 mb-0 pb-0 line-height-1'>
-														<input type='checkbox' />
+														<input
+															type='checkbox'
+															checked={rememberMe}
+															onChange={handleRememberMe}
+														/>
 														<span className='checkmarks' />
 														Remember me
 													</label>

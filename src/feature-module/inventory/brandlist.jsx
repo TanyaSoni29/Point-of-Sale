@@ -26,7 +26,7 @@ import withReactContent from 'sweetalert2-react-content';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshMakes } from '../../Slices/MakesSlice';
+import { refreshMakes } from '../../slices/MakesSlice';
 
 const BrandList = () => {
 	const { makes } = useSelector((state) => state.makes);

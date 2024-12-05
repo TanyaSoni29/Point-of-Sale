@@ -26,7 +26,7 @@ import Table from '../../core/pagination/datatable';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshCategories, updateCategory } from '../../Slices/categorySlice';
+import { refreshCategories, updateCategory } from '../../slices/categorySlice';
 import { updateCategories } from '../../service/operations/categoryApi';
 
 const CategoryList = () => {

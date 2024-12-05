@@ -13,7 +13,7 @@ import CustomerModal from '../../core/modals/peoples/customerModal';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshCustomers } from '../../Slices/customerSlice';
+import { refreshCustomers } from '../../slices/customerSlice';
 
 const Customers = () => {
 	const { customers } = useSelector((state) => state.customers);

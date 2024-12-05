@@ -10,7 +10,7 @@ import {
 	createLocation,
 	updateLocation,
 } from '../../../service/operations/locationApi';
-import { addLocation, updateLocations } from '../../../Slices/locationSlice';
+import { addLocation, updateLocations } from '../../../slices/locationSlice';
 import { Switch } from 'antd';
 
 const StoreModal = () => {

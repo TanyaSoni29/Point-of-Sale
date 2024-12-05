@@ -16,7 +16,7 @@ import {
 	refreshLocations,
 	setLocation,
 	updateLocations,
-} from '../../../Slices/locationSlice';
+} from '../../../slices/locationSlice';
 import { updateLocation } from '../../../service/operations/locationApi';
 import { Switch } from 'antd';
 import StoreModal from './StoreModal';
