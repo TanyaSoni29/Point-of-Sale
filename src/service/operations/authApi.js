@@ -3,8 +3,12 @@
 import { toast } from 'react-hot-toast';
 import { authEndpoints } from '../api';
 import { apiConnector } from '../apiConnector';
-import { setIsAuth, setLoading, setToken, setUser } from '../../slices/authSlice';
-
+import {
+	setIsAuth,
+	setLoading,
+	setToken,
+	setUser,
+} from '../../slices/authSlice';
 
 const { AUTHENTICATE, REFRESH_TOKEN } = authEndpoints;
 
@@ -77,13 +81,7 @@ export function login(userName, password, navigate) {
 			localStorage.setItem('token', JSON.stringify(token));
 
 			// Navigate based on user role
-			if (user.role === '1') {
-				navigate('/dashboard-role1'); // Admin Dashboard
-			} else if (user.role === '2') {
-				navigate('/dashboard-role2'); // Regular User Dashboard
-			} else {
-				navigate('/'); // Default route if no role matches
-			}
+			navigate('/admin-dashboard');
 		} catch (error) {
 			console.log('LOGIN API ERROR........', error);
 			const errorMessage =
