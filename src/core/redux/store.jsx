@@ -1,10 +1,10 @@
-/** @format */
+// /** @format */
 
-import { configureStore } from '@reduxjs/toolkit';
-import rootReducer from '../../reducer';
+// import { configureStore } from '@reduxjs/toolkit';
+// import rootReducer from '../../reducer';
 
-const store = configureStore({
-	reducer: rootReducer,
-});
+// const store = configureStore({
+// 	reducer: rootReducer,
+// });
 
-export default store;
+// export default store;
