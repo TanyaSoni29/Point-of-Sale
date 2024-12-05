@@ -3,12 +3,8 @@
 import { toast } from 'react-hot-toast';
 import { authEndpoints } from '../api';
 import { apiConnector } from '../apiConnector';
-import {
-	setIsAuth,
-	setLoading,
-	setToken,
-	setUser,
-} from '../../slices/authSlice';
+import { setIsAuth, setLoading, setToken, setUser } from '../../slices/authSlice';
+
 
 const { AUTHENTICATE, REFRESH_TOKEN } = authEndpoints;
 
