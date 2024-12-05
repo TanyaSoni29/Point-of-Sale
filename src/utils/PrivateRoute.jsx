@@ -42,7 +42,7 @@ const PrivateRoute = ({ element }) => {
 	if (!isAuth) {
 		return (
 			<Navigate
-				to='/'
+				to='/signin'
 				replace
 			/>
 		); // Redirect to login if not authenticated

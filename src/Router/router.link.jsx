@@ -1412,6 +1412,7 @@ export const publicRoutes = [
 		route: Route,
 	},
 ];
+
 export const posRoutes = [
 	{
 		id: 1,
