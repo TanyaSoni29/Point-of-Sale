@@ -75,7 +75,7 @@ const ProductList = () => {
 	const handleDelete = async (product) => {
 		try {
 			showConfirmationAlert();
-			console.log(product);
+			console.log("selected product printing",product);
 		} catch (error) {
 			console.log(error);
 		}
