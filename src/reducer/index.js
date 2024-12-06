@@ -2,7 +2,7 @@
 
 import { combineReducers } from '@reduxjs/toolkit';
 
-import authReducer from '../slices/authSlice.js';
+import authReducer from '../slices/AuthSlice.js';
 import staffUsersReducer from '../slices/staffUserSlice.js';
 import productsReducer from '../slices/productListSlice.js';
 import makesReducer from '../slices/makesSlice.js';
