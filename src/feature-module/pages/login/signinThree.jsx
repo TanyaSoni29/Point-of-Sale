@@ -31,7 +31,8 @@ const SigninThree = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		dispatch(login(data.userName, data.password, navigate));
+		navigate('/admin-dashboard');
+		// dispatch(login(data.userName, data.password, navigate));
 	};
 
 	const handleRememberMe = (e) => {
