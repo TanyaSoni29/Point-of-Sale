@@ -136,7 +136,7 @@ const SigninThree = () => {
 									<div className='form-login'>
 										<Link
 											className='btn btn-login'
-											to={route.signin}
+											to={route.dashboard}
 										>
 											Sign In
 										</Link>
