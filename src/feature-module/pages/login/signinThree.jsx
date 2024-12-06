@@ -11,10 +11,10 @@ import facebookLogoImg from '../../../assets/img/icons/facebook-logo.svg';
 import GoogleImgLogo from '../../../assets/img/icons/google.png';
 import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
-import { login } from '../../../service/operations/authApi';
+// import { useDispatch } from 'react-redux';
+// import { login } from '../../../service/operations/authApi';
 const SigninThree = () => {
-	const dispatch = useDispatch();
+	// const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const route = all_routes;
 	const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -32,6 +32,7 @@ const SigninThree = () => {
 
 	const onSubmit = (data) => {
 		navigate('/admin-dashboard');
+		console.log(data);
 		// dispatch(login(data.userName, data.password, navigate));
 	};
 
