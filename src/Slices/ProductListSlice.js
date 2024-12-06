@@ -47,7 +47,7 @@ const productSlice = createSlice({
 	},
 });
 
-export function refreshProduct() {
+export function refreshProducts() {
 	return async (dispatch, getState) => {
 		const token = getState().auth.token;
 		try {
