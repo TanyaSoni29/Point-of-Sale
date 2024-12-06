@@ -2,13 +2,14 @@
 
 import { combineReducers } from '@reduxjs/toolkit';
 
-import authReducer from '../slices/authSlice';
-import staffUsersReducer from '../slices/staffUserSlice';
-import productsReducer from '../slices/ProductListSlice';
-import makesReducer from '../slices/MakesSlice';
-import locationReducer from '../slices/locationSlice';
-import categoryReducer from '../slices/categorySlice';
-import customersReducer from '../slices/customerSlice';
+import authReducer from '../slices/authSlice.js';
+import staffUsersReducer from '../slices/staffUserSlice.js';
+import productsReducer from '../slices/productListSlice.js';
+import makesReducer from '../slices/makesSlice.js';
+import locationReducer from '../slices/locationSlice.js';
+import categoryReducer from '../slices/categorySlice.js';
+import customersReducer from '../slices/customerSlice.js';
+
 const rootReducer = combineReducers({
 	auth: authReducer,
 	category: categoryReducer,

@@ -29,7 +29,7 @@ import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshProducts } from '../../slices/ProductListSlice';
+import { refreshProducts } from '../../slices/productListSlice';
 
 const ProductList = () => {
 	const { products } = useSelector((state) => state.product);
