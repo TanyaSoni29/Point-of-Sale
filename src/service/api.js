@@ -63,9 +63,13 @@ export const suppliersEndpoints = {
 export const productEndpoints = {
 	CREATE_PRODUCT: `${BASE_URL}/Products/Create`,
 	GET_ALL_PRODUCTS: `${BASE_URL}/Products/GetAllProducts`,
-	GET_PRODUCT: (id) => `${BASE_URL}/Products/GetProduct/${id}`,
+	GET_PRODUCTS_BY_CATEGORY: `${BASE_URL}/Products/GetProductsByCategory`,
+	GET_PRODUCT_PARTNO: (id) => `${BASE_URL}/Products/GetProduct/${id}`,
 	UPDATE_PRODUCT: `${BASE_URL}/Products/Update`,
 	DELETE_PRODUCT: (id) => `${BASE_URL}/Products/Delete/${id}`,
+	GET_PRODUCT_BY_SUPPLIER: (id) =>
+		`${BASE_URL}/Products/GetProductsBySupplier/${id}`,
+	GET_PRODUCT_BY_MAKE: (id) => `${BASE_URL}/Products/GetProductsByMake/${id}`,
 };
 
 export const customerEndpoints = {

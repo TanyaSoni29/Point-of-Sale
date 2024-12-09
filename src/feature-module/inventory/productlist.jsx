@@ -29,7 +29,7 @@ import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import refreshProducts from '../../slices/productListSlice';
+import { refreshProducts } from '../../slices/productListSlice';
 
 const ProductList = () => {
 	const { products } = useSelector((state) => state.product);
@@ -75,7 +75,7 @@ const ProductList = () => {
 	const handleDelete = async (product) => {
 		try {
 			showConfirmationAlert();
-			console.log("selected product printing",product);
+			console.log('selected product printing', product);
 		} catch (error) {
 			console.log(error);
 		}
@@ -114,8 +114,8 @@ const ProductList = () => {
 			sorter: (a, b) => a.product.length - b.product.length,
 		},
 		{
-			title: 'SKU',
-			dataIndex: 'sku',
+			title: 'Part No.',
+			dataIndex: 'partNumber',
 			sorter: (a, b) => a.sku.length - b.sku.length,
 		},
 
@@ -126,8 +126,8 @@ const ProductList = () => {
 		},
 
 		{
-			title: 'Brand',
-			dataIndex: 'brand',
+			title: 'Make',
+			dataIndex: 'make',
 			sorter: (a, b) => a.brand.length - b.brand.length,
 		},
 		{

@@ -6,7 +6,10 @@ import { apiConnector } from '../apiConnector';
 
 const {
 	GET_ALL_PRODUCTS,
-	GET_PRODUCT,
+	GET_PRODUCT_PARTNO,
+	GET_PRODUCT_BY_MAKE,
+	GET_PRODUCT_BY_SUPPLIER,
+	GET_PRODUCTS_BY_CATEGORY,
 	UPDATE_PRODUCT,
 	DELETE_PRODUCT,
 	CREATE_PRODUCT,
@@ -56,19 +59,98 @@ export const getAllProducts = async (token) => {
 	return result;
 };
 
-export const getProduct = async (token, productId) => {
+export const getProductByCategory = async (token) => {
 	let result;
 	try {
-		const response = await apiConnector('GET', GET_PRODUCT(productId), null, {
+		const response = await apiConnector('GET', GET_PRODUCTS_BY_CATEGORY, null, {
 			'Authorization': `Bearer ${token}`,
 			'Content-Type': 'application/json',
 		});
 
-		console.log('Get Product Api response---', response);
+		console.log('Get Product  by Category Api response---', response);
+		if (response.status === 200)
+			throw new Error("Couldn't get product by Category");
+		result = response?.data;
+	} catch (error) {
+		console.log('Get Product by Category Api error', error);
+		if (error.response.status === 404) {
+			const errorMessage = error.response?.data?.error;
+			toast.error(errorMessage);
+		}
+	}
+	return result;
+};
+
+export const getProductByPartNo = async (token, partno) => {
+	let result;
+	try {
+		const response = await apiConnector(
+			'GET',
+			GET_PRODUCT_PARTNO(partno),
+			null,
+			{
+				'Authorization': `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			}
+		);
+
+		console.log('Get Product By Part No. Api response---', response);
 		if (response.status === 200) throw new Error("Couldn't get product");
 		result = response?.data;
 	} catch (error) {
-		console.log('Get Product Api error', error);
+		console.log('Get Product By Part No. Api error', error);
+		if (error.response.status === 404) {
+			const errorMessage = error.response?.data?.error;
+			toast.error(errorMessage);
+		}
+	}
+	return result;
+};
+
+export const getProductBySupplier = async (token, supplierId) => {
+	let result;
+	try {
+		const response = await apiConnector(
+			'GET',
+			GET_PRODUCT_BY_SUPPLIER(supplierId),
+			null,
+			{
+				'Authorization': `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			}
+		);
+
+		console.log('Get Product By Supplier Api response---', response);
+		if (response.status === 200) throw new Error("Couldn't get product");
+		result = response?.data;
+	} catch (error) {
+		console.log('Get Product By Supplier Api error', error);
+		if (error.response.status === 404) {
+			const errorMessage = error.response?.data?.error;
+			toast.error(errorMessage);
+		}
+	}
+	return result;
+};
+
+export const getProductByMake = async (token, makeId) => {
+	let result;
+	try {
+		const response = await apiConnector(
+			'GET',
+			GET_PRODUCT_BY_MAKE(makeId),
+			null,
+			{
+				'Authorization': `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			}
+		);
+
+		console.log('Get Product By Make Api response---', response);
+		if (response.status === 200) throw new Error("Couldn't get product");
+		result = response?.data;
+	} catch (error) {
+		console.log('Get Product By Make Api error', error);
 		if (error.response.status === 404) {
 			const errorMessage = error.response?.data?.error;
 			toast.error(errorMessage);
