@@ -132,7 +132,7 @@ const ProductList = () => {
 		},
 		{
 			title: 'Price',
-			dataIndex: 'price',
+			dataIndex: 'webPrice',
 			sorter: (a, b) => a.price.length - b.price.length,
 		},
 		{

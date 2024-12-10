@@ -1,11 +1,11 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
-import { productlistdata } from '../core/json/productlistdata';
+// import { productlistdata } from '../core/json/productlistdata';
 import { getAllProducts } from '../service/operations/productApi';
 
 const initialState = {
-	products: productlistdata,
+	products: [],
 	product: null,
 	loading: false,
 };
