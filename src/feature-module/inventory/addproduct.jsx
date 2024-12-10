@@ -37,11 +37,12 @@ const AddProduct = () => {
 		setSelectedDate(date);
 	};
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
-
+	const [allowPoints, setAllowPoints] = useState(false);
 	const {
 		register,
 		handleSubmit,
 		reset,
+		setValue,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
 
@@ -63,6 +64,7 @@ const AddProduct = () => {
 	const majorMinorOption = [
 		{ value: 'Major', label: 'Major' },
 		{ value: 'Minor', label: 'Minor' },
+		{ value: 'Both', label: 'Both' },
 	];
 
 	const handleDateChange1 = (date) => {
@@ -353,7 +355,7 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.mfrPartNumber && (
-															<div className='error'>
+															<div className='invalid-feedback'>
 																{errors.mfrPartNumber.message}
 															</div>
 														)}
@@ -368,30 +370,7 @@ const AddProduct = () => {
 														/>
 													</div> */}
 												</div>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>MFR Barcode</label>
-														<input
-															type='text'
-															// {...register('mfrPartNumber', { required: true })}
-															className='form-control'
-														/>
-														{/* {errors.mfrPartNumber && (
-															<div className='error'>
-																{errors.mfrPartNumber.message}
-															</div>
-														)} */}
-													</div>
 
-													{/* <div className='mb-3 add-product'>
-														<label className='form-label'>Store</label>
-														<Select
-															classNamePrefix='react-select'
-															options={store}
-															placeholder='Choose'
-														/>
-													</div> */}
-												</div>
 												<div className='col-lg-4 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
 														<label className='form-label'>
@@ -444,11 +423,19 @@ const AddProduct = () => {
 													<div className='mb-3 add-product'>
 														<label className='form-label'>Gender</label>
 														<Select
-															{...register('gender')}
+															id='gender'
 															classNamePrefix='react-select'
 															options={genders}
+															onChange={(selectedOption) =>
+																setValue('gender', selectedOption?.value)
+															}
 															placeholder='Choose'
 														/>
+														{errors.gender && (
+															<div className='invalid-feedback'>
+																{errors.gender.message}
+															</div>
+														)}
 													</div>
 												</div>
 											</div>
@@ -462,7 +449,9 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.make && (
-															<div className='error'>{errors.make.message}</div>
+															<div className='invalid-feedback'>
+																{errors.make.message}
+															</div>
 														)}
 													</div>
 												</div>
@@ -515,7 +504,7 @@ const AddProduct = () => {
 																className='form-control'
 															/>
 															{errors.search1 && (
-																<div className='error'>
+																<div className='invalid-feedback'>
 																	{errors.search1.message}
 																</div>
 															)}
@@ -530,7 +519,7 @@ const AddProduct = () => {
 																className='form-control'
 															/>
 															{errors.search2 && (
-																<div className='error'>
+																<div className='invalid-feedback'>
 																	{errors.search2.message}
 																</div>
 															)}
@@ -545,7 +534,7 @@ const AddProduct = () => {
 																className='form-control'
 															/>
 															{errors.search3 && (
-																<div className='error'>
+																<div className='invalid-feedback'>
 																	{errors.search3.message}
 																</div>
 															)}
@@ -575,7 +564,7 @@ const AddProduct = () => {
 														defaultValue={''}
 													/>
 													{errors.details && (
-														<div className='error'>
+														<div className='invalid-feedback'>
 															{errors.details.message}
 														</div>
 													)}
@@ -592,7 +581,9 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.size && (
-															<div className='error'>{errors.size.message}</div>
+															<div className='invalid-feedback'>
+																{errors.size.message}
+															</div>
 														)}
 													</div>
 												</div>
@@ -605,7 +596,7 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.weight && (
-															<div className='error'>
+															<div className='invalid-feedback'>
 																{errors.weight.message}
 															</div>
 														)}
@@ -640,7 +631,9 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.catA && (
-															<div className='error'>{errors.catA.message}</div>
+															<div className='invalid-feedback'>
+																{errors.catA.message}
+															</div>
 														)}
 													</div>
 													<div className='col-lg-4 col-sm-6 col-12'>
@@ -652,7 +645,9 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.catB && (
-															<div className='error'>{errors.catB.message}</div>
+															<div className='invalid-feedback'>
+																{errors.catB.message}
+															</div>
 														)}
 														{/* <label className='form-label'>Sub Category</label>
 															<Select
@@ -670,7 +665,9 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.catC && (
-															<div className='error'>{errors.catC.message}</div>
+															<div className='invalid-feedback'>
+																{errors.catC.message}
+															</div>
 														)}
 														{/* <div className='mb-3 add-product'>
 															<label className='form-label'>
@@ -749,7 +746,7 @@ const AddProduct = () => {
 															className='form-control'
 														/>
 														{errors.barcode && (
-															<div className='error'>
+															<div className='invalid-feedback'>
 																{errors.barcode.message}
 															</div>
 														)}
@@ -847,7 +844,7 @@ const AddProduct = () => {
 																<span className='checkmark' /> Single Product
 															</span>
 														</li>
-														<li
+														{/* <li
 															className='nav-item'
 															role='presentation'
 														>
@@ -867,7 +864,7 @@ const AddProduct = () => {
 																/>
 																<span className='checkmark' /> Variable Product
 															</span>
-														</li>
+														</li> */}
 													</ul>
 												</div>
 											</div>
@@ -891,7 +888,7 @@ const AddProduct = () => {
 																	className='form-control'
 																/>
 																{errors.price && (
-																	<div className='error'>
+																	<div className='invalid-feedback'>
 																		{errors.price.message}
 																	</div>
 																)}
@@ -914,7 +911,7 @@ const AddProduct = () => {
 																	{...register('vatCode')}
 																/>
 																{errors.vatCode && (
-																	<div className='error'>
+																	<div className='invalid-feedback'>
 																		{errors.vatCode.message}
 																	</div>
 																)}
@@ -933,14 +930,14 @@ const AddProduct = () => {
 																<label>Settlement Discount</label>
 																<input
 																	type='text'
-																	// {...register('discount')}
+																	{...register('discountPercentage')}
 																	placeholder='0.00'
 																/>
-																{/* {errors.discount && (
-																	<div className='error'>
-																		{errors.discount.message}
+																{errors.discountPercentage && (
+																	<div className='invalid-feedback'>
+																		{errors.discountPercentage.message}
 																	</div>
-																)} */}
+																)}
 																{/* <Select
 																	classNamePrefix='react-select'
 																	options={discounttype}
@@ -957,7 +954,7 @@ const AddProduct = () => {
 																	placeholder='Choose'
 																/>
 																{errors.discount && (
-																	<div className='error'>
+																	<div className='invalid-feedback'>
 																		{errors.discount.message}
 																	</div>
 																)}
@@ -972,7 +969,7 @@ const AddProduct = () => {
 																	className='form-control'
 																/>
 																{errors.markup && (
-																	<div className='error'>
+																	<div className='invalid-feedback'>
 																		{errors.markup.message}
 																	</div>
 																)}
@@ -1381,9 +1378,15 @@ const AddProduct = () => {
 												<div className='custom-filed'>
 													<div className='input-block add-lists'>
 														<label className='checkboxs'>
-															<input type='checkbox' />
+															<Switch
+																checked={allowPoints}
+																onChange={(value) => {
+																	setAllowPoints((prev) => !prev);
+																	setValue('allowPoints', value);
+																}}
+															/>
 															<span className='checkmarks' />
-															Warranties
+															Allow Points
 														</label>
 														<label className='checkboxs'>
 															<input type='checkbox' />
@@ -1412,45 +1415,71 @@ const AddProduct = () => {
 												<div className='row'>
 													<div className='col-lg-4 col-sm-6 col-12'>
 														<div className='input-blocks add-product'>
-															<label>Quantity Alert</label>
+															<label>Promo Name</label>
 															<input
 																type='text'
+																{...register('promoName')}
 																className='form-control'
 															/>
+															{errors.promoName && (
+																<div className='invalid-feedback'>
+																	{errors.promoName.message}
+																</div>
+															)}
 														</div>
 													</div>
 													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='input-blocks'>
-															<label>Manufactured Date</label>
-															<div className='input-groupicon calender-input'>
-																<Calendar className='info-img' />
-																<DatePicker
-																	selected={selectedDate}
-																	onChange={handleDateChange}
-																	type='date'
-																	className='datetimepicker'
-																	dateFormat='dd-MM-yyyy'
-																	placeholder='Choose Date'
-																/>
-															</div>
+														<div className='input-blocks add-product'>
+															<label>Promo RRP</label>
+															<input
+																type='text'
+																{...register('promoPrice')}
+																className='form-control'
+															/>
+															{errors.promoPrice && (
+																<div className='invalid-feedback'>
+																	{errors.promoPrice.message}
+																</div>
+															)}
 														</div>
 													</div>
 													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='input-blocks'>
-															<label>Expiry On</label>
-															<div className='input-groupicon calender-input'>
-																<Calendar className='info-img' />
-																<DatePicker
-																	selected={selectedDate1}
-																	onChange={handleDateChange1}
-																	type='date'
-																	className='datetimepicker'
-																	dateFormat='dd-MM-yyyy'
-																	placeholder='Choose Date'
-																/>
+														<div className='row'>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='input-blocks'>
+																	<label>From</label>
+																	<div className='input-groupicon calender-input'>
+																		<Calendar className='info-img' />
+																		<DatePicker
+																			selected={selectedDate}
+																			onChange={handleDateChange}
+																			type='date'
+																			className='datetimepicker'
+																			dateFormat='dd-MM-yyyy'
+																			placeholder='Choose Date'
+																		/>
+																	</div>
+																</div>
+															</div>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='input-blocks'>
+																	<label>To</label>
+																	<div className='input-groupicon calender-input'>
+																		<Calendar className='info-img' />
+																		<DatePicker
+																			selected={selectedDate1}
+																			onChange={handleDateChange1}
+																			type='date'
+																			className='datetimepicker'
+																			dateFormat='dd-MM-yyyy'
+																			placeholder='Choose Date'
+																		/>
+																	</div>
+																</div>
 															</div>
 														</div>
 													</div>
+													<div className='col-lg-4 col-sm-6 col-12'></div>
 												</div>
 											</div>
 										</div>
