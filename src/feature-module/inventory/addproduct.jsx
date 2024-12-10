@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
 import { all_routes } from '../../Router/all_routes';
-import { DatePicker } from 'antd';
+import { DatePicker, Switch } from 'antd';
 import Addunits from '../../core/modals/inventory/addunits';
 import AddCategory from '../../core/modals/inventory/addcategory';
 import AddBrand from '../../core/modals/addbrand';
@@ -56,10 +56,10 @@ const AddProduct = () => {
 		{ value: 'Male', label: 'Male' },
 		{ value: 'Female', label: 'Female' },
 	];
-	const suitabilityOptions = [
-		{ value: 'Any', label: 'Any' },
-		{ value: 'one', label: 'one' },
-	];
+	// const suitabilityOptions = [
+	// 	{ value: 'Any', label: 'Any' },
+	// 	{ value: 'one', label: 'one' },
+	// ];
 	const majorMinorOption = [
 		{ value: 'Major', label: 'Major' },
 		{ value: 'Minor', label: 'Minor' },
@@ -82,62 +82,62 @@ const AddProduct = () => {
 	// 	{ value: 'rasmussen', label: 'Rasmussen' },
 	// 	{ value: 'fredJohn', label: 'Fred John' },
 	// ];
-	const warehouse = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'legendary', label: 'Legendary' },
-		{ value: 'determined', label: 'Determined' },
-		{ value: 'sincere', label: 'Sincere' },
-	];
-	const category = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'lenovo', label: 'Lenovo' },
-		{ value: 'electronics', label: 'Electronics' },
-	];
-	const subcategory = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'lenovo', label: 'Lenovo' },
-		{ value: 'electronics', label: 'Electronics' },
-	];
-	const subsubcategories = [
-		{ value: 'Fruits', label: 'Fruits' },
-		{ value: 'Computer', label: 'Computer' },
-		{ value: 'Shoes', label: 'Shoes' },
-	];
-	const brand = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'nike', label: 'Nike' },
-		{ value: 'bolt', label: 'Bolt' },
-	];
-	const unit = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'kg', label: 'Kg' },
-		{ value: 'pc', label: 'Pc' },
-	];
-	const sellingtype = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'transactionalSelling', label: 'Transactional selling' },
-		{ value: 'solutionSelling', label: 'Solution selling' },
-	];
-	const barcodesymbol = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'code34', label: 'Code34' },
-		{ value: 'code35', label: 'Code35' },
-		{ value: 'code36', label: 'Code36' },
-	];
-	const taxtype = [
-		{ value: 'exclusive', label: 'Exclusive' },
-		{ value: 'salesTax', label: 'Sales Tax' },
-	];
-	const discounttype = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'percentage', label: 'Percentage' },
-		{ value: 'cash', label: 'Cash' },
-	];
-	const discounttype1 = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'percentage', label: 'Percentage' },
-		{ value: 'cash', label: 'Cash' },
-	];
+	// const warehouse = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'legendary', label: 'Legendary' },
+	// 	{ value: 'determined', label: 'Determined' },
+	// 	{ value: 'sincere', label: 'Sincere' },
+	// ];
+	// const category = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'lenovo', label: 'Lenovo' },
+	// 	{ value: 'electronics', label: 'Electronics' },
+	// ];
+	// const subcategory = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'lenovo', label: 'Lenovo' },
+	// 	{ value: 'electronics', label: 'Electronics' },
+	// ];
+	// const subsubcategories = [
+	// 	{ value: 'Fruits', label: 'Fruits' },
+	// 	{ value: 'Computer', label: 'Computer' },
+	// 	{ value: 'Shoes', label: 'Shoes' },
+	// ];
+	// const brand = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'nike', label: 'Nike' },
+	// 	{ value: 'bolt', label: 'Bolt' },
+	// ];
+	// const unit = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'kg', label: 'Kg' },
+	// 	{ value: 'pc', label: 'Pc' },
+	// ];
+	// const sellingtype = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'transactionalSelling', label: 'Transactional selling' },
+	// 	{ value: 'solutionSelling', label: 'Solution selling' },
+	// ];
+	// const barcodesymbol = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'code34', label: 'Code34' },
+	// 	{ value: 'code35', label: 'Code35' },
+	// 	{ value: 'code36', label: 'Code36' },
+	// ];
+	// const taxtype = [
+	// 	{ value: 'exclusive', label: 'Exclusive' },
+	// 	{ value: 'salesTax', label: 'Sales Tax' },
+	// ];
+	// const discounttype = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'percentage', label: 'Percentage' },
+	// 	{ value: 'cash', label: 'Cash' },
+	// ];
+	// const discounttype1 = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'percentage', label: 'Percentage' },
+	// 	{ value: 'cash', label: 'Cash' },
+	// ];
 	const [isImageVisible, setIsImageVisible] = useState(true);
 
 	const handleRemoveProduct = () => {
@@ -358,42 +358,55 @@ const AddProduct = () => {
 															</div>
 														)}
 													</div>
-													<div className='row'>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>
-																	Major/Minor
-																</label>
-																<Select
-																	classNamePrefix='react-select'
-																	options={majorMinorOption}
-																	placeholder='Choose'
-																/>
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Gender</label>
-																<Select
-																	{...register('gender')}
-																	classNamePrefix='react-select'
-																	options={genders}
-																	placeholder='Choose'
-																/>
-															</div>
-														</div>
-													</div>
 
+													{/* <div className='mb-3 add-product'>
+														<label className='form-label'>Store</label>
+														<Select
+															classNamePrefix='react-select'
+															options={store}
+															placeholder='Choose'
+														/>
+													</div> */}
+												</div>
+												<div className='col-lg-4 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
-														<label className='form-label'>Make</label>
+														<label className='form-label'>MFR Barcode</label>
 														<input
 															type='text'
-															{...register('make', { required: true })}
+															// {...register('mfrPartNumber', { required: true })}
 															className='form-control'
 														/>
-														{errors.make && (
-															<div className='error'>{errors.make.message}</div>
-														)}
+														{/* {errors.mfrPartNumber && (
+															<div className='error'>
+																{errors.mfrPartNumber.message}
+															</div>
+														)} */}
+													</div>
+
+													{/* <div className='mb-3 add-product'>
+														<label className='form-label'>Store</label>
+														<Select
+															classNamePrefix='react-select'
+															options={store}
+															placeholder='Choose'
+														/>
+													</div> */}
+												</div>
+												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>
+															Instantly Update Web Shop
+														</label>
+														<Switch
+															// checked={}
+															// {...register('mfrPartNumber', { required: true })}
+															className='form-control'
+														/>
+														{/* {errors.mfrPartNumber && (
+															<div className='error'>
+																{errors.mfrPartNumber.message}
+															</div>
+														)} */}
 													</div>
 
 													{/* <div className='mb-3 add-product'>
@@ -418,6 +431,45 @@ const AddProduct = () => {
 											</div>
 											<div className='row'>
 												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>Major/Minor</label>
+														<Select
+															classNamePrefix='react-select'
+															options={majorMinorOption}
+															placeholder='Choose'
+														/>
+													</div>
+												</div>
+												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>Gender</label>
+														<Select
+															{...register('gender')}
+															classNamePrefix='react-select'
+															options={genders}
+															placeholder='Choose'
+														/>
+													</div>
+												</div>
+											</div>
+											<div className='row'>
+												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>Make</label>
+														<input
+															type='text'
+															{...register('make', { required: true })}
+															className='form-control'
+														/>
+														{errors.make && (
+															<div className='error'>{errors.make.message}</div>
+														)}
+													</div>
+												</div>
+											</div>
+
+											<div className='row'>
+												{/* <div className='col-lg-4 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
 														<label className='form-label'>Product Name</label>
 														<input
@@ -449,6 +501,114 @@ const AddProduct = () => {
 														>
 															Generate Code
 														</Link>
+													</div>
+												</div> */}
+											</div>
+											<div className='addservice-info'>
+												<div className='row'>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<div className='mb-3 add-product'>
+															<label className='form-label'>Search 1</label>
+															<input
+																type='text'
+																{...register('search1', { required: true })}
+																className='form-control'
+															/>
+															{errors.search1 && (
+																<div className='error'>
+																	{errors.search1.message}
+																</div>
+															)}
+														</div>
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<div className='mb-3 add-product'>
+															<label className='form-label'>Search 2</label>
+															<input
+																type='text'
+																{...register('search2', { required: true })}
+																className='form-control'
+															/>
+															{errors.search2 && (
+																<div className='error'>
+																	{errors.search2.message}
+																</div>
+															)}
+														</div>
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<div className='mb-3 add-product'>
+															<label className='form-label'>Search 3</label>
+															<input
+																type='text'
+																{...register('search3', { required: true })}
+																className='form-control'
+															/>
+															{errors.search3 && (
+																<div className='error'>
+																	{errors.search3.message}
+																</div>
+															)}
+														</div>
+													</div>
+												</div>
+											</div>
+											{/* <div className='mb-3 add-product'>
+												<label className='form-label'>details</label>
+												<input
+													type='text'
+													{...register('details', { required: true })}
+													className='form-control'
+												/>
+												{errors.details && (
+													<div className='error'>{errors.details.message}</div>
+												)}
+											</div> */}
+											{/* Editor */}
+											<div className='col-lg-12'>
+												<div className='input-blocks summer-description-box transfer mb-3'>
+													<label>Details</label>
+													<textarea
+														className='form-control h-100'
+														rows={3}
+														{...register('details')}
+														defaultValue={''}
+													/>
+													{errors.details && (
+														<div className='error'>
+															{errors.details.message}
+														</div>
+													)}
+													<p className='mt-1'>Maximum 60 Characters</p>
+												</div>
+											</div>
+											<div className='row'>
+												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>Size</label>
+														<input
+															type='text'
+															{...register('size', { required: true })}
+															className='form-control'
+														/>
+														{errors.size && (
+															<div className='error'>{errors.size.message}</div>
+														)}
+													</div>
+												</div>
+												<div className='col-lg-4 col-sm-6 col-12'>
+													<div className='mb-3 add-product'>
+														<label className='form-label'>Weight</label>
+														<input
+															type='text'
+															{...register('weight', { required: true })}
+															className='form-control'
+														/>
+														{errors.weight && (
+															<div className='error'>
+																{errors.weight.message}
+															</div>
+														)}
 													</div>
 												</div>
 											</div>
@@ -547,7 +707,7 @@ const AddProduct = () => {
 															/>
 														</div>
 													</div> */}
-													<div className='col-lg-4 col-sm-6 col-12'>
+													{/* <div className='col-lg-4 col-sm-6 col-12'>
 														<div className='mb-3 add-product'>
 															<div className='add-newplus'>
 																<label className='form-label'>Unit</label>
@@ -576,20 +736,28 @@ const AddProduct = () => {
 																placeholder='Choose'
 															/>
 														</div>
-													</div>
+													</div> */}
 												</div>
 											</div>
 											<div className='row'>
 												<div className='col-lg-6 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
-														<label className='form-label'>
-															Barcode Symbology
-														</label>
-														<Select
+														<label className='form-label'>Barcode</label>
+														<input
+															type='text'
+															{...register('barcode')}
+															className='form-control'
+														/>
+														{errors.barcode && (
+															<div className='error'>
+																{errors.barcode.message}
+															</div>
+														)}
+														{/* <Select
 															classNamePrefix='react-select'
 															options={barcodesymbol}
 															placeholder='Choose'
-														/>
+														/> */}
 													</div>
 												</div>
 												<div className='col-lg-6 col-sm-6 col-12'>
@@ -609,18 +777,7 @@ const AddProduct = () => {
 													</div>
 												</div>
 											</div>
-											{/* Editor */}
-											<div className='col-lg-12'>
-												<div className='input-blocks summer-description-box transfer mb-3'>
-													<label>Description</label>
-													<textarea
-														className='form-control h-100'
-														rows={5}
-														defaultValue={''}
-													/>
-													<p className='mt-1'>Maximum 60 Characters</p>
-												</div>
-											</div>
+
 											{/* /Editor */}
 										</div>
 									</div>
@@ -727,6 +884,21 @@ const AddProduct = () => {
 													<div className='row'>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='input-blocks add-product'>
+																<label>Cost Price</label>
+																<input
+																	type='text'
+																	{...register('price', { required: true })}
+																	className='form-control'
+																/>
+																{errors.price && (
+																	<div className='error'>
+																		{errors.price.message}
+																	</div>
+																)}
+															</div>
+														</div>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='input-blocks add-product'>
 																<label>Quantity</label>
 																<input
 																	type='text'
@@ -736,51 +908,74 @@ const AddProduct = () => {
 														</div>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='input-blocks add-product'>
-																<label>Price</label>
+																<label>VAT Code</label>
 																<input
 																	type='text'
-																	className='form-control'
+																	{...register('vatCode')}
 																/>
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Tax Type</label>
-																<Select
+																{errors.vatCode && (
+																	<div className='error'>
+																		{errors.vatCode.message}
+																	</div>
+																)}
+
+																{/* <Select
 																	classNamePrefix='react-select'
 																	options={taxtype}
 																	placeholder='Select Option'
-																/>
+																/> */}
 															</div>
 														</div>
 													</div>
 													<div className='row'>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='input-blocks add-product'>
-																<label>Discount Type</label>
-																<Select
+																<label>Settlement Discount</label>
+																<input
+																	type='text'
+																	// {...register('discount')}
+																	placeholder='0.00'
+																/>
+																{/* {errors.discount && (
+																	<div className='error'>
+																		{errors.discount.message}
+																	</div>
+																)} */}
+																{/* <Select
 																	classNamePrefix='react-select'
 																	options={discounttype}
 																	placeholder='Choose'
-																/>
+																/> */}
 															</div>
 														</div>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='input-blocks add-product'>
-																<label>Discount Value</label>
+																<label>Discount</label>
 																<input
 																	type='text'
+																	{...register('discount')}
 																	placeholder='Choose'
 																/>
+																{errors.discount && (
+																	<div className='error'>
+																		{errors.discount.message}
+																	</div>
+																)}
 															</div>
 														</div>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='input-blocks add-product'>
-																<label>Quantity Alert</label>
+																<label>Markup</label>
 																<input
 																	type='text'
+																	{...register('markup')}
 																	className='form-control'
 																/>
+																{errors.markup && (
+																	<div className='error'>
+																		{errors.markup.message}
+																	</div>
+																)}
 															</div>
 														</div>
 													</div>
@@ -1205,12 +1400,12 @@ const AddProduct = () => {
 												<div className='row'>
 													<div className='col-lg-4 col-sm-6 col-12'>
 														<div className='input-blocks add-product'>
-															<label>Discount Type</label>
+															{/* <label>Discount Type</label>
 															<Select
 																classNamePrefix='react-select'
 																options={discounttype1}
 																placeholder='Choose'
-															/>
+															/> */}
 														</div>
 													</div>
 												</div>
