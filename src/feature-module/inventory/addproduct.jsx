@@ -70,10 +70,10 @@ const AddProduct = () => {
 		{ value: 'Male', label: 'Male' },
 		{ value: 'Female', label: 'Female' },
 	];
-	// const suitabilityOptions = [
-	// 	{ value: 'Any', label: 'Any' },
-	// 	{ value: 'one', label: 'one' },
-	// ];
+	const suitabilityOptions = [
+		{ value: 'Any', label: 'Any' },
+		{ value: 'one', label: 'one' },
+	];
 	const majorMinorOption = [
 		{ value: 'Major', label: 'Major' },
 		{ value: 'Minor', label: 'Minor' },
@@ -91,12 +91,11 @@ const AddProduct = () => {
 			Collapse
 		</Tooltip>
 	);
-	// const store = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'thomas', label: 'Thomas' },
-	// 	{ value: 'rasmussen', label: 'Rasmussen' },
-	// 	{ value: 'fredJohn', label: 'Fred John' },
-	// ];
+	const seasonOptions = [
+		{ value: 'All', label: 'All' },
+		{ value: 'Winter', label: 'Winter' },
+		{ value: 'Summer', label: 'Summer' },
+	];
 	// const warehouse = [
 	// 	{ value: 'choose', label: 'Choose' },
 	// 	{ value: 'legendary', label: 'Legendary' },
@@ -885,6 +884,45 @@ const AddProduct = () => {
 														</div>
 
 														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Suitability
+																	</label>
+																	<Select
+																		classNamePrefix='react-select'
+																		options={suitabilityOptions}
+																		onChange={(selectedOption) =>
+																			setValue(
+																				'suitability',
+																				selectedOption?.value
+																			)
+																		}
+																		placeholder='Choose'
+																	/>
+																</div>
+
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Season
+																	</label>
+																	<Select
+																		id='gender'
+																		classNamePrefix='react-select'
+																		options={seasonOptions}
+																		onChange={(selectedOption) =>
+																			setValue('season', selectedOption?.value)
+																		}
+																		placeholder='Choose'
+																	/>
+																	{errors.gender && (
+																		<div className='invalid-feedback'>
+																			{errors.gender.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
 															<div className='addproduct-icon list'>
 																<h5>
 																	<ToggleRight className='add-info' />
