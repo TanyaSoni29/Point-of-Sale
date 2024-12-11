@@ -38,6 +38,12 @@ const AddProduct = () => {
 	};
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
 	const [allowPoints, setAllowPoints] = useState(false);
+	const [website, setWebsite] = useState(false);
+	const [webOnly, setWebOnly] = useState(false);
+	const [keyItem, setKeyItem] = useState(false);
+	const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
+	const [allowDiscount, setAllowDiscount] = useState(false);
+	const [currentProduct, setCurrentProduct] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -372,22 +378,6 @@ const AddProduct = () => {
 												</div>
 
 												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>
-															Instantly Update Web Shop
-														</label>
-														<Switch
-															// checked={}
-															// {...register('mfrPartNumber', { required: true })}
-															className='form-control'
-														/>
-														{/* {errors.mfrPartNumber && (
-															<div className='error'>
-																{errors.mfrPartNumber.message}
-															</div>
-														)} */}
-													</div>
-
 													{/* <div className='mb-3 add-product'>
 														<label className='form-label'>Store</label>
 														<Select
@@ -1379,24 +1369,81 @@ const AddProduct = () => {
 													<div className='input-block add-lists'>
 														<label className='checkboxs'>
 															<Switch
+																checked={currentProduct}
+																onChange={(value) => {
+																	setCurrentProduct((prev) => !prev);
+																	setValue('current', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															<span className='checkmarks' />
+															Current Product
+														</label>
+														<label className='checkboxs'>
+															<Switch
+																checked={allowDiscount}
+																onChange={(value) => {
+																	setAllowDiscount((prev) => !prev);
+																	setValue('allowDiscount', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															Allow Discount
+														</label>
+														<label className='checkboxs'>
+															<Switch
 																checked={allowPoints}
 																onChange={(value) => {
 																	setAllowPoints((prev) => !prev);
 																	setValue('allowPoints', value);
 																}}
+																style={{ marginRight: '4px' }}
 															/>
-															<span className='checkmarks' />
 															Allow Points
 														</label>
 														<label className='checkboxs'>
-															<input type='checkbox' />
-															<span className='checkmarks' />
-															Manufacturer
+															<Switch
+																checked={website}
+																onChange={(value) => {
+																	setWebsite((prev) => !prev);
+																	setValue('website', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															Website
 														</label>
 														<label className='checkboxs'>
-															<input type='checkbox' />
-															<span className='checkmarks' />
-															Expiry
+															<Switch
+																checked={webOnly}
+																onChange={(value) => {
+																	setWebOnly((prev) => !prev);
+																	setValue('webOnly', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															Web Only
+														</label>
+														<label className='checkboxs'>
+															<Switch
+																checked={keyItem}
+																onChange={(value) => {
+																	setKeyItem((prev) => !prev);
+																	setValue('keyItem', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															Key Item
+														</label>
+														<label className='checkboxs'>
+															<Switch
+																checked={instantlyUpdateOnWebShop}
+																onChange={() => {
+																	setInstantlyUpdateWebShop((prev) => !prev);
+																	// setValue('keyItem', value);
+																}}
+																style={{ marginRight: '4px' }}
+															/>
+															Instantly Update Web Shop
 														</label>
 													</div>
 												</div>
