@@ -16,6 +16,7 @@ import {
 	Info,
 	LifeBuoy,
 	List,
+	ToggleRight,
 	PlusCircle,
 	Trash2,
 	X,
@@ -44,6 +45,8 @@ const AddProduct = () => {
 	const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
 	const [allowDiscount, setAllowDiscount] = useState(false);
 	const [currentProduct, setCurrentProduct] = useState(false);
+	const [isDiscontinued, setIsDiscontinued] = useState(false);
+	const [doNotReOrder, setDoNotReOrder] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -1329,6 +1332,155 @@ const AddProduct = () => {
 									</div>
 								</div>
 							</div>
+
+							<div
+								className='accordion-card-one accordion'
+								id='accordionExample3'
+							>
+								<div className='accordion-item'>
+									<div
+										className='accordion-header'
+										id='headingFive'
+									>
+										<div
+											className='accordion-button'
+											data-bs-toggle='collapse'
+											data-bs-target='#collapseFive'
+											aria-controls='collapseFive'
+										>
+											<div className='addproduct-icon list'>
+												<h5>
+													<ToggleRight className='add-info' />
+													<span>Switches</span>
+												</h5>
+												<Link to='#'>
+													<ChevronDown className='chevron-down-add' />
+												</Link>
+											</div>
+										</div>
+									</div>
+									<div
+										id='collapseFive'
+										className='accordion-collapse collapse show'
+										aria-labelledby='headingFive'
+										data-bs-parent='#accordionExample3'
+									>
+										<div className='accordion-body'>
+											<div className='text-editor add-list add'>
+												<div className='col-lg-12'>
+													<div className='add-choosen'>
+														<div className='input-block add-lists'>
+															<label className='checkboxs'>
+																<Switch
+																	checked={currentProduct}
+																	onChange={(value) => {
+																		setCurrentProduct((prev) => !prev);
+																		setValue('current', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																<span className='checkmarks' />
+																Current Product
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={allowDiscount}
+																	onChange={(value) => {
+																		setAllowDiscount((prev) => !prev);
+																		setValue('allowDiscount', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Allow Discount
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={allowPoints}
+																	onChange={(value) => {
+																		setAllowPoints((prev) => !prev);
+																		setValue('allowPoints', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Allow Points
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={website}
+																	onChange={(value) => {
+																		setWebsite((prev) => !prev);
+																		setValue('website', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Website
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={webOnly}
+																	onChange={(value) => {
+																		setWebOnly((prev) => !prev);
+																		setValue('webOnly', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Web Only
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={keyItem}
+																	onChange={(value) => {
+																		setKeyItem((prev) => !prev);
+																		setValue('keyItem', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Key Item
+															</label>
+															<label className='checkboxs'>
+																<Switch
+																	checked={instantlyUpdateOnWebShop}
+																	onChange={() => {
+																		setInstantlyUpdateWebShop((prev) => !prev);
+																		// setValue('keyItem', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Instantly Update Web Shop
+															</label>
+
+															<label className='checkboxs'>
+																<Switch
+																	checked={isDiscontinued}
+																	onChange={(value) => {
+																		setIsDiscontinued((prev) => !prev);
+																		setValue('isDiscontinued', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Discontinued
+															</label>
+
+															<label className='checkboxs'>
+																<Switch
+																	checked={doNotReOrder}
+																	onChange={(value) => {
+																		setDoNotReOrder((prev) => !prev);
+																		setValue('doNotReOrder', value);
+																	}}
+																	style={{ marginRight: '4px' }}
+																/>
+																Don't ReOrder
+															</label>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+
 							<div
 								className='accordion-card-one accordion'
 								id='accordionExample4'
@@ -1365,88 +1517,6 @@ const AddProduct = () => {
 									>
 										<div className='accordion-body'>
 											<div className='text-editor add-list add'>
-												<div className='custom-filed'>
-													<div className='input-block add-lists'>
-														<label className='checkboxs'>
-															<Switch
-																checked={currentProduct}
-																onChange={(value) => {
-																	setCurrentProduct((prev) => !prev);
-																	setValue('current', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															<span className='checkmarks' />
-															Current Product
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={allowDiscount}
-																onChange={(value) => {
-																	setAllowDiscount((prev) => !prev);
-																	setValue('allowDiscount', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Allow Discount
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={allowPoints}
-																onChange={(value) => {
-																	setAllowPoints((prev) => !prev);
-																	setValue('allowPoints', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Allow Points
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={website}
-																onChange={(value) => {
-																	setWebsite((prev) => !prev);
-																	setValue('website', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Website
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={webOnly}
-																onChange={(value) => {
-																	setWebOnly((prev) => !prev);
-																	setValue('webOnly', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Web Only
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={keyItem}
-																onChange={(value) => {
-																	setKeyItem((prev) => !prev);
-																	setValue('keyItem', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Key Item
-														</label>
-														<label className='checkboxs'>
-															<Switch
-																checked={instantlyUpdateOnWebShop}
-																onChange={() => {
-																	setInstantlyUpdateWebShop((prev) => !prev);
-																	// setValue('keyItem', value);
-																}}
-																style={{ marginRight: '4px' }}
-															/>
-															Instantly Update Web Shop
-														</label>
-													</div>
-												</div>
 												<div className='row'>
 													<div className='col-lg-4 col-sm-6 col-12'>
 														<div className='input-blocks add-product'>
