@@ -30,9 +30,8 @@ import { useForm } from 'react-hook-form';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-
 	const data = useSelector((state) => state.toggle_header);
-
+	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const handleDateChange = (date) => {
 		setSelectedDate(date);
@@ -59,6 +58,10 @@ const AddProduct = () => {
 		console.log('Form Data:', data);
 		// Handle form submission (e.g., send data to your backend)
 		reset(); // Reset form after successful submission
+	};
+
+	const handleNextTab = (nextTab) => {
+		setActiveTab(nextTab);
 	};
 
 	const genders = [
@@ -314,63 +317,169 @@ const AddProduct = () => {
 						</li>
 					</ul>
 				</div>
-				{/* /add */}
-				<form onSubmit={handleSubmit(onSubmit)}>
-					<div className='card'>
-						<div className='card-body add-product pb-0'>
-							<div
-								className='accordion-card-one accordion'
-								id='accordionExample'
+
+				{/* Tab Section */}
+				<div className='tabs-wrapper'>
+					<ul
+						className='nav nav-tabs'
+						id='product-tabs'
+						role='tabList'
+					>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'product-info' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('product-info')}
+								type='button'
 							>
-								<div className='accordion-item'>
-									<div
-										className='accordion-header'
-										id='headingOne'
-									>
-										<div
-											className='accordion-button'
-											data-bs-toggle='collapse'
-											data-bs-target='#collapseOne'
-											aria-controls='collapseOne'
-										>
-											<div className='addproduct-icon'>
-												<h5>
-													<Info className='add-info' />
+								Product Info
+							</button>
+						</li>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'minmax' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('minmax')}
+								type='button'
+							>
+								Min/Max
+							</button>
+						</li>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'description' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('description')}
+								type='button'
+							>
+								Description
+							</button>
+						</li>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'specification' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('specification')}
+								type='button'
+							>
+								Specification
+							</button>
+						</li>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'geometry' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('geometry')}
+								type='button'
+							>
+								Geometry
+							</button>
+						</li>
+						<li
+							className='nav-item'
+							role='presentation'
+						>
+							<button
+								className={`nav-link ${
+									activeTab === 'product-notes' ? 'active' : ''
+								} `}
+								onClick={() => setActiveTab('product-notes')}
+								type='button'
+							>
+								Product Notes
+							</button>
+						</li>
+					</ul>
+				</div>
+				{/* /add */}
 
-													<span>Product Information</span>
-												</h5>
-												<Link to='#'>
-													<ChevronDown className='chevron-down-add' />
-												</Link>
-											</div>
-										</div>
-									</div>
+				<form onSubmit={handleSubmit(onSubmit)}>
+					<div
+						className='tab-content'
+						id='product-tabs-content'
+					>
+						<div
+							className={`tab-pane ${
+								activeTab === 'product-info' ? 'active' : ''
+							}`}
+						>
+							<div className='card'>
+								<div className='card-body add-product pb-0'>
 									<div
-										id='collapseOne'
-										className='accordion-collapse collapse show'
-										aria-labelledby='headingOne'
-										data-bs-parent='#accordionExample'
+										className='accordion-card-one accordion'
+										id='accordionExample'
 									>
-										<div className='accordion-body'>
-											<div className='row'>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>
-															Manufacture Part Code
-														</label>
-														<input
-															type='text'
-															{...register('mfrPartNumber', { required: true })}
-															className='form-control'
-														/>
-														{errors.mfrPartNumber && (
-															<div className='invalid-feedback'>
-																{errors.mfrPartNumber.message}
-															</div>
-														)}
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Information</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
 													</div>
+												</div>
+											</div>
+											<div
+												id='collapseOne'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingOne'
+												data-bs-parent='#accordionExample'
+											>
+												<div className='accordion-body'>
+													<div className='row'>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>
+																	Manufacture Part Code
+																</label>
+																<input
+																	type='text'
+																	{...register('mfrPartNumber', {
+																		required: true,
+																	})}
+																	className='form-control'
+																/>
+																{errors.mfrPartNumber && (
+																	<div className='invalid-feedback'>
+																		{errors.mfrPartNumber.message}
+																	</div>
+																)}
+															</div>
 
-													{/* <div className='mb-3 add-product'>
+															{/* <div className='mb-3 add-product'>
 														<label className='form-label'>Store</label>
 														<Select
 															classNamePrefix='react-select'
@@ -378,10 +487,10 @@ const AddProduct = () => {
 															placeholder='Choose'
 														/>
 													</div> */}
-												</div>
+														</div>
 
-												<div className='col-lg-4 col-sm-6 col-12'>
-													{/* <div className='mb-3 add-product'>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															{/* <div className='mb-3 add-product'>
 														<label className='form-label'>Store</label>
 														<Select
 															classNamePrefix='react-select'
@@ -389,8 +498,8 @@ const AddProduct = () => {
 															placeholder='Choose'
 														/>
 													</div> */}
-												</div>
-												{/* <div className='col-lg-4 col-sm-6 col-12'>
+														</div>
+														{/* <div className='col-lg-4 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
 														<label className='form-label'>Warehouse</label>
 														<Select
@@ -400,58 +509,60 @@ const AddProduct = () => {
 														/>
 													</div>
 												</div> */}
-											</div>
-											<div className='row'>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Major/Minor</label>
-														<Select
-															classNamePrefix='react-select'
-															options={majorMinorOption}
-															placeholder='Choose'
-														/>
 													</div>
-												</div>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Gender</label>
-														<Select
-															id='gender'
-															classNamePrefix='react-select'
-															options={genders}
-															onChange={(selectedOption) =>
-																setValue('gender', selectedOption?.value)
-															}
-															placeholder='Choose'
-														/>
-														{errors.gender && (
-															<div className='invalid-feedback'>
-																{errors.gender.message}
+													<div className='row'>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>
+																	Major/Minor
+																</label>
+																<Select
+																	classNamePrefix='react-select'
+																	options={majorMinorOption}
+																	placeholder='Choose'
+																/>
 															</div>
-														)}
-													</div>
-												</div>
-											</div>
-											<div className='row'>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Make</label>
-														<input
-															type='text'
-															{...register('make', { required: true })}
-															className='form-control'
-														/>
-														{errors.make && (
-															<div className='invalid-feedback'>
-																{errors.make.message}
+														</div>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>Gender</label>
+																<Select
+																	id='gender'
+																	classNamePrefix='react-select'
+																	options={genders}
+																	onChange={(selectedOption) =>
+																		setValue('gender', selectedOption?.value)
+																	}
+																	placeholder='Choose'
+																/>
+																{errors.gender && (
+																	<div className='invalid-feedback'>
+																		{errors.gender.message}
+																	</div>
+																)}
 															</div>
-														)}
+														</div>
 													</div>
-												</div>
-											</div>
+													<div className='row'>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>Make</label>
+																<input
+																	type='text'
+																	{...register('make', { required: true })}
+																	className='form-control'
+																/>
+																{errors.make && (
+																	<div className='invalid-feedback'>
+																		{errors.make.message}
+																	</div>
+																)}
+															</div>
+														</div>
+													</div>
 
-											<div className='row'>
-												{/* <div className='col-lg-4 col-sm-6 col-12'>
+													<div className='row'>
+														{/* <div className='col-lg-4 col-sm-6 col-12'>
 													<div className='mb-3 add-product'>
 														<label className='form-label'>Product Name</label>
 														<input
@@ -485,57 +596,57 @@ const AddProduct = () => {
 														</Link>
 													</div>
 												</div> */}
-											</div>
-											<div className='addservice-info'>
-												<div className='row'>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<label className='form-label'>Search 1</label>
-															<input
-																type='text'
-																{...register('search1', { required: true })}
-																className='form-control'
-															/>
-															{errors.search1 && (
-																<div className='invalid-feedback'>
-																	{errors.search1.message}
+													</div>
+													<div className='addservice-info'>
+														<div className='row'>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='mb-3 add-product'>
+																	<label className='form-label'>Search 1</label>
+																	<input
+																		type='text'
+																		{...register('search1', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.search1 && (
+																		<div className='invalid-feedback'>
+																			{errors.search1.message}
+																		</div>
+																	)}
 																</div>
-															)}
+															</div>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='mb-3 add-product'>
+																	<label className='form-label'>Search 2</label>
+																	<input
+																		type='text'
+																		{...register('search2', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.search2 && (
+																		<div className='invalid-feedback'>
+																			{errors.search2.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='mb-3 add-product'>
+																	<label className='form-label'>Search 3</label>
+																	<input
+																		type='text'
+																		{...register('search3', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.search3 && (
+																		<div className='invalid-feedback'>
+																			{errors.search3.message}
+																		</div>
+																	)}
+																</div>
+															</div>
 														</div>
 													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<label className='form-label'>Search 2</label>
-															<input
-																type='text'
-																{...register('search2', { required: true })}
-																className='form-control'
-															/>
-															{errors.search2 && (
-																<div className='invalid-feedback'>
-																	{errors.search2.message}
-																</div>
-															)}
-														</div>
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<label className='form-label'>Search 3</label>
-															<input
-																type='text'
-																{...register('search3', { required: true })}
-																className='form-control'
-															/>
-															{errors.search3 && (
-																<div className='invalid-feedback'>
-																	{errors.search3.message}
-																</div>
-															)}
-														</div>
-													</div>
-												</div>
-											</div>
-											{/* <div className='mb-3 add-product'>
+													{/* <div className='mb-3 add-product'>
 												<label className='form-label'>details</label>
 												<input
 													type='text'
@@ -546,60 +657,60 @@ const AddProduct = () => {
 													<div className='error'>{errors.details.message}</div>
 												)}
 											</div> */}
-											{/* Editor */}
-											<div className='col-lg-12'>
-												<div className='input-blocks summer-description-box transfer mb-3'>
-													<label>Details</label>
-													<textarea
-														className='form-control h-100'
-														rows={3}
-														{...register('details')}
-														defaultValue={''}
-													/>
-													{errors.details && (
-														<div className='invalid-feedback'>
-															{errors.details.message}
+													{/* Editor */}
+													<div className='col-lg-12'>
+														<div className='input-blocks summer-description-box transfer mb-3'>
+															<label>Details</label>
+															<textarea
+																className='form-control h-100'
+																rows={3}
+																{...register('details')}
+																defaultValue={''}
+															/>
+															{errors.details && (
+																<div className='invalid-feedback'>
+																	{errors.details.message}
+																</div>
+															)}
+															<p className='mt-1'>Maximum 60 Characters</p>
 														</div>
-													)}
-													<p className='mt-1'>Maximum 60 Characters</p>
-												</div>
-											</div>
-											<div className='row'>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Size</label>
-														<input
-															type='text'
-															{...register('size', { required: true })}
-															className='form-control'
-														/>
-														{errors.size && (
-															<div className='invalid-feedback'>
-																{errors.size.message}
-															</div>
-														)}
 													</div>
-												</div>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Weight</label>
-														<input
-															type='text'
-															{...register('weight', { required: true })}
-															className='form-control'
-														/>
-														{errors.weight && (
-															<div className='invalid-feedback'>
-																{errors.weight.message}
+													<div className='row'>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>Size</label>
+																<input
+																	type='text'
+																	{...register('size', { required: true })}
+																	className='form-control'
+																/>
+																{errors.size && (
+																	<div className='invalid-feedback'>
+																		{errors.size.message}
+																	</div>
+																)}
 															</div>
-														)}
+														</div>
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>Weight</label>
+																<input
+																	type='text'
+																	{...register('weight', { required: true })}
+																	className='form-control'
+																/>
+																{errors.weight && (
+																	<div className='invalid-feedback'>
+																		{errors.weight.message}
+																	</div>
+																)}
+															</div>
+														</div>
 													</div>
-												</div>
-											</div>
-											<div className='addservice-info'>
-												<div className='row'>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														{/* <div className='mb-3 add-product'>
+													<div className='addservice-info'>
+														<div className='row'>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																{/* <div className='mb-3 add-product'>
 															<div className='add-newplus'>
 																<label className='form-label'>Category</label>
 																<Link
@@ -617,52 +728,52 @@ const AddProduct = () => {
 																placeholder='Choose'
 															/>
 														</div> */}
-														<label className='form-label'>Category A</label>
-														<input
-															type='text'
-															{...register('catA', { required: true })}
-															className='form-control'
-														/>
-														{errors.catA && (
-															<div className='invalid-feedback'>
-																{errors.catA.message}
+																<label className='form-label'>Category A</label>
+																<input
+																	type='text'
+																	{...register('catA', { required: true })}
+																	className='form-control'
+																/>
+																{errors.catA && (
+																	<div className='invalid-feedback'>
+																		{errors.catA.message}
+																	</div>
+																)}
 															</div>
-														)}
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														{/* <div className='mb-3 add-product'> */}
-														<label className='form-label'>Category B</label>
-														<input
-															type='text'
-															{...register('catB', { required: true })}
-															className='form-control'
-														/>
-														{errors.catB && (
-															<div className='invalid-feedback'>
-																{errors.catB.message}
-															</div>
-														)}
-														{/* <label className='form-label'>Sub Category</label>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																{/* <div className='mb-3 add-product'> */}
+																<label className='form-label'>Category B</label>
+																<input
+																	type='text'
+																	{...register('catB', { required: true })}
+																	className='form-control'
+																/>
+																{errors.catB && (
+																	<div className='invalid-feedback'>
+																		{errors.catB.message}
+																	</div>
+																)}
+																{/* <label className='form-label'>Sub Category</label>
 															<Select
 																classNamePrefix='react-select'
 																options={subcategory}
 																placeholder='Choose'
 															/> */}
-														{/* </div> */}
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<label className='form-label'>Category C</label>
-														<input
-															type='text'
-															{...register('catC', { required: true })}
-															className='form-control'
-														/>
-														{errors.catC && (
-															<div className='invalid-feedback'>
-																{errors.catC.message}
+																{/* </div> */}
 															</div>
-														)}
-														{/* <div className='mb-3 add-product'>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<label className='form-label'>Category C</label>
+																<input
+																	type='text'
+																	{...register('catC', { required: true })}
+																	className='form-control'
+																/>
+																{errors.catC && (
+																	<div className='invalid-feedback'>
+																		{errors.catC.message}
+																	</div>
+																)}
+																{/* <div className='mb-3 add-product'>
 															<label className='form-label'>
 																Sub Sub Category
 															</label>
@@ -672,12 +783,12 @@ const AddProduct = () => {
 																placeholder='Choose'
 															/>
 														</div> */}
+															</div>
+														</div>
 													</div>
-												</div>
-											</div>
-											<div className='add-product-new'>
-												<div className='row'>
-													{/* <div className='col-lg-4 col-sm-6 col-12'>
+													<div className='add-product-new'>
+														<div className='row'>
+															{/* <div className='col-lg-4 col-sm-6 col-12'>
 														<div className='mb-3 add-product'>
 															<div className='add-newplus'>
 																<label className='form-label'>Brand</label>
@@ -697,7 +808,7 @@ const AddProduct = () => {
 															/>
 														</div>
 													</div> */}
-													{/* <div className='col-lg-4 col-sm-6 col-12'>
+															{/* <div className='col-lg-4 col-sm-6 col-12'>
 														<div className='mb-3 add-product'>
 															<div className='add-newplus'>
 																<label className='form-label'>Unit</label>
@@ -727,117 +838,118 @@ const AddProduct = () => {
 															/>
 														</div>
 													</div> */}
-												</div>
-											</div>
-											<div className='row'>
-												<div className='col-lg-6 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Barcode</label>
-														<input
-															type='text'
-															{...register('barcode')}
-															className='form-control'
-														/>
-														{errors.barcode && (
-															<div className='invalid-feedback'>
-																{errors.barcode.message}
-															</div>
-														)}
-														{/* <Select
+														</div>
+													</div>
+													<div className='row'>
+														<div className='col-lg-6 col-sm-6 col-12'>
+															<div className='mb-3 add-product'>
+																<label className='form-label'>Barcode</label>
+																<input
+																	type='text'
+																	{...register('barcode')}
+																	className='form-control'
+																/>
+																{errors.barcode && (
+																	<div className='invalid-feedback'>
+																		{errors.barcode.message}
+																	</div>
+																)}
+																{/* <Select
 															classNamePrefix='react-select'
 															options={barcodesymbol}
 															placeholder='Choose'
 														/> */}
-													</div>
-												</div>
-												<div className='col-lg-6 col-sm-6 col-12'>
-													<div className='input-blocks add-product list'>
-														<label>Item Code</label>
-														<input
-															type='text'
-															className='form-control list'
-															placeholder='Please Enter Item Code'
-														/>
-														<Link
-															to={route.addproduct}
-															className='btn btn-primaryadd'
-														>
-															Generate Code
-														</Link>
-													</div>
-												</div>
-											</div>
-
-											{/* /Editor */}
-										</div>
-									</div>
-								</div>
-							</div>
-							<div
-								className='accordion-card-one accordion'
-								id='accordionExample2'
-							>
-								<div className='accordion-item'>
-									<div
-										className='accordion-header'
-										id='headingTwo'
-									>
-										<div
-											className='accordion-button'
-											data-bs-toggle='collapse'
-											data-bs-target='#collapseTwo'
-											aria-controls='collapseTwo'
-										>
-											<div className='text-editor add-list'>
-												<div className='addproduct-icon list icon'>
-													<h5>
-														<LifeBuoy className='add-info' />
-														<span>Pricing &amp; Stocks</span>
-													</h5>
-													<Link to='#'>
-														<ChevronDown className='chevron-down-add' />
-													</Link>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										id='collapseTwo'
-										className='accordion-collapse collapse show'
-										aria-labelledby='headingTwo'
-										data-bs-parent='#accordionExample2'
-									>
-										<div className='accordion-body'>
-											<div className='input-blocks add-products'>
-												<label className='d-block'>Product Type</label>
-												<div className='single-pill-product'>
-													<ul
-														className='nav nav-pills'
-														id='pills-tab1'
-														role='tablist'
-													>
-														<li
-															className='nav-item'
-															role='presentation'
-														>
-															<span
-																className='custom_radio me-4 mb-0 active'
-																id='pills-home-tab'
-																data-bs-toggle='pill'
-																data-bs-target='#pills-home'
-																role='tab'
-																aria-controls='pills-home'
-																aria-selected='true'
-															>
+															</div>
+														</div>
+														<div className='col-lg-6 col-sm-6 col-12'>
+															<div className='input-blocks add-product list'>
+																<label>Item Code</label>
 																<input
-																	type='radio'
-																	className='form-control'
-																	name='payment'
+																	type='text'
+																	className='form-control list'
+																	placeholder='Please Enter Item Code'
 																/>
-																<span className='checkmark' /> Single Product
-															</span>
-														</li>
-														{/* <li
+																<Link
+																	to={route.addproduct}
+																	className='btn btn-primaryadd'
+																>
+																	Generate Code
+																</Link>
+															</div>
+														</div>
+													</div>
+
+													{/* /Editor */}
+												</div>
+											</div>
+										</div>
+									</div>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample2'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingTwo'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseTwo'
+													aria-controls='collapseTwo'
+												>
+													<div className='text-editor add-list'>
+														<div className='addproduct-icon list icon'>
+															<h5>
+																<LifeBuoy className='add-info' />
+																<span>Pricing &amp; Stocks</span>
+															</h5>
+															<Link to='#'>
+																<ChevronDown className='chevron-down-add' />
+															</Link>
+														</div>
+													</div>
+												</div>
+											</div>
+											<div
+												id='collapseTwo'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingTwo'
+												data-bs-parent='#accordionExample2'
+											>
+												<div className='accordion-body'>
+													<div className='input-blocks add-products'>
+														<label className='d-block'>Product Type</label>
+														<div className='single-pill-product'>
+															<ul
+																className='nav nav-pills'
+																id='pills-tab1'
+																role='tablist'
+															>
+																<li
+																	className='nav-item'
+																	role='presentation'
+																>
+																	<span
+																		className='custom_radio me-4 mb-0 active'
+																		id='pills-home-tab'
+																		data-bs-toggle='pill'
+																		data-bs-target='#pills-home'
+																		role='tab'
+																		aria-controls='pills-home'
+																		aria-selected='true'
+																	>
+																		<input
+																			type='radio'
+																			className='form-control'
+																			name='payment'
+																		/>
+																		<span className='checkmark' /> Single
+																		Product
+																	</span>
+																</li>
+																{/* <li
 															className='nav-item'
 															role='presentation'
 														>
@@ -858,772 +970,909 @@ const AddProduct = () => {
 																<span className='checkmark' /> Variable Product
 															</span>
 														</li> */}
-													</ul>
-												</div>
-											</div>
-											<div
-												className='tab-content'
-												id='pills-tabContent'
-											>
-												<div
-													className='tab-pane fade show active'
-													id='pills-home'
-													role='tabpanel'
-													aria-labelledby='pills-home-tab'
-												>
-													<div className='row'>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Cost Price</label>
-																<input
-																	type='text'
-																	{...register('price', { required: true })}
-																	className='form-control'
-																/>
-																{errors.price && (
-																	<div className='invalid-feedback'>
-																		{errors.price.message}
-																	</div>
-																)}
-															</div>
+															</ul>
 														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Quantity</label>
-																<input
-																	type='text'
-																	className='form-control'
-																/>
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>VAT Code</label>
-																<input
-																	type='text'
-																	{...register('vatCode')}
-																/>
-																{errors.vatCode && (
-																	<div className='invalid-feedback'>
-																		{errors.vatCode.message}
+													</div>
+													<div
+														className='tab-content'
+														id='pills-tabContent'
+													>
+														<div
+															className='tab-pane fade show active'
+															id='pills-home'
+															role='tabpanel'
+															aria-labelledby='pills-home-tab'
+														>
+															<div className='row'>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Cost Price</label>
+																		<input
+																			type='text'
+																			{...register('price', { required: true })}
+																			className='form-control'
+																		/>
+																		{errors.price && (
+																			<div className='invalid-feedback'>
+																				{errors.price.message}
+																			</div>
+																		)}
 																	</div>
-																)}
+																</div>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Quantity</label>
+																		<input
+																			type='text'
+																			className='form-control'
+																		/>
+																	</div>
+																</div>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>VAT Code</label>
+																		<input
+																			type='text'
+																			{...register('vatCode')}
+																		/>
+																		{errors.vatCode && (
+																			<div className='invalid-feedback'>
+																				{errors.vatCode.message}
+																			</div>
+																		)}
 
-																{/* <Select
+																		{/* <Select
 																	classNamePrefix='react-select'
 																	options={taxtype}
 																	placeholder='Select Option'
 																/> */}
-															</div>
-														</div>
-													</div>
-													<div className='row'>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Settlement Discount</label>
-																<input
-																	type='text'
-																	{...register('discountPercentage')}
-																	placeholder='0.00'
-																/>
-																{errors.discountPercentage && (
-																	<div className='invalid-feedback'>
-																		{errors.discountPercentage.message}
 																	</div>
-																)}
-																{/* <Select
+																</div>
+															</div>
+															<div className='row'>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Settlement Discount</label>
+																		<input
+																			type='text'
+																			{...register('discountPercentage')}
+																			placeholder='0.00'
+																		/>
+																		{errors.discountPercentage && (
+																			<div className='invalid-feedback'>
+																				{errors.discountPercentage.message}
+																			</div>
+																		)}
+																		{/* <Select
 																	classNamePrefix='react-select'
 																	options={discounttype}
 																	placeholder='Choose'
 																/> */}
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Discount</label>
-																<input
-																	type='text'
-																	{...register('discount')}
-																	placeholder='Choose'
-																/>
-																{errors.discount && (
-																	<div className='invalid-feedback'>
-																		{errors.discount.message}
-																	</div>
-																)}
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Markup</label>
-																<input
-																	type='text'
-																	{...register('markup')}
-																	className='form-control'
-																/>
-																{errors.markup && (
-																	<div className='invalid-feedback'>
-																		{errors.markup.message}
-																	</div>
-																)}
-															</div>
-														</div>
-													</div>
-													<div
-														className='accordion-card-one accordion'
-														id='accordionExample3'
-													>
-														<div className='accordion-item'>
-															<div
-																className='accordion-header'
-																id='headingThree'
-															>
-																<div
-																	className='accordion-button'
-																	data-bs-toggle='collapse'
-																	data-bs-target='#collapseThree'
-																	aria-controls='collapseThree'
-																>
-																	<div className='addproduct-icon list'>
-																		<h5>
-																			<i
-																				data-feather='image'
-																				className='add-info'
-																			/>
-																			<span>Images</span>
-																		</h5>
-																		<Link to='#'>
-																			<ChevronDown className='chevron-down-add' />
-																		</Link>
 																	</div>
 																</div>
-															</div>
-															<div
-																id='collapseThree'
-																className='accordion-collapse collapse show'
-																aria-labelledby='headingThree'
-																data-bs-parent='#accordionExample3'
-															>
-																<div className='accordion-body'>
-																	<div className='text-editor add-list add'>
-																		<div className='col-lg-12'>
-																			<div className='add-choosen'>
-																				<div className='input-blocks'>
-																					<div className='image-upload'>
-																						<input type='file' />
-																						<div className='image-uploads'>
-																							<PlusCircle className='plus-down-add me-0' />
-																							<h4>Add Images</h4>
-																						</div>
-																					</div>
-																				</div>
-																				{isImageVisible1 && (
-																					<div className='phone-img'>
-																						<ImageWithBasePath
-																							src='assets/img/products/phone-add-2.png'
-																							alt='image'
-																						/>
-																						<Link to='#'>
-																							<X
-																								className='x-square-add remove-product'
-																								onClick={handleRemoveProduct1}
-																							/>
-																						</Link>
-																					</div>
-																				)}
-																				{isImageVisible && (
-																					<div className='phone-img'>
-																						<ImageWithBasePath
-																							src='assets/img/products/phone-add-1.png'
-																							alt='image'
-																						/>
-																						<Link to='#'>
-																							<X
-																								className='x-square-add remove-product'
-																								onClick={handleRemoveProduct}
-																							/>
-																						</Link>
-																					</div>
-																				)}
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Discount</label>
+																		<input
+																			type='text'
+																			{...register('discount')}
+																			placeholder='Choose'
+																		/>
+																		{errors.discount && (
+																			<div className='invalid-feedback'>
+																				{errors.discount.message}
 																			</div>
-																		</div>
+																		)}
+																	</div>
+																</div>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Markup</label>
+																		<input
+																			type='text'
+																			{...register('markup')}
+																			className='form-control'
+																		/>
+																		{errors.markup && (
+																			<div className='invalid-feedback'>
+																				{errors.markup.message}
+																			</div>
+																		)}
 																	</div>
 																</div>
 															</div>
-														</div>
-													</div>
-												</div>
-												<div
-													className='tab-pane fade'
-													id='pills-profile'
-													role='tabpanel'
-													aria-labelledby='pills-profile-tab'
-												>
-													<div className='row select-color-add'>
-														<div className='col-lg-6 col-sm-6 col-12'>
-															<div className='input-blocks add-product'>
-																<label>Variant Attribute</label>
-																<div className='row'>
-																	<div className='col-lg-10 col-sm-10 col-10'>
-																		<select
-																			className='form-control variant-select select-option'
-																			id='colorSelect'
+															<div
+																className='accordion-card-one accordion'
+																id='accordionExample3'
+															>
+																<div className='accordion-item'>
+																	<div
+																		className='accordion-header'
+																		id='headingThree'
+																	>
+																		<div
+																			className='accordion-button'
+																			data-bs-toggle='collapse'
+																			data-bs-target='#collapseThree'
+																			aria-controls='collapseThree'
 																		>
-																			<option>Choose</option>
-																			<option>Color</option>
-																			<option value='red'>Red</option>
-																			<option value='black'>Black</option>
-																		</select>
+																			<div className='addproduct-icon list'>
+																				<h5>
+																					<i
+																						data-feather='image'
+																						className='add-info'
+																					/>
+																					<span>Images</span>
+																				</h5>
+																				<Link to='#'>
+																					<ChevronDown className='chevron-down-add' />
+																				</Link>
+																			</div>
+																		</div>
 																	</div>
-																	<div className='col-lg-2 col-sm-2 col-2 ps-0'>
-																		<div className='add-icon tab'>
-																			<Link
-																				className='btn btn-filter'
-																				data-bs-toggle='modal'
-																				data-bs-target='#add-units'
-																			>
-																				<PlusCircle className='feather feather-plus-circle' />
-																			</Link>
+																	<div
+																		id='collapseThree'
+																		className='accordion-collapse collapse show'
+																		aria-labelledby='headingThree'
+																		data-bs-parent='#accordionExample3'
+																	>
+																		<div className='accordion-body'>
+																			<div className='text-editor add-list add'>
+																				<div className='col-lg-12'>
+																					<div className='add-choosen'>
+																						<div className='input-blocks'>
+																							<div className='image-upload'>
+																								<input type='file' />
+																								<div className='image-uploads'>
+																									<PlusCircle className='plus-down-add me-0' />
+																									<h4>Add Images</h4>
+																								</div>
+																							</div>
+																						</div>
+																						{isImageVisible1 && (
+																							<div className='phone-img'>
+																								<ImageWithBasePath
+																									src='assets/img/products/phone-add-2.png'
+																									alt='image'
+																								/>
+																								<Link to='#'>
+																									<X
+																										className='x-square-add remove-product'
+																										onClick={
+																											handleRemoveProduct1
+																										}
+																									/>
+																								</Link>
+																							</div>
+																						)}
+																						{isImageVisible && (
+																							<div className='phone-img'>
+																								<ImageWithBasePath
+																									src='assets/img/products/phone-add-1.png'
+																									alt='image'
+																								/>
+																								<Link to='#'>
+																									<X
+																										className='x-square-add remove-product'
+																										onClick={
+																											handleRemoveProduct
+																										}
+																									/>
+																								</Link>
+																							</div>
+																						)}
+																					</div>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																</div>
+															</div>
+														</div>
+														<div
+															className='tab-pane fade'
+															id='pills-profile'
+															role='tabpanel'
+															aria-labelledby='pills-profile-tab'
+														>
+															<div className='row select-color-add'>
+																<div className='col-lg-6 col-sm-6 col-12'>
+																	<div className='input-blocks add-product'>
+																		<label>Variant Attribute</label>
+																		<div className='row'>
+																			<div className='col-lg-10 col-sm-10 col-10'>
+																				<select
+																					className='form-control variant-select select-option'
+																					id='colorSelect'
+																				>
+																					<option>Choose</option>
+																					<option>Color</option>
+																					<option value='red'>Red</option>
+																					<option value='black'>Black</option>
+																				</select>
+																			</div>
+																			<div className='col-lg-2 col-sm-2 col-2 ps-0'>
+																				<div className='add-icon tab'>
+																					<Link
+																						className='btn btn-filter'
+																						data-bs-toggle='modal'
+																						data-bs-target='#add-units'
+																					>
+																						<PlusCircle className='feather feather-plus-circle' />
+																					</Link>
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<div
+																		className='selected-hide-color'
+																		id='input-show'
+																	>
+																		<div className='row align-items-center'>
+																			<div className='col-sm-10'>
+																				<div className='input-blocks'>
+																					<input
+																						className='input-tags form-control'
+																						id='inputBox'
+																						type='text'
+																						data-role='tagsinput'
+																						name='specialist'
+																						defaultValue='red, black'
+																					/>
+																				</div>
+																			</div>
+																			<div className='col-lg-2'>
+																				<div className='input-blocks '>
+																					<Link
+																						to='#'
+																						className='remove-color'
+																					>
+																						<Trash2 />
+																					</Link>
+																				</div>
+																			</div>
 																		</div>
 																	</div>
 																</div>
 															</div>
 															<div
-																className='selected-hide-color'
-																id='input-show'
+																className='modal-body-table variant-table'
+																id='variant-table'
 															>
-																<div className='row align-items-center'>
-																	<div className='col-sm-10'>
-																		<div className='input-blocks'>
-																			<input
-																				className='input-tags form-control'
-																				id='inputBox'
-																				type='text'
-																				data-role='tagsinput'
-																				name='specialist'
-																				defaultValue='red, black'
-																			/>
-																		</div>
-																	</div>
-																	<div className='col-lg-2'>
-																		<div className='input-blocks '>
-																			<Link
-																				to='#'
-																				className='remove-color'
-																			>
-																				<Trash2 />
-																			</Link>
-																		</div>
-																	</div>
+																<div className='table-responsive'>
+																	<table className='table'>
+																		<thead>
+																			<tr>
+																				<th>Variantion</th>
+																				<th>Variant Value</th>
+																				<th>SKU</th>
+																				<th>Quantity</th>
+																				<th>Price</th>
+																				<th className='no-sort'>Action</th>
+																			</tr>
+																		</thead>
+																		<tbody>
+																			<tr>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue='color'
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue='red'
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue={1234}
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='product-quantity'>
+																						<span className='quantity-btn'>
+																							<i
+																								data-feather='minus-circle'
+																								className='feather-search'
+																							/>
+																						</span>
+																						<input
+																							type='text'
+																							className='quntity-input'
+																							defaultValue={2}
+																						/>
+																						<span className='quantity-btn'>
+																							+
+																							<i
+																								data-feather='plus-circle'
+																								className='plus-circle'
+																							/>
+																						</span>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue={50000}
+																						/>
+																					</div>
+																				</td>
+																				<td className='action-table-data'>
+																					<div className='edit-delete-action'>
+																						<div className='input-block add-lists'>
+																							<label className='checkboxs'>
+																								<input
+																									type='checkbox'
+																									defaultChecked=''
+																								/>
+																								<span className='checkmarks' />
+																							</label>
+																						</div>
+																						<Link
+																							className='me-2 p-2'
+																							to='#'
+																							data-bs-toggle='modal'
+																							data-bs-target='#add-variation'
+																						>
+																							<i
+																								data-feather='plus'
+																								className='feather-edit'
+																							/>
+																						</Link>
+																						<Link
+																							className='confirm-text p-2'
+																							to='#'
+																						>
+																							<i
+																								data-feather='trash-2'
+																								className='feather-trash-2'
+																							/>
+																						</Link>
+																					</div>
+																				</td>
+																			</tr>
+																			<tr>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue='color'
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue='black'
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue={2345}
+																						/>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='product-quantity'>
+																						<span className='quantity-btn'>
+																							<i
+																								data-feather='minus-circle'
+																								className='feather-search'
+																							/>
+																						</span>
+																						<input
+																							type='text'
+																							className='quntity-input'
+																							defaultValue={3}
+																						/>
+																						<span className='quantity-btn'>
+																							+
+																							<i
+																								data-feather='plus-circle'
+																								className='plus-circle'
+																							/>
+																						</span>
+																					</div>
+																				</td>
+																				<td>
+																					<div className='add-product'>
+																						<input
+																							type='text'
+																							className='form-control'
+																							defaultValue={50000}
+																						/>
+																					</div>
+																				</td>
+																				<td className='action-table-data'>
+																					<div className='edit-delete-action'>
+																						<div className='input-block add-lists'>
+																							<label className='checkboxs'>
+																								<input
+																									type='checkbox'
+																									defaultChecked=''
+																								/>
+																								<span className='checkmarks' />
+																							</label>
+																						</div>
+																						<Link
+																							className='me-2 p-2'
+																							to='#'
+																							data-bs-toggle='modal'
+																							data-bs-target='#edit-units'
+																						>
+																							<i
+																								data-feather='plus'
+																								className='feather-edit'
+																							/>
+																						</Link>
+																						<Link
+																							className='confirm-text p-2'
+																							to='#'
+																						>
+																							<i
+																								data-feather='trash-2'
+																								className='feather-trash-2'
+																							/>
+																						</Link>
+																					</div>
+																				</td>
+																			</tr>
+																		</tbody>
+																	</table>
 																</div>
 															</div>
 														</div>
 													</div>
-													<div
-														className='modal-body-table variant-table'
-														id='variant-table'
-													>
-														<div className='table-responsive'>
-															<table className='table'>
-																<thead>
-																	<tr>
-																		<th>Variantion</th>
-																		<th>Variant Value</th>
-																		<th>SKU</th>
-																		<th>Quantity</th>
-																		<th>Price</th>
-																		<th className='no-sort'>Action</th>
-																	</tr>
-																</thead>
-																<tbody>
-																	<tr>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue='color'
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue='red'
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue={1234}
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='product-quantity'>
-																				<span className='quantity-btn'>
-																					<i
-																						data-feather='minus-circle'
-																						className='feather-search'
-																					/>
-																				</span>
-																				<input
-																					type='text'
-																					className='quntity-input'
-																					defaultValue={2}
-																				/>
-																				<span className='quantity-btn'>
-																					+
-																					<i
-																						data-feather='plus-circle'
-																						className='plus-circle'
-																					/>
-																				</span>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue={50000}
-																				/>
-																			</div>
-																		</td>
-																		<td className='action-table-data'>
-																			<div className='edit-delete-action'>
-																				<div className='input-block add-lists'>
-																					<label className='checkboxs'>
-																						<input
-																							type='checkbox'
-																							defaultChecked=''
-																						/>
-																						<span className='checkmarks' />
-																					</label>
-																				</div>
-																				<Link
-																					className='me-2 p-2'
-																					to='#'
-																					data-bs-toggle='modal'
-																					data-bs-target='#add-variation'
-																				>
-																					<i
-																						data-feather='plus'
-																						className='feather-edit'
-																					/>
-																				</Link>
-																				<Link
-																					className='confirm-text p-2'
-																					to='#'
-																				>
-																					<i
-																						data-feather='trash-2'
-																						className='feather-trash-2'
-																					/>
-																				</Link>
-																			</div>
-																		</td>
-																	</tr>
-																	<tr>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue='color'
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue='black'
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue={2345}
-																				/>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='product-quantity'>
-																				<span className='quantity-btn'>
-																					<i
-																						data-feather='minus-circle'
-																						className='feather-search'
-																					/>
-																				</span>
-																				<input
-																					type='text'
-																					className='quntity-input'
-																					defaultValue={3}
-																				/>
-																				<span className='quantity-btn'>
-																					+
-																					<i
-																						data-feather='plus-circle'
-																						className='plus-circle'
-																					/>
-																				</span>
-																			</div>
-																		</td>
-																		<td>
-																			<div className='add-product'>
-																				<input
-																					type='text'
-																					className='form-control'
-																					defaultValue={50000}
-																				/>
-																			</div>
-																		</td>
-																		<td className='action-table-data'>
-																			<div className='edit-delete-action'>
-																				<div className='input-block add-lists'>
-																					<label className='checkboxs'>
-																						<input
-																							type='checkbox'
-																							defaultChecked=''
-																						/>
-																						<span className='checkmarks' />
-																					</label>
-																				</div>
-																				<Link
-																					className='me-2 p-2'
-																					to='#'
-																					data-bs-toggle='modal'
-																					data-bs-target='#edit-units'
-																				>
-																					<i
-																						data-feather='plus'
-																						className='feather-edit'
-																					/>
-																				</Link>
-																				<Link
-																					className='confirm-text p-2'
-																					to='#'
-																				>
-																					<i
-																						data-feather='trash-2'
-																						className='feather-trash-2'
-																					/>
-																				</Link>
-																			</div>
-																		</td>
-																	</tr>
-																</tbody>
-															</table>
+												</div>
+											</div>
+										</div>
+									</div>
+
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample3'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingFive'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseFive'
+													aria-controls='collapseFive'
+												>
+													<div className='addproduct-icon list'>
+														<h5>
+															<ToggleRight className='add-info' />
+															<span>Switches</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+											</div>
+											<div
+												id='collapseFive'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingFive'
+												data-bs-parent='#accordionExample3'
+											>
+												<div className='accordion-body'>
+													<div className='text-editor add-list add'>
+														<div className='col-lg-12'>
+															<div className='add-choosen'>
+																<div className='input-block add-lists'>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={currentProduct}
+																			onChange={(value) => {
+																				setCurrentProduct((prev) => !prev);
+																				setValue('current', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		<span className='checkmarks' />
+																		Current Product
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={allowDiscount}
+																			onChange={(value) => {
+																				setAllowDiscount((prev) => !prev);
+																				setValue('allowDiscount', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Allow Discount
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={allowPoints}
+																			onChange={(value) => {
+																				setAllowPoints((prev) => !prev);
+																				setValue('allowPoints', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Allow Points
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={website}
+																			onChange={(value) => {
+																				setWebsite((prev) => !prev);
+																				setValue('website', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Website
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={webOnly}
+																			onChange={(value) => {
+																				setWebOnly((prev) => !prev);
+																				setValue('webOnly', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Web Only
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={keyItem}
+																			onChange={(value) => {
+																				setKeyItem((prev) => !prev);
+																				setValue('keyItem', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Key Item
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={instantlyUpdateOnWebShop}
+																			onChange={() => {
+																				setInstantlyUpdateWebShop(
+																					(prev) => !prev
+																				);
+																				// setValue('keyItem', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Instantly Update Web Shop
+																	</label>
+
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={isDiscontinued}
+																			onChange={(value) => {
+																				setIsDiscontinued((prev) => !prev);
+																				setValue('isDiscontinued', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Discontinued
+																	</label>
+
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={doNotReOrder}
+																			onChange={(value) => {
+																				setDoNotReOrder((prev) => !prev);
+																				setValue('doNotReOrder', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Don't ReOrder
+																	</label>
+																</div>
+															</div>
 														</div>
 													</div>
 												</div>
 											</div>
 										</div>
 									</div>
-								</div>
-							</div>
 
-							<div
-								className='accordion-card-one accordion'
-								id='accordionExample3'
-							>
-								<div className='accordion-item'>
 									<div
-										className='accordion-header'
-										id='headingFive'
+										className='accordion-card-one accordion'
+										id='accordionExample4'
 									>
-										<div
-											className='accordion-button'
-											data-bs-toggle='collapse'
-											data-bs-target='#collapseFive'
-											aria-controls='collapseFive'
-										>
-											<div className='addproduct-icon list'>
-												<h5>
-													<ToggleRight className='add-info' />
-													<span>Switches</span>
-												</h5>
-												<Link to='#'>
-													<ChevronDown className='chevron-down-add' />
-												</Link>
-											</div>
-										</div>
-									</div>
-									<div
-										id='collapseFive'
-										className='accordion-collapse collapse show'
-										aria-labelledby='headingFive'
-										data-bs-parent='#accordionExample3'
-									>
-										<div className='accordion-body'>
-											<div className='text-editor add-list add'>
-												<div className='col-lg-12'>
-													<div className='add-choosen'>
-														<div className='input-block add-lists'>
-															<label className='checkboxs'>
-																<Switch
-																	checked={currentProduct}
-																	onChange={(value) => {
-																		setCurrentProduct((prev) => !prev);
-																		setValue('current', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																<span className='checkmarks' />
-																Current Product
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={allowDiscount}
-																	onChange={(value) => {
-																		setAllowDiscount((prev) => !prev);
-																		setValue('allowDiscount', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Allow Discount
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={allowPoints}
-																	onChange={(value) => {
-																		setAllowPoints((prev) => !prev);
-																		setValue('allowPoints', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Allow Points
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={website}
-																	onChange={(value) => {
-																		setWebsite((prev) => !prev);
-																		setValue('website', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Website
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={webOnly}
-																	onChange={(value) => {
-																		setWebOnly((prev) => !prev);
-																		setValue('webOnly', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Web Only
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={keyItem}
-																	onChange={(value) => {
-																		setKeyItem((prev) => !prev);
-																		setValue('keyItem', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Key Item
-															</label>
-															<label className='checkboxs'>
-																<Switch
-																	checked={instantlyUpdateOnWebShop}
-																	onChange={() => {
-																		setInstantlyUpdateWebShop((prev) => !prev);
-																		// setValue('keyItem', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Instantly Update Web Shop
-															</label>
-
-															<label className='checkboxs'>
-																<Switch
-																	checked={isDiscontinued}
-																	onChange={(value) => {
-																		setIsDiscontinued((prev) => !prev);
-																		setValue('isDiscontinued', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Discontinued
-															</label>
-
-															<label className='checkboxs'>
-																<Switch
-																	checked={doNotReOrder}
-																	onChange={(value) => {
-																		setDoNotReOrder((prev) => !prev);
-																		setValue('doNotReOrder', value);
-																	}}
-																	style={{ marginRight: '4px' }}
-																/>
-																Don't ReOrder
-															</label>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingFour'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseFour'
+													aria-controls='collapseFour'
+												>
+													<div className='text-editor add-list'>
+														<div className='addproduct-icon list'>
+															<h5>
+																<List className='add-info' />
+																<span>Custom Fields</span>
+															</h5>
+															<Link to='#'>
+																<ChevronDown className='chevron-down-add' />
+															</Link>
 														</div>
 													</div>
 												</div>
 											</div>
-										</div>
-									</div>
-								</div>
-							</div>
-
-							<div
-								className='accordion-card-one accordion'
-								id='accordionExample4'
-							>
-								<div className='accordion-item'>
-									<div
-										className='accordion-header'
-										id='headingFour'
-									>
-										<div
-											className='accordion-button'
-											data-bs-toggle='collapse'
-											data-bs-target='#collapseFour'
-											aria-controls='collapseFour'
-										>
-											<div className='text-editor add-list'>
-												<div className='addproduct-icon list'>
-													<h5>
-														<List className='add-info' />
-														<span>Custom Fields</span>
-													</h5>
-													<Link to='#'>
-														<ChevronDown className='chevron-down-add' />
-													</Link>
-												</div>
-											</div>
-										</div>
-									</div>
-									<div
-										id='collapseFour'
-										className='accordion-collapse collapse show'
-										aria-labelledby='headingFour'
-										data-bs-parent='#accordionExample4'
-									>
-										<div className='accordion-body'>
-											<div className='text-editor add-list add'>
-												<div className='row'>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='input-blocks add-product'>
-															{/* <label>Discount Type</label>
+											<div
+												id='collapseFour'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingFour'
+												data-bs-parent='#accordionExample4'
+											>
+												<div className='accordion-body'>
+													<div className='text-editor add-list add'>
+														<div className='row'>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='input-blocks add-product'>
+																	{/* <label>Discount Type</label>
 															<Select
 																classNamePrefix='react-select'
 																options={discounttype1}
 																placeholder='Choose'
 															/> */}
-														</div>
-													</div>
-												</div>
-												<div className='row'>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='input-blocks add-product'>
-															<label>Promo Name</label>
-															<input
-																type='text'
-																{...register('promoName')}
-																className='form-control'
-															/>
-															{errors.promoName && (
-																<div className='invalid-feedback'>
-																	{errors.promoName.message}
 																</div>
-															)}
+															</div>
 														</div>
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='input-blocks add-product'>
-															<label>Promo RRP</label>
-															<input
-																type='text'
-																{...register('promoPrice')}
-																className='form-control'
-															/>
-															{errors.promoPrice && (
-																<div className='invalid-feedback'>
-																	{errors.promoPrice.message}
-																</div>
-															)}
-														</div>
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
 														<div className='row'>
 															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='input-blocks'>
-																	<label>From</label>
-																	<div className='input-groupicon calender-input'>
-																		<Calendar className='info-img' />
-																		<DatePicker
-																			selected={selectedDate}
-																			onChange={handleDateChange}
-																			type='date'
-																			className='datetimepicker'
-																			dateFormat='dd-MM-yyyy'
-																			placeholder='Choose Date'
-																		/>
-																	</div>
+																<div className='input-blocks add-product'>
+																	<label>Promo Name</label>
+																	<input
+																		type='text'
+																		{...register('promoName')}
+																		className='form-control'
+																	/>
+																	{errors.promoName && (
+																		<div className='invalid-feedback'>
+																			{errors.promoName.message}
+																		</div>
+																	)}
 																</div>
 															</div>
 															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='input-blocks'>
-																	<label>To</label>
-																	<div className='input-groupicon calender-input'>
-																		<Calendar className='info-img' />
-																		<DatePicker
-																			selected={selectedDate1}
-																			onChange={handleDateChange1}
-																			type='date'
-																			className='datetimepicker'
-																			dateFormat='dd-MM-yyyy'
-																			placeholder='Choose Date'
-																		/>
+																<div className='input-blocks add-product'>
+																	<label>Promo RRP</label>
+																	<input
+																		type='text'
+																		{...register('promoPrice')}
+																		className='form-control'
+																	/>
+																	{errors.promoPrice && (
+																		<div className='invalid-feedback'>
+																			{errors.promoPrice.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+															<div className='col-lg-4 col-sm-6 col-12'>
+																<div className='row'>
+																	<div className='col-lg-4 col-sm-6 col-12'>
+																		<div className='input-blocks'>
+																			<label>From</label>
+																			<div className='input-groupicon calender-input'>
+																				<Calendar className='info-img' />
+																				<DatePicker
+																					selected={selectedDate}
+																					onChange={handleDateChange}
+																					type='date'
+																					className='datetimepicker'
+																					dateFormat='dd-MM-yyyy'
+																					placeholder='Choose Date'
+																				/>
+																			</div>
+																		</div>
+																	</div>
+																	<div className='col-lg-4 col-sm-6 col-12'>
+																		<div className='input-blocks'>
+																			<label>To</label>
+																			<div className='input-groupicon calender-input'>
+																				<Calendar className='info-img' />
+																				<DatePicker
+																					selected={selectedDate1}
+																					onChange={handleDateChange1}
+																					type='date'
+																					className='datetimepicker'
+																					dateFormat='dd-MM-yyyy'
+																					placeholder='Choose Date'
+																				/>
+																			</div>
+																		</div>
 																	</div>
 																</div>
 															</div>
+															<div className='col-lg-4 col-sm-6 col-12'></div>
 														</div>
 													</div>
-													<div className='col-lg-4 col-sm-6 col-12'></div>
 												</div>
 											</div>
 										</div>
 									</div>
 								</div>
 							</div>
+							<div className='text-end'>
+								<button
+									type='button'
+									className='btn btn-submit'
+									onClick={() => handleNextTab('minmax')}
+								>
+									Save and Continue
+								</button>
+							</div>
 						</div>
-					</div>
-					<div className='col-lg-12'>
-						<div className='btn-addproduct mb-4'>
-							<button
-								type='button'
-								className='btn btn-cancel me-2'
-							>
-								Cancel
-							</button>
-							<Link
-								to={route.addproduct}
-								className='btn btn-submit'
-							>
-								Save Product
-							</Link>
+
+						<div
+							className={`tab-pane ${activeTab === 'minmax' ? 'active' : ''}`}
+						>
+							<div className='card'>
+								<h5>Min/Max</h5>
+								<p>Min/Max content goes here.</p>
+							</div>
+
+							<div className='text-end'>
+								<button
+									type='button'
+									className='btn btn-submit'
+									onClick={() => handleNextTab('description')}
+								>
+									Save and Continue
+								</button>
+							</div>
+						</div>
+
+						<div
+							className={`tab-pane ${
+								activeTab === 'description' ? 'active' : ''
+							}`}
+						>
+							<div className='card'>
+								<h5>Description</h5>
+								<textarea
+									{...register('description')}
+									className='form-control'
+									rows={3}
+									placeholder='Enter product description...'
+								/>
+								{errors.description && (
+									<div className='invalid-feedback'>
+										Description is required.
+									</div>
+								)}
+							</div>
+							<div className='text-end'>
+								<button
+									type='button'
+									className='btn btn-submit'
+									onClick={() => handleNextTab('specification')}
+								>
+									Save and Continue
+								</button>
+							</div>
+						</div>
+
+						<div
+							className={`tab-pane ${
+								activeTab === 'specification' ? 'active' : ''
+							}`}
+						>
+							<div className='card'>
+								<h5>Specification</h5>
+								<textarea
+									{...register('specification')}
+									className='form-control'
+									rows={3}
+									placeholder='Enter product specifications...'
+								/>
+								{errors.specification && (
+									<div className='invalid-feedback'>
+										Specification is required.
+									</div>
+								)}
+							</div>
+							<div className='text-end'>
+								<button
+									type='button'
+									className='btn btn-submit'
+									onClick={() => handleNextTab('geometry')}
+								>
+									Save and Continue
+								</button>
+							</div>
+						</div>
+
+						<div
+							className={`tab-pane ${activeTab === 'geometry' ? 'active' : ''}`}
+						>
+							<div className='card'>
+								<h5>Geometry</h5>
+								<textarea
+									{...register('geometry')}
+									className='form-control'
+									rows={3}
+									placeholder='Enter product geometry details...'
+								/>
+								{errors.geometry && (
+									<div className='invalid-feedback'>Geometry is required.</div>
+								)}
+							</div>
+							<div className='text-end'>
+								<button
+									type='button'
+									className='btn btn-submit'
+									onClick={() => handleNextTab('product-notes')}
+								>
+									Save and Continue
+								</button>
+							</div>
+						</div>
+
+						<div
+							className={`tab-pane ${
+								activeTab === 'product-notes' ? 'active' : ''
+							}`}
+						>
+							<div className='card'>
+								<h5>Product-notes</h5>
+								<textarea
+									{...register('productNotes')}
+									className='form-control'
+									rows={3}
+									placeholder='Enter product notes...'
+								/>
+								{errors.productNotes && (
+									<div className='invalid-feedback'>
+										Product notes are required.
+									</div>
+								)}
+							</div>
+
+							<div className='text-end'>
+								<button
+									type='submit'
+									className='btn btn-submit'
+								>
+									Save and Create
+								</button>
+							</div>
 						</div>
 					</div>
 				</form>
-				{/* /add */}
 			</div>
+			{/* /add */}
+
 			<Addunits />
 			<AddCategory />
 			<AddBrand />
