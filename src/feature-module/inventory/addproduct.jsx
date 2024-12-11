@@ -51,6 +51,7 @@ const AddProduct = () => {
 		handleSubmit,
 		reset,
 		setValue,
+		getValues,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
 
@@ -161,6 +162,16 @@ const AddProduct = () => {
 
 	const handleRemoveProduct1 = () => {
 		setIsImageVisible1(false);
+	};
+
+	const setAllFourPrice = () => {
+		// Get the value of storePrice
+		const storePriceValue = getValues('storePrice');
+
+		// Update the other fields
+		setValue('tradePrice', storePriceValue);
+		setValue('mailOrderPrice', storePriceValue);
+		setValue('webPrice', storePriceValue); // Replace `anotherField` with the actual name
 	};
 
 	useEffect(() => {
@@ -478,72 +489,140 @@ const AddProduct = () => {
 																	</div>
 																)}
 															</div>
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Major/Minor
+																	</label>
+																	<Select
+																		classNamePrefix='react-select'
+																		options={majorMinorOption}
+																		placeholder='Choose'
+																	/>
+																</div>
 
-															{/* <div className='mb-3 add-product'>
-														<label className='form-label'>Store</label>
-														<Select
-															classNamePrefix='react-select'
-															options={store}
-															placeholder='Choose'
-														/>
-													</div> */}
-														</div>
-
-														<div className='col-lg-4 col-sm-6 col-12'>
-															{/* <div className='mb-3 add-product'>
-														<label className='form-label'>Store</label>
-														<Select
-															classNamePrefix='react-select'
-															options={store}
-															placeholder='Choose'
-														/>
-													</div> */}
-														</div>
-														{/* <div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Warehouse</label>
-														<Select
-															classNamePrefix='react-select'
-															options={warehouse}
-															placeholder='Choose'
-														/>
-													</div>
-												</div> */}
-													</div>
-													<div className='row'>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>
-																	Major/Minor
-																</label>
-																<Select
-																	classNamePrefix='react-select'
-																	options={majorMinorOption}
-																	placeholder='Choose'
-																/>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Gender
+																	</label>
+																	<Select
+																		id='gender'
+																		classNamePrefix='react-select'
+																		options={genders}
+																		onChange={(selectedOption) =>
+																			setValue('gender', selectedOption?.value)
+																		}
+																		placeholder='Choose'
+																	/>
+																	{errors.gender && (
+																		<div className='invalid-feedback'>
+																			{errors.gender.message}
+																		</div>
+																	)}
+																</div>
 															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Gender</label>
-																<Select
-																	id='gender'
-																	classNamePrefix='react-select'
-																	options={genders}
-																	onChange={(selectedOption) =>
-																		setValue('gender', selectedOption?.value)
-																	}
-																	placeholder='Choose'
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start me-3'>
+																		Search 1
+																	</label>
+																	<input
+																		type='text'
+																		{...register('search1', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.search1 && (
+																		<div className='invalid-feedback'>
+																			{errors.search1.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label'>Search 2</label>
+																	<input
+																		type='text'
+																		{...register('search2', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.search2 && (
+																		<div className='invalid-feedback'>
+																			{errors.search2.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='input-blocks summer-description-box transfer mb-3'>
+																<label className='form-label'>Details</label>
+																<textarea
+																	className='form-control h-100'
+																	rows={3}
+																	{...register('details')}
+																	defaultValue={''}
 																/>
-																{errors.gender && (
+																{errors.details && (
 																	<div className='invalid-feedback'>
-																		{errors.gender.message}
+																		{errors.details.message}
 																	</div>
 																)}
+																<p className='mt-1'>Maximum 60 Characters</p>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-flex justify-content-between'>
+																		Store Price
+																		<span>
+																			<button
+																				className='btn btn-submit text-white rounded-2'
+																				style={{
+																					paddingTop: '2px',
+																					paddingBottom: '2px',
+																				}}
+																				onClick={setAllFourPrice}
+																			>
+																				All
+																			</button>
+																		</span>
+																	</label>
+																	<input
+																		type='text'
+																		{...register('storePrice', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.storePrice && (
+																		<div className='invalid-feedback'>
+																			{errors.storePrice.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Mail Order
+																	</label>
+																	<input
+																		type='text'
+																		{...register('mailOrderPrice', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.mailOrderPrice && (
+																		<div className='invalid-feedback'>
+																			{errors.mailOrderPrice.message}
+																		</div>
+																	)}
+																</div>
 															</div>
 														</div>
-													</div>
-													<div className='row'>
+
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='mb-3 add-product'>
 																<label className='form-label'>Make</label>
@@ -558,328 +637,295 @@ const AddProduct = () => {
 																	</div>
 																)}
 															</div>
-														</div>
-													</div>
 
-													<div className='row'>
-														{/* <div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Product Name</label>
-														<input
-															type='text'
-															className='form-control'
-														/>
-													</div>
-												</div>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='mb-3 add-product'>
-														<label className='form-label'>Slug</label>
-														<input
-															type='text'
-															className='form-control'
-														/>
-													</div>
-												</div>
-												<div className='col-lg-4 col-sm-6 col-12'>
-													<div className='input-blocks add-product list'>
-														<label>SKU</label>
-														<input
-															type='text'
-															className='form-control list'
-															placeholder='Enter SKU'
-														/>
-														<Link
-															to={route.addproduct}
-															className='btn btn-primaryadd'
-														>
-															Generate Code
-														</Link>
-													</div>
-												</div> */}
-													</div>
-													<div className='addservice-info'>
-														<div className='row'>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='mb-3 add-product'>
-																	<label className='form-label'>Search 1</label>
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Size
+																	</label>
 																	<input
 																		type='text'
-																		{...register('search1', { required: true })}
+																		{...register('size', { required: true })}
 																		className='form-control'
 																	/>
-																	{errors.search1 && (
+																	{errors.size && (
 																		<div className='invalid-feedback'>
-																			{errors.search1.message}
+																			{errors.size.message}
 																		</div>
 																	)}
 																</div>
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='mb-3 add-product'>
-																	<label className='form-label'>Search 2</label>
-																	<input
-																		type='text'
-																		{...register('search2', { required: true })}
-																		className='form-control'
-																	/>
-																	{errors.search2 && (
-																		<div className='invalid-feedback'>
-																			{errors.search2.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='mb-3 add-product'>
-																	<label className='form-label'>Search 3</label>
-																	<input
-																		type='text'
-																		{...register('search3', { required: true })}
-																		className='form-control'
-																	/>
-																	{errors.search3 && (
-																		<div className='invalid-feedback'>
-																			{errors.search3.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-														</div>
-													</div>
-													{/* <div className='mb-3 add-product'>
-												<label className='form-label'>details</label>
-												<input
-													type='text'
-													{...register('details', { required: true })}
-													className='form-control'
-												/>
-												{errors.details && (
-													<div className='error'>{errors.details.message}</div>
-												)}
-											</div> */}
-													{/* Editor */}
-													<div className='col-lg-12'>
-														<div className='input-blocks summer-description-box transfer mb-3'>
-															<label>Details</label>
-															<textarea
-																className='form-control h-100'
-																rows={3}
-																{...register('details')}
-																defaultValue={''}
-															/>
-															{errors.details && (
-																<div className='invalid-feedback'>
-																	{errors.details.message}
-																</div>
-															)}
-															<p className='mt-1'>Maximum 60 Characters</p>
-														</div>
-													</div>
-													<div className='row'>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Size</label>
-																<input
-																	type='text'
-																	{...register('size', { required: true })}
-																	className='form-control'
-																/>
-																{errors.size && (
-																	<div className='invalid-feedback'>
-																		{errors.size.message}
-																	</div>
-																)}
-															</div>
-														</div>
-														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Weight</label>
-																<input
-																	type='text'
-																	{...register('weight', { required: true })}
-																	className='form-control'
-																/>
-																{errors.weight && (
-																	<div className='invalid-feedback'>
-																		{errors.weight.message}
-																	</div>
-																)}
-															</div>
-														</div>
-													</div>
-													<div className='addservice-info'>
-														<div className='row'>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																{/* <div className='mb-3 add-product'>
-															<div className='add-newplus'>
-																<label className='form-label'>Category</label>
-																<Link
-																	to='#'
-																	data-bs-toggle='modal'
-																	data-bs-target='#add-units-category'
-																>
-																	<PlusCircle className='plus-down-add' />
-																	<span>Add New</span>
-																</Link>
-															</div>
-															<Select
-																classNamePrefix='react-select'
-																options={category}
-																placeholder='Choose'
-															/>
-														</div> */}
-																<label className='form-label'>Category A</label>
-																<input
-																	type='text'
-																	{...register('catA', { required: true })}
-																	className='form-control'
-																/>
-																{errors.catA && (
-																	<div className='invalid-feedback'>
-																		{errors.catA.message}
-																	</div>
-																)}
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																{/* <div className='mb-3 add-product'> */}
-																<label className='form-label'>Category B</label>
-																<input
-																	type='text'
-																	{...register('catB', { required: true })}
-																	className='form-control'
-																/>
-																{errors.catB && (
-																	<div className='invalid-feedback'>
-																		{errors.catB.message}
-																	</div>
-																)}
-																{/* <label className='form-label'>Sub Category</label>
-															<Select
-																classNamePrefix='react-select'
-																options={subcategory}
-																placeholder='Choose'
-															/> */}
-																{/* </div> */}
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<label className='form-label'>Category C</label>
-																<input
-																	type='text'
-																	{...register('catC', { required: true })}
-																	className='form-control'
-																/>
-																{errors.catC && (
-																	<div className='invalid-feedback'>
-																		{errors.catC.message}
-																	</div>
-																)}
-																{/* <div className='mb-3 add-product'>
-															<label className='form-label'>
-																Sub Sub Category
-															</label>
-															<Select
-																classNamePrefix='react-select'
-																options={subsubcategories}
-																placeholder='Choose'
-															/>
-														</div> */}
-															</div>
-														</div>
-													</div>
-													<div className='add-product-new'>
-														<div className='row'>
-															{/* <div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<div className='add-newplus'>
-																<label className='form-label'>Brand</label>
-																<Link
-																	to='#'
-																	data-bs-toggle='modal'
-																	data-bs-target='#add-units-brand'
-																>
-																	<PlusCircle className='plus-down-add' />
-																	<span>Add New</span>
-																</Link>
-															</div>
-															<Select
-																classNamePrefix='react-select'
-																options={brand}
-																placeholder='Choose'
-															/>
-														</div>
-													</div> */}
-															{/* <div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<div className='add-newplus'>
-																<label className='form-label'>Unit</label>
-																<Link
-																	to='#'
-																	data-bs-toggle='modal'
-																	data-bs-target='#add-unit'
-																>
-																	<PlusCircle className='plus-down-add' />
-																	<span>Add New</span>
-																</Link>
-															</div>
-															<Select
-																classNamePrefix='react-select'
-																options={unit}
-																placeholder='Choose'
-															/>
-														</div>
-													</div>
-													<div className='col-lg-4 col-sm-6 col-12'>
-														<div className='mb-3 add-product'>
-															<label className='form-label'>Selling Type</label>
-															<Select
-																classNamePrefix='react-select'
-																options={sellingtype}
-																placeholder='Choose'
-															/>
-														</div>
-													</div> */}
-														</div>
-													</div>
-													<div className='row'>
-														<div className='col-lg-6 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Barcode</label>
-																<input
-																	type='text'
-																	{...register('barcode')}
-																	className='form-control'
-																/>
-																{errors.barcode && (
-																	<div className='invalid-feedback'>
-																		{errors.barcode.message}
-																	</div>
-																)}
-																{/* <Select
-															classNamePrefix='react-select'
-															options={barcodesymbol}
-															placeholder='Choose'
-														/> */}
-															</div>
-														</div>
-														<div className='col-lg-6 col-sm-6 col-12'>
-															<div className='input-blocks add-product list'>
-																<label>Item Code</label>
-																<input
-																	type='text'
-																	className='form-control list'
-																	placeholder='Please Enter Item Code'
-																/>
-																<Link
-																	to={route.addproduct}
-																	className='btn btn-primaryadd'
-																>
-																	Generate Code
-																</Link>
-															</div>
-														</div>
-													</div>
 
-													{/* /Editor */}
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Weight
+																	</label>
+																	<input
+																		type='text'
+																		{...register('weight', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.weight && (
+																		<div className='invalid-feedback'>
+																			{errors.weight.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Category A
+																	</label>
+																	<input
+																		type='text'
+																		{...register('catA', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.catA && (
+																		<div className='invalid-feedback'>
+																			{errors.catA.message}
+																		</div>
+																	)}
+																</div>
+
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Barcode
+																	</label>
+																	<input
+																		type='text'
+																		{...register('barcode')}
+																		className='form-control'
+																	/>
+																	{errors.barcode && (
+																		<div className='invalid-feedback'>
+																			{errors.barcode.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Category B
+																	</label>
+																	<input
+																		type='text'
+																		{...register('catB', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.catB && (
+																		<div className='invalid-feedback'>
+																			{errors.catB.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Range
+																	</label>
+																	<input
+																		type='text'
+																		{...register('range', { required: true })}
+																		className='form-control list'
+																	/>
+																	{errors.range && (
+																		<div className='invalid-feedback'>
+																			{errors.range.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Category C
+																	</label>
+																	<input
+																		type='text'
+																		{...register('catC', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.catC && (
+																		<div className='invalid-feedback'>
+																			{errors.catC.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Year/Style
+																	</label>
+																	<input
+																		type='text'
+																		{...register('year', { required: true })}
+																		className='form-control list'
+																	/>
+																	{errors.year && (
+																		<div className='invalid-feedback'>
+																			{errors.year.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Trade Price
+																	</label>
+																	<input
+																		type='text'
+																		{...register('tradePrice', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.tradePrice && (
+																		<div className='invalid-feedback'>
+																			{errors.tradePrice.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Web Price
+																	</label>
+																	<input
+																		type='text'
+																		{...register('webPrice', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.webPrice && (
+																		<div className='invalid-feedback'>
+																			{errors.webPrice.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+														</div>
+
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='addproduct-icon list'>
+																<h5>
+																	<ToggleRight className='add-info' />
+																	<span>Switches</span>
+																</h5>
+															</div>
+															<div className='add-choosen'>
+																<div className='input-block add-lists'>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={currentProduct}
+																			onChange={(value) => {
+																				setCurrentProduct((prev) => !prev);
+																				setValue('current', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Current Product
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={allowDiscount}
+																			onChange={(value) => {
+																				setAllowDiscount((prev) => !prev);
+																				setValue('allowDiscount', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Allow Discount
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={allowPoints}
+																			onChange={(value) => {
+																				setAllowPoints((prev) => !prev);
+																				setValue('allowPoints', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Allow Points
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={website}
+																			onChange={(value) => {
+																				setWebsite((prev) => !prev);
+																				setValue('website', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Website
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={webOnly}
+																			onChange={(value) => {
+																				setWebOnly((prev) => !prev);
+																				setValue('webOnly', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Web Only
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={keyItem}
+																			onChange={(value) => {
+																				setKeyItem((prev) => !prev);
+																				setValue('keyItem', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Key Item
+																	</label>
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={instantlyUpdateOnWebShop}
+																			onChange={() => {
+																				setInstantlyUpdateWebShop(
+																					(prev) => !prev
+																				);
+																				// setValue('keyItem', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Instantly Update Web Shop
+																	</label>
+
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={isDiscontinued}
+																			onChange={(value) => {
+																				setIsDiscontinued((prev) => !prev);
+																				setValue('isDiscontinued', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Discontinued
+																	</label>
+
+																	<label className='checkboxs'>
+																		<Switch
+																			checked={doNotReOrder}
+																			onChange={(value) => {
+																				setDoNotReOrder((prev) => !prev);
+																				setValue('doNotReOrder', value);
+																			}}
+																			style={{ marginRight: '4px' }}
+																		/>
+																		Don't ReOrder
+																	</label>
+																</div>
+															</div>
+														</div>
+													</div>
 												</div>
 											</div>
 										</div>
@@ -1463,17 +1509,7 @@ const AddProduct = () => {
 													data-bs-toggle='collapse'
 													data-bs-target='#collapseFive'
 													aria-controls='collapseFive'
-												>
-													<div className='addproduct-icon list'>
-														<h5>
-															<ToggleRight className='add-info' />
-															<span>Switches</span>
-														</h5>
-														<Link to='#'>
-															<ChevronDown className='chevron-down-add' />
-														</Link>
-													</div>
-												</div>
+												></div>
 											</div>
 											<div
 												id='collapseFive'
@@ -1483,116 +1519,7 @@ const AddProduct = () => {
 											>
 												<div className='accordion-body'>
 													<div className='text-editor add-list add'>
-														<div className='col-lg-12'>
-															<div className='add-choosen'>
-																<div className='input-block add-lists'>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={currentProduct}
-																			onChange={(value) => {
-																				setCurrentProduct((prev) => !prev);
-																				setValue('current', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		<span className='checkmarks' />
-																		Current Product
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={allowDiscount}
-																			onChange={(value) => {
-																				setAllowDiscount((prev) => !prev);
-																				setValue('allowDiscount', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Allow Discount
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={allowPoints}
-																			onChange={(value) => {
-																				setAllowPoints((prev) => !prev);
-																				setValue('allowPoints', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Allow Points
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={website}
-																			onChange={(value) => {
-																				setWebsite((prev) => !prev);
-																				setValue('website', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Website
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={webOnly}
-																			onChange={(value) => {
-																				setWebOnly((prev) => !prev);
-																				setValue('webOnly', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Web Only
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={keyItem}
-																			onChange={(value) => {
-																				setKeyItem((prev) => !prev);
-																				setValue('keyItem', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Key Item
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={instantlyUpdateOnWebShop}
-																			onChange={() => {
-																				setInstantlyUpdateWebShop(
-																					(prev) => !prev
-																				);
-																				// setValue('keyItem', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Instantly Update Web Shop
-																	</label>
-
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={isDiscontinued}
-																			onChange={(value) => {
-																				setIsDiscontinued((prev) => !prev);
-																				setValue('isDiscontinued', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Discontinued
-																	</label>
-
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={doNotReOrder}
-																			onChange={(value) => {
-																				setDoNotReOrder((prev) => !prev);
-																				setValue('doNotReOrder', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Don't ReOrder
-																	</label>
-																</div>
-															</div>
-														</div>
+														<div className='col-lg-12'></div>
 													</div>
 												</div>
 											</div>
