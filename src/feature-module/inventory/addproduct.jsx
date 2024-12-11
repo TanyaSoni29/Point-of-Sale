@@ -621,6 +621,43 @@ const AddProduct = () => {
 																	)}
 																</div>
 															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Supplier 1
+																	</label>
+																	<input
+																		type='text'
+																		{...register('supplier1Code', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.supplier1Code && (
+																		<div className='invalid-feedback'>
+																			{errors.supplier1Code.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Supplier 2
+																	</label>
+																	<input
+																		type='text'
+																		{...register('supplier2Code', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.supplier2Code && (
+																		<div className='invalid-feedback'>
+																			{errors.supplier2Code.message}
+																		</div>
+																	)}
+																</div>
+															</div>
 														</div>
 
 														<div className='col-lg-4 col-sm-6 col-12'>
@@ -804,6 +841,43 @@ const AddProduct = () => {
 																	{errors.webPrice && (
 																		<div className='invalid-feedback'>
 																			{errors.webPrice.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Web Ref
+																	</label>
+																	<input
+																		type='text'
+																		{...register('webRef', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.webRef && (
+																		<div className='invalid-feedback'>
+																			{errors.webRef.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Color
+																	</label>
+																	<input
+																		type='text'
+																		{...register('color', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.color && (
+																		<div className='invalid-feedback'>
+																			{errors.color.message}
 																		</div>
 																	)}
 																</div>
