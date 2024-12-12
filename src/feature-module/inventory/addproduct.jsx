@@ -97,6 +97,12 @@ const AddProduct = () => {
 		{ value: 'Winter', label: 'Winter' },
 		{ value: 'Summer', label: 'Summer' },
 	];
+
+	const printLabelOptions = [
+		{ value: 'Yes', label: 'Yes' },
+		{ value: 'No', label: 'No' },
+		{ value: 'One', label: 'One' },
+	];
 	// const warehouse = [
 	// 	{ value: 'choose', label: 'Choose' },
 	// 	{ value: 'legendary', label: 'Legendary' },
@@ -1016,6 +1022,47 @@ const AddProduct = () => {
 																)}
 																<p className='mt-1'>Maximum 60 Characters</p>
 															</div>
+															<div className='row'>
+																<div className='mb-3 add-product col-lg-6 col-sm-4 col-12'>
+																	<div className='flex-grow-1'>
+																		<label className='form-label text-start d-block'>
+																			Finish
+																		</label>
+																		<input
+																			type='text'
+																			{...register('finish', {
+																				required: true,
+																			})}
+																			className='form-control'
+																		/>
+																		{errors.finish && (
+																			<div className='invalid-feedback'>
+																				{errors.finish.message}
+																			</div>
+																		)}
+																	</div>
+																</div>
+
+																<div className='mb-3 add-product col-lg-6 col-sm-4 col-12'>
+																	<div className='flex-grow-1'>
+																		<label className='form-label text-start d-block'>
+																			Print Label
+																		</label>
+																		<Select
+																			id='printLabel'
+																			classNamePrefix='react-select'
+																			options={printLabelOptions}
+																			onChange={(selectedOption) =>
+																				setValue(
+																					'printLabel',
+																					selectedOption?.value
+																				)
+																			}
+																			placeholder='Choose'
+																		/>
+																	</div>
+																</div>
+															</div>
 
 															<div className='addproduct-icon list'>
 																<h5>
@@ -1023,111 +1070,129 @@ const AddProduct = () => {
 																	<span>Switches</span>
 																</h5>
 															</div>
-															<div className='add-choosen'>
-																<div className='input-block add-lists'>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={currentProduct}
-																			onChange={(value) => {
-																				setCurrentProduct((prev) => !prev);
-																				setValue('current', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Current Product
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={allowDiscount}
-																			onChange={(value) => {
-																				setAllowDiscount((prev) => !prev);
-																				setValue('allowDiscount', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Allow Discount
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={allowPoints}
-																			onChange={(value) => {
-																				setAllowPoints((prev) => !prev);
-																				setValue('allowPoints', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Allow Points
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={website}
-																			onChange={(value) => {
-																				setWebsite((prev) => !prev);
-																				setValue('website', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Website
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={webOnly}
-																			onChange={(value) => {
-																				setWebOnly((prev) => !prev);
-																				setValue('webOnly', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Web Only
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={keyItem}
-																			onChange={(value) => {
-																				setKeyItem((prev) => !prev);
-																				setValue('keyItem', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Key Item
-																	</label>
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={instantlyUpdateOnWebShop}
-																			onChange={() => {
-																				setInstantlyUpdateWebShop(
-																					(prev) => !prev
-																				);
-																				// setValue('keyItem', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Instantly Update Web Shop
-																	</label>
+															<div className='row'>
+																<div
+																	className='col-lg-6 col-sm-8 col-12'
+																	style={{
+																		paddingLeft: '4px',
+																		paddingRight: '4px',
+																	}}
+																>
+																	<div className='input-block add-lists'>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={currentProduct}
+																				onChange={(value) => {
+																					setCurrentProduct((prev) => !prev);
+																					setValue('current', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Current Product
+																		</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={allowDiscount}
+																				onChange={(value) => {
+																					setAllowDiscount((prev) => !prev);
+																					setValue('allowDiscount', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Allow Discount
+																		</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={allowPoints}
+																				onChange={(value) => {
+																					setAllowPoints((prev) => !prev);
+																					setValue('allowPoints', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Allow Points
+																		</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={website}
+																				onChange={(value) => {
+																					setWebsite((prev) => !prev);
+																					setValue('website', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Website
+																		</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={webOnly}
+																				onChange={(value) => {
+																					setWebOnly((prev) => !prev);
+																					setValue('webOnly', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Web Only
+																		</label>
+																	</div>
+																</div>
+																<div
+																	className='col-lg-6 col-sm-8 col-12'
+																	style={{
+																		paddingLeft: '4px',
+																		paddingRight: '4px',
+																	}}
+																>
+																	<div className='input-block add-lists'>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={keyItem}
+																				onChange={(value) => {
+																					setKeyItem((prev) => !prev);
+																					setValue('keyItem', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Key Item
+																		</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={instantlyUpdateOnWebShop}
+																				onChange={() => {
+																					setInstantlyUpdateWebShop(
+																						(prev) => !prev
+																					);
+																					// setValue('keyItem', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Instantly Update Web Shop
+																		</label>
 
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={isDiscontinued}
-																			onChange={(value) => {
-																				setIsDiscontinued((prev) => !prev);
-																				setValue('isDiscontinued', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Discontinued
-																	</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={isDiscontinued}
+																				onChange={(value) => {
+																					setIsDiscontinued((prev) => !prev);
+																					setValue('isDiscontinued', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Discontinued
+																		</label>
 
-																	<label className='checkboxs'>
-																		<Switch
-																			checked={doNotReOrder}
-																			onChange={(value) => {
-																				setDoNotReOrder((prev) => !prev);
-																				setValue('doNotReOrder', value);
-																			}}
-																			style={{ marginRight: '4px' }}
-																		/>
-																		Don&apos;t ReOrder
-																	</label>
+																		<label className='checkboxs'>
+																			<Switch
+																				checked={doNotReOrder}
+																				onChange={(value) => {
+																					setDoNotReOrder((prev) => !prev);
+																					setValue('doNotReOrder', value);
+																				}}
+																				style={{ marginRight: '4px' }}
+																			/>
+																			Don&apos;t ReOrder
+																		</label>
+																	</div>
 																</div>
 															</div>
 														</div>
@@ -1290,8 +1355,8 @@ const AddProduct = () => {
 																		</div>
 																	</div>
 
-																	<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
-																		<div className='input-blocks flex-grow-1 me-3 add-product'>
+																	<div className='mb-3 add-product input-blocks d-flex justify-content-between align-items-center'>
+																		<div className='flex-grow-1 me-3 '>
 																			<label>VAT Code</label>
 																			<input
 																				type='text'
@@ -1310,7 +1375,7 @@ const AddProduct = () => {
 																/> */}
 																		</div>
 
-																		<div className='input-blocks flex-grow-1 add-product'>
+																		<div className='flex-grow-1'>
 																			<label>Markup</label>
 																			<input
 																				type='text'
@@ -1363,8 +1428,8 @@ const AddProduct = () => {
 																		</div>
 																	</div>
 
-																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																		<div className='input-blocks flex-grow-1 me-3 add-product'>
+																	<div className='mb-3 add-product input-blocks d-flex align-items-center justify-content-between'>
+																		<div className='flex-grow-1 me-3'>
 																			<label className='form-label text-start d-block'>
 																				Settlement Discount
 																			</label>
@@ -1379,7 +1444,7 @@ const AddProduct = () => {
 																				</div>
 																			)}
 																		</div>
-																		<div className='input-blocks flex-grow-1 add-product'>
+																		<div className='flex-grow-1'>
 																			<label className='form-label text-start d-block'>
 																				Discount
 																			</label>
@@ -1397,38 +1462,8 @@ const AddProduct = () => {
 																	</div>
 																</div>
 																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='mb-3 add-product'>
-																		<label className='form-label text-start d-block'>
-																			Suggested RRP
-																		</label>
-																		<input
-																			type='text'
-																			{...register('suggestedRRP', {
-																				required: true,
-																			})}
-																			className='form-control'
-																		/>
-																		{errors.suggestedRRP && (
-																			<div className='invalid-feedback'>
-																				{errors.suggestedRRP.message}
-																			</div>
-																		)}
-																	</div>
-																	{/* <div className='input-blocks add-product'>
-																		<label></label>
-																		<input
-																			type='text'
-																			{...register('promoPrice')}
-																			className='form-control'
-																		/>
-																		{errors.promoPrice && (
-																			<div className='invalid-feedback'>
-																				{errors.promoPrice.message}
-																			</div>
-																		)}
-																	</div> */}
-																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																		<div className='flex-grow-1 me-3 input-blocks add-product'>
+																	<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
+																		<div className='flex-grow-1 me-3 add-product'>
 																			<label className='form-label text-start d-block'>
 																				Cost Price
 																			</label>
@@ -1445,13 +1480,72 @@ const AddProduct = () => {
 																				</div>
 																			)}
 																		</div>
-
-																		<div className='input-blocks flex-grow-1 add-product'>
-																			<label>Box Quantity</label>
+																		<div className='flex-grow-1'>
+																			<label className='form-label text-start d-block'>
+																				Suggested RRP
+																			</label>
 																			<input
 																				type='text'
+																				{...register('suggestedRRP', {
+																					required: true,
+																				})}
 																				className='form-control'
 																			/>
+																			{errors.suggestedRRP && (
+																				<div className='invalid-feedback'>
+																					{errors.suggestedRRP.message}
+																				</div>
+																			)}
+																		</div>
+																	</div>
+
+																	{/* <div className='input-blocks add-product'>
+																		<label></label>
+																		<input
+																			type='text'
+																			{...register('promoPrice')}
+																			className='form-control'
+																		/>
+																		{errors.promoPrice && (
+																			<div className='invalid-feedback'>
+																				{errors.promoPrice.message}
+																			</div>
+																		)}
+																	</div> */}
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																		<div className='flex-grow-1 me-3'>
+																			<label className='form-label text-start d-block'>
+																				Box Quantity
+																			</label>
+																			<input
+																				type='text'
+																				{...register('boxQuantity', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.boxQuantity && (
+																				<div className='invalid-feedback'>
+																					{errors.boxQuantity.message}
+																				</div>
+																			)}
+																		</div>
+																		<div className='flex-grow-1'>
+																			<label className='form-label text-start d-block'>
+																				Box Cost
+																			</label>
+																			<input
+																				type='text'
+																				{...register('boxCost', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.boxCost && (
+																				<div className='invalid-feedback'>
+																					{errors.boxCost.message}
+																				</div>
+																			)}
 																		</div>
 																	</div>
 																</div>
