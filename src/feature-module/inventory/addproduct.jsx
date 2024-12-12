@@ -15,7 +15,8 @@ import {
 	ChevronUp,
 	Info,
 	LifeBuoy,
-	List,
+	Camera,
+	// List,
 	ToggleRight,
 	PlusCircle,
 	Trash2,
@@ -471,22 +472,38 @@ const AddProduct = () => {
 												<div className='accordion-body'>
 													<div className='row'>
 														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>
-																	Manufacture Part Code
-																</label>
-																<input
-																	type='text'
-																	{...register('mfrPartNumber', {
-																		required: true,
-																	})}
-																	className='form-control'
-																/>
-																{errors.mfrPartNumber && (
-																	<div className='invalid-feedback'>
-																		{errors.mfrPartNumber.message}
-																	</div>
-																)}
+															<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label'>
+																		Manufacture Part Code
+																	</label>
+																	<input
+																		type='text'
+																		{...register('mfrPartNumber', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.mfrPartNumber && (
+																		<div className='invalid-feedback'>
+																			{errors.mfrPartNumber.message}
+																		</div>
+																	)}
+																</div>
+
+																<div className='flex-grow-1'>
+																	<label className='form-label'>Make</label>
+																	<input
+																		type='text'
+																		{...register('make', { required: true })}
+																		className='form-control'
+																	/>
+																	{errors.make && (
+																		<div className='invalid-feedback'>
+																			{errors.make.message}
+																		</div>
+																	)}
+																</div>
 															</div>
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																<div className='flex-grow-1 me-3'>
@@ -523,99 +540,38 @@ const AddProduct = () => {
 
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																<div className='flex-grow-1 me-3'>
-																	<label className='form-label text-start me-3'>
-																		Search 1
+																	<label className='form-label text-start d-block'>
+																		Suitability
 																	</label>
-																	<input
-																		type='text'
-																		{...register('search1', {
-																			required: true,
-																		})}
-																		className='form-control'
+																	<Select
+																		classNamePrefix='react-select'
+																		options={suitabilityOptions}
+																		onChange={(selectedOption) =>
+																			setValue(
+																				'suitability',
+																				selectedOption?.value
+																			)
+																		}
+																		placeholder='Choose'
 																	/>
-																	{errors.search1 && (
-																		<div className='invalid-feedback'>
-																			{errors.search1.message}
-																		</div>
-																	)}
 																</div>
-																<div className='flex-grow-1'>
-																	<label className='form-label'>Search 2</label>
-																	<input
-																		type='text'
-																		{...register('search2', {
-																			required: true,
-																		})}
-																		className='form-control'
-																	/>
-																	{errors.search2 && (
-																		<div className='invalid-feedback'>
-																			{errors.search2.message}
-																		</div>
-																	)}
-																</div>
-															</div>
 
-															<div className='input-blocks summer-description-box transfer mb-3'>
-																<label className='form-label'>Details</label>
-																<textarea
-																	className='form-control h-100'
-																	rows={3}
-																	{...register('details')}
-																	defaultValue={''}
-																/>
-																{errors.details && (
-																	<div className='invalid-feedback'>
-																		{errors.details.message}
-																	</div>
-																)}
-																<p className='mt-1'>Maximum 60 Characters</p>
-															</div>
-
-															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
-																	<label className='form-label text-start d-flex justify-content-between'>
-																		Store Price
-																		<span>
-																			<button
-																				className='btn btn-submit text-white rounded-2'
-																				style={{
-																					paddingTop: '2px',
-																					paddingBottom: '2px',
-																				}}
-																				onClick={setAllFourPrice}
-																			>
-																				All
-																			</button>
-																		</span>
-																	</label>
-																	<input
-																		type='text'
-																		{...register('storePrice', {
-																			required: true,
-																		})}
-																		className='form-control'
-																	/>
-																	{errors.storePrice && (
-																		<div className='invalid-feedback'>
-																			{errors.storePrice.message}
-																		</div>
-																	)}
-																</div>
 																<div className='flex-grow-1'>
 																	<label className='form-label text-start d-block'>
-																		Mail Order
+																		Season
 																	</label>
-																	<input
-																		type='text'
-																		{...register('mailOrderPrice', {
-																			required: true,
-																		})}
-																		className='form-control'
+																	<Select
+																		id='gender'
+																		classNamePrefix='react-select'
+																		options={seasonOptions}
+																		onChange={(selectedOption) =>
+																			setValue('season', selectedOption?.value)
+																		}
+																		placeholder='Choose'
 																	/>
-																	{errors.mailOrderPrice && (
+																	{errors.gender && (
 																		<div className='invalid-feedback'>
-																			{errors.mailOrderPrice.message}
+																			{errors.gender.message}
 																		</div>
 																	)}
 																</div>
@@ -657,23 +613,116 @@ const AddProduct = () => {
 																	)}
 																</div>
 															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Bin Location 1
+																	</label>
+																	<input
+																		type='text'
+																		{...register('binLocation1', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.binLocation1 && (
+																		<div className='invalid-feedback'>
+																			{errors.binLocation1.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Bin Location 2
+																	</label>
+																	<input
+																		type='text'
+																		{...register('binLocation2', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.binLocation2 && (
+																		<div className='invalid-feedback'>
+																			{errors.binLocation2.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Multibuy Quantity
+																	</label>
+																	<input
+																		type='text'
+																		{...register('multibuyQuantity', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.multibuyQuantity && (
+																		<div className='invalid-feedback'>
+																			{errors.multibuyQuantity.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Multibuy Save
+																	</label>
+																	<input
+																		type='text'
+																		{...register('multibuySave', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.multibuySave && (
+																		<div className='invalid-feedback'>
+																			{errors.multibuySave.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 d-flex justify-content-between align-items-center input-blocks add-product'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label d-block text-start'>
+																		Promo Name
+																	</label>
+																	<input
+																		type='text'
+																		{...register('promoName')}
+																		className='form-control'
+																	/>
+																	{errors.promoName && (
+																		<div className='invalid-feedback'>
+																			{errors.promoName.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='text-start d-block form-label'>
+																		Promo RRP
+																	</label>
+																	<input
+																		type='text'
+																		{...register('promoPrice')}
+																		className='form-control'
+																	/>
+																	{errors.promoPrice && (
+																		<div className='invalid-feedback'>
+																			{errors.promoPrice.message}
+																		</div>
+																	)}
+																</div>
+															</div>
 														</div>
 
 														<div className='col-lg-4 col-sm-6 col-12'>
-															<div className='mb-3 add-product'>
-																<label className='form-label'>Make</label>
-																<input
-																	type='text'
-																	{...register('make', { required: true })}
-																	className='form-control'
-																/>
-																{errors.make && (
-																	<div className='invalid-feedback'>
-																		{errors.make.message}
-																	</div>
-																)}
-															</div>
-
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label text-start d-block'>
@@ -811,43 +860,6 @@ const AddProduct = () => {
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label text-start d-block'>
-																		Trade Price
-																	</label>
-																	<input
-																		type='text'
-																		{...register('tradePrice', {
-																			required: true,
-																		})}
-																		className='form-control'
-																	/>
-																	{errors.tradePrice && (
-																		<div className='invalid-feedback'>
-																			{errors.tradePrice.message}
-																		</div>
-																	)}
-																</div>
-																<div className='flex-grow-1'>
-																	<label className='form-label text-start d-block'>
-																		Web Price
-																	</label>
-																	<input
-																		type='text'
-																		{...register('webPrice', {
-																			required: true,
-																		})}
-																		className='form-control'
-																	/>
-																	{errors.webPrice && (
-																		<div className='invalid-feedback'>
-																			{errors.webPrice.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-
-															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
-																	<label className='form-label text-start d-block'>
 																		Web Ref
 																	</label>
 																	<input
@@ -881,46 +893,128 @@ const AddProduct = () => {
 																	)}
 																</div>
 															</div>
+
+															<div className='mb-3 d-flex justify-content-between align-items-center input-blocks add-product'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label d-block text-start'>
+																		Nominal Code
+																	</label>
+																	<input
+																		type='text'
+																		{...register('nominalCode')}
+																		className='form-control'
+																	/>
+																	{errors.nominalCode && (
+																		<div className='invalid-feedback'>
+																			{errors.nominalCode.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='text-start d-block form-label'>
+																		Nominal Section
+																	</label>
+																	<input
+																		type='text'
+																		{...register('nominalSection')}
+																		className='form-control'
+																	/>
+																	{errors.nominalSection && (
+																		<div className='invalid-feedback'>
+																			{errors.nominalSection.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex justify-content-between align-items-center input-blocks'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		From
+																	</label>
+																	<div className='input-groupicon calender-input'>
+																		<Calendar className='info-img' />
+																		<DatePicker
+																			selected={selectedDate}
+																			onChange={handleDateChange}
+																			type='date'
+																			className='datetimepicker'
+																			dateFormat='dd-MM-yyyy'
+																			placeholder='Choose Date'
+																		/>
+																	</div>
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		To
+																	</label>
+																	<div className='input-groupicon calender-input'>
+																		<Calendar className='info-img' />
+																		<DatePicker
+																			selected={selectedDate1}
+																			onChange={handleDateChange1}
+																			type='date'
+																			className='datetimepicker'
+																			dateFormat='dd-MM-yyyy'
+																			placeholder='Choose Date'
+																		/>
+																	</div>
+																</div>
+															</div>
 														</div>
 
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label text-start d-block'>
-																		Suitability
+																		Search 1
 																	</label>
-																	<Select
-																		classNamePrefix='react-select'
-																		options={suitabilityOptions}
-																		onChange={(selectedOption) =>
-																			setValue(
-																				'suitability',
-																				selectedOption?.value
-																			)
-																		}
-																		placeholder='Choose'
+																	<input
+																		type='text'
+																		{...register('search1', {
+																			required: true,
+																		})}
+																		className='form-control'
 																	/>
-																</div>
-
-																<div className='flex-grow-1'>
-																	<label className='form-label text-start d-block'>
-																		Season
-																	</label>
-																	<Select
-																		id='gender'
-																		classNamePrefix='react-select'
-																		options={seasonOptions}
-																		onChange={(selectedOption) =>
-																			setValue('season', selectedOption?.value)
-																		}
-																		placeholder='Choose'
-																	/>
-																	{errors.gender && (
+																	{errors.search1 && (
 																		<div className='invalid-feedback'>
-																			{errors.gender.message}
+																			{errors.search1.message}
 																		</div>
 																	)}
 																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Search 2
+																	</label>
+																	<input
+																		type='text'
+																		{...register('search2', {
+																			required: true,
+																		})}
+																		className='form-control'
+																	/>
+																	{errors.search2 && (
+																		<div className='invalid-feedback'>
+																			{errors.search2.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='input-blocks summer-description-box transfer mb-3'>
+																<label className='form-label'>Details</label>
+																<textarea
+																	className='form-control h-100'
+																	rows={2}
+																	{...register('details')}
+																	defaultValue={''}
+																/>
+																{errors.details && (
+																	<div className='invalid-feedback'>
+																		{errors.details.message}
+																	</div>
+																)}
+																<p className='mt-1'>Maximum 60 Characters</p>
 															</div>
 
 															<div className='addproduct-icon list'>
@@ -1078,36 +1172,37 @@ const AddProduct = () => {
 											>
 												<div className='accordion-body'>
 													<div className='input-blocks add-products'>
-														<label className='d-block'>Product Type</label>
-														<div className='single-pill-product'>
-															<ul
-																className='nav nav-pills'
-																id='pills-tab1'
-																role='tablist'
-															>
-																<li
-																	className='nav-item'
-																	role='presentation'
+														<div>
+															<label className='d-block'>Product Type</label>
+															<div className='single-pill-product'>
+																<ul
+																	className='nav nav-pills'
+																	id='pills-tab1'
+																	role='tablist'
 																>
-																	<span
-																		className='custom_radio me-4 mb-0 active'
-																		id='pills-home-tab'
-																		data-bs-toggle='pill'
-																		data-bs-target='#pills-home'
-																		role='tab'
-																		aria-controls='pills-home'
-																		aria-selected='true'
+																	<li
+																		className='nav-item'
+																		role='presentation'
 																	>
-																		<input
-																			type='radio'
-																			className='form-control'
-																			name='payment'
-																		/>
-																		<span className='checkmark' /> Single
-																		Product
-																	</span>
-																</li>
-																{/* <li
+																		<span
+																			className='custom_radio me-4 mb-0 active'
+																			id='pills-home-tab'
+																			data-bs-toggle='pill'
+																			data-bs-target='#pills-home'
+																			role='tab'
+																			aria-controls='pills-home'
+																			aria-selected='true'
+																		>
+																			<input
+																				type='radio'
+																				className='form-control'
+																				name='payment'
+																			/>
+																			<span className='checkmark' /> Single
+																			Product
+																		</span>
+																	</li>
+																	{/* <li
 															className='nav-item'
 															role='presentation'
 														>
@@ -1128,9 +1223,24 @@ const AddProduct = () => {
 																<span className='checkmark' /> Variable Product
 															</span>
 														</li> */}
-															</ul>
+
+																	<li>
+																		<button
+																			className='btn btn-submit text-white rounded-2'
+																			style={{
+																				paddingTop: '2px',
+																				paddingBottom: '2px',
+																			}}
+																			onClick={setAllFourPrice}
+																		>
+																			All
+																		</button>
+																	</li>
+																</ul>
+															</div>
 														</div>
 													</div>
+
 													<div
 														className='tab-content'
 														id='pills-tabContent'
@@ -1143,101 +1253,212 @@ const AddProduct = () => {
 														>
 															<div className='row'>
 																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>Cost Price</label>
-																		<input
-																			type='text'
-																			{...register('price', { required: true })}
-																			className='form-control'
-																		/>
-																		{errors.price && (
-																			<div className='invalid-feedback'>
-																				{errors.price.message}
-																			</div>
-																		)}
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																		<div className='flex-grow-1 me-3'>
+																			<label className='form-label text-start d-flex justify-content-between'>
+																				Store Price
+																			</label>
+																			<input
+																				type='text'
+																				{...register('storePrice', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.storePrice && (
+																				<div className='invalid-feedback'>
+																					{errors.storePrice.message}
+																				</div>
+																			)}
+																		</div>
+																		<div className='flex-grow-1'>
+																			<label className='form-label text-start d-block'>
+																				Mail Order
+																			</label>
+																			<input
+																				type='text'
+																				{...register('mailOrderPrice', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.mailOrderPrice && (
+																				<div className='invalid-feedback'>
+																					{errors.mailOrderPrice.message}
+																				</div>
+																			)}
+																		</div>
 																	</div>
-																</div>
-																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>Quantity</label>
-																		<input
-																			type='text'
-																			className='form-control'
-																		/>
-																	</div>
-																</div>
-																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>VAT Code</label>
-																		<input
-																			type='text'
-																			{...register('vatCode')}
-																		/>
-																		{errors.vatCode && (
-																			<div className='invalid-feedback'>
-																				{errors.vatCode.message}
-																			</div>
-																		)}
 
-																		{/* <Select
+																	<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
+																		<div className='input-blocks flex-grow-1 me-3 add-product'>
+																			<label>VAT Code</label>
+																			<input
+																				type='text'
+																				{...register('vatCode')}
+																			/>
+																			{errors.vatCode && (
+																				<div className='invalid-feedback'>
+																					{errors.vatCode.message}
+																				</div>
+																			)}
+
+																			{/* <Select
 																	classNamePrefix='react-select'
 																	options={taxtype}
 																	placeholder='Select Option'
 																/> */}
+																		</div>
+
+																		<div className='input-blocks flex-grow-1 add-product'>
+																			<label>Markup</label>
+																			<input
+																				type='text'
+																				{...register('markup')}
+																				className='form-control'
+																			/>
+																			{errors.markup && (
+																				<div className='invalid-feedback'>
+																					{errors.markup.message}
+																				</div>
+																			)}
+																		</div>
+																	</div>
+																</div>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																		<div className='flex-grow-1 me-3'>
+																			<label className='form-label text-start d-block'>
+																				Trade Price
+																			</label>
+																			<input
+																				type='text'
+																				{...register('tradePrice', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.tradePrice && (
+																				<div className='invalid-feedback'>
+																					{errors.tradePrice.message}
+																				</div>
+																			)}
+																		</div>
+																		<div className='flex-grow-1'>
+																			<label className='form-label text-start d-block'>
+																				Web Price
+																			</label>
+																			<input
+																				type='text'
+																				{...register('webPrice', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.webPrice && (
+																				<div className='invalid-feedback'>
+																					{errors.webPrice.message}
+																				</div>
+																			)}
+																		</div>
+																	</div>
+
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																		<div className='input-blocks flex-grow-1 me-3 add-product'>
+																			<label className='form-label text-start d-block'>
+																				Settlement Discount
+																			</label>
+																			<input
+																				type='text'
+																				{...register('discountPercentage')}
+																				placeholder='0.00'
+																			/>
+																			{errors.discountPercentage && (
+																				<div className='invalid-feedback'>
+																					{errors.discountPercentage.message}
+																				</div>
+																			)}
+																		</div>
+																		<div className='input-blocks flex-grow-1 add-product'>
+																			<label className='form-label text-start d-block'>
+																				Discount
+																			</label>
+																			<input
+																				type='text'
+																				{...register('discount')}
+																				placeholder='Choose'
+																			/>
+																			{errors.discount && (
+																				<div className='invalid-feedback'>
+																					{errors.discount.message}
+																				</div>
+																			)}
+																		</div>
+																	</div>
+																</div>
+																<div className='col-lg-4 col-sm-6 col-12'>
+																	<div className='mb-3 add-product'>
+																		<label className='form-label text-start d-block'>
+																			Suggested RRP
+																		</label>
+																		<input
+																			type='text'
+																			{...register('suggestedRRP', {
+																				required: true,
+																			})}
+																			className='form-control'
+																		/>
+																		{errors.suggestedRRP && (
+																			<div className='invalid-feedback'>
+																				{errors.suggestedRRP.message}
+																			</div>
+																		)}
+																	</div>
+																	{/* <div className='input-blocks add-product'>
+																		<label></label>
+																		<input
+																			type='text'
+																			{...register('promoPrice')}
+																			className='form-control'
+																		/>
+																		{errors.promoPrice && (
+																			<div className='invalid-feedback'>
+																				{errors.promoPrice.message}
+																			</div>
+																		)}
+																	</div> */}
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																		<div className='flex-grow-1 me-3 input-blocks add-product'>
+																			<label className='form-label text-start d-block'>
+																				Cost Price
+																			</label>
+																			<input
+																				type='text'
+																				{...register('price', {
+																					required: true,
+																				})}
+																				className='form-control'
+																			/>
+																			{errors.price && (
+																				<div className='invalid-feedback'>
+																					{errors.price.message}
+																				</div>
+																			)}
+																		</div>
+
+																		<div className='input-blocks flex-grow-1 add-product'>
+																			<label>Box Quantity</label>
+																			<input
+																				type='text'
+																				className='form-control'
+																			/>
+																		</div>
 																	</div>
 																</div>
 															</div>
 															<div className='row'>
-																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>Settlement Discount</label>
-																		<input
-																			type='text'
-																			{...register('discountPercentage')}
-																			placeholder='0.00'
-																		/>
-																		{errors.discountPercentage && (
-																			<div className='invalid-feedback'>
-																				{errors.discountPercentage.message}
-																			</div>
-																		)}
-																		{/* <Select
-																	classNamePrefix='react-select'
-																	options={discounttype}
-																	placeholder='Choose'
-																/> */}
-																	</div>
-																</div>
-																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>Discount</label>
-																		<input
-																			type='text'
-																			{...register('discount')}
-																			placeholder='Choose'
-																		/>
-																		{errors.discount && (
-																			<div className='invalid-feedback'>
-																				{errors.discount.message}
-																			</div>
-																		)}
-																	</div>
-																</div>
-																<div className='col-lg-4 col-sm-6 col-12'>
-																	<div className='input-blocks add-product'>
-																		<label>Markup</label>
-																		<input
-																			type='text'
-																			{...register('markup')}
-																			className='form-control'
-																		/>
-																		{errors.markup && (
-																			<div className='invalid-feedback'>
-																				{errors.markup.message}
-																			</div>
-																		)}
-																	</div>
-																</div>
+																<div className='col-lg-4 col-sm-6 col-12'></div>
+																<div className='col-lg-4 col-sm-6 col-12'></div>
 															</div>
 															<div
 																className='accordion-card-one accordion'
@@ -1256,10 +1477,7 @@ const AddProduct = () => {
 																		>
 																			<div className='addproduct-icon list'>
 																				<h5>
-																					<i
-																						data-feather='image'
-																						className='add-info'
-																					/>
+																					<Camera className='add-info' />
 																					<span>Images</span>
 																				</h5>
 																				<Link to='#'>
@@ -1638,7 +1856,7 @@ const AddProduct = () => {
 										</div>
 									</div>
 
-									<div
+									{/* <div
 										className='accordion-card-one accordion'
 										id='accordionExample4'
 									>
@@ -1673,93 +1891,18 @@ const AddProduct = () => {
 												data-bs-parent='#accordionExample4'
 											>
 												<div className='accordion-body'>
-													<div className='text-editor add-list add'>
-														<div className='row'>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='input-blocks add-product'>
-																	{/* <label>Discount Type</label>
-															<Select
-																classNamePrefix='react-select'
-																options={discounttype1}
-																placeholder='Choose'
-															/> */}
-																</div>
-															</div>
+													<div className='row'>
+														<div className='col-lg-4 col-sm-6 col-12'></div>
+
+														<div className='col-lg-4 col-sm-6 col-12'>
+															<div className='row'></div>
 														</div>
-														<div className='row'>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='input-blocks add-product'>
-																	<label>Promo Name</label>
-																	<input
-																		type='text'
-																		{...register('promoName')}
-																		className='form-control'
-																	/>
-																	{errors.promoName && (
-																		<div className='invalid-feedback'>
-																			{errors.promoName.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='input-blocks add-product'>
-																	<label>Promo RRP</label>
-																	<input
-																		type='text'
-																		{...register('promoPrice')}
-																		className='form-control'
-																	/>
-																	{errors.promoPrice && (
-																		<div className='invalid-feedback'>
-																			{errors.promoPrice.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'>
-																<div className='row'>
-																	<div className='col-lg-4 col-sm-6 col-12'>
-																		<div className='input-blocks'>
-																			<label>From</label>
-																			<div className='input-groupicon calender-input'>
-																				<Calendar className='info-img' />
-																				<DatePicker
-																					selected={selectedDate}
-																					onChange={handleDateChange}
-																					type='date'
-																					className='datetimepicker'
-																					dateFormat='dd-MM-yyyy'
-																					placeholder='Choose Date'
-																				/>
-																			</div>
-																		</div>
-																	</div>
-																	<div className='col-lg-4 col-sm-6 col-12'>
-																		<div className='input-blocks'>
-																			<label>To</label>
-																			<div className='input-groupicon calender-input'>
-																				<Calendar className='info-img' />
-																				<DatePicker
-																					selected={selectedDate1}
-																					onChange={handleDateChange1}
-																					type='date'
-																					className='datetimepicker'
-																					dateFormat='dd-MM-yyyy'
-																					placeholder='Choose Date'
-																				/>
-																			</div>
-																		</div>
-																	</div>
-																</div>
-															</div>
-															<div className='col-lg-4 col-sm-6 col-12'></div>
-														</div>
+														<div className='col-lg-4 col-sm-6 col-12'></div>
 													</div>
 												</div>
 											</div>
 										</div>
-									</div>
+									</div> */}
 								</div>
 							</div>
 							<div className='text-end'>
