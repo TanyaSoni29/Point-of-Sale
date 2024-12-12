@@ -1126,7 +1126,7 @@ const AddProduct = () => {
 																			}}
 																			style={{ marginRight: '4px' }}
 																		/>
-																		Don't ReOrder
+																		Don&apos;t ReOrder
 																	</label>
 																</div>
 															</div>
