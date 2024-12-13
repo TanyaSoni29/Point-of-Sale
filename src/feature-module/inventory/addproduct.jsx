@@ -103,62 +103,7 @@ const AddProduct = () => {
 		{ value: 'No', label: 'No' },
 		{ value: 'One', label: 'One' },
 	];
-	// const warehouse = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'legendary', label: 'Legendary' },
-	// 	{ value: 'determined', label: 'Determined' },
-	// 	{ value: 'sincere', label: 'Sincere' },
-	// ];
-	// const category = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'lenovo', label: 'Lenovo' },
-	// 	{ value: 'electronics', label: 'Electronics' },
-	// ];
-	// const subcategory = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'lenovo', label: 'Lenovo' },
-	// 	{ value: 'electronics', label: 'Electronics' },
-	// ];
-	// const subsubcategories = [
-	// 	{ value: 'Fruits', label: 'Fruits' },
-	// 	{ value: 'Computer', label: 'Computer' },
-	// 	{ value: 'Shoes', label: 'Shoes' },
-	// ];
-	// const brand = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'nike', label: 'Nike' },
-	// 	{ value: 'bolt', label: 'Bolt' },
-	// ];
-	// const unit = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'kg', label: 'Kg' },
-	// 	{ value: 'pc', label: 'Pc' },
-	// ];
-	// const sellingtype = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'transactionalSelling', label: 'Transactional selling' },
-	// 	{ value: 'solutionSelling', label: 'Solution selling' },
-	// ];
-	// const barcodesymbol = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'code34', label: 'Code34' },
-	// 	{ value: 'code35', label: 'Code35' },
-	// 	{ value: 'code36', label: 'Code36' },
-	// ];
-	// const taxtype = [
-	// 	{ value: 'exclusive', label: 'Exclusive' },
-	// 	{ value: 'salesTax', label: 'Sales Tax' },
-	// ];
-	// const discounttype = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'percentage', label: 'Percentage' },
-	// 	{ value: 'cash', label: 'Cash' },
-	// ];
-	// const discounttype1 = [
-	// 	{ value: 'choose', label: 'Choose' },
-	// 	{ value: 'percentage', label: 'Percentage' },
-	// 	{ value: 'cash', label: 'Cash' },
-	// ];
+
 	const [isImageVisible, setIsImageVisible] = useState(true);
 
 	const handleRemoveProduct = () => {
@@ -177,8 +122,10 @@ const AddProduct = () => {
 		// Update the other fields
 		setValue('tradePrice', storePriceValue);
 		setValue('mailOrderPrice', storePriceValue);
-		setValue('webPrice', storePriceValue); // Replace `anotherField` with the actual name
+		setValue('webPrice', storePriceValue);
 	};
+
+	console.log('Form Errors:', errors);
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
@@ -486,13 +433,13 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('mfrPartNumber', {
-																			required: true,
+																			required: 'MFR Part Number is required',
 																		})}
 																		className='form-control'
 																	/>
-																	{errors.mfrPartNumber && (
-																		<div className='invalid-feedback'>
-																			{errors.mfrPartNumber.message}
+																	{errors?.mfrPartNumber && (
+																		<div className='text-danger'>
+																			{errors?.mfrPartNumber?.message}
 																		</div>
 																	)}
 																</div>
@@ -501,12 +448,14 @@ const AddProduct = () => {
 																	<label className='form-label'>Make</label>
 																	<input
 																		type='text'
-																		{...register('make', { required: true })}
+																		{...register('make', {
+																			required: 'Make is Required',
+																		})}
 																		className='form-control'
 																	/>
-																	{errors.make && (
-																		<div className='invalid-feedback'>
-																			{errors.make.message}
+																	{errors?.make && (
+																		<div className='text-danger'>
+																			{errors?.make?.message}
 																		</div>
 																	)}
 																</div>
@@ -536,9 +485,9 @@ const AddProduct = () => {
 																		}
 																		placeholder='Choose'
 																	/>
-																	{errors.gender && (
-																		<div className='invalid-feedback'>
-																			{errors.gender.message}
+																	{errors?.gender && (
+																		<div className='text-danger'>
+																			{errors?.gender?.message}
 																		</div>
 																	)}
 																</div>
@@ -575,9 +524,9 @@ const AddProduct = () => {
 																		}
 																		placeholder='Choose'
 																	/>
-																	{errors.gender && (
-																		<div className='invalid-feedback'>
-																			{errors.gender.message}
+																	{errors?.season && (
+																		<div className='text-danger'>
+																			{errors?.season?.message}
 																		</div>
 																	)}
 																</div>
@@ -591,13 +540,13 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('supplier1Code', {
-																			required: true,
+																			required: 'Supplier is required',
 																		})}
 																		className='form-control'
 																	/>
-																	{errors.supplier1Code && (
-																		<div className='invalid-feedback'>
-																			{errors.supplier1Code.message}
+																	{errors?.supplier1Code && (
+																		<div className='text-danger'>
+																			{errors?.supplier1Code?.message}
 																		</div>
 																	)}
 																</div>
@@ -607,14 +556,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('supplier2Code', {
-																			required: true,
-																		})}
+																		{...register(
+																			'supplier2Code'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.supplier2Code && (
-																		<div className='invalid-feedback'>
-																			{errors.supplier2Code.message}
+																	{errors?.supplier2Code && (
+																		<div className='text-danger'>
+																			{errors?.supplier2Code?.message}
 																		</div>
 																	)}
 																</div>
@@ -627,14 +579,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('binLocation1', {
-																			required: true,
-																		})}
+																		{...register(
+																			'binLocation1'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.binLocation1 && (
-																		<div className='invalid-feedback'>
-																			{errors.binLocation1.message}
+																	{errors?.binLocation1 && (
+																		<div className='text-danger'>
+																			{errors?.binLocation1?.message}
 																		</div>
 																	)}
 																</div>
@@ -644,14 +599,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('binLocation2', {
-																			required: true,
-																		})}
+																		{...register(
+																			'binLocation2'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.binLocation2 && (
-																		<div className='invalid-feedback'>
-																			{errors.binLocation2.message}
+																	{errors?.binLocation2 && (
+																		<div className='text-danger'>
+																			{errors?.binLocation2?.message}
 																		</div>
 																	)}
 																</div>
@@ -664,14 +622,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('multibuyQuantity', {
-																			required: true,
-																		})}
+																		{...register(
+																			'multibuyQuantity'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.multibuyQuantity && (
-																		<div className='invalid-feedback'>
-																			{errors.multibuyQuantity.message}
+																	{errors?.multibuyQuantity && (
+																		<div className='text-danger'>
+																			{errors?.multibuyQuantity?.message}
 																		</div>
 																	)}
 																</div>
@@ -681,14 +642,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('multibuySave', {
-																			required: true,
-																		})}
+																		{...register(
+																			'multibuySave'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.multibuySave && (
-																		<div className='invalid-feedback'>
-																			{errors.multibuySave.message}
+																	{errors?.multibuySave && (
+																		<div className='text-danger'>
+																			{errors?.multibuySave?.message}
 																		</div>
 																	)}
 																</div>
@@ -704,9 +668,9 @@ const AddProduct = () => {
 																		{...register('promoName')}
 																		className='form-control'
 																	/>
-																	{errors.promoName && (
-																		<div className='invalid-feedback'>
-																			{errors.promoName.message}
+																	{errors?.promoName && (
+																		<div className='text-danger'>
+																			{errors?.promoName?.message}
 																		</div>
 																	)}
 																</div>
@@ -719,9 +683,9 @@ const AddProduct = () => {
 																		{...register('promoPrice')}
 																		className='form-control'
 																	/>
-																	{errors.promoPrice && (
-																		<div className='invalid-feedback'>
-																			{errors.promoPrice.message}
+																	{errors?.promoPrice && (
+																		<div className='text-danger'>
+																			{errors?.promoPrice?.message}
 																		</div>
 																	)}
 																</div>
@@ -739,9 +703,9 @@ const AddProduct = () => {
 																		{...register('size', { required: true })}
 																		className='form-control'
 																	/>
-																	{errors.size && (
-																		<div className='invalid-feedback'>
-																			{errors.size.message}
+																	{errors?.size && (
+																		<div className='text-danger'>
+																			{errors?.size?.message}
 																		</div>
 																	)}
 																</div>
@@ -755,9 +719,9 @@ const AddProduct = () => {
 																		{...register('weight', { required: true })}
 																		className='form-control'
 																	/>
-																	{errors.weight && (
-																		<div className='invalid-feedback'>
-																			{errors.weight.message}
+																	{errors?.weight && (
+																		<div className='text-danger'>
+																			{errors?.weight?.message}
 																		</div>
 																	)}
 																</div>
@@ -773,9 +737,9 @@ const AddProduct = () => {
 																		{...register('catA', { required: true })}
 																		className='form-control'
 																	/>
-																	{errors.catA && (
-																		<div className='invalid-feedback'>
-																			{errors.catA.message}
+																	{errors?.catA && (
+																		<div className='text-danger'>
+																			{errors?.catA?.message}
 																		</div>
 																	)}
 																</div>
@@ -789,9 +753,9 @@ const AddProduct = () => {
 																		{...register('barcode')}
 																		className='form-control'
 																	/>
-																	{errors.barcode && (
-																		<div className='invalid-feedback'>
-																			{errors.barcode.message}
+																	{errors?.barcode && (
+																		<div className='text-danger'>
+																			{errors?.barcode?.message}
 																		</div>
 																	)}
 																</div>
@@ -804,12 +768,14 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('catB', { required: true })}
+																		{...register('catB', {
+																			required: 'Category B is required',
+																		})}
 																		className='form-control'
 																	/>
-																	{errors.catB && (
-																		<div className='invalid-feedback'>
-																			{errors.catB.message}
+																	{errors?.catB && (
+																		<div className='text-danger'>
+																			{errors?.catB?.message}
 																		</div>
 																	)}
 																</div>
@@ -819,12 +785,14 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('range', { required: true })}
+																		{...register('range', {
+																			required: 'Range is Required',
+																		})}
 																		className='form-control list'
 																	/>
-																	{errors.range && (
-																		<div className='invalid-feedback'>
-																			{errors.range.message}
+																	{errors?.range && (
+																		<div className='text-danger'>
+																			{errors?.range?.message}
 																		</div>
 																	)}
 																</div>
@@ -837,12 +805,14 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('catC', { required: true })}
+																		{...register('catC', {
+																			required: 'Category C is required',
+																		})}
 																		className='form-control'
 																	/>
-																	{errors.catC && (
-																		<div className='invalid-feedback'>
-																			{errors.catC.message}
+																	{errors?.catC && (
+																		<div className='text-danger'>
+																			{errors?.catC?.message}
 																		</div>
 																	)}
 																</div>
@@ -852,12 +822,14 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('year', { required: true })}
+																		{...register('year', {
+																			required: 'Year is required',
+																		})}
 																		className='form-control list'
 																	/>
-																	{errors.year && (
-																		<div className='invalid-feedback'>
-																			{errors.year.message}
+																	{errors?.year && (
+																		<div className='text-danger'>
+																			{errors?.year?.message}
 																		</div>
 																	)}
 																</div>
@@ -870,14 +842,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('webRef', {
-																			required: true,
-																		})}
+																		{...register(
+																			'webRef'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.webRef && (
-																		<div className='invalid-feedback'>
-																			{errors.webRef.message}
+																	{errors?.webRef && (
+																		<div className='text-danger'>
+																			{errors?.webRef?.message}
 																		</div>
 																	)}
 																</div>
@@ -887,14 +862,17 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('color', {
-																			required: true,
-																		})}
+																		{...register(
+																			'color'
+																			// {
+																			// 	required: true,
+																			// }
+																		)}
 																		className='form-control'
 																	/>
-																	{errors.color && (
-																		<div className='invalid-feedback'>
-																			{errors.color.message}
+																	{errors?.color && (
+																		<div className='text-danger'>
+																			{errors?.color?.message}
 																		</div>
 																	)}
 																</div>
@@ -910,9 +888,9 @@ const AddProduct = () => {
 																		{...register('nominalCode')}
 																		className='form-control'
 																	/>
-																	{errors.nominalCode && (
-																		<div className='invalid-feedback'>
-																			{errors.nominalCode.message}
+																	{errors?.nominalCode && (
+																		<div className='text-danger'>
+																			{errors?.nominalCode?.message}
 																		</div>
 																	)}
 																</div>
@@ -925,9 +903,9 @@ const AddProduct = () => {
 																		{...register('nominalSection')}
 																		className='form-control'
 																	/>
-																	{errors.nominalSection && (
-																		<div className='invalid-feedback'>
-																			{errors.nominalSection.message}
+																	{errors?.nominalSection && (
+																		<div className='text-danger'>
+																			{errors?.nominalSection?.message}
 																		</div>
 																	)}
 																</div>
@@ -978,13 +956,13 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('search1', {
-																			required: true,
+																			required: 'Search is required',
 																		})}
 																		className='form-control'
 																	/>
-																	{errors.search1 && (
-																		<div className='invalid-feedback'>
-																			{errors.search1.message}
+																	{errors?.search1 && (
+																		<div className='text-danger'>
+																			{errors?.search1?.message}
 																		</div>
 																	)}
 																</div>
@@ -995,13 +973,13 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('search2', {
-																			required: true,
+																			required: 'Second search is required',
 																		})}
 																		className='form-control'
 																	/>
-																	{errors.search2 && (
-																		<div className='invalid-feedback'>
-																			{errors.search2.message}
+																	{errors?.search2 && (
+																		<div className='text-danger'>
+																			{errors?.search2?.message}
 																		</div>
 																	)}
 																</div>
@@ -1015,9 +993,9 @@ const AddProduct = () => {
 																	{...register('details')}
 																	defaultValue={''}
 																/>
-																{errors.details && (
-																	<div className='invalid-feedback'>
-																		{errors.details.message}
+																{errors?.details && (
+																	<div className='text-danger'>
+																		{errors?.details?.message}
 																	</div>
 																)}
 																<p className='mt-1'>Maximum 60 Characters</p>
@@ -1031,13 +1009,13 @@ const AddProduct = () => {
 																		<input
 																			type='text'
 																			{...register('finish', {
-																				required: true,
+																				required: 'Finish is required',
 																			})}
 																			className='form-control'
 																		/>
-																		{errors.finish && (
-																			<div className='invalid-feedback'>
-																				{errors.finish.message}
+																		{errors?.finish && (
+																			<div className='text-danger'>
+																				{errors?.finish?.message}
 																			</div>
 																		)}
 																	</div>
@@ -1297,6 +1275,7 @@ const AddProduct = () => {
 																				paddingBottom: '2px',
 																			}}
 																			onClick={setAllFourPrice}
+																			type='button'
 																		>
 																			All
 																		</button>
@@ -1326,13 +1305,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('storePrice', {
-																					required: true,
+																					required: 'Store Price is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.storePrice && (
-																				<div className='invalid-feedback'>
-																					{errors.storePrice.message}
+																			{errors?.storePrice && (
+																				<div className='text-danger'>
+																					{errors?.storePrice?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1343,13 +1322,14 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('mailOrderPrice', {
-																					required: true,
+																					required:
+																						'Mail Order Price is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.mailOrderPrice && (
-																				<div className='invalid-feedback'>
-																					{errors.mailOrderPrice.message}
+																			{errors?.mailOrderPrice && (
+																				<div className='text-danger'>
+																					{errors?.mailOrderPrice?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1362,9 +1342,9 @@ const AddProduct = () => {
 																				type='text'
 																				{...register('vatCode')}
 																			/>
-																			{errors.vatCode && (
-																				<div className='invalid-feedback'>
-																					{errors.vatCode.message}
+																			{errors?.vatCode && (
+																				<div className='text-danger'>
+																					{errors?.vatCode?.message}
 																				</div>
 																			)}
 
@@ -1382,9 +1362,9 @@ const AddProduct = () => {
 																				{...register('markup')}
 																				className='form-control'
 																			/>
-																			{errors.markup && (
-																				<div className='invalid-feedback'>
-																					{errors.markup.message}
+																			{errors?.markup && (
+																				<div className='text-danger'>
+																					{errors?.markup?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1399,13 +1379,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('tradePrice', {
-																					required: true,
+																					required: 'Trade Price is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.tradePrice && (
-																				<div className='invalid-feedback'>
-																					{errors.tradePrice.message}
+																			{errors?.tradePrice && (
+																				<div className='text-danger'>
+																					{errors?.tradePrice?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1416,13 +1396,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('webPrice', {
-																					required: true,
+																					required: 'Web Price is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.webPrice && (
-																				<div className='invalid-feedback'>
-																					{errors.webPrice.message}
+																			{errors?.webPrice && (
+																				<div className='text-danger'>
+																					{errors?.webPrice?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1438,9 +1418,9 @@ const AddProduct = () => {
 																				{...register('discountPercentage')}
 																				placeholder='0.00'
 																			/>
-																			{errors.discountPercentage && (
-																				<div className='invalid-feedback'>
-																					{errors.discountPercentage.message}
+																			{errors?.discountPercentage && (
+																				<div className='text-danger'>
+																					{errors?.discountPercentage?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1453,9 +1433,9 @@ const AddProduct = () => {
 																				{...register('discount')}
 																				placeholder='Choose'
 																			/>
-																			{errors.discount && (
-																				<div className='invalid-feedback'>
-																					{errors.discount.message}
+																			{errors?.discount && (
+																				<div className='text-danger'>
+																					{errors?.discount?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1470,13 +1450,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('price', {
-																					required: true,
+																					required: 'Cost Price is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.price && (
-																				<div className='invalid-feedback'>
-																					{errors.price.message}
+																			{errors?.price && (
+																				<div className='text-danger'>
+																					{errors?.price?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1487,13 +1467,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('suggestedRRP', {
-																					required: true,
+																					required: 'Suggested RRP is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.suggestedRRP && (
-																				<div className='invalid-feedback'>
-																					{errors.suggestedRRP.message}
+																			{errors?.suggestedRRP && (
+																				<div className='text-danger'>
+																					{errors?.suggestedRRP?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1507,7 +1487,7 @@ const AddProduct = () => {
 																			className='form-control'
 																		/>
 																		{errors.promoPrice && (
-																			<div className='invalid-feedback'>
+																			<div className='text-danger'>
 																				{errors.promoPrice.message}
 																			</div>
 																		)}
@@ -1520,13 +1500,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('boxQuantity', {
-																					required: true,
+																					required: 'Box quantity is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.boxQuantity && (
-																				<div className='invalid-feedback'>
-																					{errors.boxQuantity.message}
+																			{errors?.boxQuantity && (
+																				<div className='text-danger'>
+																					{errors?.boxQuantity?.message}
 																				</div>
 																			)}
 																		</div>
@@ -1537,13 +1517,13 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('boxCost', {
-																					required: true,
+																					required: 'Box Cost is required',
 																				})}
 																				className='form-control'
 																			/>
-																			{errors.boxCost && (
-																				<div className='invalid-feedback'>
-																					{errors.boxCost.message}
+																			{errors?.boxCost && (
+																				<div className='text-danger'>
+																					{errors?.boxCost?.message}
 																				</div>
 																			)}
 																		</div>
@@ -2043,7 +2023,7 @@ const AddProduct = () => {
 									placeholder='Enter product description...'
 								/>
 								{errors.description && (
-									<div className='invalid-feedback'>
+									<div className='text-danger'>
 										Description is required.
 									</div>
 								)}
@@ -2073,7 +2053,7 @@ const AddProduct = () => {
 									placeholder='Enter product specifications...'
 								/>
 								{errors.specification && (
-									<div className='invalid-feedback'>
+									<div className='text-danger'>
 										Specification is required.
 									</div>
 								)}
@@ -2101,7 +2081,7 @@ const AddProduct = () => {
 									placeholder='Enter product geometry details...'
 								/>
 								{errors.geometry && (
-									<div className='invalid-feedback'>Geometry is required.</div>
+									<div className='text-danger'>Geometry is required.</div>
 								)}
 							</div>
 							<div className='text-end'>
@@ -2129,7 +2109,7 @@ const AddProduct = () => {
 									placeholder='Enter product notes...'
 								/>
 								{errors.productNotes && (
-									<div className='invalid-feedback'>
+									<div className='text-danger'>
 										Product notes are required.
 									</div>
 								)}
