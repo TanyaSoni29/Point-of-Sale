@@ -2119,16 +2119,64 @@ const AddProduct = () => {
 							className={`tab-pane ${activeTab === 'geometry' ? 'active' : ''}`}
 						>
 							<div className='card'>
-								<h5>Geometry</h5>
-								<textarea
-									{...register('geometry')}
-									className='form-control'
-									rows={3}
-									placeholder='Enter product geometry details...'
-								/>
-								{errors.geometry && (
-									<div className='text-danger'>Geometry is required.</div>
-								)}
+								<div className='card-body add-product pb-0'>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Geometry</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+												<div
+													id='collapseOne'
+													className='accordion-collapse collapse show'
+													aria-labelledby='headingOne'
+													data-bs-parent='#accordionExample'
+												>
+													<div className='accordion-body'>
+														<div className='row mb-3'>
+															<div className='col-12'>
+																<label className='form-label text-start d-block'>
+																	Item Geometry
+																</label>
+																<textarea
+																	{...register('geometry')}
+																	className='form-control'
+																	rows={3}
+																	placeholder='Enter product geometry details...'
+																/>
+																{errors.geometry && (
+																	<div className='text-danger'>
+																		Geometry is required.
+																	</div>
+																)}
+															</div>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div className='text-end'>
 								<button
