@@ -1539,10 +1539,7 @@ const AddProduct = () => {
 																	</div>
 																</div>
 															</div>
-															<div className='row'>
-																<div className='col-lg-4 col-sm-6 col-12'></div>
-																<div className='col-lg-4 col-sm-6 col-12'></div>
-															</div>
+
 															<div
 																className='accordion-card-one accordion'
 																id='accordionExample3'
@@ -2150,16 +2147,144 @@ const AddProduct = () => {
 							}`}
 						>
 							<div className='card'>
-								<h5>Product-notes</h5>
-								<textarea
-									{...register('productNotes')}
-									className='form-control'
-									rows={3}
-									placeholder='Enter product notes...'
-								/>
-								{errors.productNotes && (
-									<div className='text-danger'>Product notes are required.</div>
-								)}
+								<div className='card-body add-product pb-0'>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Notes</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+											</div>
+										</div>
+
+										<div
+											id='collapseOne'
+											className='accordion-collapse collapse show'
+											aria-labelledby='headingOne'
+											data-bs-parent='#accordionExample'
+										>
+											<div className='accordion-body'>
+												<div className='row mb-3'>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 1
+														</label>
+														<input
+															type='text'
+															{...register('tillNote1', {
+																required: 'One Notes is required',
+															})}
+															className='form-control'
+														/>
+														{errors?.tillNote1 && (
+															<div className='text-danger'>
+																{errors?.tillNote1?.message}
+															</div>
+														)}
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 2
+														</label>
+														<input
+															type='text'
+															{...register('tillNote2')}
+															className='form-control'
+														/>
+														{errors?.tillNote2 && (
+															<div className='text-danger'>
+																{errors?.tillNote2?.message}
+															</div>
+														)}
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 3
+														</label>
+														<input
+															type='text'
+															{...register('tillNote3')}
+															className='form-control'
+														/>
+														{errors?.tillNote3 && (
+															<div className='text-danger'>
+																{errors?.tillNote3?.message}
+															</div>
+														)}
+													</div>
+												</div>
+												<div className='row'>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 4
+														</label>
+														<input
+															type='text'
+															{...register('tillNote4')}
+															className='form-control'
+															id='exampleCheck1'
+														/>
+														{errors?.tillNote4 && (
+															<div className='text-danger'>
+																{errors?.tillNote4?.message}
+															</div>
+														)}
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 5
+														</label>
+														<input
+															type='text'
+															{...register('tillNote5')}
+															className='form-control'
+														/>
+														{errors?.tillNote5 && (
+															<div className='text-danger'>
+																{errors?.tillNote5?.message}
+															</div>
+														)}
+													</div>
+													<div className='col-lg-4 col-sm-6 col-12'>
+														<label className='form-label text-start d-block'>
+															Product Notes 6
+														</label>
+														<input
+															type='text'
+															{...register('tillNote6')}
+															className='form-control'
+														/>
+														{errors?.tillNote6 && (
+															<div className='text-danger'>
+																{errors?.tillNote6?.message}
+															</div>
+														)}
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<div className='text-end'>
