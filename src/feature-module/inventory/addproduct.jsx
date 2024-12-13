@@ -53,6 +53,7 @@ const AddProduct = () => {
 		reset,
 		setValue,
 		getValues,
+		trigger,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
 
@@ -62,8 +63,15 @@ const AddProduct = () => {
 		reset(); // Reset form after successful submission
 	};
 
-	const handleNextTab = (nextTab) => {
-		setActiveTab(nextTab);
+	const handleNextTab = async (nextTab, currentTabFields) => {
+		const isValid = await trigger(currentTabFields);
+
+		if (isValid) {
+			setActiveTab(nextTab);
+		} else {
+			const firstErrorField = currentTabFields?.find((field) => errors[field]);
+			document.getElementsByName(firstErrorField)?.[0]?.focus();
+		}
 	};
 
 	const genders = [
@@ -125,7 +133,7 @@ const AddProduct = () => {
 		setValue('webPrice', storePriceValue);
 	};
 
-	console.log('Form Errors:', errors);
+	// console.log('Form Errors:', errors);
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
@@ -238,6 +246,7 @@ const AddProduct = () => {
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
+
 	return (
 		<div className='page-wrapper'>
 			<div className='content'>
@@ -516,7 +525,7 @@ const AddProduct = () => {
 																		Season
 																	</label>
 																	<Select
-																		id='gender'
+																		id='season'
 																		classNamePrefix='react-select'
 																		options={seasonOptions}
 																		onChange={(selectedOption) =>
@@ -1983,7 +1992,48 @@ const AddProduct = () => {
 								<button
 									type='button'
 									className='btn btn-submit'
-									onClick={() => handleNextTab('minmax')}
+									onClick={() =>
+										handleNextTab('minmax', [
+											'mfrPartNumber',
+											'make',
+											'suitability',
+											'supplier1Code',
+											'supplier2Code',
+											'binLocation1',
+											'binLocation2',
+											'multibuyQuantity',
+											'multibuySave',
+											'promoName',
+											'promoPrice',
+											'size',
+											'weight',
+											'catA',
+											'catB',
+											'range',
+											'catC',
+											'year',
+											'webRef',
+											'color',
+											'nominalCode',
+											'nominalSection',
+											'search1',
+											'search2',
+											'details',
+											'finish',
+											'storePrice',
+											'mailOrderPrice',
+											'vatCode',
+											'markup',
+											'tradePrice',
+											'webPrice',
+											'discountPercentage',
+											'discount',
+											'price',
+											'suggestedRRP',
+											'boxQuantity',
+											'boxCost',
+										])
+									}
 								>
 									Save and Continue
 								</button>
@@ -2002,7 +2052,7 @@ const AddProduct = () => {
 								<button
 									type='button'
 									className='btn btn-submit'
-									onClick={() => handleNextTab('description')}
+									onClick={() => handleNextTab('description', [])}
 								>
 									Save and Continue
 								</button>
@@ -2023,16 +2073,16 @@ const AddProduct = () => {
 									placeholder='Enter product description...'
 								/>
 								{errors.description && (
-									<div className='text-danger'>
-										Description is required.
-									</div>
+									<div className='text-danger'>Description is required.</div>
 								)}
 							</div>
 							<div className='text-end'>
 								<button
 									type='button'
 									className='btn btn-submit'
-									onClick={() => handleNextTab('specification')}
+									onClick={() =>
+										handleNextTab('specification', ['description'])
+									}
 								>
 									Save and Continue
 								</button>
@@ -2053,16 +2103,15 @@ const AddProduct = () => {
 									placeholder='Enter product specifications...'
 								/>
 								{errors.specification && (
-									<div className='text-danger'>
-										Specification is required.
-									</div>
+									<div className='text-danger'>Specification is required.</div>
 								)}
 							</div>
 							<div className='text-end'>
 								<button
 									type='button'
 									className='btn btn-submit'
-									onClick={() => handleNextTab('geometry')}
+									{...register('specification')}
+									onClick={() => handleNextTab('geometry', ['specification'])}
 								>
 									Save and Continue
 								</button>
@@ -2088,7 +2137,7 @@ const AddProduct = () => {
 								<button
 									type='button'
 									className='btn btn-submit'
-									onClick={() => handleNextTab('product-notes')}
+									onClick={() => handleNextTab('product-notes', ['geometry'])}
 								>
 									Save and Continue
 								</button>
@@ -2109,9 +2158,7 @@ const AddProduct = () => {
 									placeholder='Enter product notes...'
 								/>
 								{errors.productNotes && (
-									<div className='text-danger'>
-										Product notes are required.
-									</div>
+									<div className='text-danger'>Product notes are required.</div>
 								)}
 							</div>
 
