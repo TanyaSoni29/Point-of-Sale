@@ -6,6 +6,7 @@ import { getAllProducts } from '../service/operations/productApi';
 
 const initialState = {
 	products: [],
+	toggle_header: false,
 	product: null,
 	loading: false,
 };
@@ -44,6 +45,13 @@ const productSlice = createSlice({
 			);
 			state.loading = false;
 		},
+		setToggleHeader: (state, action) => {
+			state.toggle_header = action.payload;
+		},
+
+		toggleHeaderState: (state) => {
+			state.toggle_header = !state.toggle_header;
+		},
 	},
 });
 
@@ -66,5 +74,7 @@ export const {
 	addProduct,
 	updateProduct,
 	removeProduct,
+	setToggleHeader,
+	toggleHeaderState,
 } = productSlice.actions;
 export default productSlice.reducer;

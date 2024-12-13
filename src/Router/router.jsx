@@ -10,9 +10,9 @@ import { useSelector } from 'react-redux';
 import ThemeSettings from '../InitialPage/themeSettings';
 
 const AllRoutes = () => {
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const HeaderLayout = () => (
-		<div className={`main-wrapper ${data ? 'header-collapse' : ''}`}>
+		<div className={`main-wrapper ${toggle_header ? 'header-collapse' : ''}`}>
 			{/* <Loader /> */}
 			<Header />
 			<Sidebar />
@@ -22,7 +22,7 @@ const AllRoutes = () => {
 	);
 
 	const Authpages = () => (
-		<div className={data ? 'header-collapse' : ''}>
+		<div className={toggle_header ? 'header-collapse' : ''}>
 			<Outlet />
 			{/* <Loader /> */}
 			<ThemeSettings />

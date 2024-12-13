@@ -23,17 +23,18 @@ import {
 	X,
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
-import { setToogleHeader } from '../../core/redux/action';
+// import { setToogleHeader } from '../../core/redux/action';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { useForm } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './addProductReactQuill.css';
+import { setToggleHeader } from '../../slices/productListSlice';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const handleDateChange = (date) => {
@@ -303,9 +304,9 @@ const AddProduct = () => {
 									data-bs-placement='top'
 									title='Collapse'
 									id='collapse-header'
-									className={data ? 'active' : ''}
+									className={toggle_header ? 'active' : ''}
 									onClick={() => {
-										dispatch(setToogleHeader(!data));
+										dispatch(setToggleHeader(!toggle_header));
 									}}
 								>
 									<ChevronUp className='feather-chevron-up' />
