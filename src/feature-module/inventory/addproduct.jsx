@@ -27,7 +27,9 @@ import { setToogleHeader } from '../../core/redux/action';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { useForm } from 'react-hook-form';
-
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
+import './addProductReactQuill.css';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
@@ -54,8 +56,30 @@ const AddProduct = () => {
 		setValue,
 		getValues,
 		trigger,
+		// watch,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
+	const [longDescription, setLongDescription] = useState('');
+	const [geometry, setGeometry] = useState('');
+	const [specifications, setSpecifications] = useState(''); // Local state for React-Quill
+	// Local state for React-Quill
+	// Local state for React-Quill
+
+	// Watch the description field for form updates
+	// const formDescription = watch('longDescription');
+
+	// Update react-hook-form value when React-Quill value changes
+	useEffect(() => {
+		setValue('longDescription', longDescription);
+	}, [longDescription, setValue]);
+
+	useEffect(() => {
+		setValue('geometry', geometry);
+	}, [geometry, setValue]);
+
+	useEffect(() => {
+		setValue('specifications', specifications);
+	}, [specifications, setValue]);
 
 	const onSubmit = (data) => {
 		console.log('Form Data:', data);
@@ -2062,16 +2086,87 @@ const AddProduct = () => {
 							}`}
 						>
 							<div className='card'>
-								<h5>Description</h5>
-								<textarea
-									{...register('description')}
-									className='form-control'
-									rows={3}
-									placeholder='Enter product description...'
-								/>
-								{errors.description && (
-									<div className='text-danger'>Description is required.</div>
-								)}
+								<div className='card-body add-product pb-0'>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Descriptions</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+											</div>
+											<div
+												id='collapseOne'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingOne'
+												data-bs-parent='#accordionExample'
+											>
+												<div className='accordion-body'>
+													<div className='row mb-3 '>
+														<div className='col-12 mb-3'>
+															<label className='form-label text-start d-block'>
+																Short Description
+															</label>
+															<textarea
+																{...register('shortDescription')}
+																className='form-control'
+																rows={3}
+																placeholder='Enter product description...'
+															/>
+															{errors.shortDescription && (
+																<div className='text-danger'>
+																	Short Description is required.
+																</div>
+															)}
+														</div>
+														<div className='col-12'>
+															<label className='form-label text-start d-block'>
+																Long Description
+															</label>
+															<ReactQuill
+																value={longDescription}
+																onChange={(value) => setLongDescription(value)}
+																placeholder='Write your description here...'
+															/>
+															{/* Manually register the input with react-hook-form */}
+															<input
+																type='hidden' // Register hidden input to store Quill's value
+																{...register('longDescription', {
+																	required: 'Long Description is required',
+																})}
+															/>
+															{/* Show validation error */}
+															{errors.longDescription && (
+																<div className='text-danger'>
+																	{errors.longDescription.message}
+																</div>
+															)}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div className='text-end'>
 								<button
@@ -2092,23 +2187,76 @@ const AddProduct = () => {
 							}`}
 						>
 							<div className='card'>
-								<h5>Specification</h5>
-								<textarea
-									{...register('specification')}
-									className='form-control'
-									rows={3}
-									placeholder='Enter product specifications...'
-								/>
-								{errors.specification && (
-									<div className='text-danger'>Specification is required.</div>
-								)}
+								<div className='card-body add-product pb-0'>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Specification</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+											</div>
+											<div
+												id='collapseOne'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingOne'
+												data-bs-parent='#accordionExample'
+											>
+												<div className='accordion-body'>
+													<div className='row mb-3'>
+														<div className='col-12'>
+															<label className='form-label text-start d-block'>
+																Item Specification
+															</label>
+															<ReactQuill
+																value={specifications}
+																onChange={(value) => setSpecifications(value)}
+																placeholder='Write your specifications here...'
+															/>
+															{/* Manually register the input with react-hook-form */}
+															<input
+																type='hidden' // Register hidden input to store Quill's value
+																{...register('specifications', {
+																	required: 'Long Description is required',
+																})}
+															/>
+															{errors?.specifications && (
+																<div className='text-danger'>
+																	{errors?.specifications?.message}
+																</div>
+															)}
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 							<div className='text-end'>
 								<button
 									type='button'
 									className='btn btn-submit'
-									{...register('specification')}
-									onClick={() => handleNextTab('geometry', ['specification'])}
+									onClick={() => handleNextTab('geometry', ['specifications'])}
 								>
 									Save and Continue
 								</button>
@@ -2158,15 +2306,21 @@ const AddProduct = () => {
 																<label className='form-label text-start d-block'>
 																	Item Geometry
 																</label>
-																<textarea
-																	{...register('geometry')}
-																	className='form-control'
-																	rows={3}
-																	placeholder='Enter product geometry details...'
+																<ReactQuill
+																	value={geometry}
+																	onChange={(value) => setGeometry(value)}
+																	placeholder='Write your geometry here...'
 																/>
-																{errors.geometry && (
+																{/* Manually register the input with react-hook-form */}
+																<input
+																	type='hidden' // Register hidden input to store Quill's value
+																	{...register('geometry', {
+																		required: 'Geometry is required',
+																	})}
+																/>
+																{errors?.geometry && (
 																	<div className='text-danger'>
-																		Geometry is required.
+																		{errors?.geometry?.message}
 																	</div>
 																)}
 															</div>

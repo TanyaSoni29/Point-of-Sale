@@ -1,0 +1,25 @@
+/** @format */
+
+.quill {
+	border: 1px solid #dee2e6; /* Light gray border */
+	border-radius: 0.35rem; /* Rounded corners */
+	overflow: hidden; /* Prevent content overflow */
+}
+
+/* Style the toolbar */
+.quill .ql-toolbar {
+	background-color: #f9f9f9; /* Optional: Light background color */
+}
+
+/* Style the content container */
+.quill .ql-container {
+	min-height: 200px;
+	max-height: 400px; /* Optional max height to avoid overflow */
+	height: auto;
+	padding: 10px; /* Optional: Add padding for content */
+}
+
+.quill .ql-editor::before {
+	font-style: normal;
+	color: #b9babb; /* Removes the italic style */
+}
