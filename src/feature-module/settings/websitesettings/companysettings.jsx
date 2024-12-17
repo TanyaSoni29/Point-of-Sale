@@ -10,10 +10,10 @@ import {
 	Upload,
 	X,
 } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
 import LogoSmallImg from '../../../assets/img/logo-small.png';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const CompanySettings = () => {
 	const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const CompanySettings = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

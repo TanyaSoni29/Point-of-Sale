@@ -9,7 +9,6 @@ import {
   RotateCcw,
   Sliders,
 } from "feather-icons-react/build/IconComponents";
-import { setToogleHeader } from "../../core/redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import Select from "react-select";
 import { Box } from "react-feather";
@@ -17,6 +16,7 @@ import { DatePicker } from "antd";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import Table from "../../core/pagination/datatable";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const ExpiredProduct = () => {
   const dispatch = useDispatch();
@@ -203,7 +203,7 @@ const ExpiredProduct = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

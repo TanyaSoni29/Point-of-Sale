@@ -11,11 +11,11 @@ import {
 import Mail from 'feather-icons-react/build/IconComponents/Mail';
 import AwsSettings from '../../../core/modals/settings/awssettings';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
 import Storage01Img from '../../../assets/img/icons/storage-icon-01.svg';
 import Storage02Img from '../../../assets/img/icons/storage-icon-02.svg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const StorageSettings = () => {
 	const dispatch = useDispatch();
@@ -72,7 +72,7 @@ const StorageSettings = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

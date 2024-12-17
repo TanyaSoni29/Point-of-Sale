@@ -4,7 +4,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { ChevronUp, PlusCircle, RotateCcw } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { Box, Filter, Sliders, StopCircle } from 'react-feather';
 import Select from 'react-select';
 import Table from '../../core/pagination/datatable.jsx'
@@ -12,6 +11,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import AddLeaveType from '../../core/modals/hrm/addleavetype.jsx';
 import EditLeaveType from '../../core/modals/hrm/editleavetype.jsx';
+import { setToggleHeader } from '../../slices/productListSlice.js';
 
 const LeaveTypes = () => {
     const dispatch = useDispatch();
@@ -198,7 +198,7 @@ const LeaveTypes = () => {
                                         data-bs-placement="top"
                                         id="collapse-header"
                                         className={data ? "active" : ""}
-                                        onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                        onClick={() => { dispatch(setToggleHeader(!data)) }}
                                     >
                                         <ChevronUp />
                                     </Link>

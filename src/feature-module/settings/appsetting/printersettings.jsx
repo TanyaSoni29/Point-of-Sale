@@ -12,7 +12,6 @@ import {
 import React, { useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 // import ImageWithBasePath from '../../../core/img/imagewithbasebath';
 import AddPrinter from '../../../core/modals/settings/addprinter';
@@ -26,6 +25,7 @@ import Swal from 'sweetalert2';
 import PdfImg from '../../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../../assets/img/icons/excel.svg';
 import CloseImg from '../../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const PrinterSettings = () => {
 	const dispatch = useDispatch();
@@ -218,7 +218,7 @@ const PrinterSettings = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

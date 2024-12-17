@@ -9,13 +9,13 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 // import ImageWithBasePath from '../../../core/img/imagewithbasebath'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
 import GoogleIcon from '../../../assets/img/icons/google-icon.svg';
 import TwitterIcon from '../../../assets/img/icons/twitter-icon.svg';
 import LinkedinIcon from '../../../assets/img/icons/linkedin-icon.svg';
 import FbIcon from '../../../assets/img/icons/fb-icon.svg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 const SocialAuthentication = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
@@ -72,7 +72,7 @@ const SocialAuthentication = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

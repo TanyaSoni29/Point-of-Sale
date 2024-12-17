@@ -12,13 +12,13 @@ import {
 	Sliders,
 	StopCircle,
 } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import { DatePicker } from 'antd';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const PurchaseOrderReport = () => {
 	const dispatch = useDispatch();
@@ -176,7 +176,7 @@ const PurchaseOrderReport = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

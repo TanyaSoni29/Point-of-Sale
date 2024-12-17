@@ -21,7 +21,7 @@ import Swal from "sweetalert2";
 import Table from "../../core/pagination/datatable.jsx";
 import AddShift from "../../core/modals/hrm/addshift.jsx";
 import EditShift from "../../core/modals/hrm/editshift.jsx";
-import { setToogleHeader } from "../../core/redux/action.jsx";
+import { setToggleHeader } from "../../slices/productListSlice.js";
 
 const Shift = () => {
   const dataSource = useSelector((state) => state.shiftlist_data);
@@ -225,7 +225,7 @@ const Shift = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

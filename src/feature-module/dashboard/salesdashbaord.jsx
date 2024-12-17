@@ -15,7 +15,6 @@ import 'bootstrap-daterangepicker/daterangepicker.css';
 import DateRangePicker from 'react-bootstrap-daterangepicker';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { Link } from 'react-router-dom';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { Tooltip } from 'react-bootstrap';
 import { all_routes } from '../../Router/all_routes';
@@ -23,6 +22,7 @@ import HiImg from '../../assets/img/icons/hi.svg';
 import WeeklyEarningImg from '../../assets/img/icons/weekly-earning.svg';
 import TotalSalesImg from '../../assets/img/icons/total-sales.svg';
 import PurchasedEarningImg from '../../assets/img/icons/purchased-earnings.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 const SalesDashbaord = () => {
 	const route = all_routes;
 	//const data = useSelector((state) => state.saleshdashboard_recenttransaction);
@@ -187,7 +187,7 @@ const SalesDashbaord = () => {
 									id='collapse-header'
 									className={data ? 'active' : ''}
 									onClick={() => {
-										dispatch(setToogleHeader(!data));
+										dispatch(setToggleHeader(!data));
 									}}
 								>
 									<ChevronUp />

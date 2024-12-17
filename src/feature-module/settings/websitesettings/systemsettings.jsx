@@ -10,12 +10,12 @@ import {
 	RotateCcw,
 	Tool,
 } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../../core/redux/action';
 import SettingsSideBar from '../settingssidebar';
 import AppIcon07Img from "../../../assets/img/icons/app-icon-07.svg"
 import AppIcon08Img from "../../../assets/img/icons/app-icon-08.svg"
 import AppIcon09Img from "../../../assets/img/icons/app-icon-09.svg"
 import AppIcon10Img from "../../../assets/img/icons/app-icon-10.svg"
+import { setToggleHeader } from '../../../slices/productListSlice';
 const SystemSettings = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
@@ -73,7 +73,7 @@ const SystemSettings = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

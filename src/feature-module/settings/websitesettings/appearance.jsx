@@ -5,13 +5,13 @@ import React, { useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
 // import ImageWithBasePath from "../../../core/img/imagewithbasebath";
 import Theme08Img from '../../../assets/img/theme/theme-img-08.jpg';
 import Theme09Img from '../../../assets/img/theme/theme-img-09.jpg';
 import Theme10Img from '../../../assets/img/theme/theme-img-10.jpg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const Appearance = () => {
 	const [isActive, setIsActive] = useState(null);
@@ -85,7 +85,7 @@ const Appearance = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

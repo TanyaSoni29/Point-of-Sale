@@ -4,9 +4,9 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { ChevronUp } from 'react-feather';
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const OtpSettings = () => {
     const dispatch = useDispatch();
@@ -62,7 +62,7 @@ const OtpSettings = () => {
                                 data-bs-placement="top"
                                 id="collapse-header"
                                 className={data ? "active" : ""}
-                                onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                onClick={() => { dispatch(setToggleHeader(!data)) }}
                             >
                                 <ChevronUp />
                             </Link>

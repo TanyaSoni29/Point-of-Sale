@@ -23,7 +23,6 @@ import {
 	X,
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
-// import { setToogleHeader } from '../../core/redux/action';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { useForm } from 'react-hook-form';

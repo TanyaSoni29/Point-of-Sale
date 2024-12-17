@@ -14,7 +14,6 @@ import {
 	StopCircle,
 	User,
 } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { Filter, MinusCircle } from 'react-feather';
 import Select from 'react-select';
@@ -28,6 +27,7 @@ import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
 import QrCodeImg from '../../assets/img/icons/qrcode-scan.svg';
 import ScannerImg from '../../assets/img/icons/scanners.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const SalesList = () => {
 	const saleslistdata = saleslist;
@@ -437,7 +437,7 @@ const SalesList = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

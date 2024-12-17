@@ -5,7 +5,6 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Filter,
@@ -24,6 +23,7 @@ import EditUser from '../../core/modals/usermanagement/edituser';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const Users = () => {
 	const oldandlatestvalue = [
@@ -330,7 +330,7 @@ const Users = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

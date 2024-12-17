@@ -10,11 +10,11 @@ import {
 } from "feather-icons-react/build/IconComponents";
 import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { setToogleHeader } from "../../core/redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import BarcodePrinter from "../../core/modals/inventory/barcodePrinter";
+import { setToggleHeader } from "../../slices/productListSlice";
 const PrintBarcode = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.toggle_header);
@@ -119,7 +119,7 @@ const PrintBarcode = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

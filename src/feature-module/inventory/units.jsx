@@ -20,7 +20,7 @@ import { DatePicker } from "antd";
 import withReactContent from "sweetalert2-react-content";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ImageWithBasePath from "../../core/img/imagewithbasebath";
-import { setToogleHeader } from "../../core/redux/action";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 export const Units = () => {
   const dataSource = useSelector((state) => state.unit_data);
@@ -219,7 +219,7 @@ export const Units = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

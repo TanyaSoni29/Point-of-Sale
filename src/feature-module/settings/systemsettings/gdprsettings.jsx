@@ -2,10 +2,10 @@ import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
 import React from 'react'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom'
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
 import SettingsSideBar from '../settingssidebar';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const GdprSettings = () => {
 
@@ -56,7 +56,7 @@ const GdprSettings = () => {
                                         data-bs-placement="top"
                                         id="collapse-header"
                                         className={data ? "active" : ""}
-                                        onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                        onClick={() => { dispatch(setToggleHeader(!data)) }}
                                     >
                                         <ChevronUp />
                                     </Link>

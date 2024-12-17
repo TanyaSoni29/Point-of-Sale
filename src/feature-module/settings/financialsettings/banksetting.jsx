@@ -12,7 +12,6 @@ import {
 import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { setToogleHeader } from "../../../core/redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import ImageWithBasePath from "../../../core/img/imagewithbasebath";
 import Select from "react-select";
@@ -22,6 +21,7 @@ import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import SettingsSideBar from "../settingssidebar";
 import { all_routes } from "../../../Router/all_routes";
+import { setToggleHeader } from "../../../slices/productListSlice";
 
 const BankSetting = () => {
   const route = all_routes;
@@ -115,7 +115,7 @@ const BankSetting = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

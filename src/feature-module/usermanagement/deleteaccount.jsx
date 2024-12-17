@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { Printer, Sliders } from 'react-feather';
 import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
@@ -14,6 +13,7 @@ import Swal from 'sweetalert2';
 import Table from '../../core/pagination/datatable';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 const DeleteAccount = () => {
 	const dispatch = useDispatch();
 	const data = useSelector((state) => state.toggle_header);
@@ -237,7 +237,7 @@ const DeleteAccount = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

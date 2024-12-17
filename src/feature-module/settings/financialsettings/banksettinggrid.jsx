@@ -11,13 +11,13 @@ import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setToogleHeader } from "../../../core/redux/action";
 import AddBankAccount from "../../../core/modals/settings/addbankaccount";
 import EditBankAccount from "../../../core/modals/settings/editbankaccount";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import SettingsSideBar from "../settingssidebar";
 import { allSettled } from "q";
+import { setToggleHeader } from "../../../slices/productListSlice";
 
 const BankSettingGrid = () => {
   const [isActive, setIsActive] = useState('Karur vysya bank');
@@ -97,7 +97,7 @@ const BankSettingGrid = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

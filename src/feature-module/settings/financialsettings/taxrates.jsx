@@ -7,7 +7,6 @@ import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-import { setToogleHeader } from "../../../core/redux/action";
 import AddTaxRates from "../../../core/modals/settings/addtaxrates";
 import EditTaxRates from "../../../core/modals/settings/edittaxrates";
 import Table from "../../../core/pagination/datatable";
@@ -15,6 +14,7 @@ import SettingsSideBar from "../settingssidebar";
 import { taxRatesData } from "../../../core/json/taxRates";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { setToggleHeader } from "../../../slices/productListSlice";
 const TaxRates = () => {
   const dispatch = useDispatch();
   const data = useSelector((state) => state.toggle_header);
@@ -135,7 +135,7 @@ const TaxRates = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

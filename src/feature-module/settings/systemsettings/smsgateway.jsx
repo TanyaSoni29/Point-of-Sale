@@ -12,13 +12,13 @@ import NexmoConfig from '../../../core/modals/settings/nexmoconfig';
 import TwilioConfig from '../../../core/modals/settings/twilioconfig';
 import TwoFactorConfig from '../../../core/modals/settings/twofactorconfig';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { setToogleHeader } from '../../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import SettingsSideBar from '../settingssidebar';
 // import ImageWithBasePath from '../../../core/img/imagewithbasebath'
 import Sms01Img from '../../../assets/img/icons/sms-icon-01.svg';
 import Sms02Img from '../../../assets/img/icons/sms-icon-02.svg';
 import Sms03Img from '../../../assets/img/icons/sms-icon-03.svg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const SmsGateway = () => {
 	const dispatch = useDispatch();
@@ -77,7 +77,7 @@ const SmsGateway = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

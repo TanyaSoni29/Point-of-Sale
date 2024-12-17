@@ -11,7 +11,6 @@ import {
 	PlusCircle,
 	RotateCcw,
 } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import { Box, Filter, Sliders, StopCircle, User } from 'react-feather';
 import Select from 'react-select';
@@ -23,6 +22,7 @@ import EditQuotation from '../../core/modals/sales/editquotation';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const QuotationList = () => {
 	const dispatch = useDispatch();
@@ -307,7 +307,7 @@ const QuotationList = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { Link } from "react-router-dom";
-import { setToogleHeader } from "../../core/redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import {
   ArrowLeft,
@@ -23,6 +22,7 @@ import Table from "../../core/pagination/datatable";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
 import Select from "react-select";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const PayrollList = () => {
   const [isFilterVisible, setIsFilterVisible] = useState(false);
@@ -256,7 +256,7 @@ const PayrollList = () => {
                     className={data ? "active" : ""}
                     onClick={(e) => {
                       e.preventDefault();
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

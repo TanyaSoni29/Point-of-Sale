@@ -6,10 +6,10 @@ import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { ChevronUp, RotateCcw } from "react-feather";
-import { setToogleHeader } from "../../core/redux/action";
 import { PlusCircle } from "react-feather";
 import NotesModal from "../../core/modals/applications/notesModal";
 import NotesContent from "./notesContent";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const Notes = () => {
   const [isOpen, setOpen] = useState(false);
@@ -88,7 +88,7 @@ const Notes = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

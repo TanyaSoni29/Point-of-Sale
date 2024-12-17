@@ -21,12 +21,12 @@ import {
 import { DatePicker } from 'antd';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
-import { setToogleHeader } from '../../core/redux/action';
 import withReactContent from 'sweetalert2-react-content';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
 import { refreshMakes } from '../../slices/makesSlice';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const BrandList = () => {
 	const { makes } = useSelector((state) => state.makes);
@@ -311,7 +311,7 @@ const BrandList = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

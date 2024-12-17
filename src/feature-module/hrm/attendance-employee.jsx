@@ -15,7 +15,7 @@ import Filter from "feather-icons-react/build/IconComponents/Filter";
 import { DatePicker } from "antd";
 import { useDispatch, useSelector } from "react-redux";
 import Table from "../../core/pagination/datatable";
-import { setToogleHeader } from "../../core/redux/action";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const AttendanceEmployee = () => {
   const dataSource = useSelector((state) => state.attendenceemployee_data);
@@ -198,7 +198,7 @@ const AttendanceEmployee = () => {
                       id="collapse-header"
                       className={data ? "active" : ""}
                       onClick={() => {
-                        dispatch(setToogleHeader(!data));
+                        dispatch(setToggleHeader(!data));
                       }}
                     >
                       <ChevronUp />

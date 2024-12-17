@@ -6,7 +6,6 @@ import { Link } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../../core/redux/action';
 import SettingsSideBar from '../settingssidebar';
 import AppIcon01Img from '../../../assets/img/icons/app-icon-01.svg';
 import AppIcon02Img from '../../../assets/img/icons/app-icon-02.svg';
@@ -14,6 +13,7 @@ import AppIcon03Img from '../../../assets/img/icons/app-icon-03.svg';
 import AppIcon04Img from '../../../assets/img/icons/app-icon-04.svg';
 import AppIcon05Img from '../../../assets/img/icons/app-icon-05.svg';
 import AppIcon06Img from '../../../assets/img/icons/app-icon-06.svg';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const ConnectedApps = () => {
 	const dispatch = useDispatch();
@@ -71,7 +71,7 @@ const ConnectedApps = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

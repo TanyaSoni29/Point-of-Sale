@@ -9,7 +9,7 @@ import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import AddDesignation from '../../core/modals/hrm/adddesignation';
 import EditDesignation from '../../core/modals/hrm/editdesignation';
-import { setToogleHeader } from '../../core/redux/action';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const Designation = () => {
     const dispatch = useDispatch();
@@ -140,7 +140,7 @@ const Designation = () => {
                           data-bs-placement="top"
                           id="collapse-header"
                           className={data ? "active" : ""}
-                          onClick={() => { dispatch(setToogleHeader(!data)) }}
+                          onClick={() => { dispatch(setToggleHeader(!data)) }}
                         >
                           <ChevronUp />
                         </Link>

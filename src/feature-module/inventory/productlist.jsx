@@ -24,12 +24,11 @@ import Swal from 'sweetalert2';
 import { all_routes } from '../../Router/all_routes';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import Table from '../../core/pagination/datatable';
-import { setToogleHeader } from '../../core/redux/action';
 import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshProducts } from '../../slices/productListSlice';
+import { refreshProducts, setToggleHeader } from '../../slices/productListSlice';
 
 const ProductList = () => {
 	const { products } = useSelector((state) => state.product);
@@ -352,7 +351,7 @@ const ProductList = () => {
 									className={data ? 'active' : ''}
 									onClick={(e) => {
 										e.preventDefault();
-										dispatch(setToogleHeader(!data));
+										dispatch(setToggleHeader(!data));
 									}}
 								>
 									<ChevronUp />

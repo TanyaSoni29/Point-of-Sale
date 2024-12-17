@@ -6,7 +6,6 @@ import { useDispatch, useSelector } from 'react-redux';
 // import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { Link } from 'react-router-dom';
 import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
-import { setToogleHeader } from '../../core/redux/action';
 import { Calendar, Filter, PlusCircle, Sliders, Zap } from 'react-feather';
 import Select from 'react-select';
 import { DatePicker } from 'antd';
@@ -19,6 +18,7 @@ import { all_routes } from '../../Router/all_routes';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 // import { all_routes } from "../../Router/all_routes";
 
 const RolesPermissions = () => {
@@ -275,7 +275,7 @@ const RolesPermissions = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

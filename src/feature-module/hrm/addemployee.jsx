@@ -8,7 +8,7 @@ import Select from "react-select";
 import { all_routes } from "../../Router/all_routes";
 import { useDispatch, useSelector } from "react-redux";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import { setToogleHeader } from "../../core/redux/action";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const AddEmployee = () => {
   const route = all_routes;
@@ -108,7 +108,7 @@ const AddEmployee = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

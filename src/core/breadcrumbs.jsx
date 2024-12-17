@@ -7,12 +7,11 @@ import { Link, useLocation } from 'react-router-dom';
 import { PlusCircle, Printer } from 'react-feather';
 import { Download, RotateCcw } from 'feather-icons-react/build/IconComponents';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-// import { setToogleHeader } from "../../core/redux/action";
 import { useDispatch, useSelector } from 'react-redux';
 import { ChevronUp } from 'react-feather';
-import { setToogleHeader } from './redux/action';
 import PdfImg from '../assets/img/icons/pdf.svg';
 import ExcelImg from '../assets/img/icons/excel.svg';
+import { setToggleHeader } from '../slices/productListSlice';
 const Breadcrumbs = (props) => {
 	const location = useLocation();
 	const data = useSelector((state) => state.toggle_header);
@@ -252,7 +251,7 @@ const Breadcrumbs = (props) => {
 								id='collapse-header'
 								className={data ? 'active' : ''}
 								onClick={() => {
-									dispatch(setToogleHeader(!data));
+									dispatch(setToggleHeader(!data));
 								}}
 							>
 								<ChevronUp />
@@ -358,7 +357,7 @@ const Breadcrumbs = (props) => {
 								id='collapse-header'
 								className={data ? 'active' : ''}
 								onClick={() => {
-									dispatch(setToogleHeader(!data));
+									dispatch(setToggleHeader(!data));
 								}}
 							>
 								<ChevronUp />

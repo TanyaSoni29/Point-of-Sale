@@ -5,8 +5,8 @@ import { ChevronUp } from 'react-feather';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
 import Select from 'react-select'
-import { setToogleHeader } from '../../../core/redux/action';
 import SettingsSideBar from '../settingssidebar';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const PosSettings = () => {
 
@@ -57,7 +57,7 @@ const PosSettings = () => {
                                         data-bs-placement="top"
                                         id="collapse-header"
                                         className={data ? "active" : ""}
-                                        onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                        onClick={() => { dispatch(setToggleHeader(!data)) }}
                                     >
                                         <ChevronUp />
                                     </Link>

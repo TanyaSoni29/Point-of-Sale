@@ -4,7 +4,6 @@ import React, { useState } from 'react';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import { setToogleHeader } from '../../core/redux/action';
 import { useDispatch, useSelector } from 'react-redux';
 import {
 	Calendar,
@@ -27,6 +26,7 @@ import AddPurchaseReturn from '../../core/modals/purchases/addpurchasereturn';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 const PurchaseReturns = () => {
 	const purchasereturndata = purchasesreturn;
 	const [searchText, setSearchText] = useState('');
@@ -47,7 +47,7 @@ const PurchaseReturns = () => {
 			console.log(error);
 		}
 	};
-	
+
 	const columns = [
 		{
 			title: 'Image',
@@ -355,7 +355,7 @@ const PurchaseReturns = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

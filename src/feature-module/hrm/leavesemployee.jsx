@@ -15,13 +15,13 @@ import {
   
 } from "react-feather";
 import Select from "react-select";
-import { setToogleHeader } from "../../core/redux/action";
 import AddLeaveEmployee from "../../core/modals/hrm/addleaveemployee";
 import EditLeaveEmployee from "../../core/modals/hrm/editleaveemployee";
 import Table from "../../core/pagination/datatable";
 import { leavesEmployee } from "../../core/json/leavesemployee";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const LeavesEmployee = () => {
   const leavesEmployeedata = leavesEmployee;
@@ -243,7 +243,7 @@ const LeavesEmployee = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

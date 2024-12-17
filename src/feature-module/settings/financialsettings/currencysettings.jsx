@@ -11,7 +11,6 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import Table from "../../../core/pagination/datatable";
-import { setToogleHeader } from "../../../core/redux/action";
 import ImageWithBasePath from "../../../core/img/imagewithbasebath";
 import AddCurrency from "../../../core/modals/settings/addcurrency";
 import EditCurrency from "../../../core/modals/editcurrency";
@@ -20,6 +19,7 @@ import SettingsSideBar from "../settingssidebar";
 import { currencySettingsData } from "../../../core/json/currencySettings";
 import withReactContent from "sweetalert2-react-content";
 import Swal from "sweetalert2";
+import { setToggleHeader } from "../../../slices/productListSlice";
 
 const CurrencySettings = () => {
   const dispatch = useDispatch();
@@ -170,7 +170,7 @@ const CurrencySettings = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

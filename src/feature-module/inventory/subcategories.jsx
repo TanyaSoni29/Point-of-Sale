@@ -14,7 +14,6 @@ import {
 	Zap,
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
-import { setToogleHeader } from '../../core/redux/action';
 import Select from 'react-select';
 import AddSubcategory from '../../core/modals/inventory/addsubcategory';
 import EditSubcategories from './editsubcategories';
@@ -24,6 +23,7 @@ import Table from '../../core/pagination/datatable';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const SubCategories = () => {
 	const dispatch = useDispatch();
@@ -310,7 +310,7 @@ const SubCategories = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

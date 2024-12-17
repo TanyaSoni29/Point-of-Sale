@@ -16,7 +16,7 @@ import Swal from "sweetalert2";
 import Table from "../../core/pagination/datatable.jsx";
 import AddAttendance from "../../core/modals/hrm/addattendance.jsx";
 import EditAttendance from "../../core/modals/hrm/editattendance.jsx";
-import { setToogleHeader } from "../../core/redux/action.jsx";
+import { setToggleHeader } from "../../slices/productListSlice.js";
 
 const AttendanceAdmin = () => {
   const dataSource = useSelector((state) => state.attendanceadmin_data);
@@ -244,7 +244,7 @@ const AttendanceAdmin = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

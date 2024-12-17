@@ -3,8 +3,8 @@ import React from 'react'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { setToogleHeader } from '../../../core/redux/action';
 import SettingsSideBar from '../settingssidebar';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const Prefixes = () => {
     const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const Prefixes = () => {
                                         data-bs-placement="top"
                                         id="collapse-header"
                                         className={data ? "active" : ""}
-                                        onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                        onClick={() => { dispatch(setToggleHeader(!data)) }}
                                     >
                                         <ChevronUp />
                                     </Link>

@@ -13,8 +13,8 @@ import {
   PlusCircle,
   RotateCcw,
 } from "feather-icons-react/build/IconComponents";
-import { setToogleHeader } from "../../core/redux/action";
 import { Search } from "react-feather";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const QRcode = () => {
   const dispatch = useDispatch();
@@ -118,7 +118,7 @@ const QRcode = () => {
                       id="collapse-header"
                       className={data ? "active" : ""}
                       onClick={() => {
-                        dispatch(setToogleHeader(!data));
+                        dispatch(setToggleHeader(!data));
                       }}
                     >
                       <ChevronUp />

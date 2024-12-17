@@ -3,11 +3,11 @@ import React from 'react'
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom'
-import { setToogleHeader } from '../../../core/redux/action';
 import Select from 'react-select';
 import Map from 'feather-icons-react/build/IconComponents/Map';
 import ReactTagsInput from '../reacttaginputs';
 import SettingsSideBar from '../settingssidebar';
+import { setToggleHeader } from '../../../slices/productListSlice';
 
 const LocalizationSettings = () => {
     const dispatch = useDispatch();
@@ -103,7 +103,7 @@ const LocalizationSettings = () => {
                                         data-bs-placement="top"
                                         id="collapse-header"
                                         className={data ? "active" : ""}
-                                        onClick={() => { dispatch(setToogleHeader(!data)) }}
+                                        onClick={() => { dispatch(setToggleHeader(!data)) }}
                                     >
                                         <ChevronUp />
                                     </Link>

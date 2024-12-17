@@ -15,7 +15,6 @@ import {
 	Zap,
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
-import { setToogleHeader } from '../../core/redux/action';
 import Select from 'react-select';
 import { DatePicker, Switch } from 'antd';
 import AddCategoryList from '../../core/modals/inventory/addcategorylist';
@@ -28,6 +27,7 @@ import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
 import { refreshCategories, updateCategory } from '../../slices/categorySlice';
 import { updateCategories } from '../../service/operations/categoryApi';
+import { setToggleHeader } from '../../slices/productListSlice';
 
 const CategoryList = () => {
 	const dispatch = useDispatch();
@@ -352,7 +352,7 @@ const CategoryList = () => {
 										id='collapse-header'
 										className={data ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToogleHeader(!data));
+											dispatch(setToggleHeader(!data));
 										}}
 									>
 										<ChevronUp />

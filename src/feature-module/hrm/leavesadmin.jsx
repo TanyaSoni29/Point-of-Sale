@@ -3,13 +3,13 @@ import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { ChevronUp, RotateCcw } from "feather-icons-react/build/IconComponents";
-import { setToogleHeader } from "../../core/redux/action";
 import { useDispatch, useSelector } from "react-redux";
 import { Filter, Layout, Sliders } from "react-feather";
 import Table from "../../core/pagination/datatable";
 import { all_routes } from "../../Router/all_routes";
 import Select from "react-select";
 import { Tag } from "antd";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const LeavesAdmin = () => {
   const options = [
@@ -206,7 +206,7 @@ const LeavesAdmin = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />

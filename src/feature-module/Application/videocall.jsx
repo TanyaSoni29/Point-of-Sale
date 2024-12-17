@@ -7,10 +7,10 @@ import ImageWithBasePath from "../../core/img/imagewithbasebath";
 import { Link } from "react-router-dom";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
-import { setToogleHeader } from "../../core/redux/action";
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
+import { setToggleHeader } from "../../slices/productListSlice";
 
 const Videocall = () => {
   const [addClass, setAddClass] = useState(false);
@@ -132,7 +132,7 @@ const Videocall = () => {
                     id="collapse-header"
                     className={data ? "active" : ""}
                     onClick={() => {
-                      dispatch(setToogleHeader(!data));
+                      dispatch(setToggleHeader(!data));
                     }}
                   >
                     <ChevronUp />
