@@ -11,10 +11,10 @@ import {
 	Tool,
 } from 'feather-icons-react/build/IconComponents';
 import SettingsSideBar from '../settingssidebar';
-import AppIcon07Img from "../../../assets/img/icons/app-icon-07.svg"
-import AppIcon08Img from "../../../assets/img/icons/app-icon-08.svg"
-import AppIcon09Img from "../../../assets/img/icons/app-icon-09.svg"
-import AppIcon10Img from "../../../assets/img/icons/app-icon-10.svg"
+import AppIcon07Img from '../../../assets/img/icons/app-icon-07.svg';
+import AppIcon08Img from '../../../assets/img/icons/app-icon-08.svg';
+import AppIcon09Img from '../../../assets/img/icons/app-icon-09.svg';
+import AppIcon10Img from '../../../assets/img/icons/app-icon-10.svg';
 import { setToggleHeader } from '../../../slices/productListSlice';
 const SystemSettings = () => {
 	const dispatch = useDispatch();
@@ -267,8 +267,10 @@ const SystemSettings = () => {
 																		src='assets/img/icons/app-icon-10.svg'
 																		alt=''
 																	/> */}
-                                                                    <img src={AppIcon10Img} alt='img' />
-
+																	<img
+																		src={AppIcon10Img}
+																		alt='img'
+																	/>
 																</span>
 																<div className='security-title'>
 																	<h5>Google Map</h5>
