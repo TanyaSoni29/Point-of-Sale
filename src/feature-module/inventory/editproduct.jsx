@@ -24,7 +24,7 @@ import {
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { setToggleHeader } from '../../slices/productListSlice';
 import { useForm } from 'react-hook-form';
 import ReactQuill from 'react-quill';
@@ -95,18 +95,6 @@ const EditProduct = () => {
 		},
 	]);
 
-	useEffect(() => {
-		setValue('longDescription', longDescription);
-	}, [longDescription, setValue]);
-
-	useEffect(() => {
-		setValue('geometry', geometry);
-	}, [geometry, setValue]);
-
-	useEffect(() => {
-		setValue('specifications', specifications);
-	}, [specifications, setValue]);
-
 	const onSubmit = (data) => {
 		console.log('Form Data:', data);
 		// Handle form submission (e.g., send data to your backend)
@@ -166,27 +154,6 @@ const EditProduct = () => {
 		{ value: 'No', label: 'No' },
 		{ value: 'One', label: 'One' },
 	];
-	const [isImageVisible, setIsImageVisible] = useState(true);
-
-	const handleRemoveProduct = () => {
-		setIsImageVisible(false);
-	};
-	const [isImageVisible1, setIsImageVisible1] = useState(true);
-
-	const handleRemoveProduct1 = () => {
-		setIsImageVisible1(false);
-	};
-
-	const setAllFourPrice = () => {
-		// Get the value of storePrice
-		const storePriceValue = getValues('storePrice');
-
-		// Update the other fields
-		setValue('tradePrice', storePriceValue);
-		setValue('mailOrderPrice', storePriceValue);
-		setValue('webPrice', storePriceValue);
-	};
-
 	const columns = [
 		{ title: 'Branch', dataIndex: 'branch', key: 'branch' },
 		{ title: 'Name', dataIndex: 'name', key: 'name' },
@@ -231,7 +198,53 @@ const EditProduct = () => {
 			),
 		},
 	];
+	const [uploadedImages, setUploadedImages] = useState([]);
+	// const [isImageVisible, setIsImageVisible] = useState(true);
 
+	const handleRemoveProduct = (index) => {
+		setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
+	};
+
+	const handleImageUpload = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			setUploadedImages((prevImages) => {
+				if (prevImages.length < 4) {
+					return [...prevImages, file];
+				} else {
+					alert('You can only upload up to 4 images.');
+					return prevImages;
+				}
+			});
+		}
+	};
+	// const [isImageVisible1, setIsImageVisible1] = useState(true);
+
+	// const handleRemoveProduct1 = () => {
+	// 	setIsImageVisible1(false);
+	// };
+
+	const setAllFourPrice = () => {
+		// Get the value of storePrice
+		const storePriceValue = getValues('storePrice');
+
+		// Update the other fields
+		setValue('tradePrice', storePriceValue);
+		setValue('mailOrderPrice', storePriceValue);
+		setValue('webPrice', storePriceValue);
+	};
+
+	useEffect(() => {
+		setValue('longDescription', longDescription);
+	}, [longDescription, setValue]);
+
+	useEffect(() => {
+		setValue('geometry', geometry);
+	}, [geometry, setValue]);
+
+	useEffect(() => {
+		setValue('specifications', specifications);
+	}, [specifications, setValue]);
 	// console.log('Form Errors:', errors);
 
 	useEffect(() => {
@@ -345,6 +358,10 @@ const EditProduct = () => {
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
+
+	useEffect(() => {
+		setValue('images', uploadedImages);
+	}, [uploadedImages, setValue]);
 
 	return (
 		<div className='page-wrapper'>
@@ -1676,30 +1693,53 @@ const EditProduct = () => {
 																					<div className='add-choosen'>
 																						<div className='input-blocks'>
 																							<div className='image-upload'>
-																								<input type='file' />
+																								<input
+																									type='file'
+																									accept='image/*'
+																									onChange={handleImageUpload}
+																								/>
 																								<div className='image-uploads'>
 																									<PlusCircle className='plus-down-add me-0' />
-																									<h4>Add Images</h4>
+																									<h4>Upload Images</h4>
 																								</div>
 																							</div>
 																						</div>
-																						{isImageVisible1 && (
-																							<div className='phone-img'>
-																								<ImageWithBasePath
-																									src='assets/img/products/phone-add-2.png'
-																									alt='image'
-																								/>
-																								<Link to='#'>
-																									<X
-																										className='x-square-add remove-product'
-																										onClick={
-																											handleRemoveProduct1
-																										}
-																									/>
-																								</Link>
-																							</div>
-																						)}
-																						{isImageVisible && (
+																						{uploadedImages.length > 0 &&
+																							uploadedImages?.map(
+																								(image, index) => (
+																									<>
+																										<div
+																											key={index}
+																											className='phone-img'
+																										>
+																											<img
+																												src={URL.createObjectURL(
+																													image
+																												)}
+																												alt={`uploaded-${index}`}
+																												width='100'
+																												height='100'
+																											/>
+																											<p>
+																												{index === 0
+																													? 'Main Image'
+																													: `Image ${index}`}
+																											</p>
+																											<Link to='#'>
+																												<X
+																													className='x-square-add remove-product'
+																													onClick={() =>
+																														handleRemoveProduct(
+																															index
+																														)
+																													}
+																												/>
+																											</Link>
+																										</div>
+																									</>
+																								)
+																							)}
+																						{/* {isImageVisible && (
 																							<div className='phone-img'>
 																								<ImageWithBasePath
 																									src='assets/img/products/phone-add-1.png'
@@ -1714,7 +1754,7 @@ const EditProduct = () => {
 																									/>
 																								</Link>
 																							</div>
-																						)}
+																						)} */}
 																					</div>
 																				</div>
 																			</div>
