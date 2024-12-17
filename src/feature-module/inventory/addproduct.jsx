@@ -24,7 +24,7 @@ import {
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { useForm } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
@@ -37,9 +37,6 @@ const AddProduct = () => {
 	const { toggle_header } = useSelector((state) => state.product);
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
-	const handleDateChange = (date) => {
-		setSelectedDate(date);
-	};
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
 	const [allowPoints, setAllowPoints] = useState(false);
 	const [website, setWebsite] = useState(false);
@@ -60,9 +57,6 @@ const AddProduct = () => {
 		// watch,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
-	// Local state for React-Quill
-	// Local state for React-Quill
-	// Local state for React-Quill
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
 	const [specifications, setSpecifications] = useState('');
@@ -92,48 +86,7 @@ const AddProduct = () => {
 			replenish: false,
 		},
 	]);
-
-	// Watch the description field for form updates
-	// const formDescription = watch('longDescription');
-
-	// Update react-hook-form value when React-Quill value changes
-	useEffect(() => {
-		setValue('longDescription', longDescription);
-	}, [longDescription, setValue]);
-
-	useEffect(() => {
-		setValue('geometry', geometry);
-	}, [geometry, setValue]);
-
-	useEffect(() => {
-		setValue('specifications', specifications);
-	}, [specifications, setValue]);
-
-	const onSubmit = (data) => {
-		console.log('Form Data:', data);
-		// Handle form submission (e.g., send data to your backend)
-		reset(); // Reset form after successful submission
-	};
-
-	const handleInputChange = (key, field, value) => {
-		setData((prev) =>
-			prev.map((item) =>
-				item.key === key ? { ...item, [field]: value } : item
-			)
-		);
-	};
-
-	const handleNextTab = async (nextTab, currentTabFields) => {
-		const isValid = await trigger(currentTabFields);
-
-		if (isValid) {
-			setActiveTab(nextTab);
-		} else {
-			const firstErrorField = currentTabFields?.find((field) => errors[field]);
-			document.getElementsByName(firstErrorField)?.[0]?.focus();
-		}
-	};
-
+	const [uploadedImages, setUploadedImages] = useState([]);
 	const genders = [
 		{ value: 'Unisex', label: 'Unisex' },
 		{ value: 'Male', label: 'Male' },
@@ -160,6 +113,53 @@ const AddProduct = () => {
 		{ value: 'No', label: 'No' },
 		{ value: 'One', label: 'One' },
 	];
+
+	const handleImageUpload = (e) => {
+		const file = e.target.files[0];
+		if (file) {
+			setUploadedImages((prevImages) => {
+				// Ensure only 4 images are allowed (mainImage + 3 additional)
+				if (prevImages.length < 4) {
+					return [...prevImages, file];
+				} else {
+					alert('You can only upload up to 4 images.');
+					return prevImages;
+				}
+			});
+		}
+	};
+
+	const handleDateChange = (date) => {
+		setSelectedDate(date);
+	};
+
+	// Update react-hook-form value when React-Quill value changes
+
+	const onSubmit = (data) => {
+		console.log('Form Data:', data);
+		// Handle form submission (e.g., send data to your backend)
+		reset(); // Reset form after successful submission
+	};
+
+	const handleInputChange = (key, field, value) => {
+		setData((prev) =>
+			prev.map((item) =>
+				item.key === key ? { ...item, [field]: value } : item
+			)
+		);
+	};
+
+	const handleNextTab = async (nextTab, currentTabFields) => {
+		const isValid = await trigger(currentTabFields);
+
+		if (isValid) {
+			setActiveTab(nextTab);
+		} else {
+			const firstErrorField = currentTabFields?.find((field) => errors[field]);
+			document.getElementsByName(firstErrorField)?.[0]?.focus();
+		}
+	};
+
 	const handleDateChange1 = (date) => {
 		setSelectedDate1(date);
 	};
@@ -172,16 +172,16 @@ const AddProduct = () => {
 		</Tooltip>
 	);
 
-	const [isImageVisible, setIsImageVisible] = useState(true);
+	// const [isImageVisible, setIsImageVisible] = useState(true);
 
-	const handleRemoveProduct = () => {
-		setIsImageVisible(false);
+	const handleRemoveImage = (index) => {
+		setUploadedImages((prevImages) => prevImages.filter((_, i) => i !== index));
 	};
-	const [isImageVisible1, setIsImageVisible1] = useState(true);
+	// const [isImageVisible1, setIsImageVisible1] = useState(true);
 
-	const handleRemoveProduct1 = () => {
-		setIsImageVisible1(false);
-	};
+	// const handleRemoveProduct1 = () => {
+	// 	setIsImageVisible1(false);
+	// };
 
 	const setAllFourPrice = () => {
 		// Get the value of storePrice
@@ -237,6 +237,18 @@ const AddProduct = () => {
 			),
 		},
 	];
+
+	useEffect(() => {
+		setValue('longDescription', longDescription);
+	}, [longDescription, setValue]);
+
+	useEffect(() => {
+		setValue('geometry', geometry);
+	}, [geometry, setValue]);
+
+	useEffect(() => {
+		setValue('specifications', specifications);
+	}, [specifications, setValue]);
 
 	// console.log('Form Errors:', errors);
 
@@ -351,6 +363,10 @@ const AddProduct = () => {
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
+
+	useEffect(() => {
+		setValue('images', uploadedImages); // Register images in react-hook-form
+	}, [uploadedImages, setValue]);
 
 	return (
 		<div className='page-wrapper'>
@@ -1683,30 +1699,54 @@ const AddProduct = () => {
 																					<div className='add-choosen'>
 																						<div className='input-blocks'>
 																							<div className='image-upload'>
-																								<input type='file' />
+																								<input
+																									type='file'
+																									accept='image/*'
+																									onChange={handleImageUpload}
+																								/>
 																								<div className='image-uploads'>
 																									<PlusCircle className='plus-down-add me-0' />
 																									<h4>Add Images</h4>
 																								</div>
 																							</div>
 																						</div>
-																						{isImageVisible1 && (
-																							<div className='phone-img'>
-																								<ImageWithBasePath
-																									src='assets/img/products/phone-add-2.png'
-																									alt='image'
-																								/>
-																								<Link to='#'>
-																									<X
-																										className='x-square-add remove-product'
-																										onClick={
-																											handleRemoveProduct1
-																										}
-																									/>
-																								</Link>
-																							</div>
-																						)}
-																						{isImageVisible && (
+																						{uploadedImages.length > 0 &&
+																							uploadedImages?.map(
+																								(image, index) => (
+																									<>
+																										<div
+																											key={index}
+																											className='phone-img'
+																										>
+																											<img
+																												src={URL.createObjectURL(
+																													image
+																												)}
+																												alt={`uploaded-${index}`}
+																												width='100'
+																												height='100'
+																											/>
+																											<p>
+																												{index === 0
+																													? 'Main Image'
+																													: `Image ${index}`}{' '}
+																												{/* Label images */}
+																											</p>
+																											<Link to='#'>
+																												<X
+																													className='x-square-add remove-product'
+																													onClick={() =>
+																														handleRemoveImage(
+																															index
+																														)
+																													}
+																												/>
+																											</Link>
+																										</div>
+																									</>
+																								)
+																							)}
+																						{/* {isImageVisible && (
 																							<div className='phone-img'>
 																								<ImageWithBasePath
 																									src='assets/img/products/phone-add-1.png'
@@ -1721,7 +1761,7 @@ const AddProduct = () => {
 																									/>
 																								</Link>
 																							</div>
-																						)}
+																						)} */}
 																					</div>
 																				</div>
 																			</div>
