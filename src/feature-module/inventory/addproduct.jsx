@@ -149,17 +149,6 @@ const AddProduct = () => {
 		{ value: 'Both', label: 'Both' },
 	];
 
-	const handleDateChange1 = (date) => {
-		setSelectedDate1(date);
-	};
-	const renderCollapseTooltip = (props) => (
-		<Tooltip
-			id='refresh-tooltip'
-			{...props}
-		>
-			Collapse
-		</Tooltip>
-	);
 	const seasonOptions = [
 		{ value: 'All', label: 'All' },
 		{ value: 'Winter', label: 'Winter' },
@@ -171,6 +160,17 @@ const AddProduct = () => {
 		{ value: 'No', label: 'No' },
 		{ value: 'One', label: 'One' },
 	];
+	const handleDateChange1 = (date) => {
+		setSelectedDate1(date);
+	};
+	const renderCollapseTooltip = (props) => (
+		<Tooltip
+			id='refresh-tooltip'
+			{...props}
+		>
+			Collapse
+		</Tooltip>
+	);
 
 	const [isImageVisible, setIsImageVisible] = useState(true);
 
