@@ -31,6 +31,7 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './addProductReactQuill.css';
 import { setToggleHeader } from '../../slices/productListSlice';
+import Table from '../../core/pagination/datatable';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
@@ -60,11 +61,38 @@ const AddProduct = () => {
 		// watch,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
+	// Local state for React-Quill
+	// Local state for React-Quill
+	// Local state for React-Quill
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
-	const [specifications, setSpecifications] = useState(''); // Local state for React-Quill
-	// Local state for React-Quill
-	// Local state for React-Quill
+	const [specifications, setSpecifications] = useState('');
+	const [data, setData] = useState([
+		{
+			key: '1',
+			branch: '01',
+			name: 'ROURKE CYCLES',
+			min: 10,
+			max: 150,
+			replenish: false,
+		},
+		{
+			key: '2',
+			branch: '02',
+			name: 'ROURKE CYCLES',
+			min: 1,
+			max: 15,
+			replenish: false,
+		},
+		{
+			key: '3',
+			branch: '03',
+			name: 'ROURKE CYCLES',
+			min: 1,
+			max: 15,
+			replenish: false,
+		},
+	]);
 
 	// Watch the description field for form updates
 	// const formDescription = watch('longDescription');
@@ -86,6 +114,14 @@ const AddProduct = () => {
 		console.log('Form Data:', data);
 		// Handle form submission (e.g., send data to your backend)
 		reset(); // Reset form after successful submission
+	};
+
+	const handleInputChange = (key, field, value) => {
+		setData((prev) =>
+			prev.map((item) =>
+				item.key === key ? { ...item, [field]: value } : item
+			)
+		);
 	};
 
 	const handleNextTab = async (nextTab, currentTabFields) => {
@@ -157,6 +193,51 @@ const AddProduct = () => {
 		setValue('mailOrderPrice', storePriceValue);
 		setValue('webPrice', storePriceValue);
 	};
+
+	const columns = [
+		{ title: 'Branch', dataIndex: 'branch', key: 'branch' },
+		{ title: 'Name', dataIndex: 'name', key: 'name' },
+		{
+			title: 'Min',
+			dataIndex: 'min',
+			key: 'min',
+			render: (text, record) => (
+				<input
+					type='number'
+					value={record.min}
+					onChange={(e) => handleInputChange(record.key, 'min', e.target.value)}
+					style={{ width: '60px', textAlign: 'center' }}
+				/>
+			),
+		},
+		{
+			title: 'Max',
+			dataIndex: 'max',
+			key: 'max',
+			render: (text, record) => (
+				<input
+					type='number'
+					value={record.max}
+					onChange={(e) => handleInputChange(record.key, 'max', e.target.value)}
+					style={{ width: '60px', textAlign: 'center' }}
+				/>
+			),
+		},
+		{
+			title: 'Replenish',
+			dataIndex: 'replenish',
+			key: 'replenish',
+			render: (text, record) => (
+				<input
+					type='checkbox'
+					checked={record.replenish}
+					onChange={(e) =>
+						handleInputChange(record.key, 'replenish', e.target.checked)
+					}
+				/>
+			),
+		},
+	];
 
 	// console.log('Form Errors:', errors);
 
@@ -2102,8 +2183,13 @@ const AddProduct = () => {
 											>
 												<div className='accordion-body'>
 													<div className='row'>
-														<div className='col-lg-6 col-sm-8 col-12'>
-															Table for Min/Max
+														<div className=' col-12'>
+															<Table
+																columns={columns}
+																dataSource={data}
+																pagination={false}
+																bordered
+															/>
 														</div>
 													</div>
 												</div>
