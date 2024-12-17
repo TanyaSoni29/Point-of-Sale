@@ -23,7 +23,7 @@ import { setToggleHeader } from '../../slices/productListSlice';
 
 const RolesPermissions = () => {
 	const route = all_routes;
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const dataSource = useSelector((state) => state.rolesandpermission_data);
 
 	const dispatch = useDispatch();
@@ -273,9 +273,9 @@ const RolesPermissions = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

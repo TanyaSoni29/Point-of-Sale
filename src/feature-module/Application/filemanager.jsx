@@ -35,7 +35,7 @@ const FileManager = () => {
 	const route = all_routes;
 	const [isOpen, setOpen] = useState(false);
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const options = [
 		{ value: 'sortByDate', label: 'Sort by Date' },
 		{ value: 'Ascending', label: 'Ascending' },
@@ -116,9 +116,9 @@ const FileManager = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

@@ -18,7 +18,7 @@ import FbIcon from '../../../assets/img/icons/fb-icon.svg';
 import { setToggleHeader } from '../../../slices/productListSlice';
 const SocialAuthentication = () => {
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 
 	const renderRefreshTooltip = (props) => (
 		<Tooltip
@@ -70,9 +70,9 @@ const SocialAuthentication = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

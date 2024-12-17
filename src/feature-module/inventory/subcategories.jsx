@@ -27,7 +27,7 @@ import { setToggleHeader } from '../../slices/productListSlice';
 
 const SubCategories = () => {
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const dataSource = useSelector((state) => state.subcategory_data);
 
 	const oldandlatestvalue = [
@@ -308,9 +308,9 @@ const SubCategories = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

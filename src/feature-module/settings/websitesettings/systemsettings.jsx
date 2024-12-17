@@ -18,7 +18,7 @@ import AppIcon10Img from '../../../assets/img/icons/app-icon-10.svg';
 import { setToggleHeader } from '../../../slices/productListSlice';
 const SystemSettings = () => {
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 
 	const renderRefreshTooltip = (props) => (
 		<Tooltip
@@ -71,9 +71,9 @@ const SystemSettings = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

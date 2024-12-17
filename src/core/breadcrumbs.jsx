@@ -14,7 +14,7 @@ import ExcelImg from '../assets/img/icons/excel.svg';
 import { setToggleHeader } from '../slices/productListSlice';
 const Breadcrumbs = (props) => {
 	const location = useLocation();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 
 	let addButton = null;
 	const dispatch = useDispatch();
@@ -249,9 +249,9 @@ const Breadcrumbs = (props) => {
 								data-bs-toggle='tooltip'
 								data-bs-placement='top'
 								id='collapse-header'
-								className={data ? 'active' : ''}
+								className={toggle_header ? 'active' : ''}
 								onClick={() => {
-									dispatch(setToggleHeader(!data));
+									dispatch(setToggleHeader(!toggle_header));
 								}}
 							>
 								<ChevronUp />
@@ -355,9 +355,9 @@ const Breadcrumbs = (props) => {
 								data-bs-toggle='tooltip'
 								data-bs-placement='top'
 								id='collapse-header'
-								className={data ? 'active' : ''}
+								className={toggle_header ? 'active' : ''}
 								onClick={() => {
-									dispatch(setToggleHeader(!data));
+									dispatch(setToggleHeader(!toggle_header));
 								}}
 							>
 								<ChevronUp />

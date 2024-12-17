@@ -16,7 +16,7 @@ import ExcelImg from '../../assets/img/icons/excel.svg';
 import { setToggleHeader } from '../../slices/productListSlice';
 const DeleteAccount = () => {
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const dataSource = useSelector((state) => state.deleteaccount_data);
 	const renderTooltip = (props) => (
 		<Tooltip
@@ -235,9 +235,9 @@ const DeleteAccount = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

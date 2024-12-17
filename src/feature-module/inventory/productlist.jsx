@@ -28,12 +28,15 @@ import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshProducts, setToggleHeader } from '../../slices/productListSlice';
+import {
+	refreshProducts,
+	setToggleHeader,
+} from '../../slices/productListSlice';
 
 const ProductList = () => {
 	const { products } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
@@ -348,10 +351,10 @@ const ProductList = () => {
 									data-bs-toggle='tooltip'
 									data-bs-placement='top'
 									id='collapse-header'
-									className={data ? 'active' : ''}
+									className={toggle_header ? 'active' : ''}
 									onClick={(e) => {
 										e.preventDefault();
-										dispatch(setToggleHeader(!data));
+										dispatch(setToggleHeader(!toggle_header));
 									}}
 								>
 									<ChevronUp />

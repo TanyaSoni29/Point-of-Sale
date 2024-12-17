@@ -30,7 +30,7 @@ import { setToggleHeader } from '../../../slices/productListSlice';
 
 const BanIpaddress = () => {
 	const datas = banIpAddressData;
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const dispatch = useDispatch();
 
 	const renderRefreshTooltip = (props) => (
@@ -183,9 +183,9 @@ const BanIpaddress = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

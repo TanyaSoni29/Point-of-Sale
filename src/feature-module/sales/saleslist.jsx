@@ -32,7 +32,7 @@ import { setToggleHeader } from '../../slices/productListSlice';
 const SalesList = () => {
 	const saleslistdata = saleslist;
 	const dispatch = useDispatch();
-	const data = useSelector((state) => state.toggle_header);
+	const { toggle_header } = useSelector((state) => state.product);
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 
 	const toggleFilterVisibility = () => {
@@ -435,9 +435,9 @@ const SalesList = () => {
 										data-bs-toggle='tooltip'
 										data-bs-placement='top'
 										id='collapse-header'
-										className={data ? 'active' : ''}
+										className={toggle_header ? 'active' : ''}
 										onClick={() => {
-											dispatch(setToggleHeader(!data));
+											dispatch(setToggleHeader(!toggle_header));
 										}}
 									>
 										<ChevronUp />

@@ -9,7 +9,7 @@ import { setToggleHeader } from '../../../slices/productListSlice';
 const SecuritySettings = () => {
 
     const dispatch = useDispatch();
-    const data = useSelector((state) => state.toggle_header);
+    const {toggle_header} = useSelector((state) => state.product);
 
     const renderRefreshTooltip = (props) => (
         <Tooltip id="refresh-tooltip" {...props}>
@@ -48,8 +48,8 @@ const SecuritySettings = () => {
                                         data-bs-toggle="tooltip"
                                         data-bs-placement="top"
                                         id="collapse-header"
-                                        className={data ? "active" : ""}
-                                        onClick={() => {dispatch(setToggleHeader(!data)) }}
+                                        className={toggle_header ? "active" : ""}
+                                        onClick={() => {dispatch(setToggleHeader(!toggle_header)) }}
                                     >
                                         <ChevronUp />
                                     </Link>
