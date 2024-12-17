@@ -2066,8 +2066,51 @@ const AddProduct = () => {
 							className={`tab-pane ${activeTab === 'minmax' ? 'active' : ''}`}
 						>
 							<div className='card'>
-								<h5>Min/Max</h5>
-								<p>Min/Max content goes here.</p>
+								<div className='card-body add-product pb-0'>
+									<div
+										className='accordion-card-one accordion'
+										id='accordionExample'
+									>
+										<div className='accordion-item'>
+											<div
+												className='accordion-header'
+												id='headingOne'
+											>
+												<div
+													className='accordion-button'
+													data-bs-toggle='collapse'
+													data-bs-target='#collapseOne'
+													aria-controls='collapseOne'
+												>
+													<div className='addproduct-icon'>
+														<h5>
+															<Info className='add-info' />
+
+															<span>Product Min/Max</span>
+														</h5>
+														<Link to='#'>
+															<ChevronDown className='chevron-down-add' />
+														</Link>
+													</div>
+												</div>
+											</div>
+											<div
+												id='collapseOne'
+												className='accordion-collapse collapse show'
+												aria-labelledby='headingOne'
+												data-bs-parent='#accordionExample'
+											>
+												<div className='accordion-body'>
+													<div className='row'>
+														<div className='col-lg-6 col-sm-8 col-12'>
+															Table for Min/Max
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
 							</div>
 
 							<div className='text-end'>
