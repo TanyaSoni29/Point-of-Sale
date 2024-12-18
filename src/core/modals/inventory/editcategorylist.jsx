@@ -3,11 +3,18 @@
 import { Switch } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateCategories } from '../../../service/operations/categoryApi';
+import {
+	refreshCategories,
+	updateCategory,
+} from '../../../slices/categorySlice';
 // import { Link } from 'react-router-dom';
 
 const EditCategoryList = () => {
 	const { category } = useSelector((state) => state.category);
+	const { token } = useSelector((state) => state.auth);
+	const dispatch = useDispatch();
 	const {
 		register,
 		handleSubmit,
@@ -25,10 +32,18 @@ const EditCategoryList = () => {
 	const subCategory2 = watch('c');
 	const majorCategory = watch('major');
 
-	const onSubmit = (data) => {
-		console.log(data);
-		if (modalRef.current) {
-			modalRef.current.click();
+	const onSubmit = async (data) => {
+		try {
+			const response = await updateCategories(token, data);
+			if (response?.success) {
+				dispatch(refreshCategories());
+				dispatch(updateCategory(data));
+				if (modalRef.current) {
+					modalRef.current.click();
+				}
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 
