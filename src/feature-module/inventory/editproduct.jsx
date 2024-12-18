@@ -35,8 +35,7 @@ import Table from '../../core/pagination/datatable';
 const EditProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-
-	const { toggle_header } = useSelector((state) => state.product);
+	const { toggle_header, product } = useSelector((state) => state.product);
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const handleDateChange = (date) => {
@@ -46,15 +45,6 @@ const EditProduct = () => {
 	const handleDateChange1 = (date) => {
 		setSelectedDate1(date);
 	};
-	const [allowPoints, setAllowPoints] = useState(false);
-	const [website, setWebsite] = useState(false);
-	const [webOnly, setWebOnly] = useState(false);
-	const [keyItem, setKeyItem] = useState(false);
-	const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
-	const [allowDiscount, setAllowDiscount] = useState(false);
-	const [currentProduct, setCurrentProduct] = useState(false);
-	const [isDiscontinued, setIsDiscontinued] = useState(false);
-	const [doNotReOrder, setDoNotReOrder] = useState(false);
 	const {
 		register,
 		handleSubmit,
@@ -62,9 +52,18 @@ const EditProduct = () => {
 		setValue,
 		getValues,
 		trigger,
-		// watch,
+		watch,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
+	const currentProduct = watch('current');
+	const allowDiscount = watch('allowDiscount');
+	const allowPoints = watch('allowPoints');
+	const website = watch('website');
+	const webOnly = watch('webOnly');
+	const keyItem = watch('keyItem');
+	const instantlyUpdateOnWebShop = watch('instantlyUpdateOnWebShop');
+	const isDiscontinued = watch('isDiscontinued');
+	const doNotReOrder = watch('doNotReOrder');
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
 	const [specifications, setSpecifications] = useState('');
@@ -246,6 +245,119 @@ const EditProduct = () => {
 		setValue('specifications', specifications);
 	}, [specifications, setValue]);
 	// console.log('Form Errors:', errors);
+
+	useEffect(() => {
+		if (product) {
+			reset({
+				// id: 0,
+				mfrPartNumber: product.mfrPartNumber || 0,
+				major: product.major || true,
+				gender: product.gender || 'Unisex',
+				suitability: product.suitability || 'Any',
+				// exipryDate: '2024-12-10T07:04:59.765Z',
+				makeCode: product.makeCode || '',
+				search1: product.search1 || '',
+				search2: product.search2 || '',
+				details: product.details || '',
+				size: product.size || '',
+				color: product.color || '',
+				barcode: product.barcode || '',
+				current: product.current || true,
+				printLabel: product.printLabel || 'Yes',
+				allowDiscount: product.allowDiscount || true,
+				year: product.year || '',
+				boxQuantity: product.boxQuantity || 0,
+				nominalSection: product.nominalSection || '',
+				nominalCode: product.nominalCode || '',
+				season: product.season || 'All',
+				costPrice: product.costPrice || 0,
+				discount: product.discount || 0,
+				discountPercentage: product.discountPercentage || 0,
+				markup: product.markup || 0,
+				vatCode: product.vatCode || 0,
+				suggestedRRP: product.suggestedRRP || 0,
+				storePrice: product.storePrice || 0,
+				tradePrice: product.tradePrice || 0,
+				mailOrderPrice: product.mailOrderPrice || 0,
+				webPrice: product.webPrice || 0,
+				offerCode: product.offerCode || '',
+				tillNote1: product.tillNote1 || '',
+				tillNote2: product.tillNote2 || '',
+				tillNote3: product.tillNote3 || '',
+				tillNote4: product.tillNote4 || '',
+				tillNote5: product.tillNote5 || '',
+				tillNote6: product.tillNote6 || '',
+				note1PrintPO: product.note1PrintPO || true,
+				note2PrintPO: product.note2PrintPO || true,
+				note3PrintPO: product.note3PrintPO || true,
+				note4PrintPO: product.note4PrintPO || true,
+				note5PrintPO: product.note5PrintPO || true,
+				note6PrintPO: product.note6PrintPO || true,
+				note1PrintInvoice: product.note1PrintInvoice || true,
+				note2PrintInvoice: product.note2PrintInvoice || true,
+				note3PrintInvoice: product.note3PrintInvoice || true,
+				note4PrintInvoice: product.note4PrintInvoice || true,
+				note5PrintInvoice: product.note5PrintInvoice || true,
+				note6PrintInvoice: product.note6PrintInvoice || true,
+				keyItem: product.keyItem || true,
+				allowPoints: product.allowPoints || true,
+				website: product.website || true,
+				webOnly: product.webOnly || true,
+				binLocation1: product.binLocation1 || '',
+				binLocation2: product.binLocation2 || '',
+				partsGarunteeMonths: product.partsGarunteeMonths || 0,
+				labourGarunteeMonths: product.labourGarunteeMonths || 0,
+				weight: product.weight || 0,
+				imageMain: product.imageMain || '',
+				image2: product.image2 || '',
+				image3: product.image3 || '',
+				image4: product.image4 || '',
+				promoPrice: product.promoPrice || 0,
+				promoStart: product.promoStart || '2024-12-10T07:04:59.765Z',
+				promoEnd: product.promoEnd || '2024-12-10T07:04:59.765Z',
+				multibuyQuantity: product.multibuyQuantity || 0,
+				multibuySave: product.multibuySave || 0,
+				estimatedArrivalDate:
+					product.estimatedArrivalDate || '2024-12-10T07:04:59.765Z',
+				leadTime: product.leadTime || 'Unknown',
+				supplier1Code: product.supplier1Code || '',
+				supplier2Code: product.supplier2Code || '',
+				catACode: product.catACode || '',
+				catBCode: product.catBCode || '',
+				catCCode: product.catCCode || '',
+				webCat1Code: product.webCat1Code || '',
+				webCat2Code: product.webCat2Code || '',
+				webCat3Code: product.webCat3Code || '',
+				webCat4Code: product.webCat4Code || '',
+				clickAndCollect: product.clickAndCollect || 'InStoreAndHomeDelivery',
+				shortDescription: product.shortDescription || '',
+				fullDescription: product.fullDescription || '',
+				websiteTitle: product.websiteTitle || '',
+				ebayTitle: product.ebayTitle || '',
+				googleShoppingTitle: product.googleShoppingTitle || '',
+				specifications: product.specifications || '',
+				geometry: product.geometry || '',
+				itemId: product.itemId || '',
+				range: product.range || '',
+				finish: product.finish || '',
+				webRef: product.webRef || 0,
+				make: product.make || '',
+				catA: product.catA || '',
+				catB: product.catB || '',
+				catC: product.catC || '',
+				mfrPartNumber2: product.mfrPartNumber2 || '',
+				createdOn: product.createdOn || '2024-12-10T07:04:59.765Z',
+				updatedOn: product.updatedOn || '2024-12-10T07:04:59.765Z',
+				promoName: product.promoName || '',
+				deliveryOption: product.deliveryOption || 'Standard',
+				eBaySyncStock: product.eBaySyncStock || true,
+				eBayStockLevel: product.eBayStockLevel || 0,
+				boxCost: product.boxCost || 0,
+				isDiscontinued: product.isDiscontinued || true,
+				doNotReOrder: product.doNotReOrder || true,
+			});
+		}
+	}, [product, reset]);
 
 	useEffect(() => {
 		if (isSubmitSuccessful) {
@@ -1185,7 +1297,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={currentProduct}
 																				onChange={(value) => {
-																					setCurrentProduct((prev) => !prev);
 																					setValue('current', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1196,7 +1307,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={allowDiscount}
 																				onChange={(value) => {
-																					setAllowDiscount((prev) => !prev);
 																					setValue('allowDiscount', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1207,7 +1317,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={allowPoints}
 																				onChange={(value) => {
-																					setAllowPoints((prev) => !prev);
 																					setValue('allowPoints', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1218,7 +1327,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={website}
 																				onChange={(value) => {
-																					setWebsite((prev) => !prev);
 																					setValue('website', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1229,7 +1337,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={webOnly}
 																				onChange={(value) => {
-																					setWebOnly((prev) => !prev);
 																					setValue('webOnly', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1250,7 +1357,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={keyItem}
 																				onChange={(value) => {
-																					setKeyItem((prev) => !prev);
 																					setValue('keyItem', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1260,11 +1366,11 @@ const EditProduct = () => {
 																		<label className='checkboxs'>
 																			<Switch
 																				checked={instantlyUpdateOnWebShop}
-																				onChange={() => {
-																					setInstantlyUpdateWebShop(
-																						(prev) => !prev
+																				onChange={(value) => {
+																					setValue(
+																						'instantlyUpdateOnWebShop',
+																						value
 																					);
-																					// setValue('keyItem', value);
 																				}}
 																				style={{ marginRight: '4px' }}
 																			/>
@@ -1275,7 +1381,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={isDiscontinued}
 																				onChange={(value) => {
-																					setIsDiscontinued((prev) => !prev);
 																					setValue('isDiscontinued', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1287,7 +1392,6 @@ const EditProduct = () => {
 																			<Switch
 																				checked={doNotReOrder}
 																				onChange={(value) => {
-																					setDoNotReOrder((prev) => !prev);
 																					setValue('doNotReOrder', value);
 																				}}
 																				style={{ marginRight: '4px' }}

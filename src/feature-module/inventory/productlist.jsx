@@ -30,6 +30,7 @@ import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
 import {
 	refreshProducts,
+	setProduct,
 	setToggleHeader,
 } from '../../slices/productListSlice';
 
@@ -84,11 +85,12 @@ const ProductList = () => {
 	};
 
 	const handleEdit = async (product) => {
-		try {
-			console.log(product);
-		} catch (error) {
-			console.log(error);
-		}
+		dispatch(setProduct(product));
+		// try {
+		// 	console.log(product);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	useEffect(() => {
