@@ -1,9 +1,53 @@
 /** @format */
 
-import React from 'react';
-import { Link } from 'react-router-dom';
+import { Switch } from 'antd';
+import React, { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+// import { Link } from 'react-router-dom';
 
 const AddCategoryList = () => {
+	const {
+		register,
+		handleSubmit,
+		setValue,
+		watch,
+		formState: { errors, isSubmitSuccessful },
+		reset,
+	} = useForm({
+		defaultValues: {
+			name: '',
+			a: false, // Main Category
+			b: false, // Sub Category
+			c: false, // Sub Category 2
+			major: false, // Major
+		},
+	});
+	const modalRef = useRef(null);
+
+	const mainCategory = watch('a');
+	const subCategory = watch('b');
+	const subCategory2 = watch('c');
+	const majorCategory = watch('major');
+
+	const onSubmit = (data) => {
+		console.log(data);
+		if (modalRef.current) {
+			modalRef.current.click();
+		}
+	};
+
+	useEffect(() => {
+		if (isSubmitSuccessful) {
+			reset({
+				name: '',
+				a: false,
+				b: false,
+				c: false,
+				major: false,
+			});
+		}
+	}, [reset, isSubmitSuccessful]);
+
 	return (
 		<div>
 			{/* Add Category */}
@@ -24,82 +68,78 @@ const AddCategoryList = () => {
 										className='close'
 										data-bs-dismiss='modal'
 										aria-label='Close'
+										ref={modalRef}
 									>
 										<span aria-hidden='true'>×</span>
 									</button>
 								</div>
 								<div className='modal-body custom-modal-body'>
-									<form>
+									<form onSubmit={handleSubmit(onSubmit)}>
 										<div className='mb-3'>
 											<label className='form-label'>Category</label>
 											<input
 												type='text'
 												className='form-control'
+												{...register('name', {
+													required: 'Category Name is required',
+												})}
+												placeholder='Enter Category Name'
 											/>
+											{errors?.name && (
+												<p className='text-danger'>{errors?.name?.message}</p>
+											)}
 										</div>
 										{/* <div className="mb-3">
                                             <label className="form-label">Category Slug</label>
                                             <input type="text" className="form-control" />
                                         </div> */}
 										<div className='mb-1'>
-											<div className='status-toggle modal-status d-flex justify-content-end gap-2 align-items-center'>
-												<span className='status-label'>Main Category</span>
-												<input
-													type='checkbox'
-													id='user3'
-													className='check'
-													defaultChecked='true'
+											<label className=''>
+												<Switch
+													checked={mainCategory}
+													onChange={(value) => {
+														setValue('a', value);
+													}}
+													style={{ marginRight: '6px' }}
 												/>
-												<label
-													htmlFor='user3'
-													className='checktoggle'
-												/>
-											</div>
+												Main Category
+											</label>
 										</div>
 										<div className='mb-1'>
-											<div className='status-toggle modal-status d-flex justify-content-end gap-2 align-items-center'>
-												<span className='status-label'>Sub Category</span>
-												<input
-													type='checkbox'
-													id='user3'
-													className='check'
-													defaultChecked='true'
+											<label className=''>
+												<Switch
+													checked={subCategory}
+													onChange={(value) => {
+														setValue('b', value);
+													}}
+													style={{ marginRight: '6px' }}
 												/>
-												<label
-													htmlFor='user3'
-													className='checktoggle'
-												/>
-											</div>
+												Sub Category
+											</label>
 										</div>
 										<div className='mb-1'>
-											<div className='status-toggle modal-status d-flex justify-content-end gap-2 align-items-center'>
-												<span className='status-label'>Sub Category 2</span>
-												<input
-													type='checkbox'
-													id='user3'
-													className='check'
-													defaultChecked='true'
+											<label className=''>
+												<Switch
+													checked={subCategory2}
+													onChange={(value) => {
+														setValue('c', value);
+													}}
+													style={{ marginRight: '6px' }}
 												/>
-												<label
-													htmlFor='user3'
-													className='checktoggle'
-												/>
-											</div>
+												Sub Category 2
+											</label>
 										</div>
 										<div className='mb-1'>
-											<div className='status-toggle modal-status d-flex justify-content-end gap-2 align-items-center'>
-												<span className='status-label'>Major</span>
-												<input
-													type='checkbox'
-													id='user3'
-													className='check'
-													defaultChecked='true'
+											<label className=''>
+												<Switch
+													checked={majorCategory}
+													onChange={(value) => {
+														setValue('major', value);
+													}}
+													style={{ marginRight: '6px' }}
 												/>
-												<label
-													htmlFor='user3'
-													className='checktoggle'
-												/>
-											</div>
+												Major
+											</label>
 										</div>
 										<div className='modal-footer-btn'>
 											<button
@@ -109,12 +149,12 @@ const AddCategoryList = () => {
 											>
 												Cancel
 											</button>
-											<Link
-												to='#'
+											<button
+												type='submit'
 												className='btn btn-submit'
 											>
 												Create Category
-											</Link>
+											</button>
 										</div>
 									</form>
 								</div>

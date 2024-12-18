@@ -33,21 +33,28 @@
 //     }
 // }
 {
-    "env": {
-      "browser": true,
-      "es2021": true
-    },
-    "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
-    // "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
-    "parserOptions": {
-      "ecmaVersion": 12,
-      "sourceType": "module",
-      "ecmaFeatures": {
-        "jsx": true
-      }
-    },
-    // "plugins": ["react", "react-hooks"],
-    "rules": {
-      //add customize rules here as per your project's needs
-    }
+	"env": {
+		"browser": true,
+		"es2021": true
+	},
+	"extends": [
+		"eslint:recommended",
+		"plugin:react/recommended",
+		"plugin:react-hooks/recommended"
+	],
+	// "extends": ["eslint:recommended", "plugin:react/recommended", "plugin:react-hooks/recommended"],
+	"parserOptions": {
+		"ecmaVersion": 12,
+		"sourceType": "module",
+		"ecmaFeatures": {
+			"jsx": true
+		}
+	},
+	// "plugins": ["react", "react-hooks"],
+	"rules": {
+		"react/prop-types": "off", // Disable prop-types validation
+		"react/react-in-jsx-scope": "off", // Suppress React in JSX scope errors
+		"react-hooks/rules-of-hooks": "error", // Enforce hooks rules
+		"react-hooks/exhaustive-deps": "warn" // Warn on missing dependencies in useEffect
+	}
 }
