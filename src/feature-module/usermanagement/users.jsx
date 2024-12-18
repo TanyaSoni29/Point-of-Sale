@@ -1,9 +1,9 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import { ChevronUp, RotateCcw } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -24,6 +24,12 @@ import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
 import { setToggleHeader } from '../../slices/productListSlice';
+import {
+	refreshStaffUsers,
+	updateStaffUser,
+} from '../../slices/staffUserSlice';
+import { Switch } from 'antd';
+import { updateStaffUsers } from '../../service/operations/staffUsersApi';
 
 const Users = () => {
 	const oldandlatestvalue = [
@@ -49,7 +55,8 @@ const Users = () => {
 
 	const dispatch = useDispatch();
 	const { toggle_header } = useSelector((state) => state.product);
-	const dataSource = useSelector((state) => state.userlist_data);
+	const { staffUsers } = useSelector((state) => state.staffUsers);
+	const { token } = useSelector((state) => state.auth);
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
@@ -113,13 +120,28 @@ const Users = () => {
 		}
 	};
 
+	const handleToggle = async (user, field, checked) => {
+		try {
+			const newData = {
+				...user,
+				[field]: checked,
+			};
+			const response = await updateStaffUsers(token, newData);
+			if (response?.success) {
+				dispatch(updateStaffUser(newData));
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
+
 	const columns = [
 		{
-			title: 'User Name',
-			dataIndex: 'username',
-			render: (text, record) => (
+			title: 'User Code',
+			dataIndex: 'code',
+			render: (text) => (
 				<span className='userimgname'>
-					<Link
+					{/* <Link
 						to='#'
 						className='userslist-img bg-img'
 					>
@@ -127,49 +149,70 @@ const Users = () => {
 							alt=''
 							src={record.img}
 						/>
-					</Link>
+					</Link> */}
 					<div>
 						<Link to='#'>{text}</Link>
 					</div>
 				</span>
 			),
-			sorter: (a, b) => a.username.length - b.username.length,
+			sorter: (a, b) => a.code.localeCompare(b.code),
 		},
 
 		{
-			title: 'Phone',
-			dataIndex: 'phone',
-			sorter: (a, b) => a.phone.length - b.phone.length,
+			title: 'User Name',
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localeCompare(b.name),
 		},
 		{
-			title: 'Email',
-			dataIndex: 'email',
-			sorter: (a, b) => a.email.length - b.email.length,
+			title: 'Pin',
+			dataIndex: 'pin',
+			sorter: (a, b) => a.pin.localeCompare(b.pin),
 		},
 		{
-			title: 'Role',
-			dataIndex: 'role',
-			sorter: (a, b) => a.role.length - b.role.length,
-		},
-		{
-			title: 'Created On',
-			dataIndex: 'createdon',
-			sorter: (a, b) => a.createdon.length - b.createdon.length,
-		},
-		{
-			title: 'Status',
-			dataIndex: 'status',
-			render: (text) => (
-				<div>
-					{text === 'Active' && (
-						<span className='badge badge-linesuccess'>{text}</span>
-					)}
-					{text === 'Inactive' && (
-						<span className='badge badge-linedanger'>{text}</span>
-					)}
-				</div>
+			title: 'Allow Discount',
+			dataIndex: 'allowDiscount',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'allowDiscount', checked)} // API call handler
+				/>
 			),
-			sorter: (a, b) => a.status.length - b.status.length,
+			sorter: (a, b) => a.allowDiscount - b.allowDiscount,
+		},
+		{
+			title: 'Allow Price Change',
+			dataIndex: 'allowPriceChange',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) =>
+						handleToggle(record, 'allowPriceChange', checked)
+					} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.allowPriceChange - b.allowPriceChange,
+		},
+		{
+			title: 'Allow Credit',
+			dataIndex: 'allowCredit',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'allowCredit', checked)} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.allowCredit - b.allowCredit,
+		},
+		{
+			title: 'Mechanic',
+			dataIndex: 'isMachanic',
+			render: (value, record) => (
+				<Switch
+					checked={value} // True or false for switch state
+					onChange={(checked) => handleToggle(record, 'isMachanic', checked)} // API call handler
+				/>
+			),
+			sorter: (a, b) => a.isMachanic - b.isMachanic,
 		},
 		{
 			title: 'Actions',
@@ -241,6 +284,11 @@ const Users = () => {
 			}
 		});
 	};
+
+	useEffect(() => {
+		dispatch(refreshStaffUsers());
+	}, [dispatch]);
+
 	return (
 		<div>
 			<div className='page-wrapper'>
@@ -467,7 +515,7 @@ const Users = () => {
 							<div className='table-responsive'>
 								<Table
 									columns={columns}
-									dataSource={dataSource}
+									dataSource={staffUsers}
 								/>
 							</div>
 						</div>

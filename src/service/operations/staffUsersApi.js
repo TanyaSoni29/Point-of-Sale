@@ -82,7 +82,7 @@ export const getStaffUser = async (token, staffUserId) => {
 	return result;
 };
 
-export const updateStaffUser = async (token, data) => {
+export const updateStaffUsers = async (token, data) => {
 	try {
 		const response = await apiConnector('PUT', UPDATE_STAFF_USER, data, {
 			'Authorization': `Bearer ${token}`,

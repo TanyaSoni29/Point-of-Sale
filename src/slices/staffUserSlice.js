@@ -1,6 +1,7 @@
 /** @format */
 
 import { createSlice } from '@reduxjs/toolkit';
+import { getAllStaffUsers } from '../service/operations/staffUsersApi';
 
 const initialState = {
 	staffUsers: [],
@@ -45,17 +46,17 @@ const staffUsersSlice = createSlice({
 	},
 });
 
-// export function refreshStaffUsers() {
-// 	return async (dispatch, getState) => {
-// 		// const token = getState().auth.token;
-// 		try {
-// 			// const response = await getAllProducts(token);
-// 			// dispatch(setProducts(response));
-// 		} catch (error) {
-// 			console.error('Failed to refresh staffUsers:', error);
-// 		}
-// 	};
-// }
+export function refreshStaffUsers() {
+	return async (dispatch, getState) => {
+		const token = getState().auth.token;
+		try {
+			const response = await getAllStaffUsers(token);
+			dispatch(setStaffUsers(response));
+		} catch (error) {
+			console.error('Failed to refresh staffUsers:', error);
+		}
+	};
+}
 
 export const {
 	setLoading,
