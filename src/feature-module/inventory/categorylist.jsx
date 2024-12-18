@@ -124,14 +124,15 @@ const CategoryList = () => {
 
 	const handleDelete = async (category) => {
 		try {
+			showConfirmationAlert();
 			console.log(category);
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const handleEdit = async (category) => {
-		console.log(category);
+	const handleEdit = (category) => {
+		// console.log(category);
 		dispatch(setCategory(category));
 		// try {
 		// 	console.log(category);
