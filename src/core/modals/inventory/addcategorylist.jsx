@@ -16,6 +16,7 @@ const AddCategoryList = () => {
 	} = useForm({
 		defaultValues: {
 			name: '',
+			code: '',
 			a: false, // Main Category
 			b: false, // Sub Category
 			c: false, // Sub Category 2
@@ -40,6 +41,7 @@ const AddCategoryList = () => {
 		if (isSubmitSuccessful) {
 			reset({
 				name: '',
+				code: '',
 				a: false,
 				b: false,
 				c: false,
@@ -76,6 +78,20 @@ const AddCategoryList = () => {
 								<div className='modal-body custom-modal-body'>
 									<form onSubmit={handleSubmit(onSubmit)}>
 										<div className='mb-3'>
+											<label className='form-label'>Category Code</label>
+											<input
+												type='text'
+												className='form-control'
+												{...register('code', {
+													required: 'Category Code is required',
+												})}
+												placeholder='Enter Category Code'
+											/>
+											{errors?.code && (
+												<p className='text-danger'>{errors?.code?.message}</p>
+											)}
+										</div>
+										<div className='mb-3'>
 											<label className='form-label'>Category</label>
 											<input
 												type='text'
@@ -89,6 +105,7 @@ const AddCategoryList = () => {
 												<p className='text-danger'>{errors?.name?.message}</p>
 											)}
 										</div>
+
 										{/* <div className="mb-3">
                                             <label className="form-label">Category Slug</label>
                                             <input type="text" className="form-control" />
