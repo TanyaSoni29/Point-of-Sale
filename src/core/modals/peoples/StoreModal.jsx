@@ -572,6 +572,40 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Company Number</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.companyNumber}
+														{...editRegister('componyNumber')}
+													/>
+													{editErrors.companyNumber && (
+														<p className=''>
+															{addErrors.companyNumber.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>
+														General Email Add.
+													</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.generalEmailAddress}
+														{...editRegister('generalEmailAddress')}
+													/>
+													{editErrors.generalEmailAddress && (
+														<p className=''>
+															{editErrors.generalEmailAddress.message}
+														</p>
+													)}
+												</div>
+											</div>
 											<div className='col-lg-12 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 1</label>
@@ -636,6 +670,100 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Postcode</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.postcode}
+														{...editRegister('postcode')}
+													/>
+													{editErrors.postcode && (
+														<p className=''>{editErrors.postcode.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>
+														Store Website URL
+													</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.storeWebsiteURL}
+														{...editRegister('storeWebsiteURL')}
+													/>
+													{editErrors.storeWebsiteURL && (
+														<p className=''>
+															{editErrors.storeWebsiteURL.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Admin Name</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.adminName}
+														{...editRegister('adminName')}
+													/>
+													{editErrors.adminName && (
+														<p className=''>{editErrors.adminName.message}</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Account Name</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.accountName}
+														{...editRegister('accountName')}
+													/>
+													{editErrors.accountName && (
+														<p className=''>{editErrors.accountName.message}</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Account Email</label>
+													<input
+														type='text'
+														className='form-control'
+														defaultValue={location?.accountEmail}
+														{...editRegister('accountEmail')}
+													/>
+													{editErrors.accountEmail && (
+														<p className=''>{editErrors.accountEmail.message}</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-1 pe-0'>
+												<div className='mb-3'>
+													<label className='form-label'>Key Location</label>
+													<Switch
+														checked={getValues('keyLocation')} // Get the current value of the switch
+														onChange={(checked) =>
+															setValue('keyLocation', checked)
+														}
+														{...editRegister('keyLocation')}
+													/>
+													{editErrors.keyLocation && (
+														<p className=''>{editErrors.keyLocation.message}</p>
+													)}
+												</div>
+											</div>
+
 											{/* <div className='col-lg-6 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>City</label>
