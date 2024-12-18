@@ -17,7 +17,7 @@ const EditCategoryList = () => {
 		reset,
 	} = useForm();
 
-	console.log(category);
+	// console.log(category);
 	const modalRef = useRef(null);
 
 	const mainCategory = watch('a');

@@ -38,19 +38,18 @@ const AddProduct = () => {
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
-	const [allowPoints, setAllowPoints] = useState(false);
-	const [website, setWebsite] = useState(false);
-	const [webOnly, setWebOnly] = useState(false);
-	const [keyItem, setKeyItem] = useState(false);
-	const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
-	const [allowDiscount, setAllowDiscount] = useState(false);
-	const [currentProduct, setCurrentProduct] = useState(false);
-	const [isDiscontinued, setIsDiscontinued] = useState(false);
-	const [doNotReOrder, setDoNotReOrder] = useState(false);
+	// const [allowPoints, setAllowPoints] = useState(false);
+	// const [website, setWebsite] = useState(false);
+	// const [webOnly, setWebOnly] = useState(false);
+	// const [keyItem, setKeyItem] = useState(false);
+	// const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
+	// const [isDiscontinued, setIsDiscontinued] = useState(false);
+	// const [doNotReOrder, setDoNotReOrder] = useState(false);
 	const {
 		register,
 		handleSubmit,
 		reset,
+		watch,
 		setValue,
 		getValues,
 		trigger,
@@ -87,6 +86,15 @@ const AddProduct = () => {
 		},
 	]);
 	const [uploadedImages, setUploadedImages] = useState([]);
+	const currentProduct = watch('current');
+	const allowDiscount = watch('allowDiscount');
+	const allowPoints = watch('allowPoints');
+	const website = watch('website');
+	const webOnly = watch('webOnly');
+	const keyItem = watch('keyItem');
+	const instantlyUpdateOnWebShop = watch('instantlyUpdateOnWebShop');
+	const isDiscontinued = watch('isDiscontinued');
+	const doNotReOrder = watch('doNotReOrder');
 	const genders = [
 		{ value: 'Unisex', label: 'Unisex' },
 		{ value: 'Male', label: 'Male' },
@@ -1191,7 +1199,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={currentProduct}
 																				onChange={(value) => {
-																					setCurrentProduct((prev) => !prev);
 																					setValue('current', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1202,7 +1209,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={allowDiscount}
 																				onChange={(value) => {
-																					setAllowDiscount((prev) => !prev);
 																					setValue('allowDiscount', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1213,7 +1219,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={allowPoints}
 																				onChange={(value) => {
-																					setAllowPoints((prev) => !prev);
 																					setValue('allowPoints', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1224,7 +1229,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={website}
 																				onChange={(value) => {
-																					setWebsite((prev) => !prev);
 																					setValue('website', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1235,7 +1239,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={webOnly}
 																				onChange={(value) => {
-																					setWebOnly((prev) => !prev);
 																					setValue('webOnly', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1256,7 +1259,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={keyItem}
 																				onChange={(value) => {
-																					setKeyItem((prev) => !prev);
 																					setValue('keyItem', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1266,11 +1268,11 @@ const AddProduct = () => {
 																		<label className='checkboxs'>
 																			<Switch
 																				checked={instantlyUpdateOnWebShop}
-																				onChange={() => {
-																					setInstantlyUpdateWebShop(
-																						(prev) => !prev
+																				onChange={(value) => {
+																					setValue(
+																						'instantlyUpdateOnWebShop',
+																						value
 																					);
-																					// setValue('keyItem', value);
 																				}}
 																				style={{ marginRight: '4px' }}
 																			/>
@@ -1281,7 +1283,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={isDiscontinued}
 																				onChange={(value) => {
-																					setIsDiscontinued((prev) => !prev);
 																					setValue('isDiscontinued', value);
 																				}}
 																				style={{ marginRight: '4px' }}
@@ -1293,7 +1294,6 @@ const AddProduct = () => {
 																			<Switch
 																				checked={doNotReOrder}
 																				onChange={(value) => {
-																					setDoNotReOrder((prev) => !prev);
 																					setValue('doNotReOrder', value);
 																				}}
 																				style={{ marginRight: '4px' }}
