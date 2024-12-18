@@ -25,7 +25,11 @@ import Table from '../../core/pagination/datatable';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshCategories, updateCategory } from '../../slices/categorySlice';
+import {
+	refreshCategories,
+	setCategory,
+	updateCategory,
+} from '../../slices/categorySlice';
 import { updateCategories } from '../../service/operations/categoryApi';
 import { setToggleHeader } from '../../slices/productListSlice';
 
@@ -127,11 +131,13 @@ const CategoryList = () => {
 	};
 
 	const handleEdit = async (category) => {
-		try {
-			console.log(category);
-		} catch (error) {
-			console.log(error);
-		}
+		console.log(category);
+		dispatch(setCategory(category));
+		// try {
+		// 	console.log(category);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	const columns = [
