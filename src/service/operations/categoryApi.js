@@ -96,7 +96,7 @@ export const updateCategories = async (token, data) => {
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
+		const errorMessage = error.response?.data?.error || 'An Error Occurred';
 		toast.error(errorMessage);
 	}
 };

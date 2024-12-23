@@ -72,7 +72,7 @@ export const getMake = async (token, makeId) => {
 	return result;
 };
 
-export const updateMake = async (token, data) => {
+export const updateMakes = async (token, data) => {
 	try {
 		const response = await apiConnector('PUT', UPDATE_MAKE, data, {
 			'Authorization': `Bearer ${token}`,
@@ -81,13 +81,13 @@ export const updateMake = async (token, data) => {
 
 		console.log('Update MAKES API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update makes");
+		if (response.status !== 200) throw new Error("Couldn't update makes");
 
 		toast.success('MAKES updated successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
+		const errorMessage = error.response?.data?.error || 'An Error Occurred';
 		toast.error(errorMessage);
 	}
 };

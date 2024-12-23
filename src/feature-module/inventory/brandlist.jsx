@@ -20,16 +20,18 @@ import {
 } from 'feather-icons-react/build/IconComponents';
 import { DatePicker } from 'antd';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import withReactContent from 'sweetalert2-react-content';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshMakes } from '../../slices/makesSlice';
+import { refreshMakes, setMake } from '../../slices/makesSlice';
 import { setToggleHeader } from '../../slices/productListSlice';
+import { deleteMake } from '../../service/operations/MakesApi';
 
 const BrandList = () => {
 	const { makes } = useSelector((state) => state.makes);
+	const { token } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
 	const { toggle_header } = useSelector((state) => state.product);
 
@@ -99,21 +101,44 @@ const BrandList = () => {
 		</Tooltip>
 	);
 
+	const MySwal = withReactContent(Swal);
+
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			showCancelButton: true,
+			reverseButtons: true,
+			confirmButtonColor: '#00ff00',
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonColor: '#ff0000',
+			cancelButtonText: 'Cancel',
+		});
+		return result.isConfirmed;
+	};
+
 	useEffect(() => {
 		dispatch(refreshMakes());
 	}, [dispatch]);
 
 	const handleEdit = async (brand) => {
-		try {
-			console.log(brand);
-		} catch (error) {
-			console.log(error);
-		}
+		dispatch(setMake(brand));
+		// try {
+		// 	console.log(brand);
+		// } catch (error) {
+		// 	console.log(error);
+		// }
 	};
 
 	const handleDelete = async (brand) => {
+		const isConfirmed = await showConfirmationAlert();
+
+		if (!isConfirmed) return;
 		try {
-			console.log(brand);
+			const response = await deleteMake(token, brand.code);
+			if (response) {
+				dispatch(refreshMakes());
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -121,45 +146,50 @@ const BrandList = () => {
 
 	const columns = [
 		{
-			title: 'Brand',
-			dataIndex: 'brand',
-			sorter: (a, b) => a.brand.length - b.brand.length,
+			title: 'Code',
+			dataIndex: 'code',
+			sorter: (a, b) => a.code.localCompare(b.code),
+		},
+		{
+			title: 'Make',
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localCompare(b.name),
 		},
 
-		{
-			title: 'Logo',
-			dataIndex: 'logo',
-			render: (text, record) => (
-				<span className='productimgname'>
-					<Link
-						to='#'
-						className='product-img stock-img'
-					>
-						<ImageWithBasePath
-							alt=''
-							src={record.logo}
-						/>
-					</Link>
-				</span>
-			),
-			sorter: (a, b) => a.logo.length - b.logo.length,
-			width: '5%',
-		},
-		{
-			title: 'Createdon',
-			dataIndex: 'createdon',
-			sorter: (a, b) => a.createdon.length - b.createdon.length,
-		},
-		{
-			title: 'Status',
-			dataIndex: 'status',
-			render: (text) => (
-				<span className='badge badge-linesuccess'>
-					<Link to='#'> {text}</Link>
-				</span>
-			),
-			sorter: (a, b) => a.status.length - b.status.length,
-		},
+		// {
+		// 	title: 'Logo',
+		// 	dataIndex: 'logo',
+		// 	render: (text, record) => (
+		// 		<span className='productimgname'>
+		// 			<Link
+		// 				to='#'
+		// 				className='product-img stock-img'
+		// 			>
+		// 				<ImageWithBasePath
+		// 					alt=''
+		// 					src={record.logo}
+		// 				/>
+		// 			</Link>
+		// 		</span>
+		// 	),
+		// 	sorter: (a, b) => a.logo.length - b.logo.length,
+		// 	width: '5%',
+		// },
+		// {
+		// 	title: 'Createdon',
+		// 	dataIndex: 'createdon',
+		// 	sorter: (a, b) => a.createdon.length - b.createdon.length,
+		// },
+		// {
+		// 	title: 'Status',
+		// 	dataIndex: 'status',
+		// 	render: (text) => (
+		// 		<span className='badge badge-linesuccess'>
+		// 			<Link to='#'> {text}</Link>
+		// 		</span>
+		// 	),
+		// 	sorter: (a, b) => a.status.length - b.status.length,
+		// },
 		{
 			title: 'Actions',
 			dataIndex: 'actions',
@@ -195,33 +225,7 @@ const BrandList = () => {
 			),
 		},
 	];
-	const MySwal = withReactContent(Swal);
 
-	const showConfirmationAlert = () => {
-		MySwal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			showCancelButton: true,
-			confirmButtonColor: '#00ff00',
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonColor: '#ff0000',
-			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
-		});
-	};
 	return (
 		<div>
 			<div className='page-wrapper'>

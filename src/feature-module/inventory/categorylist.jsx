@@ -159,11 +159,6 @@ const CategoryList = () => {
 	const handleEdit = (category) => {
 		// console.log(category);
 		dispatch(setCategory(category));
-		// try {
-		// 	console.log(category);
-		// } catch (error) {
-		// 	console.log(error);
-		// }
 	};
 
 	const columns = [
