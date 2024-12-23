@@ -105,7 +105,7 @@ export const deleteMake = async (token, makeId) => {
 		});
 
 		console.log('Delete Makes Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete makes");
+		if (response.status !== 200) throw new Error("Couldn't delete makes");
 		result = true;
 	} catch (error) {
 		console.log('Delete Makes Api error', error);
