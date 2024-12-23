@@ -116,6 +116,7 @@ export const deleteCategory = async (token, categoryId) => {
 
 		console.log('Delete Category Api response---', response);
 		if (response.status !== 200) throw new Error("Couldn't delete category");
+		toast.success('Category deleted successfully');
 		result = true;
 	} catch (error) {
 		console.log('Delete Category Api error', error);
