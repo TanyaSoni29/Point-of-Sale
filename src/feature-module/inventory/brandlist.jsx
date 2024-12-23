@@ -331,7 +331,7 @@ const BrandList = () => {
 								data-bs-target='#add-brand'
 							>
 								<PlusCircle className='me-2' />
-								Add New Brand
+								Add New Make
 							</Link>
 						</div>
 					</div>

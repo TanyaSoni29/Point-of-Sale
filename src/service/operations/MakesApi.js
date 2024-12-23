@@ -16,14 +16,18 @@ export const createMakes = async (token, data) => {
 
 		console.log('CREATE MAKES API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create makes");
+		if (response.status !== 200) throw new Error("Couldn't create makes");
 
 		toast.success('Makes created successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
-		toast.error(errorMessage);
+		if (error.status === 400) {
+			console.log('', error.response.data);
+
+			const errorMessages = error.response?.data || 'An Error Occurred';
+			toast.error(errorMessages);
+		}
 	}
 };
 

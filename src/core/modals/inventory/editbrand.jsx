@@ -69,7 +69,7 @@ const EditBrand = () => {
 							<div className='content'>
 								<div className='modal-header border-0 custom-modal-header'>
 									<div className='page-title'>
-										<h4>Edit Brand</h4>
+										<h4>Edit Make</h4>
 									</div>
 									<button
 										type='button'
