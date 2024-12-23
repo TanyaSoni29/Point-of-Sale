@@ -21,14 +21,18 @@ export const createCategory = async (token, data) => {
 
 		console.log('CREATE CATEGORY API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create category");
+		if (response.status !== 200) throw new Error("Couldn't create category");
 
 		toast.success('Category created successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
-		toast.error(errorMessage);
+		if (error.status === 400) {
+			console.log('', error.response.data);
+
+			const errorMessages = error.response?.data || 'An Error Occurred';
+			toast.error(errorMessages);
+		}
 	}
 };
 
@@ -111,7 +115,7 @@ export const deleteCategory = async (token, categoryId) => {
 		);
 
 		console.log('Delete Category Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete category");
+		if (response.status !== 200) throw new Error("Couldn't delete category");
 		result = true;
 	} catch (error) {
 		console.log('Delete Category Api error', error);

@@ -3,9 +3,14 @@
 import { Switch } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import { createCategory } from '../../../service/operations/categoryApi';
+import { useDispatch, useSelector } from 'react-redux';
+import { refreshCategories } from '../../../slices/categorySlice';
 // import { Link } from 'react-router-dom';
 
 const AddCategoryList = () => {
+	const dispatch = useDispatch();
+	const { token } = useSelector((state) => state.auth);
 	const {
 		register,
 		handleSubmit,
@@ -30,10 +35,19 @@ const AddCategoryList = () => {
 	const subCategory2 = watch('c');
 	const majorCategory = watch('major');
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		console.log(data);
-		if (modalRef.current) {
-			modalRef.current.click();
+		try {
+			const response = await createCategory(token, data);
+			console.log('create category response.....', response);
+			if (response?.success) {
+				if (modalRef.current) {
+					modalRef.current.click();
+				}
+				dispatch(refreshCategories());
+			}
+		} catch (error) {
+			console.log(error);
 		}
 	};
 

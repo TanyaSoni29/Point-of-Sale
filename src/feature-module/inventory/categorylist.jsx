@@ -30,7 +30,10 @@ import {
 	setCategory,
 	updateCategory,
 } from '../../slices/categorySlice';
-import { updateCategories } from '../../service/operations/categoryApi';
+import {
+	deleteCategory,
+	updateCategories,
+} from '../../service/operations/categoryApi';
 import { setToggleHeader } from '../../slices/productListSlice';
 
 const CategoryList = () => {
@@ -106,6 +109,21 @@ const CategoryList = () => {
 			Collapse
 		</Tooltip>
 	);
+	const MySwal = withReactContent(Swal);
+
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			showCancelButton: true,
+			reverseButtons: true,
+			confirmButtonColor: '#00ff00',
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonColor: '#ff0000',
+			cancelButtonText: 'Cancel',
+		});
+		return result.isConfirmed; // Return the isConfirmed value
+	};
 
 	const handleToggle = async (category, field, checked) => {
 		try {
@@ -123,9 +141,16 @@ const CategoryList = () => {
 	};
 
 	const handleDelete = async (category) => {
+		const isConfirmed = await showConfirmationAlert();
+		console.log(isConfirmed);
+		if (!isConfirmed) {
+			return;
+		}
 		try {
-			showConfirmationAlert();
-			console.log(category);
+			const response = await deleteCategory(token, category.code);
+			if (response) {
+				dispatch(refreshCategories());
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -231,33 +256,6 @@ const CategoryList = () => {
 			),
 		},
 	];
-	const MySwal = withReactContent(Swal);
-
-	const showConfirmationAlert = () => {
-		MySwal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			showCancelButton: true,
-			confirmButtonColor: '#00ff00',
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonColor: '#ff0000',
-			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
-		});
-	};
 
 	useEffect(() => {
 		dispatch(refreshCategories());

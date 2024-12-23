@@ -15,6 +15,7 @@ import { Provider } from 'react-redux';
 import AllRoutes from './Router/router.jsx';
 import { configureStore } from '@reduxjs/toolkit';
 import rootReducer from './reducer';
+import { Toaster } from 'react-hot-toast';
 
 const store = configureStore({
 	reducer: rootReducer,
@@ -30,6 +31,7 @@ if (rootElement) {
 		<React.StrictMode>
 			<Provider store={store}>
 				<BrowserRouter basename={base_path}>
+					<Toaster />
 					<AllRoutes />
 				</BrowserRouter>
 			</Provider>
