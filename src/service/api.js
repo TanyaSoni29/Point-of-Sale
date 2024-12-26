@@ -1,7 +1,7 @@
 /** @format */
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
-const BASE_URL = 'http://192.168.1.21/api';
+const BASE_URL = 'http://192.168.1.10/api';
 
 console.log(BASE_URL);
 

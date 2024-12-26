@@ -21,13 +21,13 @@ export const createStaffUsers = async (token, data) => {
 
 		console.log('CREATE STAFFUSERS API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create staffUsers");
+		if (response.status !== 200) throw new Error("Couldn't create staffUsers");
 
 		toast.success('StaffUsers created successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
+		const errorMessage = error.response?.data || 'An Error Occurred';
 		toast.error(errorMessage);
 	}
 };
@@ -91,18 +91,18 @@ export const updateStaffUsers = async (token, data) => {
 
 		console.log('Update StaffUser API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update staffUser");
+		if (response.status !== 200) throw new Error("Couldn't update staffUser");
 
 		toast.success('StaffUser updated successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
-		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
+		const errorMessage = error.response?.data || 'An Error Occurred';
 		toast.error(errorMessage);
 	}
 };
 
-export const deleteMake = async (token, staffUserId) => {
+export const deleteStaffUser = async (token, staffUserId) => {
 	let result = false;
 	try {
 		const response = await apiConnector(
@@ -116,7 +116,7 @@ export const deleteMake = async (token, staffUserId) => {
 		);
 
 		console.log('Delete StaffUser Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete staffUser");
+		if (response.status !== 200) throw new Error("Couldn't delete staffUser");
 		result = true;
 	} catch (error) {
 		console.log('Delete StaffUser Api error', error);
