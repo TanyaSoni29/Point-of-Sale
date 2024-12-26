@@ -26,6 +26,7 @@ import CloseImg from '../../assets/img/icons/closes.svg';
 import { setToggleHeader } from '../../slices/productListSlice';
 import {
 	refreshStaffUsers,
+	setStaffUser,
 	updateStaffUser,
 } from '../../slices/staffUserSlice';
 import { Switch } from 'antd';
@@ -113,11 +114,7 @@ const Users = () => {
 	};
 
 	const handleEdit = async (user) => {
-		try {
-			console.log(user);
-		} catch (error) {
-			console.log(error);
-		}
+		dispatch(setStaffUser(user));
 	};
 
 	const handleToggle = async (user, field, checked) => {
