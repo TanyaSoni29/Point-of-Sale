@@ -14,7 +14,7 @@ import SupplierModal from '../../core/modals/peoples/supplierModal';
 import CloseImg from '../../assets/img/icons/closes.svg';
 
 const Suppliers = () => {
-	const data = useSelector((state) => state.supplierdata);
+	const { supplier } = useSelector((state) => state.supplier);
 
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
