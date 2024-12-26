@@ -12,8 +12,7 @@ import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import SupplierModal from '../../core/modals/peoples/supplierModal';
 import CloseImg from '../../assets/img/icons/closes.svg';
-import { refreshSuppliers } from '../../slices/supplierSlice';
-import { setStaffUser } from '../../slices/staffUserSlice';
+import { refreshSuppliers, setSupplier } from '../../slices/supplierSlice';
 import { deleteSupplier } from '../../service/operations/suppliersApi';
 
 const Suppliers = () => {
@@ -61,7 +60,7 @@ const Suppliers = () => {
 	};
 
 	const handleEdit = async (supplier) => {
-		dispatch(setStaffUser(supplier));
+		dispatch(setSupplier(supplier));
 	};
 
 	const handleDelete = async (supplier) => {

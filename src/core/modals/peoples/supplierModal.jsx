@@ -1,51 +1,131 @@
-import React from "react";
-import Select from "react-select";
-import ImageWithBasePath from "../../img/imagewithbasebath";
+/** @format */
+
+import React, { useEffect, useRef } from 'react';
+import { useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { createSupplier } from '../../../service/operations/suppliersApi';
+import { refreshSuppliers } from '../../../slices/supplierSlice';
+// import Select from 'react-select';
+// import ImageWithBasePath from "../../img/imagewithbasebath";
 
 const SupplierModal = () => {
-  const options1 = [
-    { value: "Choose", label: "Choose" },
-    { value: "Varrel", label: "Varrel" },
-  ];
+	const dispatch = useDispatch();
+	// const { supplier } = useSelector((state) => state.suppliers);
+	const { token } = useSelector((state) => state.auth);
+	const {
+		register: addRegister,
+		handleSubmit: addHandleSubmit,
+		formState: { errors: addErrors, isSubmitSuccessful: addIsSubmitSuccessful },
+		reset: addReset,
+	} = useForm({
+		defaultValues: {
+			accountNo: '',
+			name: '',
+			address1: '',
+			address2: '',
+			address3: '',
+			address4: '',
+			postcode: '',
+			telephone: '',
+			fax: '',
+			email: '',
+			b2BFileName: '',
+			b2BFileType: '',
+			b2BFileHasHeaderRow: false,
+			b2BFileAppendLocationCode: false,
+			settlementDiscount: 0.0,
+			carriagePaidAmount: 0.0,
+		},
+	});
 
-  const options2 = [
-    { value: "Choose", label: "Choose" },
-    { value: "Germany", label: "Germany" },
-    { value: "Mexico", label: "Mexico" },
-  ];
+	const addModalRef = useRef(null);
+	const editModalRef = useRef(null);
 
-  const options3 = [{ value: "Varrel", label: "Varrel" }];
+	const addOnSubmit = async (data) => {
+		console.log(data);
+		try {
+			const response = await createSupplier(token, data);
+			if (response.success) {
+				if (addModalRef.current) {
+					addModalRef.current.click();
+				}
+				dispatch(refreshSuppliers());
+			}
+		} catch (error) {
+			console.log(error);
+		}
+	};
 
-  const options4 = [
-    { value: "Germany", label: "Germany" },
-    { value: "France", label: "France" },
-    { value: "Mexico", label: "Mexico" },
-  ];
-  return (
-    <div>
-      {/* Add Supplier */}
-      <div className="modal fade" id="add-units">
-        <div className="modal-dialog modal-dialog-centered custom-modal-two">
-          <div className="modal-content">
-            <div className="page-wrapper-new p-0">
-              <div className="content">
-                <div className="modal-header border-0 custom-modal-header">
-                  <div className="page-title">
-                    <h4>Add Supplier</h4>
-                  </div>
-                  <button
-                    type="button"
-                    className="close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div className="modal-body custom-modal-body">
-                  <form>
-                    <div className="row">
-                      <div className="col-lg-12">
+	useEffect(() => {
+		if (addIsSubmitSuccessful) {
+			addReset({
+				accountNo: '',
+				name: '',
+				address1: '',
+				address2: '',
+				address3: '',
+				address4: '',
+				postcode: '',
+				telephone: '',
+				fax: '',
+				email: '',
+				b2BFileName: '',
+				b2BFileType: '',
+				b2BFileHasHeaderRow: false,
+				b2BFileAppendLocationCode: false,
+				settlementDiscount: 0.0,
+				carriagePaidAmount: 0.0,
+			});
+		}
+	}, [addReset, addIsSubmitSuccessful]);
+
+	// const options1 = [
+	// 	{ value: 'Choose', label: 'Choose' },
+	// 	{ value: 'Varrel', label: 'Varrel' },
+	// ];
+
+	// const options2 = [
+	// 	{ value: 'Choose', label: 'Choose' },
+	// 	{ value: 'Germany', label: 'Germany' },
+	// 	{ value: 'Mexico', label: 'Mexico' },
+	// ];
+
+	// const options3 = [{ value: 'Varrel', label: 'Varrel' }];
+
+	// const options4 = [
+	// 	{ value: 'Germany', label: 'Germany' },
+	// 	{ value: 'France', label: 'France' },
+	// 	{ value: 'Mexico', label: 'Mexico' },
+	// ];
+	return (
+		<div>
+			{/* Add Supplier */}
+			<div
+				className='modal fade'
+				id='add-units'
+			>
+				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+					<div className='modal-content'>
+						<div className='page-wrapper-new p-0'>
+							<div className='content'>
+								<div className='modal-header border-0 custom-modal-header'>
+									<div className='page-title'>
+										<h4>Add Supplier</h4>
+									</div>
+									<button
+										type='button'
+										className='close'
+										data-bs-dismiss='modal'
+										aria-label='Close'
+										ref={addModalRef}
+									>
+										<span aria-hidden='true'>×</span>
+									</button>
+								</div>
+								<div className='modal-body custom-modal-body'>
+									<form onSubmit={addHandleSubmit(addOnSubmit)}>
+										<div className='row'>
+											{/* <div className="col-lg-12">
                         <div className="new-employee-field">
                           <span>Avatar</span>
                           <div className="profile-pic-upload mb-2">
@@ -68,97 +148,140 @@ const SupplierModal = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Supplier Name</label>
-                          <input type="text" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Email</label>
-                          <input type="email" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Phone</label>
-                          <input type="text" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="input-blocks">
-                          <label>Address</label>
-                          <input type="text" className="form-control" />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-sm-10 col-10">
-                        <div className="input-blocks">
-                          <label>City</label>
-                          <Select classNamePrefix="react-select" options={options1} />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-sm-10 col-10">
-                        <div className="input-blocks">
-                          <label>Country</label>
-                          <Select classNamePrefix="react-select" options={options2} />
-                        </div>
-                      </div>
-                      <div className="col-md-12">
-                        <div className="mb-0 input-blocks">
-                          <label className="form-label">Descriptions</label>
-                          <textarea
-                            className="form-control mb-1"
-                            defaultValue={""}
-                          />
-                          <p>Maximum 600 Characters</p>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="modal-footer-btn">
-                      <button
-                        type="button"
-                        className="btn btn-cancel me-2"
-                        data-bs-dismiss="modal"
-                      >
-                        Cancel
-                      </button>
-                      <button type="submit" className="btn btn-submit">
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* /Add Supplier */}
-      {/* Edit Supplier */}
-      <div className="modal fade" id="edit-units">
-        <div className="modal-dialog modal-dialog-centered custom-modal-two">
-          <div className="modal-content">
-            <div className="page-wrapper-new p-0">
-              <div className="content">
-                <div className="modal-header border-0 custom-modal-header">
-                  <div className="page-title">
-                    <h4>Edit Supplier</h4>
-                  </div>
-                  <button
-                    type="button"
-                    className="close"
-                    data-bs-dismiss="modal"
-                    aria-label="Close"
-                  >
-                    <span aria-hidden="true">×</span>
-                  </button>
-                </div>
-                <div className="modal-body custom-modal-body">
-                  <form>
-                    <div className="row">
-                      <div className="col-lg-12">
+                      </div> */}
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Account No.</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('accountNo', {
+															required: 'Supplier Account No. is required',
+														})}
+														placeholder='Enter Supplier Account No.'
+													/>
+													{addErrors?.accountNo && (
+														<p className='text-danger'>
+															{addErrors?.accountNo?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Supplier Name</label>
+													<input
+														type='text'
+														className='form-control'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Email</label>
+													<input
+														type='email'
+														className='form-control'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Phone</label>
+													<input
+														type='text'
+														className='form-control'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-12'>
+												<div className='input-blocks'>
+													<label>Address</label>
+													<input
+														type='text'
+														className='form-control'
+													/>
+												</div>
+											</div>
+											{/* <div className='col-lg-6 col-sm-10 col-10'>
+												<div className='input-blocks'>
+													<label>City</label>
+													<Select
+														classNamePrefix='react-select'
+														options={options1}
+													/>
+												</div>
+											</div>
+											<div className='col-lg-6 col-sm-10 col-10'>
+												<div className='input-blocks'>
+													<label>Country</label>
+													<Select
+														classNamePrefix='react-select'
+														options={options2}
+													/>
+												</div>
+											</div> */}
+											<div className='col-md-12'>
+												<div className='mb-0 input-blocks'>
+													<label className='form-label'>Descriptions</label>
+													<textarea
+														className='form-control mb-1'
+														defaultValue={''}
+													/>
+													<p>Maximum 600 Characters</p>
+												</div>
+											</div>
+										</div>
+										<div className='modal-footer-btn'>
+											<button
+												type='button'
+												className='btn btn-cancel me-2'
+												data-bs-dismiss='modal'
+											>
+												Cancel
+											</button>
+											<button
+												type='submit'
+												className='btn btn-submit'
+											>
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* /Add Supplier */}
+			{/* Edit Supplier */}
+			<div
+				className='modal fade'
+				id='edit-units'
+			>
+				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+					<div className='modal-content'>
+						<div className='page-wrapper-new p-0'>
+							<div className='content'>
+								<div className='modal-header border-0 custom-modal-header'>
+									<div className='page-title'>
+										<h4>Edit Supplier</h4>
+									</div>
+									<button
+										type='button'
+										className='close'
+										data-bs-dismiss='modal'
+										aria-label='Close'
+										ref={editModalRef}
+									>
+										<span aria-hidden='true'>×</span>
+									</button>
+								</div>
+								<div className='modal-body custom-modal-body'>
+									<form>
+										<div className='row'>
+											{/* <div className="col-lg-12">
                         <div className="new-employee-field">
                           <span>Avatar</span>
                           <div className="profile-pic-upload edit-pic">
@@ -183,80 +306,95 @@ const SupplierModal = () => {
                             </div>
                           </div>
                         </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Supplier Name</label>
-                          <input type="text" placeholder="Apex Computers" />
-                        </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Email</label>
-                          <input
-                            type="email"
-                            placeholder="apexcomputers@example.com"
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-4">
-                        <div className="input-blocks">
-                          <label>Phone</label>
-                          <input type="text" placeholder={+12163547758} />
-                        </div>
-                      </div>
-                      <div className="col-lg-12">
-                        <div className="input-blocks">
-                          <label>Address</label>
-                          <input
-                            type="text"
-                            placeholder="Budapester Strasse 2027259 "
-                          />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-sm-10 col-10">
-                        <div className="input-blocks">
-                          <label>City</label>
-                          <Select classNamePrefix="react-select" options={options3} />
-                        </div>
-                      </div>
-                      <div className="col-lg-6 col-sm-10 col-10">
-                        <div className="input-blocks">
-                          <label>Country</label>
-                          <Select classNamePrefix="react-select" options={options4} />
-                        </div>
-                      </div>
-                      <div className="mb-0 input-blocks">
-                        <label className="form-label">Descriptions</label>
-                        <textarea
-                          className="form-control mb-1"
-                          defaultValue={""}
-                        />
-                        <p>Maximum 600 Characters</p>
-                      </div>
-                    </div>
-                    <div className="modal-footer-btn">
-                      <button
-                        type="button"
-                        className="btn btn-cancel me-2"
-                        data-bs-dismiss="modal"
-                      >
-                        Cancel
-                      </button>
-                      <button type="submit" className="btn btn-submit">
-                        Submit
-                      </button>
-                    </div>
-                  </form>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      {/* /Edit Supplier */}
-    </div>
-  );
+                      </div> */}
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Supplier Name</label>
+													<input
+														type='text'
+														placeholder='Apex Computers'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Email</label>
+													<input
+														type='email'
+														placeholder='apexcomputers@example.com'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='input-blocks'>
+													<label>Phone</label>
+													<input
+														type='text'
+														placeholder={+12163547758}
+													/>
+												</div>
+											</div>
+											<div className='col-lg-12'>
+												<div className='input-blocks'>
+													<label>Address</label>
+													<input
+														type='text'
+														placeholder='Budapester Strasse 2027259 '
+													/>
+												</div>
+											</div>
+											{/* <div className='col-lg-6 col-sm-10 col-10'>
+												<div className='input-blocks'>
+													<label>City</label>
+													<Select
+														classNamePrefix='react-select'
+														options={options3}
+													/>
+												</div>
+											</div>
+											<div className='col-lg-6 col-sm-10 col-10'>
+												<div className='input-blocks'>
+													<label>Country</label>
+													<Select
+														classNamePrefix='react-select'
+														options={options4}
+													/>
+												</div>
+											</div> */}
+											<div className='mb-0 input-blocks'>
+												<label className='form-label'>Descriptions</label>
+												<textarea
+													className='form-control mb-1'
+													defaultValue={''}
+												/>
+												<p>Maximum 600 Characters</p>
+											</div>
+										</div>
+										<div className='modal-footer-btn'>
+											<button
+												type='button'
+												className='btn btn-cancel me-2'
+												data-bs-dismiss='modal'
+											>
+												Cancel
+											</button>
+											<button
+												type='submit'
+												className='btn btn-submit'
+											>
+												Submit
+											</button>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{/* /Edit Supplier */}
+		</div>
+	);
 };
 
 export default SupplierModal;
