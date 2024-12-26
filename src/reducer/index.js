@@ -9,6 +9,7 @@ import makesReducer from '../slices/makesSlice.js';
 import locationReducer from '../slices/locationSlice.js';
 import categoryReducer from '../slices/categorySlice.js';
 import customersReducer from '../slices/customerSlice.js';
+import suppliersReducer from '../slices/supplierSlice.js';
 
 const rootReducer = combineReducers({
 	auth: authReducer,
@@ -18,6 +19,7 @@ const rootReducer = combineReducers({
 	makes: makesReducer,
 	product: productsReducer,
 	staffUsers: staffUsersReducer,
+	suppliers: suppliersReducer,
 });
 
 export default rootReducer;

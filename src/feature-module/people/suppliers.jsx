@@ -1,21 +1,25 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Breadcrumbs from '../../core/breadcrumbs';
 import { Link } from 'react-router-dom';
 import { Filter, Sliders, User, Globe, Edit, Eye, Trash2 } from 'react-feather';
-import ImageWithBasePath from '../../core/img/imagewithbasebath';
+// import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import Select from 'react-select';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import Table from '../../core/pagination/datatable';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 import SupplierModal from '../../core/modals/peoples/supplierModal';
 import CloseImg from '../../assets/img/icons/closes.svg';
+import { refreshSuppliers } from '../../slices/supplierSlice';
+import { setStaffUser } from '../../slices/staffUserSlice';
+import { deleteSupplier } from '../../service/operations/suppliersApi';
 
 const Suppliers = () => {
-	const { supplier } = useSelector((state) => state.supplier);
-
+	const dispatch = useDispatch();
+	const { suppliers } = useSelector((state) => state.suppliers);
+	const { token } = useSelector((state) => state.auth);
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
@@ -40,49 +44,54 @@ const Suppliers = () => {
 		{ label: 'USA', value: 'USA' },
 	];
 
-	const handleEdit = async (customer) => {
+	const MySwal = withReactContent(Swal);
+
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			showCancelButton: true,
+			reverseButtons: true,
+			confirmButtonColor: '#00ff00',
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonColor: '#ff0000',
+			cancelButtonText: 'Cancel',
+		});
+		return result.isConfirmed;
+	};
+
+	const handleEdit = async (supplier) => {
+		dispatch(setStaffUser(supplier));
+	};
+
+	const handleDelete = async (supplier) => {
+		const isConfirmed = await showConfirmationAlert();
+		if (!isConfirmed) return;
 		try {
-			console.log(customer);
+			const response = await deleteSupplier(token, supplier.accountNo);
+			if (response) {
+				dispatch(refreshSuppliers());
+			}
 		} catch (error) {
 			console.log(error);
 		}
 	};
 
-	const handleDelete = async (customer) => {
-		try {
-			showConfirmationAlert();
-			console.log(customer);
-		} catch (error) {
-			console.log(error);
-		}
-	};
+	useEffect(() => {
+		dispatch(refreshSuppliers());
+	}, [dispatch]);
 
 	const columns = [
 		{
-			title: 'Supplier Name',
-			dataIndex: 'supplierName',
-			render: (text, record) => (
-				<span className='productimgname'>
-					<Link
-						to='#'
-						className='product-img stock-img'
-					>
-						<ImageWithBasePath
-							alt=''
-							src={record.image}
-						/>
-					</Link>
-					<Link to='#'>{text}</Link>
-				</span>
-			),
-			sorter: (a, b) => a.supplierName.length - b.supplierName.length,
+			title: 'Account No.',
+			dataIndex: 'accountNo',
+			sorter: (a, b) => a.accountNo.localCompare(b.accountNo),
 		},
 		{
-			title: 'Code',
-			dataIndex: 'code',
-			sorter: (a, b) => a.code.length - b.code.length,
+			title: 'Name',
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localeCompare(b.name),
 		},
-
 		{
 			title: 'Email',
 			dataIndex: 'email',
@@ -91,14 +100,8 @@ const Suppliers = () => {
 
 		{
 			title: 'Phone',
-			dataIndex: 'phone',
+			dataIndex: 'telephone',
 			sorter: (a, b) => a.phone.length - b.phone.length,
-		},
-
-		{
-			title: 'Country',
-			dataIndex: 'country',
-			sorter: (a, b) => a.country.length - b.country.length,
 		},
 
 		{
@@ -140,33 +143,6 @@ const Suppliers = () => {
 		},
 	];
 
-	const MySwal = withReactContent(Swal);
-
-	const showConfirmationAlert = () => {
-		MySwal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			showCancelButton: true,
-			confirmButtonColor: '#00ff00',
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonColor: '#ff0000',
-			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
-		});
-	};
 	return (
 		<div className='page-wrapper'>
 			<div className='content'>
@@ -281,7 +257,7 @@ const Suppliers = () => {
 							<Table
 								className='table datanew'
 								columns={columns}
-								dataSource={data}
+								dataSource={suppliers}
 								rowKey={(record) => record.id}
 							/>
 						</div>
