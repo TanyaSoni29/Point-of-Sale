@@ -21,7 +21,7 @@ export const createLocation = async (token, data) => {
 
 		console.log('CREATE LOCATION API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create location");
+		if (response.status !== 200) throw new Error("Couldn't create location");
 
 		toast.success('Location created successfully');
 		return response?.data;
@@ -65,7 +65,7 @@ export const getLocation = async (token, locationId) => {
 		});
 
 		console.log('Get Location Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get location");
+		if (response.status !== 200) throw new Error("Couldn't get location");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Location Api error', error);
@@ -111,7 +111,7 @@ export const deleteLocation = async (token, locationId) => {
 		);
 
 		console.log('Delete Location Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete location");
+		if (response.status !== 200) throw new Error("Couldn't delete location");
 		result = true;
 	} catch (error) {
 		console.log('Delete Location Api error', error);

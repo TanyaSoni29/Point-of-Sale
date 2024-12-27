@@ -17,7 +17,10 @@ import {
 	setLocation,
 	updateLocations,
 } from '../../../slices/locationSlice';
-import { updateLocation } from '../../../service/operations/locationApi';
+import {
+	deleteLocation,
+	updateLocation,
+} from '../../../service/operations/locationApi';
 import { Switch } from 'antd';
 import StoreModal from './StoreModal';
 
@@ -49,10 +52,30 @@ const StoreList = () => {
 		{ label: 'USA', value: 'USA' },
 	];
 
+	const MySwal = withReactContent(Swal);
+
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			showCancelButton: true,
+			confirmButtonColor: '#00ff00',
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonColor: '#ff0000',
+			cancelButtonText: 'Cancel',
+		});
+		return result.isConfirmed;
+	};
+
 	const handleDelete = async (location) => {
+		console.log(location);
 		try {
-			showConfirmationAlert();
-			console.log(location);
+			const isConfirmed = await showConfirmationAlert();
+			if (!isConfirmed) return;
+			const response = await deleteLocation(token, location.code);
+			if (response) {
+				dispatch(refreshLocations());
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -166,33 +189,6 @@ const StoreList = () => {
 		},
 	];
 
-	const MySwal = withReactContent(Swal);
-
-	const showConfirmationAlert = () => {
-		MySwal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			showCancelButton: true,
-			confirmButtonColor: '#00ff00',
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonColor: '#ff0000',
-			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
-		});
-	};
 	return (
 		<div className='page-wrapper'>
 			<div className='content'>
