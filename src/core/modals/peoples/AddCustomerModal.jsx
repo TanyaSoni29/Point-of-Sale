@@ -176,7 +176,7 @@ const AddCustomerModal = () => {
 								type='submit'
 								className='btn btn-submit'
 							>
-								Submit
+								Create Customer
 							</button>
 						</div>
 					</form>
