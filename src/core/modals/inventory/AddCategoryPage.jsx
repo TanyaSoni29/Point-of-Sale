@@ -11,7 +11,6 @@ import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 import { ArrowLeft, ChevronUp } from 'feather-icons-react/build/IconComponents';
 import { setToggleHeader } from '../../../slices/productListSlice';
-// import { Link } from 'react-router-dom';
 
 const AddCategoryPage = () => {
 	const route = all_routes;
