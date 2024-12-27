@@ -12,6 +12,7 @@ const HorizontalSidebar = () => {
 	const [isActive5, setIsActive5] = useState(false);
 	const [isActive6, setIsActive6] = useState(false);
 	const [isActive7, setIsActive7] = useState(false);
+	const [isActive8, setIsActive8] = useState(false);
 
 	const [subActive, setsubActive] = useState(false);
 	const [subActive2, setsubActive2] = useState(false);
@@ -195,6 +196,15 @@ const HorizontalSidebar = () => {
 		setIsActive6(false);
 		setIsActive7(!isActive7);
 	};
+	const handleSelectClick8 = () => {
+		setIsActive(false);
+		setIsActive2(false);
+		setIsActive3(false);
+		setIsActive4(false);
+		setIsActive5(false);
+		setIsActive6(false);
+		setIsActive8(!isActive8);
+	};
 
 	return (
 		<div className='sidebar horizontal-sidebar'>
@@ -277,6 +287,51 @@ const HorizontalSidebar = () => {
 										<Link to='file-manager'>File Manager</Link>
 									</li>
 								</ul>
+							</li>
+						</ul>
+					</li>
+					<li className='submenu'>
+						<Link
+							to='#'
+							onClick={handleSelectClick8}
+							className={isActive8 ? 'subdrop' : ''}
+						>
+							<img
+								src='assets/img/icons/product.svg'
+								alt='img'
+							/>
+							<span> System Maintenance </span> <span className='menu-arrow' />
+						</Link>
+						<ul style={{ display: isActive8 ? 'block' : 'none' }}>
+							<li>
+								<Link to='add-customer'>
+									<span>Customer Maintenance</span>
+								</Link>
+							</li>
+							<li>
+								<Link to='add-supplier'>
+									<span>Supplier Maintenance</span>
+								</Link>
+							</li>
+							<li>
+								<Link to='add-product'>
+									<span>Product Maintenance</span>
+								</Link>
+							</li>
+							<li>
+								<Link to='add-location'>
+									<span>Location Maintenance</span>
+								</Link>
+							</li>
+							<li>
+								<Link to='add-category'>
+									<span>Category Maintenance</span>
+								</Link>
+							</li>
+							<li>
+								<Link to='add-brand'>
+									<span>Brand Maintenance</span>
+								</Link>
 							</li>
 						</ul>
 					</li>

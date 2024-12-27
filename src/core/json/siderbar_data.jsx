@@ -48,6 +48,57 @@ export const SidebarData = [
 		],
 	},
 	{
+		label: 'System Maintenance',
+		submenuOpen: true,
+		showSubRoute: false,
+		submenuHdr: 'System Maintenance',
+		submenuItems: [
+			{
+				label: 'Customer Maintenance',
+				link: '/add-customer',
+				icon: <Icon.User />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Supplier Maintenance',
+				link: '/add-supplier',
+				icon: <Icon.Users />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Product Maintenance',
+				link: '/add-product',
+				icon: <Icon.PlusSquare />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Location Maintenance',
+				link: '/add-location',
+				icon: <Icon.Home />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Category Maintenance',
+				link: '/add-category',
+				icon: <Icon.Codepen />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Brand Maintenance',
+				link: '/add-brand',
+				icon: <Icon.Tag />,
+				showSubRoute: false,
+				submenu: false,
+			},
+		],
+	},
+
+	{
 		label: 'Inventory',
 		submenuOpen: true,
 		showSubRoute: false,
@@ -60,13 +111,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Create Product',
-				link: '/add-product',
-				icon: <Icon.PlusSquare />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Create Product',
+			// 	link: '/add-product',
+			// 	icon: <Icon.PlusSquare />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			// {
 			// 	label: 'Expired Products',
 			// 	link: '/expired-products',

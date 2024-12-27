@@ -198,6 +198,8 @@ import Coupons from '../feature-module/coupons/coupons';
 import { all_routes } from './all_routes';
 import BankSettingGrid from '../feature-module/settings/financialsettings/banksettinggrid';
 import PayrollList from '../feature-module/hrm/payroll-list';
+import AddCustomerModal from '../core/modals/peoples/AddCustomerModal';
+
 export const publicRoutes = [
 	{
 		id: 1,
@@ -1409,6 +1411,13 @@ export const publicRoutes = [
 		path: routes.payrollList,
 		name: 'payroll-list',
 		element: <PayrollList />,
+		route: Route,
+	},
+	{
+		id: 120,
+		path: routes.addcustomer,
+		name: 'addcustomer',
+		element: <AddCustomerModal />,
 		route: Route,
 	},
 ];

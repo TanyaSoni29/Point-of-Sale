@@ -349,6 +349,42 @@ const CollapsedSidebar = () => {
 						</ul>
 						<ul
 							className='tab-pane'
+							id='home'
+							aria-labelledby='home-tab'
+						>
+							<li className='submenu'>
+								<Link
+									to='#'
+									onClick={handleSelectClick}
+									className={isActive ? 'subdrop' : ''}
+								>
+									<span>System Maintenance</span>{' '}
+									<span className='menu-arrow' />
+								</Link>
+								<ul style={{ display: isActive ? 'block' : 'none' }}>
+									<li>
+										<Link to='add-customer'>Customer Maintenance</Link>
+									</li>
+									<li>
+										<Link to='add-supplier'>Supplier Maintenance</Link>
+									</li>
+									<li>
+										<Link to='add-product'>Product Maintenance</Link>
+									</li>
+									<li>
+										<Link to='add-location'>Location Maintenance</Link>
+									</li>
+									<li>
+										<Link to='add-category'>Category Maintenance</Link>
+									</li>
+									<li>
+										<Link to='add-brand'>Brand Maintenance</Link>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<ul
+							className='tab-pane'
 							id='product'
 							aria-labelledby='messages-tab'
 						>
