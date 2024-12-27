@@ -2,7 +2,8 @@
 
 // const BASE_URL = process.env.REACT_APP_BASE_URL;
 const BASE_URL = 'http://192.168.1.10/api';
-
+// const BASE_URL =
+// 	'http://abacusonline-002-site4.atempurl.com/swagger/index.html';
 console.log(BASE_URL);
 
 export const authEndpoints = {

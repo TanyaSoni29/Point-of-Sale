@@ -201,6 +201,7 @@ import PayrollList from '../feature-module/hrm/payroll-list';
 import AddCustomerModal from '../core/modals/peoples/AddCustomerModal';
 import AddCategoryPage from '../core/modals/inventory/AddCategoryPage';
 import AddSupplier from '../core/modals/peoples/AddSupplier';
+import AddStore from '../core/modals/peoples/AddStore';
 
 export const publicRoutes = [
 	{
@@ -1434,6 +1435,13 @@ export const publicRoutes = [
 		path: routes.addsupplier,
 		name: 'addsupplier',
 		element: <AddSupplier />,
+		route: Route,
+	},
+	{
+		id: 123,
+		path: routes.addlocation,
+		name: 'addlocation',
+		element: <AddStore />,
 		route: Route,
 	},
 ];
