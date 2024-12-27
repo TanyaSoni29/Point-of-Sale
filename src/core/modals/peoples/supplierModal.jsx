@@ -5,6 +5,7 @@ import { useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { createSupplier } from '../../../service/operations/suppliersApi';
 import { refreshSuppliers } from '../../../slices/supplierSlice';
+import { Switch } from 'antd';
 // import Select from 'react-select';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 
@@ -15,6 +16,8 @@ const SupplierModal = () => {
 	const {
 		register: addRegister,
 		handleSubmit: addHandleSubmit,
+		watch: addWatch,
+		setValue: addSetValue,
 		formState: { errors: addErrors, isSubmitSuccessful: addIsSubmitSuccessful },
 		reset: addReset,
 	} = useForm({
@@ -40,6 +43,9 @@ const SupplierModal = () => {
 
 	const addModalRef = useRef(null);
 	const editModalRef = useRef(null);
+
+	const b2BFileHasHeaderRow = addWatch('b2BFileHasHeaderRow');
+	const b2BFileAppendLocationCode = addWatch('b2BFileAppendLocationCode');
 
 	const addOnSubmit = async (data) => {
 		console.log(data);
@@ -149,7 +155,7 @@ const SupplierModal = () => {
                           </div>
                         </div>
                       </div> */}
-											<div className='col-lg-4'>
+											<div className='col-lg-6'>
 												<div className='input-blocks'>
 													<label>Account No.</label>
 													<input
@@ -167,41 +173,221 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-6'>
 												<div className='input-blocks'>
 													<label>Supplier Name</label>
 													<input
 														type='text'
 														className='form-control'
+														{...addRegister('name', {
+															required: 'Supplier Name is required',
+														})}
+														placeholder='Enter Supplier Name'
 													/>
+													{addErrors?.name && (
+														<p className='text-danger'>
+															{addErrors?.name?.message}
+														</p>
+													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-6'>
 												<div className='input-blocks'>
 													<label>Email</label>
 													<input
 														type='email'
 														className='form-control'
+														{...addRegister('email', {
+															required: 'Email is required',
+														})}
+														placeholder='Enter Your Email'
 													/>
+													{addErrors?.email && (
+														<p className='text-danger'>
+															{addErrors?.email?.message}
+														</p>
+													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-6'>
 												<div className='input-blocks'>
 													<label>Phone</label>
 													<input
 														type='text'
 														className='form-control'
+														{...addRegister('telephone', {
+															required: 'Phone No. is required',
+														})}
+														placeholder='Enter Your Phone Number'
 													/>
+													{addErrors?.telephone && (
+														<p className='text-danger'>
+															{addErrors?.telephone?.message}
+														</p>
+													)}
 												</div>
 											</div>
 											<div className='col-lg-12'>
 												<div className='input-blocks'>
-													<label>Address</label>
+													<label>Address 1</label>
 													<input
 														type='text'
 														className='form-control'
+														{...addRegister('address1', {
+															required: 'Address is required',
+														})}
 													/>
+													{addErrors?.address1 && (
+														<p className='text-danger'>
+															{addErrors?.address1?.message}
+														</p>
+													)}
 												</div>
+											</div>
+											<div className='col-lg-12'>
+												<div className='input-blocks'>
+													<label>Address 2</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('address2')}
+													/>
+													{addErrors?.address2 && (
+														<p>{addErrors?.address2?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-12'>
+												<div className='input-blocks'>
+													<label>Address 3</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('address3')}
+													/>
+													{addErrors?.address3 && (
+														<p>{addErrors?.address3?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-12'>
+												<div className='input-blocks'>
+													<label>Address 4</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('address4')}
+													/>
+													{addErrors?.address4 && (
+														<p>{addErrors?.address4?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>Postcode</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('postcode')}
+														placeholder='Enter postcode'
+													/>
+													{addErrors?.postcode && (
+														<p>{addErrors?.postcode?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>Fax</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('fax')}
+														placeholder='Enter your fax'
+													/>
+													{addErrors?.fax && <p>{addErrors?.fax?.message}</p>}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>B2B File Name</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('b2BFileName')}
+														placeholder='Enter your B2B File Name'
+													/>
+													{addErrors?.b2BFileName && (
+														<p>{addErrors?.b2BFileName?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>B2B File Type</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('b2BFileType')}
+														placeholder='Enter your B2B File Type'
+													/>
+													{addErrors?.b2BFileType && (
+														<p>{addErrors?.b2BFileType?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>Settlement Discount</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('settlementDiscount')}
+														placeholder='Enter Settlement Discount'
+													/>
+													{addErrors?.settlementDiscount && (
+														<p>{addErrors?.settlementDiscount?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='input-blocks'>
+													<label>Carriage Paid Amount</label>
+													<input
+														type='text'
+														className='form-control'
+														{...addRegister('carriagePaidAmount')}
+														placeholder='Enter Carriage Paid Amount'
+													/>
+													{addErrors?.carriagePaidAmount && (
+														<p>{addErrors?.carriagePaidAmount?.message}</p>
+													)}
+												</div>
+											</div>
+											<div className='mb-1'>
+												<label className=''>
+													<Switch
+														checked={b2BFileHasHeaderRow}
+														onChange={(value) => {
+															addSetValue('b2BFileHasHeaderRow', value);
+														}}
+														style={{ marginRight: '6px' }}
+													/>
+													B2B File Has Header Row
+												</label>
+											</div>
+											<div className='mb-1'>
+												<label className=''>
+													<Switch
+														checked={b2BFileAppendLocationCode}
+														onChange={(value) => {
+															addSetValue('b2BFileAppendLocationCode', value);
+														}}
+														style={{ marginRight: '6px' }}
+													/>
+													B2B File Append Location Code
+												</label>
 											</div>
 											{/* <div className='col-lg-6 col-sm-10 col-10'>
 												<div className='input-blocks'>
@@ -221,7 +407,7 @@ const SupplierModal = () => {
 													/>
 												</div>
 											</div> */}
-											<div className='col-md-12'>
+											{/* <div className='col-md-12'>
 												<div className='mb-0 input-blocks'>
 													<label className='form-label'>Descriptions</label>
 													<textarea
@@ -230,7 +416,7 @@ const SupplierModal = () => {
 													/>
 													<p>Maximum 600 Characters</p>
 												</div>
-											</div>
+											</div> */}
 										</div>
 										<div className='modal-footer-btn'>
 											<button
