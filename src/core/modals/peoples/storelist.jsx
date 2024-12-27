@@ -59,6 +59,7 @@ const StoreList = () => {
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			showCancelButton: true,
+			reverseButtons: true,
 			confirmButtonColor: '#00ff00',
 			confirmButtonText: 'Yes, delete it!',
 			cancelButtonColor: '#ff0000',
