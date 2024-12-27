@@ -199,6 +199,7 @@ import { all_routes } from './all_routes';
 import BankSettingGrid from '../feature-module/settings/financialsettings/banksettinggrid';
 import PayrollList from '../feature-module/hrm/payroll-list';
 import AddCustomerModal from '../core/modals/peoples/AddCustomerModal';
+import AddCategoryPage from '../core/modals/inventory/AddCategoryPage';
 
 export const publicRoutes = [
 	{
@@ -1418,6 +1419,13 @@ export const publicRoutes = [
 		path: routes.addcustomer,
 		name: 'addcustomer',
 		element: <AddCustomerModal />,
+		route: Route,
+	},
+	{
+		id: 120,
+		path: routes.addcategory,
+		name: 'addcategory',
+		element: <AddCategoryPage />,
 		route: Route,
 	},
 ];
