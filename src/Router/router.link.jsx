@@ -200,6 +200,7 @@ import BankSettingGrid from '../feature-module/settings/financialsettings/bankse
 import PayrollList from '../feature-module/hrm/payroll-list';
 import AddCustomerModal from '../core/modals/peoples/AddCustomerModal';
 import AddCategoryPage from '../core/modals/inventory/AddCategoryPage';
+import AddSupplier from '../core/modals/peoples/AddSupplier';
 
 export const publicRoutes = [
 	{
@@ -1422,10 +1423,17 @@ export const publicRoutes = [
 		route: Route,
 	},
 	{
-		id: 120,
+		id: 121,
 		path: routes.addcategory,
 		name: 'addcategory',
 		element: <AddCategoryPage />,
+		route: Route,
+	},
+	{
+		id: 122,
+		path: routes.addsupplier,
+		name: 'addsupplier',
+		element: <AddSupplier />,
 		route: Route,
 	},
 ];
