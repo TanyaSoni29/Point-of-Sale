@@ -1,6 +1,10 @@
 /** @format */
 
-import { ArrowLeft, ChevronUp } from 'feather-icons-react/build/IconComponents';
+import {
+	ArrowLeft,
+	Calendar,
+	ChevronUp,
+} from 'feather-icons-react/build/IconComponents';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import React, { useEffect } from 'react';
 // import Select from 'react-select';
@@ -9,6 +13,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setToggleHeader } from '../../../slices/productListSlice';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
+import { DatePicker } from 'antd';
+import './AddCustomerModal.css';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 // import { Link } from "react-router-dom";
 
@@ -590,6 +596,28 @@ const AddCustomerModal = () => {
 														</p>
 													)}
 												</div>
+											</div>
+										</div>
+									</div>
+									<div className='col-md-6'>
+										<div className='mb-3'>
+											<label className='form-label'>D.O.B</label>
+											<div className='input-group'>
+												<DatePicker
+													className='form-control border-end-0'
+													dateFormat='dd-MM-yyyy'
+													placeholderText='Choose Date'
+												/>
+												<span
+													className='d-flex align-items-center justify-content-center bg-white border-start-0'
+													style={{
+														padding: '0.375rem 0.75rem',
+														border: '1px solid #ced4da',
+														borderRadius: '0 0.25rem 0.25rem 0',
+													}}
+												>
+													<Calendar className='info-img' />
+												</span>
 											</div>
 										</div>
 									</div>
