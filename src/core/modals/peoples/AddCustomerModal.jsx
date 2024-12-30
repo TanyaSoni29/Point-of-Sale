@@ -600,7 +600,7 @@ const AddCustomerModal = () => {
 									</div>
 									<div className='col-md-6'>
 										<div className='mb-3'>
-											<label className='form-label'>D.O.B</label>
+											<label>D.O.B</label>
 											<div className='input-group'>
 												<DatePicker
 													className='form-control border-end-0'
@@ -618,6 +618,30 @@ const AddCustomerModal = () => {
 													<Calendar className='info-img' />
 												</span>
 											</div>
+										</div>
+										<div className='mb-3'>
+											<label>Notes</label>
+											<input
+												type='email'
+												className='form-control'
+												{...register('notes')}
+											/>
+											{errors?.notes && (
+												<p className='text-danger'>{errors?.notes?.message}</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											<label>Vat No.</label>
+											<input
+												type='email'
+												className='form-control'
+												{...register('vat', {
+													required: 'vat is required',
+												})}
+											/>
+											{errors?.vat && (
+												<p className='text-danger'>{errors?.vat?.message}</p>
+											)}
 										</div>
 									</div>
 								</div>
