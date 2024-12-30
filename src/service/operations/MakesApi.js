@@ -64,7 +64,7 @@ export const getMake = async (token, makeId) => {
 		});
 
 		console.log('Get Makes Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get makes");
+		if (response.status !== 200) throw new Error("Couldn't get makes");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Makes Api error', error);

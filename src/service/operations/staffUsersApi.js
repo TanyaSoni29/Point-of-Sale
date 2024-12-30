@@ -70,7 +70,7 @@ export const getStaffUser = async (token, staffUserId) => {
 		);
 
 		console.log('Get StaffUsers Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get staffUsers");
+		if (response.status !== 200) throw new Error("Couldn't get staffUsers");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get StaffUsers Api error', error);

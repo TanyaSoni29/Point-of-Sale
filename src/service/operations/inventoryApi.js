@@ -22,7 +22,7 @@ export const createInventory = async (token, data) => {
 
 		console.log('CREATE INVENTORY API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create inventory");
+		if (response.status !== 200) throw new Error("Couldn't create inventory");
 
 		toast.success('Inventory created successfully');
 		return response?.data;
@@ -76,7 +76,7 @@ export const getInventoryByLocation = async (token, data) => {
 		);
 
 		console.log('Get Inventory By Location Api response---', response);
-		if (response.status === 200)
+		if (response.status !== 200)
 			throw new Error("Couldn't get inventory of given Location");
 		result = response?.data;
 	} catch (error) {
@@ -98,7 +98,7 @@ export const updateInventory = async (token, data) => {
 
 		console.log('Update INVENTORY API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update inventory");
+		if (response.status !== 200) throw new Error("Couldn't update inventory");
 
 		toast.success('Inventory updated successfully');
 		return response?.data;
@@ -118,7 +118,7 @@ export const inventoryBulkUpdate = async (token, data) => {
 		});
 
 		console.log('Inventory Bulk Update Api response---', response);
-		if (response.status === 200)
+		if (response.status !== 200)
 			throw new Error("Couldn't update bulk inventory");
 		result = response.data;
 	} catch (error) {
@@ -140,7 +140,7 @@ export const inventoryStockEntry = async (token, data) => {
 		});
 
 		console.log('Inventory Stock Entry Api response---', response);
-		if (response.status === 200)
+		if (response.status !== 200)
 			throw new Error("Couldn't do Stock Entry Inventory");
 		result = response.data;
 	} catch (error) {

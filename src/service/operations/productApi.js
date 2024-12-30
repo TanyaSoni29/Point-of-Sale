@@ -24,7 +24,7 @@ export const createProduct = async (token, data) => {
 
 		console.log('CREATE PRODUCT API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create product");
+		if (response.status !== 200) throw new Error("Couldn't create product");
 
 		toast.success('Product created successfully');
 		return response?.data;
@@ -68,7 +68,7 @@ export const getProductByCategory = async (token) => {
 		});
 
 		console.log('Get Product  by Category Api response---', response);
-		if (response.status === 200)
+		if (response.status !== 200)
 			throw new Error("Couldn't get product by Category");
 		result = response?.data;
 	} catch (error) {
@@ -95,7 +95,7 @@ export const getProductByPartNo = async (token, partno) => {
 		);
 
 		console.log('Get Product By Part No. Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get product");
+		if (response.status !== 200) throw new Error("Couldn't get product");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Product By Part No. Api error', error);
@@ -121,7 +121,7 @@ export const getProductBySupplier = async (token, supplierId) => {
 		);
 
 		console.log('Get Product By Supplier Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get product");
+		if (response.status !== 200) throw new Error("Couldn't get product");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Product By Supplier Api error', error);
@@ -147,7 +147,7 @@ export const getProductByMake = async (token, makeId) => {
 		);
 
 		console.log('Get Product By Make Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get product");
+		if (response.status !== 200) throw new Error("Couldn't get product");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Product By Make Api error', error);
@@ -168,7 +168,7 @@ export const updateProduct = async (token, data) => {
 
 		console.log('Update PRODUCT API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update product");
+		if (response.status !== 200) throw new Error("Couldn't update product");
 
 		toast.success('Product updated successfully');
 		return response?.data;
@@ -193,7 +193,7 @@ export const deleteProduct = async (token, productId) => {
 		);
 
 		console.log('Delete Product Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete product");
+		if (response.status !== 200) throw new Error("Couldn't delete product");
 		result = true;
 	} catch (error) {
 		console.log('Delete Product Api error', error);

@@ -21,7 +21,7 @@ export const createCustomer = async (token, data) => {
 
 		console.log('CREATE CUSTOMER API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't create customer");
+		if (response.status !== 200) throw new Error("Couldn't create customer");
 
 		toast.success('Customer created successfully');
 		return response?.data;
@@ -65,7 +65,7 @@ export const getCustomer = async (token, customerId) => {
 		});
 
 		console.log('Get Customer Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't get customer");
+		if (response.status !== 200) throw new Error("Couldn't get customer");
 		result = response?.data;
 	} catch (error) {
 		console.log('Get Customer Api error', error);
@@ -86,7 +86,7 @@ export const updateCustomer = async (token, data) => {
 
 		console.log('Update CUSTOMER API RESPONSE---', response.data);
 
-		if (response.status !== 201) throw new Error("Couldn't update customer");
+		if (response.status !== 200) throw new Error("Couldn't update customer");
 
 		toast.success('Customer updated successfully');
 		return response?.data;
@@ -111,7 +111,7 @@ export const deleteCustomer = async (token, customerId) => {
 		);
 
 		console.log('Delete Customer Api response---', response);
-		if (response.status === 200) throw new Error("Couldn't delete customer");
+		if (response.status !== 200) throw new Error("Couldn't delete customer");
 		result = true;
 	} catch (error) {
 		console.log('Delete Customer Api error', error);
