@@ -11,6 +11,10 @@ export const authEndpoints = {
 	REFRESH_TOKEN: `${BASE_URL}/Auth/RefreshToken`,
 };
 
+export const concreteUserEndpoints = {
+	REGISTER: `${BASE_URL}/ConcreteAppUsers/Register`,
+};
+
 export const categoriesEndpoints = {
 	CREATE_CATEGORY: `${BASE_URL}/Categories/Create`,
 	GET_ALL_CATEGORIES: `${BASE_URL}/Categories/GetAllCategories`,

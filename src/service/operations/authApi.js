@@ -1,7 +1,7 @@
 /** @format */
 
 import { toast } from 'react-hot-toast';
-import { authEndpoints } from '../api';
+import { authEndpoints, concreteUserEndpoints } from '../api';
 import { apiConnector } from '../apiConnector';
 import {
 	setIsAuth,
@@ -11,49 +11,47 @@ import {
 } from '../../slices/authSlice';
 
 const { AUTHENTICATE, REFRESH_TOKEN } = authEndpoints;
+const { REGISTER } = concreteUserEndpoints;
 
-// export function signUp(data, navigate) {
-// 	return async (dispatch) => {
-// 		dispatch(setLoading(true));
-// 		try {
-// 			const response = await apiConnector('POST', SIGNUP_API, {
-// 				contactPerson: `${data.firstName} ${data.lastName}`,
-// 				email: data.email,
-// 				password: data.password,
-// 				role: data.role || '2',
-// 			});
-// 			console.log('SIGNUP API RESPONSE.........', response);
+export function signUp(data, navigate) {
+	return async (dispatch) => {
+		dispatch(setLoading(true));
+		try {
+			const response = await apiConnector('POST', REGISTER, {
+				username: data?.username,
+				fullname: data?.fullname,
+				phoneNumber: data?.phoneNumber,
+				email: data?.email,
+				password: data?.password,
+				roleName: data?.roleName,
+			});
+			console.log('SIGNUP API RESPONSE.........', response);
 
-// 			if (response.status !== 201) {
-// 				throw new Error(response.data.message);
-// 			}
+			if (response.status !== 200) {
+				throw new Error(response.data.message);
+			}
 
-// 			const user = response.data.user;
-// 			dispatch(setToken(response.data.token));
-// 			dispatch(setUser(user)); // Assuming `setUser` stores user details
-// 			dispatch(setIsAuth(true));
+			const user = response.data.user;
+			dispatch(setToken(response.data.token));
+			dispatch(setUser(user)); // Assuming `setUser` stores user details
+			dispatch(setIsAuth(true));
 
-// 			localStorage.setItem('token', JSON.stringify(response.data.token));
+			localStorage.setItem('token', JSON.stringify(response.data.token));
 
-// 			console.log(user);
+			console.log(user);
 
-// 			toast.success('Signup Successfully');
-// 			if (user.role === '1') {
-// 				navigate('/dashboard-role1'); // Admin Dashboard
-// 			} else if (user.role === '2') {
-// 				navigate('/dashboard-role2'); // Regular User Dashboard
-// 			} else {
-// 				navigate('/'); // Default route if no role matches
-// 			}
-// 		} catch (error) {
-// 			console.log('SIGNUP API ERROR.........', error);
-// 			const errorMessage = error.response.data.error;
-// 			toast.error(errorMessage);
-// 			navigate('/');
-// 		}
-// 		dispatch(setLoading(false));
-// 	};
-// }
+			toast.success('Signup Successfully');
+
+			navigate('/admin-dashboard'); // Default route if no role matches
+		} catch (error) {
+			console.log('SIGNUP API ERROR.........', error);
+			const errorMessage = error?.response?.data;
+			toast.error(errorMessage);
+			navigate('/register');
+		}
+		dispatch(setLoading(false));
+	};
+}
 
 export function login(userName, password, navigate) {
 	return async (dispatch) => {
