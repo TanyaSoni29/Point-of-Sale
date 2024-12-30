@@ -2,12 +2,13 @@
 
 import { ArrowLeft, ChevronUp } from 'feather-icons-react/build/IconComponents';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
-import React from 'react';
-import Select from 'react-select';
+import React, { useEffect } from 'react';
+// import Select from 'react-select';
 import { all_routes } from '../../../Router/all_routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToggleHeader } from '../../../slices/productListSlice';
 import { Link } from 'react-router-dom';
+import { useForm } from 'react-hook-form';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 // import { Link } from "react-router-dom";
 
@@ -15,6 +16,18 @@ const AddCustomerModal = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
 	const { toggle_header } = useSelector((state) => state.product);
+	const {
+		register,
+		handleSubmit,
+		// setValue,
+		formState: { errors, isSubmitSuccessful },
+		reset,
+	} = useForm();
+
+	const onSubmit = (data) => {
+		console.log(data);
+	};
+
 	const renderCollapseTooltip = (props) => (
 		<Tooltip
 			id='refresh-tooltip'
@@ -23,11 +36,20 @@ const AddCustomerModal = () => {
 			Collapse
 		</Tooltip>
 	);
-	const countriesOptions = [
-		{ value: 'choose', label: 'Choose' },
-		{ value: 'unitedKingdom', label: 'United Kingdom' },
-		{ value: 'unitedStates', label: 'United States' },
-	];
+
+	useEffect(() => {
+		if (isSubmitSuccessful) {
+			reset({
+				name: '',
+			});
+		}
+	}, [reset, isSubmitSuccessful]);
+
+	// const countriesOptions = [
+	// 	{ value: 'choose', label: 'Choose' },
+	// 	{ value: 'unitedKingdom', label: 'United Kingdom' },
+	// 	{ value: 'unitedStates', label: 'United States' },
+	// ];
 
 	return (
 		<>
@@ -74,13 +96,13 @@ const AddCustomerModal = () => {
 							</li>
 						</ul>
 					</div>
-					<form>
+					<form onSubmit={handleSubmit(onSubmit)}>
 						<div className='card'>
 							<div className='card-body add-product pb-0'>
-								<div className='modal-title-head people-cust-avatar'>
+								{/* <div className='modal-title-head people-cust-avatar'>
 									<h6>Avatar</h6>
-								</div>
-								<div className='new-employee-field'>
+								</div> */}
+								{/* <div className='new-employee-field'>
 									<div className='profile-pic-upload'>
 										<div className='profile-pic'>
 											<span>
@@ -100,72 +122,475 @@ const AddCustomerModal = () => {
 											</div>
 										</div>
 									</div>
+								</div> */}
+								<div className='row mb-3'>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Account No.</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter Account Number'
+												{...register('accountNo', {
+													required: 'Account Number is required',
+												})}
+											/>
+											{errors?.accountNo && (
+												<p className='text-danger'>
+													{errors?.accountNo?.message}
+												</p>
+											)}
+										</div>
+									</div>
+									<div className='col-md-8 d-flex justify-content-end align-items-end'>
+										<div className='d-flex justify-content-end align-items-center'>
+											<button className='btn btn-submit'>
+												Same As Billing
+											</button>
+										</div>
+									</div>
 								</div>
+
 								<div className='row'>
-									<div className='col-lg-4 pe-0'>
+									<div className='col-md-6 border-end'>
+										<h4 className='mb-3'>Billing Details</h4>
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Surname</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('surname', {
+															required: 'Surname is required',
+														})}
+													/>
+													{errors?.surname && (
+														<p className='text-danger'>
+															{errors?.surname?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Name</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('name', {
+															required: 'Name is required',
+														})}
+													/>
+													{errors?.name && (
+														<p className='text-danger'>
+															{errors?.name?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Title</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('title', {
+															required: 'title is required',
+														})}
+													/>
+													{errors?.title && (
+														<p className='text-danger'>
+															{errors?.title?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Initials</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('initials', {
+															required: 'Initials is required',
+														})}
+													/>
+													{errors?.initials && (
+														<p className='text-danger'>
+															{errors?.initials?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+
 										<div className='mb-3'>
-											<label className='form-label'>Customer Name</label>
+											<label>House Name</label>
 											<input
 												type='text'
 												className='form-control'
+												{...register('houseName', {
+													required: 'House Name is required',
+												})}
 											/>
+											{errors?.houseName && (
+												<p className='text-danger'>
+													{errors?.houseName?.message}
+												</p>
+											)}
 										</div>
-									</div>
-									<div className='col-lg-4 pe-0'>
 										<div className='mb-3'>
-											<label className='form-label'>Email</label>
-											<input
-												type='email'
-												className='form-control'
-											/>
-										</div>
-									</div>
-									<div className='col-lg-4 pe-0'>
-										<div className='input-blocks'>
-											<label className='mb-2'>Phone</label>
-											<input
-												className='form-control form-control-lg group_formcontrol'
-												id='phone'
-												name='phone'
-												type='text'
-											/>
-										</div>
-									</div>
-									<div className='col-lg-12 pe-0'>
-										<div className='mb-3'>
-											<label className='form-label'>Address</label>
+											<label>Address</label>
 											<input
 												type='text'
 												className='form-control'
+												{...register('address1', {
+													required: 'Address is required',
+												})}
 											/>
+											{errors?.address1 && (
+												<p className='text-danger'>
+													{errors?.address1?.message}
+												</p>
+											)}
 										</div>
-									</div>
-									<div className='col-lg-6 pe-0'>
 										<div className='mb-3'>
-											<label className='form-label'>City</label>
+											{/* <label>Address</label> */}
 											<input
 												type='text'
 												className='form-control'
+												{...register('address2')}
 											/>
+											{errors?.address2 && (
+												<p className='text-danger'>
+													{errors?.address2?.message}
+												</p>
+											)}
 										</div>
-									</div>
-									<div className='col-lg-6 pe-0'>
 										<div className='mb-3'>
-											<label className='form-label'>Country</label>
-											<Select
-												classNamePrefix='react-select'
-												options={countriesOptions}
+											{/* <label>Address</label> */}
+											<input
+												type='text'
+												className='form-control'
+												{...register('address3')}
 											/>
+											{errors?.address3 && (
+												<p className='text-danger'>
+													{errors?.address3?.message}
+												</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											{/* <label>Address</label> */}
+											<input
+												type='text'
+												className='form-control'
+												{...register('address4')}
+											/>
+											{errors?.address4 && (
+												<p className='text-danger'>
+													{errors?.address4?.message}
+												</p>
+											)}
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Country</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('country', {
+															required: 'Country is required',
+														})}
+													/>
+													{errors?.country && (
+														<p className='text-danger'>
+															{errors?.country?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Postcode</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('postcode')}
+													/>
+													{errors?.postcode && (
+														<p className='text-danger'>
+															{errors?.postcode?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
 									</div>
-									<div className='col-lg-12'>
-										<div className='mb-3 input-blocks'>
-											<label className='form-label'>Descriptions</label>
-											<textarea
-												className='form-control mb-1'
-												defaultValue={''}
+									<div className='col-md-6'>
+										<h4 className='mb-3'>Shipping Details</h4>
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Surname</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('surname', {
+															required: 'Surname is required',
+														})}
+													/>
+													{errors?.surname && (
+														<p className='text-danger'>
+															{errors?.surname?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Name</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('name', {
+															required: 'Name is required',
+														})}
+													/>
+													{errors?.name && (
+														<p className='text-danger'>
+															{errors?.name?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Title</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('title', {
+															required: 'title is required',
+														})}
+													/>
+													{errors?.title && (
+														<p className='text-danger'>
+															{errors?.title?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Initials</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('initials', {
+															required: 'Initials is required',
+														})}
+													/>
+													{errors?.initials && (
+														<p className='text-danger'>
+															{errors?.initials?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+
+										<div className='mb-3'>
+											<label>House Name</label>
+											<input
+												type='text'
+												className='form-control'
+												{...register('houseName', {
+													required: 'House Name is required',
+												})}
 											/>
-											<p>Maximum 60 Characters</p>
+											{errors?.houseName && (
+												<p className='text-danger'>
+													{errors?.houseName?.message}
+												</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											<label>Address</label>
+											<input
+												type='text'
+												className='form-control'
+												{...register('address1', {
+													required: 'Address is required',
+												})}
+											/>
+											{errors?.address1 && (
+												<p className='text-danger'>
+													{errors?.address1?.message}
+												</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											{/* <label>Address</label> */}
+											<input
+												type='text'
+												className='form-control'
+												{...register('address2')}
+											/>
+											{errors?.address2 && (
+												<p className='text-danger'>
+													{errors?.address2?.message}
+												</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											{/* <label>Address</label> */}
+											<input
+												type='text'
+												className='form-control'
+												{...register('address3')}
+											/>
+											{errors?.address3 && (
+												<p className='text-danger'>
+													{errors?.address3?.message}
+												</p>
+											)}
+										</div>
+										<div className='mb-3'>
+											{/* <label>Address</label> */}
+											<input
+												type='text'
+												className='form-control'
+												{...register('address4')}
+											/>
+											{errors?.address4 && (
+												<p className='text-danger'>
+													{errors?.address4?.message}
+												</p>
+											)}
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Country</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('country', {
+															required: 'Country is required',
+														})}
+													/>
+													{errors?.country && (
+														<p className='text-danger'>
+															{errors?.country?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Postcode</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('postcode')}
+													/>
+													{errors?.postcode && (
+														<p className='text-danger'>
+															{errors?.postcode?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+									</div>
+								</div>
+
+								<div className='row'>
+									<div className='col-md-6'>
+										<h4 className='mb-3'>Contact Details</h4>
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Telephone</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('telephone', {
+															required: 'Telephone is required',
+														})}
+													/>
+													{errors?.telephone && (
+														<p className='text-danger'>
+															{errors?.telephone?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Work Phone</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('workPhone', {
+															required: 'Work Phone is required',
+														})}
+													/>
+													{errors?.workPhone && (
+														<p className='text-danger'>
+															{errors?.workPhone?.message}
+														</p>
+													)}
+												</div>
+											</div>
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Mobile</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('mobile', {
+															required: 'mobile is required',
+														})}
+													/>
+													{errors?.mobile && (
+														<p className='text-danger'>
+															{errors?.mobile?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Email</label>
+													<input
+														type='email'
+														className='form-control'
+														{...register('email', {
+															required: 'Email is required',
+														})}
+													/>
+													{errors?.email && (
+														<p className='text-danger'>
+															{errors?.email?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
