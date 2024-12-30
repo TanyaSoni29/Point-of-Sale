@@ -14,7 +14,6 @@ import { setToggleHeader } from '../../../slices/productListSlice';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 import { DatePicker } from 'antd';
-import './AddCustomerModal.css';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 // import { Link } from "react-router-dom";
 
