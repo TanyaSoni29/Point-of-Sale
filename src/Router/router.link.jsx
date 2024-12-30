@@ -202,6 +202,7 @@ import AddCustomerModal from '../core/modals/peoples/AddCustomerModal';
 import AddCategoryPage from '../core/modals/inventory/AddCategoryPage';
 import AddSupplier from '../core/modals/peoples/AddSupplier';
 import AddStore from '../core/modals/peoples/AddStore';
+import AddBrandPage from '../core/modals/inventory/AddBrandMaintenance';
 
 export const publicRoutes = [
 	{
@@ -1442,6 +1443,13 @@ export const publicRoutes = [
 		path: routes.addlocation,
 		name: 'addlocation',
 		element: <AddStore />,
+		route: Route,
+	},
+	{
+		id: 124,
+		path: routes.addbrands,
+		name: 'addbrand',
+		element: <AddBrandPage />,
 		route: Route,
 	},
 ];
