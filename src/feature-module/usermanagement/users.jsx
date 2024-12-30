@@ -18,7 +18,7 @@ import Select from 'react-select';
 import withReactContent from 'sweetalert2-react-content';
 import Swal from 'sweetalert2';
 import Table from '../../core/pagination/datatable';
-import AddUsers from '../../core/modals/usermanagement/addusers';
+// import AddUsers from '../../core/modals/usermanagement/addusers';
 import EditUser from '../../core/modals/usermanagement/edituser';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
@@ -384,15 +384,15 @@ const Users = () => {
 							</li>
 						</ul>
 						<div className='page-btn'>
-							<a
-								to='#'
+							<Link
+								to='/register'
 								className='btn btn-added'
-								data-bs-toggle='modal'
-								data-bs-target='#add-units'
+								// data-bs-toggle='modal'
+								// data-bs-target='#add-units'
 							>
 								<PlusCircle className='me-2' />
 								Add New User
-							</a>
+							</Link>
 						</div>
 					</div>
 					{/* /product list */}
@@ -520,7 +520,7 @@ const Users = () => {
 					{/* /product list */}
 				</div>
 			</div>
-			<AddUsers />
+			{/* <AddUsers /> */}
 			<EditUser />
 		</div>
 	);
