@@ -147,7 +147,7 @@ const AddBrand = () => {
 												type='submit'
 												className='btn btn-submit'
 											>
-												Create Make
+												Submit
 											</button>
 										</div>
 									</form>
