@@ -31,7 +31,7 @@ export function signUp(data, navigate) {
 				throw new Error(response.data.message);
 			}
 
-			const user = response.data.user;
+			const user = response?.data;
 			dispatch(setToken(response.data.token));
 			dispatch(setUser(user)); // Assuming `setUser` stores user details
 			dispatch(setIsAuth(true));
@@ -42,7 +42,8 @@ export function signUp(data, navigate) {
 
 			toast.success('Signup Successfully');
 
-			navigate('/admin-dashboard'); // Default route if no role matches
+			navigate('/admin-dashboard');
+			return user; // Default route if no role matches
 		} catch (error) {
 			console.log('SIGNUP API ERROR.........', error);
 			const errorMessage = error?.response?.data;

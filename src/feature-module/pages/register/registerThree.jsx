@@ -16,13 +16,15 @@ import LogoWhiteImg from '../../../assets/img/logo-white.png';
 // import GoogleImgLogo from '../../../assets/img/icons/google.png';
 // import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
 import { useForm } from 'react-hook-form';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { signUp } from '../../../service/operations/authApi';
+import { createStaffUsers } from '../../../service/operations/staffUsersApi';
 
 const RegisterThree = () => {
 	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const route = all_routes;
+	const { token } = useSelector((state) => state.auth);
 	const {
 		register,
 		handleSubmit,
@@ -41,8 +43,24 @@ const RegisterThree = () => {
 		}));
 	};
 
-	const onSubmit = (data) => {
-		dispatch(signUp(data, navigate));
+	const onSubmit = async (data) => {
+		try {
+			const user = await dispatch(signUp(data, navigate));
+			console.log(user);
+			if (user) {
+				const staffRequestData = {
+					code: data?.code,
+					name: data?.fullname,
+					userId: user.userId,
+				};
+				const response = await createStaffUsers(token, staffRequestData);
+				if (response.success) {
+					reset();
+				}
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
