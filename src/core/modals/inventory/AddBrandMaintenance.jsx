@@ -128,7 +128,7 @@ const AddBrandPage = () => {
 										<p className='text-danger'>{errors?.code?.message}</p>
 									)}
 								</div>
-								<div className='mb-3'>
+								<div className='mb-4'>
 									<label className='form-label'>Make Name</label>
 									<input
 										type='text'
