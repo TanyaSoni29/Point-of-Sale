@@ -11,7 +11,11 @@ import LogoWhiteImg from '../../assets/img/logo-white.png';
 import LogoSmallImg from '../../assets/img/logo-small.png';
 import ProfileImg from '../../assets/img/profiles/profile.png';
 import LogOutImg from '../../assets/img/icons/log-out.svg';
+import { useDispatch } from 'react-redux';
+import { logout } from '../../service/operations/authApi';
 const Header = () => {
+	const dispatch = useDispatch();
+	// const navigate = useNavigate();
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
@@ -72,6 +76,12 @@ const Header = () => {
 			);
 		};
 	}, []);
+
+	const handleLogOutClick = () => {
+		dispatch(logout());
+		// navigate('/signin');
+	};
+
 	const handlesidebar = () => {
 		document.body.classList.toggle('mini-sidebar');
 		SetToggle((current) => !current);
@@ -737,7 +747,8 @@ const Header = () => {
 								<hr className='m-0' />
 								<Link
 									className='dropdown-item logout pb-0'
-									to='/signin'
+									to='signin'
+									onClick={handleLogOutClick}
 								>
 									{/* <ImageWithBasePath
 										src={LogOutImg}
@@ -782,6 +793,7 @@ const Header = () => {
 						<Link
 							className='dropdown-item'
 							to='signin'
+							onClick={handleLogOutClick}
 						>
 							Logout
 						</Link>

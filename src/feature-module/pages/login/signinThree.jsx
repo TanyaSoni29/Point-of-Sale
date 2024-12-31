@@ -11,10 +11,10 @@ import facebookLogoImg from '../../../assets/img/icons/facebook-logo.svg';
 import GoogleImgLogo from '../../../assets/img/icons/google.png';
 import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
 import { useForm } from 'react-hook-form';
-// import { useDispatch } from 'react-redux';
-// import { login } from '../../../service/operations/authApi';
+import { useDispatch } from 'react-redux';
+import { login } from '../../../service/operations/authApi';
 const SigninThree = () => {
-	// const dispatch = useDispatch();
+	const dispatch = useDispatch();
 	const navigate = useNavigate();
 	const route = all_routes;
 	const [isPasswordVisible, setPasswordVisible] = useState(false);
@@ -31,9 +31,9 @@ const SigninThree = () => {
 	} = useForm();
 
 	const onSubmit = (data) => {
-		navigate('/admin-dashboard');
+		// navigate('/admin-dashboard');
 		console.log(data);
-		// dispatch(login(data.userName, data.password, navigate));
+		dispatch(login(data.userName, data.password, navigate));
 	};
 
 	const handleRememberMe = (e) => {
@@ -134,12 +134,13 @@ const SigninThree = () => {
 										</div>
 									</div>
 									<div className='form-login'>
-										<Link
+										<button
 											className='btn btn-login'
-											to={route.dashboard}
+											type='submit'
+											// to={route.dashboard}
 										>
 											Sign In
-										</Link>
+										</button>
 									</div>
 									<div className='signinform'>
 										<h4>

@@ -9,7 +9,7 @@ const PrivateRoute = ({ element }) => {
 	const {
 		isAuth,
 		token,
-		user,
+		// user,
 		loading: authLoading,
 	} = useSelector((state) => state.auth);
 	const [loading, setLoading] = useState(true); // Internal loading state

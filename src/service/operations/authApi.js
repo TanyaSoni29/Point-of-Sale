@@ -71,9 +71,9 @@ export function login(userName, password, navigate) {
 			toast.success('Login Successfully');
 
 			// Store token and user in Redux
-			const { token, user } = response.data;
+			const token = response?.data?.token;
 			dispatch(setToken(token));
-			dispatch(setUser(user)); // Assuming `setUser` stores user details
+			dispatch(setUser(response?.data)); // Assuming `setUser` stores user details
 			dispatch(setIsAuth(true));
 
 			// Save token to local storage
@@ -153,17 +153,16 @@ export const refreshToken = async () => {
 // 	};
 // }
 
-// export function logout(navigate) {
-// 	return (dispatch) => {
-// 		console.log('LOGOUT');
-// 		dispatch(setToken(null));
-// 		dispatch(setUser(null));
-// 		dispatch(setIsAuth(false));
-// 		localStorage.removeItem('token');
-// 		toast.success('Logged Out');
-// 		navigate('/');
-// 	};
-// }
+export function logout() {
+	return (dispatch) => {
+		console.log('LOGOUT');
+		dispatch(setToken(null));
+		dispatch(setUser(null));
+		dispatch(setIsAuth(false));
+		localStorage.removeItem('token');
+		toast.success('Logged Out');
+	};
+}
 
 // export const forgetPassword = async (email) => {
 // 	try {
