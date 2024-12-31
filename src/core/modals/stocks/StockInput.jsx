@@ -155,20 +155,190 @@ const StockInput = () => {
 									/>
 								</div>
 							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Quantity In</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter Quantity'
+										{...register('quantityIn', {
+											required: 'Quantity is required',
+										})}
+									/>
+									{errors.quantityIn && (
+										<p className='text-danger'>{errors?.quantityIn?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Date In</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter date'
+										{...register('dateIn', {
+											required: 'Date In is required',
+										})}
+									/>
+									{errors.dateIn && (
+										<p className='text-danger'>{errors?.dateIn?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Invoice No.</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter Invoice Number'
+										{...register('invoiceNo', {
+											required: 'Invoice No. is required',
+										})}
+									/>
+									{errors.invoiceNo && (
+										<p className='text-danger'>{errors?.invoiceNo?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Cost Each</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter Cost Each'
+										{...register('costEach', {
+											required: 'Cost each is required',
+										})}
+									/>
+									{errors.costEach && (
+										<p className='text-danger'>{errors?.costEach?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Total Cost</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter Total Cost'
+										{...register('totalCost', {
+											required: 'Total Cost is required',
+										})}
+									/>
+									{errors.totalCost && (
+										<p className='text-danger'>{errors?.totalCost?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Supplier</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter Part Number'
+										{...register('supplier', {
+											required: 'Supplier is required',
+										})}
+									/>
+									{errors.supplier && (
+										<p className='text-danger'>{errors?.supplier?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Location</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter location'
+										{...register('location', {
+											required: 'Location is required',
+										})}
+									/>
+									{errors.location && (
+										<p className='text-danger'>{errors?.location?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='col-lg-12'>
+								<div className='input-blocks search-form mb-0'>
+									<label>Sales Code</label>
+									<input
+										type='text'
+										className='form-control'
+										placeholder='Enter sales code'
+										{...register('salesCode')}
+									/>
+									{errors.salesCode && (
+										<p className='text-danger'>{errors?.salesCode?.message}</p>
+									)}
+								</div>
+							</div>
+							<div className='row'>
+								<h4 className='mb-3'>P/O No.</h4>
+								<div className='col-lg-12'>
+									<div className='input-blocks search-form mb-0'>
+										<label>RRP</label>
+										<input
+											type='text'
+											className='form-control'
+											placeholder='Enter RRP'
+											{...register('RRP')}
+										/>
+										{errors.RRP && (
+											<p className='text-danger'>{errors?.RRP?.message}</p>
+										)}
+									</div>
+								</div>
+								<div className='col-lg-12'>
+									<div className='input-blocks search-form mb-0'>
+										<label>SRP</label>
+										<input
+											type='text'
+											className='form-control'
+											placeholder='Enter SRP'
+											{...register('SRP')}
+										/>
+										{errors.SRP && (
+											<p className='text-danger'>{errors?.SRP?.message}</p>
+										)}
+									</div>
+								</div>
+								<div className='col-lg-12'>
+									<div className='input-blocks search-form mb-0'>
+										<label>WRRP</label>
+										<input
+											type='text'
+											className='form-control'
+											placeholder='Enter WRRP'
+											{...register('WRRP')}
+										/>
+										{errors.WRRP && (
+											<p className='text-danger'>{errors?.WRRP?.message}</p>
+										)}
+									</div>
+								</div>
+							</div>
 						</div>
 						<div className='modal-footer-btn'>
 							<button
-								type='button'
-								className='btn btn-cancel me-2'
-								data-bs-dismiss='modal'
+								type='submit'
+								className='btn btn-submit me-2'
 							>
-								Cancel
+								Create Stock
 							</button>
 							<button
-								type='submit'
-								className='btn btn-submit'
+								type='button'
+								className='btn btn-cancel'
 							>
-								Create
+								Cancel
 							</button>
 						</div>
 					</form>
