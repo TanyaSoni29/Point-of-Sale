@@ -13,7 +13,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setToggleHeader } from '../../../slices/productListSlice';
 import { Link } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
-import { DatePicker } from 'antd';
+import { DatePicker, Switch } from 'antd';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 // import { Link } from "react-router-dom";
 
@@ -24,10 +24,19 @@ const AddCustomerModal = () => {
 	const {
 		register,
 		handleSubmit,
-		// setValue,
+		watch,
+		setValue,
 		formState: { errors, isSubmitSuccessful },
 		reset,
 	} = useForm();
+
+	const current = watch('current');
+	const tradeCustomer = watch('tradeCustomer');
+	const vatExempt = watch('vatExempt');
+	const exportSwitch = watch('export');
+	const autoPayments = watch('autoPayments');
+	const sendLetter = watch('sendLetter');
+	const accountOnStop = watch('accountOnStop');
 
 	const onSubmit = (data) => {
 		console.log(data);
@@ -148,10 +157,42 @@ const AddCustomerModal = () => {
 										</div>
 									</div>
 									<div className='col-md-8 d-flex justify-content-end align-items-end'>
-										<div className='d-flex justify-content-end align-items-center'>
-											<button className='btn btn-submit'>
-												Same As Billing
-											</button>
+										<div className='d-flex gap-2 justify-content-center align-items-center'>
+											<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+												<Switch
+													checked={sendLetter}
+													onChange={(val) => setValue('sendLetter', val)}
+													// {...register('contractAmount1', {
+													// 	required: 'Contract Amount is required',
+													// })}
+												/>
+												<label>Send Letter</label>
+												{errors?.sendLetter && (
+													<p className='text-danger'>
+														{errors?.sendLetter?.message}
+													</p>
+												)}
+											</div>
+											<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+												<Switch
+													checked={accountOnStop}
+													onChange={(val) => setValue('accountOnStop', val)}
+													// {...register('contractAmount1', {
+													// 	required: 'Contract Amount is required',
+													// })}
+												/>
+												<label>Account On Stop</label>
+												{errors?.accountOnStop && (
+													<p className='text-danger'>
+														{errors?.accountOnStop?.message}
+													</p>
+												)}
+											</div>
+											<div className='d-flex justify-content-end align-items-center'>
+												<button className='btn btn-submit'>
+													Same As Billing
+												</button>
+											</div>
 										</div>
 									</div>
 								</div>
@@ -596,52 +637,289 @@ const AddCustomerModal = () => {
 													)}
 												</div>
 											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>D.O.B</label>
+													<div className='input-group'>
+														<DatePicker
+															className='form-control border-end-0'
+															dateFormat='dd-MM-yyyy'
+															placeholderText='Choose Date'
+														/>
+														<span
+															className='d-flex align-items-center justify-content-center bg-white border-start-0'
+															style={{
+																padding: '0.375rem 0.75rem',
+																border: '1px solid #ced4da',
+																borderRadius: '0 0.25rem 0.25rem 0',
+															}}
+														>
+															<Calendar className='info-img' />
+														</span>
+													</div>
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Notes</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('notes')}
+													/>
+													{errors?.notes && (
+														<p className='text-danger'>
+															{errors?.notes?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
 									</div>
 									<div className='col-md-6'>
-										<div className='mb-3'>
-											<label>D.O.B</label>
-											<div className='input-group'>
-												<DatePicker
-													className='form-control border-end-0'
-													dateFormat='dd-MM-yyyy'
-													placeholderText='Choose Date'
-												/>
-												<span
-													className='d-flex align-items-center justify-content-center bg-white border-start-0'
-													style={{
-														padding: '0.375rem 0.75rem',
-														border: '1px solid #ced4da',
-														borderRadius: '0 0.25rem 0.25rem 0',
-													}}
-												>
-													<Calendar className='info-img' />
-												</span>
+										<h4 className='mb-3'>Discounts</h4>
+										<div className='row'>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Major Items</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register(
+															'majorItems'
+															// {
+															// 	required: 'Major items is required',
+															// }
+														)}
+													/>
+													{errors?.majorItems && (
+														<p className='text-danger'>
+															{errors?.majorItems?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Minor Items</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register(
+															'minorItems'
+															// {
+															// 	required: 'Major items is required',
+															// }
+														)}
+													/>
+													{errors?.minorItems && (
+														<p className='text-danger'>
+															{errors?.minorItems?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Vat No.</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('vat', {
+															required: 'vat is required',
+														})}
+													/>
+													{errors?.vat && (
+														<p className='text-danger'>
+															{errors?.vat?.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Credit Limit</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('creditLimit')}
+													/>
+													{errors?.creditLimit && (
+														<p className='text-danger'>
+															{errors?.creditLimit?.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-md-6'>
+												<div className='mb-3'>
+													<label>Loyalty Card No.</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('loyaltyCardNo')}
+													/>
+													{errors?.vat && (
+														<p className='text-danger'>
+															{errors?.vat?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Points</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('points')}
+													/>
+													{errors?.points && (
+														<p className='text-danger'>
+															{errors?.points?.message}
+														</p>
+													)}
+												</div>
 											</div>
 										</div>
-										<div className='mb-3'>
-											<label>Notes</label>
-											<input
-												type='email'
-												className='form-control'
-												{...register('notes')}
-											/>
-											{errors?.notes && (
-												<p className='text-danger'>{errors?.notes?.message}</p>
-											)}
+									</div>
+									<div className='col-md-6'>
+										<h4 className='mb-3'>Contract Amounts</h4>
+										<div className='row'>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>1</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('contractAmount1', {
+															required: 'Contract Amount is required',
+														})}
+													/>
+													{errors?.contractAmount1 && (
+														<p className='text-danger'>
+															{errors?.contractAmount1?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>2</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('contractAmount2')}
+													/>
+													{errors?.contractAmount2 && (
+														<p className='text-danger'>
+															{errors?.contractAmount2?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>3</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('contractAmount3')}
+													/>
+													{errors?.contractAmount3 && (
+														<p className='text-danger'>
+															{errors?.contractAmount3?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
-										<div className='mb-3'>
-											<label>Vat No.</label>
-											<input
-												type='email'
-												className='form-control'
-												{...register('vat', {
-													required: 'vat is required',
-												})}
-											/>
-											{errors?.vat && (
-												<p className='text-danger'>{errors?.vat?.message}</p>
-											)}
+									</div>
+									<div className='col-md-6'>
+										<h4 className='mb-3'>Options</h4>
+										<div className='row'>
+											<div className='col-lg-4'>
+												<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+													<Switch
+														checked={tradeCustomer}
+														onChange={(val) => setValue('tradeCustomer', val)}
+														// {...register('contractAmount1', {
+														// 	required: 'Contract Amount is required',
+														// })}
+													/>
+													<label>Trade Customer</label>
+													{errors?.contractAmount1 && (
+														<p className='text-danger'>
+															{errors?.contractAmount1?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+													<Switch
+														checked={vatExempt}
+														onChange={(val) => setValue('vatExempt', val)}
+														// className='form-control'
+														// {...register('contractAmount2')}
+													/>
+													<label>Vat Exempt</label>
+													{errors?.contractAmount2 && (
+														<p className='text-danger'>
+															{errors?.contractAmount2?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+													<Switch
+														checked={exportSwitch}
+														onChange={(val) => setValue('export', val)}
+														// className='form-control'
+														// {...register('contractAmount3')}
+													/>
+													<label>Export</label>
+													{errors?.contractAmount3 && (
+														<p className='text-danger'>
+															{errors?.contractAmount3?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+													<Switch
+														checked={autoPayments}
+														onChange={(val) => setValue('autoPayments', val)}
+														// className='form-control'
+														// {...register('contractAmount3')}
+													/>
+													<label>Auto Payments</label>
+													{errors?.contractAmount3 && (
+														<p className='text-danger'>
+															{errors?.contractAmount3?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3 d-flex justify-content-start align-items-center gap-2'>
+													<Switch
+														checked={current}
+														onChange={(val) => setValue('current', val)}
+														// {...register('contractAmount3')}
+													/>
+													<label>Current</label>
+													{errors?.contractAmount3 && (
+														<p className='text-danger'>
+															{errors?.contractAmount3?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
 									</div>
 								</div>
