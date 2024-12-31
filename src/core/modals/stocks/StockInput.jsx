@@ -1,6 +1,10 @@
 /** @format */
 
-import { ArrowLeft, ChevronUp } from 'feather-icons-react/build/IconComponents';
+import {
+	ArrowLeft,
+	Calendar,
+	ChevronUp,
+} from 'feather-icons-react/build/IconComponents';
 import React, { useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
@@ -9,6 +13,7 @@ import { Link } from 'react-router-dom';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
 import { all_routes } from '../../../Router/all_routes';
 import { useDispatch, useSelector } from 'react-redux';
+import { DatePicker } from 'antd';
 // import ImageWithBasePath from '../../img/imagewithbasebath';
 // import { Link } from 'react-router-dom';
 
@@ -172,19 +177,25 @@ const StockInput = () => {
 								</div>
 							</div>
 							<div className='col-lg-12'>
-								<div className='input-blocks search-form mb-0'>
+								<div className='mb-3'>
 									<label>Date In</label>
-									<input
-										type='text'
-										className='form-control'
-										placeholder='Enter date'
-										{...register('dateIn', {
-											required: 'Date In is required',
-										})}
-									/>
-									{errors.dateIn && (
-										<p className='text-danger'>{errors?.dateIn?.message}</p>
-									)}
+									<div className='input-group'>
+										<DatePicker
+											className='form-control border-end-0'
+											dateFormat='dd-MM-yyyy'
+											placeholderText='Choose Date'
+										/>
+										<span
+											className='d-flex align-items-center justify-content-center bg-white border-start-0'
+											style={{
+												padding: '0.375rem 0.75rem',
+												border: '1px solid #ced4da',
+												borderRadius: '0 0.25rem 0.25rem 0',
+											}}
+										>
+											<Calendar className='info-img' />
+										</span>
+									</div>
 								</div>
 							</div>
 							<div className='col-lg-12'>
