@@ -150,30 +150,18 @@ const Header = () => {
 						to='/dashboard'
 						className='logo logo-normal'
 					>
-						{/* <ImageWithBasePath
-							src='assets/img/logo.png'
-							alt='img'
-						/> */}
 						<img src={LogoImg} />
 					</Link>
 					<Link
 						to='/dashboard'
 						className='logo logo-white'
 					>
-						{/* <ImageWithBasePath
-							src='assets/img/logo-white.png'
-							alt='img'
-						/> */}
 						<img src={LogoWhiteImg} />
 					</Link>
 					<Link
 						to='/dashboard'
 						className='logo-small'
 					>
-						{/* <ImageWithBasePath
-							src='assets/img/logo-small.png'
-							alt='img'
-						/> */}
 						<img src={LogoSmallImg} />
 					</Link>
 					<Link
@@ -295,11 +283,6 @@ const Header = () => {
 											<li>
 												<Link to='#'>
 													Aron Varu
-													{/* <ImageWithBasePath
-														src='assets/img/profiles/avator1.jpg'
-														alt
-														className='img-fluid'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -309,11 +292,6 @@ const Header = () => {
 											<li>
 												<Link to='#'>
 													Jonita
-													{/* <ImageWithBasePath
-														src='assets/img/profiles/avatar-01.jpg'
-														alt
-														className='img-fluid'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -323,11 +301,6 @@ const Header = () => {
 											<li>
 												<Link to='#'>
 													Aaron
-													{/* <ImageWithBasePath
-														src='assets/img/profiles/avatar-10.jpg'
-														alt
-														className='img-fluid'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -351,11 +324,6 @@ const Header = () => {
 						>
 							<span className='user-info'>
 								<span className='user-letter'>
-									{/* <ImageWithBasePath
-										src='assets/img/store/store-01.png'
-										alt='Store Logo'
-										className='img-fluid'
-									/> */}
 									<Home />
 								</span>
 								<span className='user-detail'>
@@ -368,11 +336,6 @@ const Header = () => {
 								to='#'
 								className='dropdown-item'
 							>
-								{/* <ImageWithBasePath
-									src='assets/img/store/store-01.png'
-									alt='Store Logo'
-									className='img-fluid'
-								/>{' '} */}
 								<Home />{' '}
 								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
@@ -380,11 +343,6 @@ const Header = () => {
 								to='#'
 								className='dropdown-item'
 							>
-								{/* <ImageWithBasePath
-									src='assets/img/store/store-02.png'
-									alt='Store Logo'
-									className='img-fluid'
-								/>{' '} */}
 								<Home />{' '}
 								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
@@ -392,11 +350,6 @@ const Header = () => {
 								to='#'
 								className='dropdown-item'
 							>
-								{/* <ImageWithBasePath
-									src='assets/img/store/store-03.png'
-									alt='Store Logo'
-									className='img-fluid'
-								/>{' '} */}
 								<Home />{' '}
 								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
@@ -404,11 +357,6 @@ const Header = () => {
 								to='#'
 								className='dropdown-item'
 							>
-								{/* <ImageWithBasePath
-									src='assets/img/store/store-04.png'
-									alt='Store Logo'
-									className='img-fluid'
-								/>{' '} */}
 								<Home />{' '}
 								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
 							</Link>
@@ -526,10 +474,6 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													{/* <ImageWithBasePath
-														alt='img'
-														src='assets/img/profiles/avatar-02.jpg'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -556,10 +500,6 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													{/* <ImageWithBasePath
-														alt='img'
-														src='assets/img/profiles/avatar-03.jpg'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -586,10 +526,6 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													{/* <ImageWithBasePath
-														alt='img'
-														src='assets/img/profiles/avatar-06.jpg'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -619,10 +555,6 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													{/* <ImageWithBasePath
-														alt='img'
-														src='assets/img/profiles/avatar-17.jpg'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -649,10 +581,6 @@ const Header = () => {
 										<Link to='/activities'>
 											<div className='media d-flex'>
 												<span className='avatar flex-shrink-0'>
-													{/* <ImageWithBasePath
-														alt='img'
-														src='assets/img/profiles/avatar-13.jpg'
-													/> */}
 													<img
 														src={ProfileImg}
 														alt='img'
@@ -697,11 +625,6 @@ const Header = () => {
 						>
 							<span className='user-info'>
 								<span className='user-letter'>
-									{/* <ImageWithBasePath
-										src='assets/img/profiles/avator1.jpg'
-										alt='img'
-										className='img-fluid'
-									/> */}
 									<img
 										src={ProfileImg}
 										alt='img'
@@ -717,10 +640,6 @@ const Header = () => {
 							<div className='profilename'>
 								<div className='profileset'>
 									<span className='user-img'>
-										{/* <ImageWithBasePath
-											src='assets/img/profiles/avator1.jpg'
-											alt='img'
-										/> */}
 										<img
 											src={ProfileImg}
 											alt='img'
@@ -728,7 +647,7 @@ const Header = () => {
 										<span className='status online' />
 									</span>
 									<div className='profilesets'>
-										<h6>John Smilga</h6>
+										<h6>{user?.username}</h6>
 										<h5>Super Admin</h5>
 									</div>
 								</div>
@@ -752,11 +671,6 @@ const Header = () => {
 									to='signin'
 									onClick={handleLogOutClick}
 								>
-									{/* <ImageWithBasePath
-										src={LogOutImg}
-										alt='img'
-										className='me-2'
-									/> */}
 									<img
 										src={LogOutImg}
 										alt='img'
