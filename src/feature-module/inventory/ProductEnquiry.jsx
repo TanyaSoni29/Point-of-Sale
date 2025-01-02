@@ -7,7 +7,7 @@ import React, { useEffect } from 'react';
 import { all_routes } from '../../Router/all_routes';
 import { useDispatch, useSelector } from 'react-redux';
 import { setToggleHeader } from '../../slices/productListSlice';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { useForm } from 'react-hook-form';
 // import ImageWithBasePath from "../../img/imagewithbasebath";
 // import { Link } from "react-router-dom";
@@ -15,6 +15,7 @@ import { useForm } from 'react-hook-form';
 const ProductEnquiry = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
+	const navigate = useNavigate();
 	const { toggle_header } = useSelector((state) => state.product);
 	const {
 		register,
@@ -175,453 +176,612 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Make</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter barcode'
+												{...register('make', {
+													required: 'Make is required',
+												})}
+											/>
+											{errors?.make && (
+												<p className='text-danger'>{errors?.make?.message}</p>
+											)}
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Search 1/2</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter barcode'
+												{...register('search1or2', {
+													required: 'Search 1/2 is required',
+												})}
+											/>
+											{errors?.search1or2 && (
+												<p className='text-danger'>
+													{errors?.search1or2?.message}
+												</p>
+											)}
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Size</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter barcode'
+												{...register('size', {
+													required: 'Size is required',
+												})}
+											/>
+											{errors?.size && (
+												<p className='text-danger'>{errors?.size?.message}</p>
+											)}
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Total Stock Level</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter barcode'
+												{...register('totalStockLevel', {
+													required: 'Total Stock Level is required',
+												})}
+											/>
+											{errors?.totalStockLevel && (
+												<p className='text-danger'>
+													{errors?.totalStockLevel?.message}
+												</p>
+											)}
+										</div>
+									</div>
+									<div className='col-md-4'>
+										<div className='mb-3'>
+											<label className='form-label'>Color</label>
+											<input
+												type='text'
+												className='form-control'
+												placeholder='Enter barcode'
+												{...register('color', {
+													required: 'Color is required',
+												})}
+											/>
+											{errors?.color && (
+												<p className='text-danger'>{errors?.color?.message}</p>
+											)}
+										</div>
+									</div>
 								</div>
 
 								<div className='row'>
-									<div className='col-md-6 border-end'>
-										<h4 className='mb-3'>Customer Information</h4>
+									<div className='col-md-12 border-end'>
+										<h4 className='mb-3'>Product Information</h4>
 										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
-													<label>Name</label>
+													<label>Supplier 1</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('name', {
-															required: 'Name is required',
+														{...register('supplier1', {
+															required: 'Supplier 1 is required',
 														})}
 													/>
-													{errors?.name && (
+													{errors?.supplier1 && (
 														<p className='text-danger'>
-															{errors?.name?.message}
+															{errors?.supplier1?.message}
 														</p>
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
-													<label>House Name</label>
+													<label>Supplier 2</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('houseName', {
-															required: 'House Name is required',
+														{...register('supplier2', {
+															required: 'Supplier 2 is required',
 														})}
 													/>
-													{errors?.houseName && (
+													{errors?.supplier2 && (
 														<p className='text-danger'>
-															{errors?.houseName?.message}
+															{errors?.supplier2?.message}
 														</p>
 													)}
 												</div>
 											</div>
-										</div>
-										<div className='mb-3'>
-											<label>Address</label>
-											<input
-												type='text'
-												className='form-control'
-												{...register('address1', {
-													required: 'Address is required',
-												})}
-											/>
-											{errors?.address1 && (
-												<p className='text-danger'>
-													{errors?.address1?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address2')}
-											/>
-											{errors?.address2 && (
-												<p className='text-danger'>
-													{errors?.address2?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address3')}
-											/>
-											{errors?.address3 && (
-												<p className='text-danger'>
-													{errors?.address3?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address4')}
-											/>
-											{errors?.address4 && (
-												<p className='text-danger'>
-													{errors?.address4?.message}
-												</p>
-											)}
-										</div>
-
-										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
-													<label>Postcode</label>
+													<label>Last Sold On</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('postcode')}
+														{...register('lastSoldOn', {
+															required: 'Address is required',
+														})}
 													/>
-													{errors?.postcode && (
+													{errors?.lastSoldOn && (
 														<p className='text-danger'>
-															{errors?.postcode?.message}
+															{errors?.lastSoldOn?.message}
 														</p>
 													)}
 												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Telephone Home</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('telephoneHome', {
-																required: 'Telephone Home is required',
-															})}
-														/>
-														{errors?.telephoneHome && (
-															<p className='text-danger'>
-																{errors?.telephoneHome?.message}
-															</p>
-														)}
-													</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Total Quantity Sold</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('totalQtySold')}
+													/>
+													{errors?.totalQtySold && (
+														<p className='text-danger'>
+															{errors?.totalQtySold?.message}
+														</p>
+													)}
 												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>TelePhone Work</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('workPhone', {
-																required: 'Work Phone is required',
-															})}
-														/>
-														{errors?.workPhone && (
-															<p className='text-danger'>
-																{errors?.workPhone?.message}
-															</p>
-														)}
-													</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Latest Cost Price</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('latestCostPrice')}
+													/>
+													{errors?.latestCostPrice && (
+														<p className='text-danger'>
+															{errors?.latestCostPrice?.message}
+														</p>
+													)}
 												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Mobile</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('mobile', {
-																required: 'mobile is required',
-															})}
-														/>
-														{errors?.mobile && (
-															<p className='text-danger'>
-																{errors?.mobile?.message}
-															</p>
-														)}
-													</div>
-													<button
-														type='button'
-														className='btn btn-submit'
-													>
-														Send Sms
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>R.R.P</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('RRP')}
+													/>
+													{errors?.RRP && (
+														<p className='text-danger'>
+															{errors?.RRP?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Average Cost Price</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('averageCostPrice')}
+													/>
+													{errors?.averageCostPrice && (
+														<p className='text-danger'>
+															{errors?.averageCostPrice?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Total Cost</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('totalCost')}
+													/>
+													{errors?.totalCost && (
+														<p className='text-danger'>
+															{errors?.totalCost?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Total Sales</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('totalSales')}
+													/>
+													{errors?.totalSales && (
+														<p className='text-danger'>
+															{errors?.totalSales?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Total Vat</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('totalVat')}
+													/>
+													{errors?.totalVat && (
+														<p className='text-danger'>
+															{errors?.totalVat?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Total Revenue</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('totalRevenue')}
+													/>
+													{errors?.totalRevenue && (
+														<p className='text-danger'>
+															{errors?.totalRevenue?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Faulty Stock</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('faultyStock')}
+													/>
+													{errors?.faultyStock && (
+														<p className='text-danger'>
+															{errors?.faultyStock?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Back Order</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('backOrder')}
+													/>
+													{errors?.backOrder && (
+														<p className='text-danger'>
+															{errors?.backOrder?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Xmas Order</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('xmasOrder')}
+													/>
+													{errors?.xmasOrder && (
+														<p className='text-danger'>
+															{errors?.xmasOrder?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Min. Stock</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('minStock')}
+													/>
+													{errors?.minStock && (
+														<p className='text-danger'>
+															{errors?.minStock?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Max. Stock</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('maxStock')}
+													/>
+													{errors?.maxStock && (
+														<p className='text-danger'>
+															{errors?.maxStock?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Allocated Stock</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('allocatedStock')}
+													/>
+													{errors?.allocatedStock && (
+														<p className='text-danger'>
+															{errors?.allocatedStock?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Last Stock Check</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('lastStockCheck')}
+													/>
+													{errors?.lastStockCheck && (
+														<p className='text-danger'>
+															{errors?.lastStockCheck?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>MFR Part No. 1</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('mfrPartNo1')}
+													/>
+													{errors?.mfrPartNo1 && (
+														<p className='text-danger'>
+															{errors?.mfrPartNo1?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>MFR Part No. 2</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('mfrPartNo2')}
+													/>
+													{errors?.mfrPartNo2 && (
+														<p className='text-danger'>
+															{errors?.mfrPartNo2?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Bin Location 1</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('binLocation1')}
+													/>
+													{errors?.binLocation1 && (
+														<p className='text-danger'>
+															{errors?.binLocation1?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Bin Location 2</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('binLocation2')}
+													/>
+													{errors?.binLocation2 && (
+														<p className='text-danger'>
+															{errors?.binLocation2?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Margin</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('margin')}
+													/>
+													{errors?.margin && (
+														<p className='text-danger'>
+															{errors?.margin?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Category A</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('categoryA', {
+															required: 'Category A is required',
+														})}
+													/>
+													{errors?.categoryA && (
+														<p className='text-danger'>
+															{errors?.categoryA?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Category B</label>
+													<input
+														type='email'
+														className='form-control'
+														{...register('categoryB')}
+													/>
+													{errors?.categoryB && (
+														<p className='text-danger'>
+															{errors?.categoryB?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Category C</label>
+													<input
+														type='email'
+														className='form-control'
+														{...register('categoryC')}
+													/>
+													{errors?.categoryC && (
+														<p className='text-danger'>
+															{errors?.categoryC?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<button className='btn btn-submit'>
+														Ask Admin To Review This Part
 													</button>
-												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Email</label>
-														<input
-															type='email'
-															className='form-control'
-															{...register('email', {
-																required: 'Email is required',
-															})}
-														/>
-														{errors?.email && (
-															<p className='text-danger'>
-																{errors?.email?.message}
-															</p>
-														)}
-													</div>
-													<button className='btn btn-submit'>Send Email</button>
 												</div>
 											</div>
 										</div>
 									</div>
-									<div className='col-md-6'>
-										<h4 className='mb-3'>Financial</h4>
+
+									<div className='col-md-8'>
+										<h4 className='mb-3'>Supplier Stock Availability</h4>
 										<div className='row'>
 											<div className='col-lg-6'>
 												<div className='mb-3'>
-													<label>Balance</label>
+													<label>Availability</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('balance', {
-															required: 'Balance is required',
+														{...register('availability', {
+															required: 'Availability is required',
 														})}
 													/>
-													{errors?.balance && (
+													{errors?.availability && (
 														<p className='text-danger'>
-															{errors?.balance?.message}
+															{errors?.availability?.message}
 														</p>
 													)}
 												</div>
 											</div>
 											<div className='col-lg-6'>
 												<div className='mb-3'>
-													<label>Current</label>
+													<label>Lead Time</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('current', {
-															required: 'Current is required',
+														{...register('leadTime', {
+															required: 'Lead Time is required',
 														})}
 													/>
-													{errors?.current && (
+													{errors?.leadTime && (
 														<p className='text-danger'>
-															{errors?.current?.message}
+															{errors?.leadTime?.message}
 														</p>
 													)}
 												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Qty In Stock</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('qtyInStock')}
+													/>
+													{errors?.qtyInStock && (
+														<p className='text-danger'>
+															{errors?.qtyInStock?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Last Updated</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('lastUpdated', {
+															required: 'Last Updated is required',
+														})}
+													/>
+													{errors?.lastUpdated && (
+														<p className='text-danger'>
+															{errors?.lastUpdated?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<button className='btn btn-submit'>Check</button>
 											</div>
 										</div>
-
+									</div>
+									<div className='col-md-4'>
 										<div className='row'>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Rental Balance</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('rentalBalance', {
-															required: 'Rental Balance is required',
-														})}
-													/>
-													{errors?.rentalBalance && (
-														<p className='text-danger'>
-															{errors?.rentalBalance?.message}
-														</p>
-													)}
+											<div className='d-flex gap-3 flex-column justify-content-center align-items-center'>
+												<div className='d-flex justify-content-center align-items-center'>
+													<button
+														type='button'
+														className='btn btn-submit '
+													>
+														View Product On webSite
+													</button>
 												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>1 Month</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('oneMonth', {
-															required: '1 Month is required',
-														})}
-													/>
-													{errors?.oneMonth && (
-														<p className='text-danger'>
-															{errors?.oneMonth?.message}
-														</p>
-													)}
+												<div className='d-flex justify-content-center align-items-center'>
+													<button
+														type='button'
+														className='btn btn-submit '
+													>
+														Order This Part
+													</button>
 												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>TurnOver</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('turnover', {
-															required: 'Turnover is required',
-														})}
-													/>
-													{errors?.turnover && (
-														<p className='text-danger'>
-															{errors?.turnover?.message}
-														</p>
-													)}
+												<div className='d-flex justify-content-center align-items-center'>
+													<button
+														type='button'
+														className='btn btn-submit '
+													>
+														Print Product Label
+													</button>
 												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>2 Months</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('twoMonths', {
-															required: '2 Month is required',
-														})}
-													/>
-													{errors?.twoMonths && (
-														<p className='text-danger'>
-															{errors?.twoMonths?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Credit Limit</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('creditLimit', {
-															required: 'Credit Limit is required',
-														})}
-													/>
-													{errors?.creditLimit && (
-														<p className='text-danger'>
-															{errors?.creditLimit?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>3 Months</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('threeMonths', {
-															required: '3 Month is required',
-														})}
-													/>
-													{errors?.treeMonths && (
-														<p className='text-danger'>
-															{errors?.threeMonths?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Loyalty Points</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('loyaltyPoints', {
-															required: 'Loyalty Points is required',
-														})}
-													/>
-													{errors?.loyaltyPoints && (
-														<p className='text-danger'>
-															{errors?.loyaltyPoints?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>4 Months</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('fourMonths', {
-															required: '4 Months is required',
-														})}
-													/>
-													{errors?.fourMonths && (
-														<p className='text-danger'>
-															{errors?.fourMonths?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Suspense</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('suspense', {
-															required: 'Suspense is required',
-														})}
-													/>
-													{errors?.suspense && (
-														<p className='text-danger'>
-															{errors?.suspense?.message}
-														</p>
-													)}
-												</div>
-											</div>
-										</div>
-
-										<div className='row'>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Last Invoice</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('lastInvoice', {
-															required: 'Last Invoice is required',
-														})}
-													/>
-													{errors?.lastInvoice && (
-														<p className='text-danger'>
-															{errors?.lastInvoice?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Amount</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('amount1')}
-													/>
-													{errors?.amount1 && (
-														<p className='text-danger'>
-															{errors?.amount1?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Last Payment</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('lastPayment', {
-															required: 'Last Payment is required',
-														})}
-													/>
-													{errors?.lastPayment && (
-														<p className='text-danger'>
-															{errors?.lastPayment?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Amount</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('amount2')}
-													/>
-													{errors?.amount2 && (
-														<p className='text-danger'>
-															{errors?.amount2?.message}
-														</p>
-													)}
+												<div className='d-flex justify-content-center align-items-center'>
+													<button
+														type='button'
+														className='btn btn-submit '
+													>
+														Print Finance Label
+													</button>
 												</div>
 											</div>
 										</div>
@@ -632,9 +792,17 @@ const ProductEnquiry = () => {
 						<div className='modal-footer-btn'>
 							<button
 								type='submit'
-								className='btn btn-submit'
+								className='btn btn-submit me-3'
 							>
 								Create Customer
+							</button>
+
+							<button
+								className='btn btn-submit'
+								type='button'
+								onClick={() => navigate('/add-product')}
+							>
+								Product Maintenance
 							</button>
 						</div>
 					</form>
