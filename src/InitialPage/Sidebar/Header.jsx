@@ -13,11 +13,13 @@ import ProfileImg from '../../assets/img/profiles/profile.png';
 import LogOutImg from '../../assets/img/icons/log-out.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../service/operations/authApi';
+import { refreshLocations } from '../../slices/locationSlice';
 const Header = () => {
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
 	const { user } = useSelector((state) => state.auth);
-	console.log(user);
+	const { locations } = useSelector((state) => state.location);
+	console.log(locations);
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
@@ -25,6 +27,10 @@ const Header = () => {
 	const isElementVisible = (element) => {
 		return element.offsetWidth > 0 || element.offsetHeight > 0;
 	};
+
+	useEffect(() => {
+		dispatch(refreshLocations());
+	}, [dispatch]);
 
 	useEffect(() => {
 		const handleMouseover = (e) => {
@@ -332,34 +338,18 @@ const Header = () => {
 							</span>
 						</Link>
 						<div className='dropdown-menu dropdown-menu-right'>
-							<Link
-								to='#'
-								className='dropdown-item'
-							>
-								<Home />{' '}
-								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
-							</Link>
-							<Link
-								to='#'
-								className='dropdown-item'
-							>
-								<Home />{' '}
-								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
-							</Link>
-							<Link
-								to='#'
-								className='dropdown-item'
-							>
-								<Home />{' '}
-								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
-							</Link>
-							<Link
-								to='#'
-								className='dropdown-item'
-							>
-								<Home />{' '}
-								<span style={{ marginLeft: '6px' }}>Grocery Alpha</span>
-							</Link>
+							{locations?.map((location) => (
+								<>
+									<Link
+										to='#'
+										className='dropdown-item'
+										key={location?.code}
+									>
+										<Home />{' '}
+										<span style={{ marginLeft: '6px' }}>{location?.name}</span>
+									</Link>
+								</>
+							))}
 						</div>
 					</li>
 					{/* /Select Store */}
