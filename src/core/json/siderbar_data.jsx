@@ -114,7 +114,7 @@ export const SidebarData = [
 			{
 				label: 'Product Enquiry',
 				link: '/product-enquiry',
-				icon: <Icon.Codepen />,
+				icon: <Icon.Codesandbox />,
 				showSubRoute: false,
 				submenu: false,
 			},
