@@ -9,6 +9,7 @@ const initialState = {
 	toggle_header: false,
 	product: null,
 	loading: false,
+	layoutstyledata: localStorage.getItem('layoutStyling'),
 };
 
 const productSlice = createSlice({
@@ -52,6 +53,10 @@ const productSlice = createSlice({
 		toggleHeaderState: (state) => {
 			state.toggle_header = !state.toggle_header;
 		},
+		setLayoutStyleData: (state, action) => {
+			state.layoutstyledata = action.payload;
+			localStorage.setItem('layoutStyling', action.payload); // Update localStorage
+		},
 	},
 });
 
@@ -76,5 +81,6 @@ export const {
 	removeProduct,
 	setToggleHeader,
 	toggleHeaderState,
+	setLayoutStyleData,
 } = productSlice.actions;
 export default productSlice.reducer;
