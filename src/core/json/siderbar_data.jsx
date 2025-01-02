@@ -361,6 +361,13 @@ export const SidebarData = [
 				submenu: false,
 			},
 			{
+				label: 'Customer Enquiry',
+				link: '/customer-enquiry',
+				icon: <Icon.User />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
 				label: 'Suppliers',
 				link: '/suppliers',
 				icon: <Icon.Users />,

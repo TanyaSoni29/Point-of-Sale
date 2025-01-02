@@ -146,6 +146,7 @@ export const all_routes = {
 	payslip: '/payslip',
 	holidays: '/holidays',
 	customers: '/customers',
+	customerEnquiry: '/customer-enquiry',
 	suppliers: '/suppliers',
 	storelist: '/location-list',
 	managestock: '/manage-stocks',

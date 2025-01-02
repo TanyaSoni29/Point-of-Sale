@@ -561,6 +561,11 @@ const HorizontalSidebar = () => {
 										</Link>
 									</li>
 									<li>
+										<Link to='customer-enquiry'>
+											<span>Customer Enquiry</span>
+										</Link>
+									</li>
+									<li>
 										<Link to='suppliers'>
 											<span>Suppliers</span>
 										</Link>

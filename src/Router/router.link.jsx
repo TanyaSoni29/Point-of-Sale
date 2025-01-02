@@ -204,6 +204,7 @@ import AddSupplier from '../core/modals/peoples/AddSupplier';
 import AddStore from '../core/modals/peoples/AddStore';
 import AddBrandPage from '../core/modals/inventory/AddBrandMaintenance';
 import ProductEnquiry from '../feature-module/inventory/ProductEnquiry';
+import CustomerEnquiry from '../core/modals/peoples/CustomerEnquiry';
 
 export const publicRoutes = [
 	{
@@ -1458,6 +1459,13 @@ export const publicRoutes = [
 		path: routes.productEnquiry,
 		name: 'productenquiry',
 		element: <ProductEnquiry />,
+		route: Route,
+	},
+	{
+		id: 125,
+		path: routes.customerEnquiry,
+		name: 'customerenquiry',
+		element: <CustomerEnquiry />,
 		route: Route,
 	},
 ];
