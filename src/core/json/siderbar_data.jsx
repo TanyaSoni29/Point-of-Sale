@@ -363,7 +363,7 @@ export const SidebarData = [
 			{
 				label: 'Customer Enquiry',
 				link: '/customer-enquiry',
-				icon: <Icon.User />,
+				icon: <Icon.Edit />,
 				showSubRoute: false,
 				submenu: false,
 			},
