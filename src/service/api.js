@@ -84,3 +84,31 @@ export const customerEndpoints = {
 	UPDATE_CUSTOMER: `${BASE_URL}/Customers/Update`,
 	DELETE_CUSTOMER: (id) => `${BASE_URL}/Customers/Delete/${id}`,
 };
+
+export const purchaseOrderEndpoints = {
+	ORDER_PART: `${BASE_URL}/PurchaseOrders/OrderPart`,
+	REMOVE_PART_FROM_RAISED_ORDER: `${BASE_URL}/PurchaseOrders/RemovePartFromRaisedOrder`,
+	REMOVE_FROM_PENDING_PART_ORDER: `${BASE_URL}/PurchaseOrders/RemoveFromPendingPartOrder`,
+	RAISE_ORDERS: `${BASE_URL}/PurchaseOrders/RaiseOrders`,
+	RETURN_ORDER_DATA: `${BASE_URL}/PurchaseOrders/ReturnOrderData`,
+	LIST_ORDER_NUMBERS: `${BASE_URL}/PurchaseOrders/ListOrderNumbers`,
+	CREATE_OR_UPDATE_B2B_FILE: `${BASE_URL}/PurchaseOrders/CreateOrUpdateB2BFile`,
+	CANCEL_FULL_ORDER: `${BASE_URL}/PurchaseOrders/CancelFullOrder`,
+	GET_BACK_ORDER_COUNT: `${BASE_URL}/PurchaseOrders/GetBackOrderCount`,
+	UPDATE_ITEM_QUANTITY_REQUIRED: `${BASE_URL}/PurchaseOrders/UpdateItemQuantityRequired`,
+	UPDATE_ITEM: `${BASE_URL}/PurchaseOrders/UpdateItem`,
+	GET_REPORT_DATA_BY_ORDER_NUMBER: `${BASE_URL}/PurchaseOrders/GetReportDataByOrderNumber`,
+	GET_REPORT_DATA: `${BASE_URL}/PurchaseOrders/GetReportData`,
+	GET_OUTSTANDING_ORDERS: `${BASE_URL}/PurchaseOrders/GetOutstandingOrders`,
+	LIST_SUPPLIERS_WITH_ORDERS: `${BASE_URL}/PurchaseOrders/ListSuppliersWithOrders`,
+	GET_ORDERS_BY_SUPPLIER: `${BASE_URL}/PurchaseOrders/GetOrdersBySupplier`,
+	GET_ORDERS_BY_STATUS: (status) =>
+		`${BASE_URL}/PurchaseOrders/GetOrdersByStatus/${status}`,
+	GET_PRODUCTS_TO_REORDER: `${BASE_URL}/PurchaseOrders/GetProductsToReorder`,
+	GET_SPLITTED_ORDER_QTY_BY_LOC: `${BASE_URL}/PurchaseOrders/GetSplittedOrderQtyByLoc`,
+	GET_OUTSTANDING_ORDERS_REPORT: `${BASE_URL}/PurchaseOrders/GetOutstandingOrdersReport`,
+	GET_REORDER_LEVEL_REPORT: `${BASE_URL}/PurchaseOrders/GetReOrderLevelReport`,
+	GET_SYSTEM_OPTIONS: `${BASE_URL}/PurchaseOrders/GetSystemOptions`,
+	RECIEVE_FULL_ORDER: `${BASE_URL}/PurchaseOrders/RecieveFullOrder`,
+	RECIEVE_SINGLE_PART_OF_ORDER: `${BASE_URL}/PurchaseOrders/RecieveSinglePartOfOrder`,
+};

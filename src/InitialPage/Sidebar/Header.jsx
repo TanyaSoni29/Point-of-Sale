@@ -11,11 +11,13 @@ import LogoWhiteImg from '../../assets/img/logo-white.png';
 import LogoSmallImg from '../../assets/img/logo-small.png';
 import ProfileImg from '../../assets/img/profiles/profile.png';
 import LogOutImg from '../../assets/img/icons/log-out.svg';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../service/operations/authApi';
 const Header = () => {
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
+	const { user } = useSelector((state) => state.auth);
+	console.log(user);
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
@@ -706,7 +708,7 @@ const Header = () => {
 									/>
 								</span>
 								<span className='user-detail'>
-									<span className='user-name'>John Smilga</span>
+									<span className='user-name'>{user?.username}</span>
 									<span className='user-role'>Super Admin</span>
 								</span>
 							</span>
