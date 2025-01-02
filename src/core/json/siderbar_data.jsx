@@ -111,6 +111,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
+			{
+				label: 'Product Enquiry',
+				link: '/product-enquiry',
+				icon: <Icon.Codepen />,
+				showSubRoute: false,
+				submenu: false,
+			},
 			// {
 			// 	label: 'Create Product',
 			// 	link: '/add-product',

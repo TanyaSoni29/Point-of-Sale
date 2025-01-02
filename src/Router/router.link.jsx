@@ -203,6 +203,7 @@ import AddCategoryPage from '../core/modals/inventory/AddCategoryPage';
 import AddSupplier from '../core/modals/peoples/AddSupplier';
 import AddStore from '../core/modals/peoples/AddStore';
 import AddBrandPage from '../core/modals/inventory/AddBrandMaintenance';
+import ProductEnquiry from '../feature-module/inventory/ProductEnquiry';
 
 export const publicRoutes = [
 	{
@@ -1450,6 +1451,13 @@ export const publicRoutes = [
 		path: routes.addbrands,
 		name: 'addbrand',
 		element: <AddBrandPage />,
+		route: Route,
+	},
+	{
+		id: 125,
+		path: routes.productEnquiry,
+		name: 'productenquiry',
+		element: <ProductEnquiry />,
 		route: Route,
 	},
 ];

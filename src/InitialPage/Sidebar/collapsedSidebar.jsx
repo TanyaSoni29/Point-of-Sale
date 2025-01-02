@@ -394,6 +394,11 @@ const CollapsedSidebar = () => {
 								</Link>
 							</li>
 							<li>
+								<Link to='product-enquiry'>
+									<span>Product Enquiry</span>
+								</Link>
+							</li>
+							<li>
 								<Link to='add-product'>
 									<span>Create Product</span>
 								</Link>
