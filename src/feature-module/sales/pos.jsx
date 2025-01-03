@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import ImageWithBasePath from '../../core/img/imagewithbasebath';
 import {
@@ -32,8 +32,12 @@ import CreditCardImg from '../../assets/img/icons/credit-card.svg';
 import CashPayImg from '../../assets/img/icons/cash-pay.svg';
 import BarCodeImg from '../../assets/img/barcode/barcode-03.jpg';
 import LogoImg from '../../assets/img/logo.png';
+import { refreshCategories } from '../../slices/categorySlice';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Pos = () => {
+	const dispatch = useDispatch();
+	const { categories } = useSelector((state) => state.category);
 	const customers = [
 		{ value: 'walkInCustomer', label: 'Walk in Customer' },
 		{ value: 'john', label: 'John' },
@@ -125,6 +129,23 @@ const Pos = () => {
 		setQuantity3(quantity3 + 1);
 	};
 
+	const MySwal = withReactContent(Swal);
+
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
+			title: 'Are you sure?',
+			text: "You won't be able to revert this!",
+			showCancelButton: true,
+			reverseButtons: true,
+			confirmButtonColor: '#00ff00',
+			confirmButtonText: 'Yes, delete it!',
+			cancelButtonColor: '#ff0000',
+			cancelButtonText: 'Cancel',
+		});
+
+		return result.isConfirmed;
+	};
+
 	const renderTooltip = (props) => (
 		<Tooltip
 			id='pdf-tooltip'
@@ -183,33 +204,13 @@ const Pos = () => {
 			},
 		],
 	};
-	const MySwal = withReactContent(Swal);
 
-	const showConfirmationAlert = () => {
-		MySwal.fire({
-			title: 'Are you sure?',
-			text: "You won't be able to revert this!",
-			showCancelButton: true,
-			confirmButtonColor: '#00ff00',
-			confirmButtonText: 'Yes, delete it!',
-			cancelButtonColor: '#ff0000',
-			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
-		});
-	};
+	console.log(categories);
+
+	useEffect(() => {
+		dispatch(refreshCategories());
+	}, [dispatch]);
+
 	return (
 		<div>
 			<div className='page-wrapper pos-pg-wrapper ms-0'>
@@ -256,186 +257,26 @@ const Pos = () => {
 									{...settings}
 									className='tabs owl-carousel pos-category'
 								>
-									<div
-										id='all'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-01.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>All Categories</Link>
-										</h6>
-										<span>80 Items</span>
-									</div>
-									<div
-										id='headphones'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-02.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Headphones</Link>
-										</h6>
-										<span>4 Items</span>
-									</div>
-									<div
-										id='shoes'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-03.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Shoes</Link>
-										</h6>
-										<span>14 Items</span>
-									</div>
-									<div
-										id='mobiles'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-04.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Mobiles</Link>
-										</h6>
-										<span>7 Items</span>
-									</div>
-									<div
-										id='watches'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-05.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Watches</Link>
-										</h6>
-										<span>16 Items</span>
-									</div>
-									<div
-										id='laptops'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-06.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Laptops</Link>
-										</h6>
-										<span>18 Items</span>
-									</div>
-									<div
-										id='allcategory'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-01.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>All Categories</Link>
-										</h6>
-										<span>80 Items</span>
-									</div>
-									<div
-										id='headphone'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-02.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Headphones</Link>
-										</h6>
-										<span>4 Items</span>
-									</div>
-									<div
-										id='shoe'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-03.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Shoes</Link>
-										</h6>
-										<span>14 Items</span>
-									</div>
-									<div
-										id='mobile'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-04.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Mobiles</Link>
-										</h6>
-										<span>7 Items</span>
-									</div>
-									<div
-										id='watche'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-05.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Watches</Link>
-										</h6>
-										<span>16 Items</span>
-									</div>
-									<div
-										id='laptop'
-										className='pos-slick-item'
-									>
-										<Link to='#'>
-											<ImageWithBasePath
-												src='assets/img/categories/category-06.png'
-												alt='Categories'
-											/>
-										</Link>
-										<h6>
-											<Link to='#'>Laptops</Link>
-										</h6>
-										<span>18 Items</span>
-									</div>
+									{categories?.map((category) => (
+										<>
+											<div
+												key={category?.code}
+												// id={category?.code}
+												className='pos-slick-item'
+											>
+												{/* <Link to='#'>
+													<ImageWithBasePath
+														src='assets/img/categories/category-01.png'
+														alt='Categories'
+													/>
+												</Link> */}
+												<h6>
+													<Link to='#'>{category?.name}</Link>
+												</h6>
+												{/* <span>80 Items</span> */}
+											</div>
+										</>
+									))}
 								</Slider>
 								<div className='pos-products'>
 									<div className='d-flex align-items-center justify-content-between'>
