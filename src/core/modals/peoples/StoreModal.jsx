@@ -12,12 +12,12 @@ import {
 } from '../../../service/operations/locationApi';
 import { addLocation, updateLocations } from '../../../slices/locationSlice';
 import { Switch } from 'antd';
-
+import { IoIosArrowDown } from 'react-icons/io';
 const StoreModal = () => {
-	const { location } = useSelector((state) => state.location);
+	const { location, locations } = useSelector((state) => state.location);
 	const { token } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
-	// console.log('store location---', location);
+	console.log('store location---', locations);
 	const {
 		register: editRegister,
 		handleSubmit: editHandleSubmit,
@@ -36,6 +36,10 @@ const StoreModal = () => {
 		getValues,
 		setValue,
 	} = useForm();
+
+	const availableCodes = Array.from({ length: 30 }, (_, i) =>
+		(i + 1).toString().padStart(2, '0')
+	).filter((code) => !locations.some((loc) => loc.code === code));
 
 	const onAddSubmit = async (data) => {
 		try {
@@ -190,11 +194,29 @@ const StoreModal = () => {
 											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Location Code</label>
-													<input
-														type='text'
-														className='form-control'
-														{...addRegister('code', { required: true })}
-													/>
+													<div className='position-relative d-flex align-items-center'>
+														<select
+															className='form-control'
+															{...addRegister('code', {
+																required: 'Location Code is required',
+															})}
+														>
+															<option value=''>Choose</option>
+															{availableCodes.map((code) => (
+																<option
+																	key={code}
+																	value={code}
+																>
+																	{code}
+																</option>
+															))}
+														</select>
+														<IoIosArrowDown
+															className='position-absolute'
+															style={{ left: '120px' }}
+														/>
+													</div>
+
 													{addErrors.code && (
 														<p className=''>{addErrors.code.message}</p>
 													)}
@@ -743,7 +765,9 @@ const StoreModal = () => {
 														{...editRegister('accountEmail')}
 													/>
 													{editErrors.accountEmail && (
-														<p className=''>{editErrors.accountEmail.message}</p>
+														<p className=''>
+															{editErrors.accountEmail.message}
+														</p>
 													)}
 												</div>
 											</div>
