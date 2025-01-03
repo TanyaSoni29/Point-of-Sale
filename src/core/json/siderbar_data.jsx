@@ -285,7 +285,7 @@ export const SidebarData = [
 		showSubRoute: false,
 		submenuItems: [
 			{
-				label: 'Coupons',
+				label: 'Promos',
 				link: '/coupons',
 				icon: <Icon.ShoppingCart />,
 				showSubRoute: false,

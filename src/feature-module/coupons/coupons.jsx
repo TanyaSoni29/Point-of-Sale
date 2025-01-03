@@ -127,8 +127,8 @@ const Coupons = () => {
 					<div className='page-header'>
 						<div className='add-item d-flex'>
 							<div className='page-title'>
-								<h4>Coupons</h4>
-								<h6>Manage Your Coupons</h6>
+								<h4>Promos</h4>
+								<h6>Manage Your Promos</h6>
 							</div>
 						</div>
 						<ul className='table-top-head'>
@@ -225,7 +225,7 @@ const Coupons = () => {
 								data-bs-target='#add-units'
 							>
 								<PlusCircle className='me-2' />
-								Add New Coupons
+								Add New Promos
 							</Link>
 						</div>
 					</div>

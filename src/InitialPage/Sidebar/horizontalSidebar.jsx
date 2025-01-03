@@ -465,7 +465,7 @@ const HorizontalSidebar = () => {
 									</li>
 									<li>
 										<Link to='coupons'>
-											<span>Coupons</span>
+											<span>Promos</span>
 										</Link>
 									</li>
 								</ul>
