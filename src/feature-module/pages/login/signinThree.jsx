@@ -7,9 +7,9 @@ import { all_routes } from '../../../Router/all_routes';
 import MailImg from '../../../assets/img/icons/mail.svg';
 import LogoImg from '../../../assets/img/logo.png';
 import LogoWhiteImg from '../../../assets/img/logo-white.png';
-import facebookLogoImg from '../../../assets/img/icons/facebook-logo.svg';
-import GoogleImgLogo from '../../../assets/img/icons/google.png';
-import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
+// import facebookLogoImg from '../../../assets/img/icons/facebook-logo.svg';
+// import GoogleImgLogo from '../../../assets/img/icons/google.png';
+// import AppleImgLogo from '../../../assets/img/icons/apple-logo.svg';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
 import { login } from '../../../service/operations/authApi';
@@ -154,29 +154,21 @@ const SigninThree = () => {
 											</Link>
 										</h4>
 									</div>
-									<div className='form-setlogin or-text'>
+									{/* <div className='form-setlogin or-text'>
 										<h4>OR</h4>
-									</div>
-									<div className='form-sociallink'>
+									</div> */}
+									{/* <div className='form-sociallink'>
 										<ul className='d-flex'>
 											<li>
 												<Link
 													to='#'
 													className='facebook-logo'
 												>
-													{/* <ImageWithBasePath
-														src='assets/img/icons/facebook-logo.svg'
-														alt='Facebook'
-													/> */}
 													<img src={facebookLogoImg} />
 												</Link>
 											</li>
 											<li>
 												<Link to='#'>
-													{/* <ImageWithBasePath
-														src='assets/img/icons/google.png'
-														alt='Google'
-													/> */}
 													<img src={GoogleImgLogo} />
 												</Link>
 											</li>
@@ -185,15 +177,11 @@ const SigninThree = () => {
 													to='#'
 													className='apple-logo'
 												>
-													{/* <ImageWithBasePath
-														src='assets/img/icons/apple-logo.svg'
-														alt='Apple'
-													/> */}
 													<img src={AppleImgLogo} />
 												</Link>
 											</li>
 										</ul>
-									</div>
+									</div> */}
 								</div>
 							</form>
 						</div>
