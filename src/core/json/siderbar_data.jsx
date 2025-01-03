@@ -54,6 +54,20 @@ export const SidebarData = [
 		submenuHdr: 'System Maintenance',
 		submenuItems: [
 			{
+				label: 'Category Maintenance',
+				link: '/add-category',
+				icon: <Icon.Codepen />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
+				label: 'Brand Maintenance',
+				link: '/add-brand',
+				icon: <Icon.Tag />,
+				showSubRoute: false,
+				submenu: false,
+			},
+			{
 				label: 'Customer Maintenance',
 				link: '/add-customer',
 				icon: <Icon.User />,
@@ -76,22 +90,8 @@ export const SidebarData = [
 			},
 			{
 				label: 'Location Maintenance',
-				link: '/add-location',
+				link: '/location-list',
 				icon: <Icon.Home />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Category Maintenance',
-				link: '/add-category',
-				icon: <Icon.Codepen />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Brand Maintenance',
-				link: '/add-brand',
-				icon: <Icon.Tag />,
 				showSubRoute: false,
 				submenu: false,
 			},
