@@ -8,7 +8,7 @@ import { pagesRoute, posRoutes, publicRoutes } from './router.link';
 import { Outlet } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import ThemeSettings from '../InitialPage/themeSettings';
-import PrivateRoute from '../utils/PrivateRoute';
+// import PrivateRoute from '../utils/PrivateRoute';
 
 const AllRoutes = () => {
 	const { toggle_header } = useSelector((state) => state.product);
@@ -60,7 +60,9 @@ const AllRoutes = () => {
 				</Route>
 				<Route
 					path='/pos'
-					element={<PrivateRoute element={<Pospages />} />}
+					// element={<PrivateRoute element={<Pospages />} />}
+					element={<Pospages />}
+
 				>
 					{posRoutes.map((route, id) => (
 						<Route
@@ -72,7 +74,8 @@ const AllRoutes = () => {
 				</Route>
 				<Route
 					path={'/'}
-					element={<PrivateRoute element={<HeaderLayout />} />}
+					// element={<PrivateRoute element={<HeaderLayout />} />}
+					element={<HeaderLayout />}
 				>
 					{publicRoutes.map((route, id) => (
 						<Route
