@@ -68,7 +68,8 @@ export const suppliersEndpoints = {
 export const productEndpoints = {
 	CREATE_PRODUCT: `${BASE_URL}/Products/Create`,
 	GET_ALL_PRODUCTS: `${BASE_URL}/Products/GetAllProducts`,
-	GET_PRODUCTS_BY_CATEGORY: `${BASE_URL}/Products/GetProductsByCategory`,
+	GET_PRODUCTS_BY_CATEGORY: (code) =>
+		`${BASE_URL}/Products/GetProductsByCategory?catACode=${code}&catBCode=${code}&catCCode=${code}`,
 	GET_PRODUCT_PARTNO: (id) => `${BASE_URL}/Products/GetProduct/${id}`,
 	UPDATE_PRODUCT: `${BASE_URL}/Products/Update`,
 	DELETE_PRODUCT: (id) => `${BASE_URL}/Products/Delete/${id}`,

@@ -59,13 +59,19 @@ export const getAllProducts = async (token) => {
 	return result;
 };
 
-export const getProductByCategory = async (token) => {
+export const getProductByCategory = async (token, selectedCategory) => {
 	let result;
+	console.log('category sended here', selectedCategory);
 	try {
-		const response = await apiConnector('GET', GET_PRODUCTS_BY_CATEGORY, null, {
-			'Authorization': `Bearer ${token}`,
-			'Content-Type': 'application/json',
-		});
+		const response = await apiConnector(
+			'GET',
+			GET_PRODUCTS_BY_CATEGORY(selectedCategory),
+			null,
+			{
+				'Authorization': `Bearer ${token}`,
+				'Content-Type': 'application/json',
+			}
+		);
 
 		console.log('Get Product  by Category Api response---', response);
 		if (response.status !== 200)

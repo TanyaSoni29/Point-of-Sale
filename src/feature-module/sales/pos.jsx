@@ -34,10 +34,14 @@ import BarCodeImg from '../../assets/img/barcode/barcode-03.jpg';
 import LogoImg from '../../assets/img/logo.png';
 import { refreshCategories } from '../../slices/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
+import { getProductByCategory } from '../../service/operations/productApi';
 
 const Pos = () => {
 	const dispatch = useDispatch();
+	const { token } = useSelector((state) => state.auth);
 	const { categories } = useSelector((state) => state.category);
+	const [selectedCategory, setSelectedCategory] = useState(null);
+	// const [productList, setProductList] = useState([]);
 	const customers = [
 		{ value: 'walkInCustomer', label: 'Walk in Customer' },
 		{ value: 'john', label: 'John' },
@@ -208,6 +212,21 @@ const Pos = () => {
 	console.log(categories);
 
 	useEffect(() => {
+		async function getProductByCategoryCode() {
+			try {
+				console.log('selected Category', selectedCategory);
+				const response = await getProductByCategory(token, selectedCategory);
+				console.log(response);
+			} catch (error) {
+				console.error(error);
+			}
+		}
+		if (selectedCategory) {
+			getProductByCategoryCode();
+		}
+	}, [selectedCategory]);
+
+	useEffect(() => {
 		dispatch(refreshCategories());
 	}, [dispatch]);
 
@@ -262,7 +281,10 @@ const Pos = () => {
 											<div
 												key={category?.code}
 												// id={category?.code}
-												className='pos-slick-item'
+												className={`pos-slick-item ${
+													selectedCategory === category.code ? 'active' : ''
+												}`}
+												onClick={() => setSelectedCategory(category?.code)}
 											>
 												{/* <Link to='#'>
 													<ImageWithBasePath
@@ -311,292 +333,6 @@ const Pos = () => {
 														<div className='d-flex align-items-center justify-content-between price'>
 															<span>30 Pcs</span>
 															<p>$15800</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-02.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Computer</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>MacBook Pro</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>140 Pcs</span>
-															<p>$1000</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-03.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Watches</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Rolex Tribute V3</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>220 Pcs</span>
-															<p>$6800</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-04.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Shoes</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Red Nike Angelo</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>78 Pcs</span>
-															<p>$7800</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-05.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Headphones</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Airpod 2</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>47 Pcs</span>
-															<p>$5478</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-06.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Shoes</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Blue White OGR</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>54 Pcs</span>
-															<p>$987</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-07.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Laptop</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>IdeaPad Slim 5 Gen 7</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>74 Pcs</span>
-															<p>$1454</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-08.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Headphones</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>SWAGME</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>14 Pcs</span>
-															<p>$6587</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-09.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Watches</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Timex Black SIlver</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>24 Pcs</span>
-															<p>$1457</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-10.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Computer</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Tablet 1.02 inch</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>14 Pcs</span>
-															<p>$4744</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-11.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Watches</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Fossil Pair Of 3 in 1 </Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>40 Pcs</span>
-															<p>$789</p>
-														</div>
-													</div>
-												</div>
-												<div className='col-sm-2 col-md-6 col-lg-3 col-xl-3 pe-2'>
-													<div className='product-info default-cover card'>
-														<Link
-															to='#'
-															className='img-bg'
-														>
-															<ImageWithBasePath
-																src='assets/img/products/pos-product-18.png'
-																alt='Products'
-															/>
-															<span>
-																<Check className='feather-16' />
-															</span>
-														</Link>
-														<h6 className='cat-name'>
-															<Link to='#'>Shoes</Link>
-														</h6>
-														<h6 className='product-name'>
-															<Link to='#'>Green Nike Fe</Link>
-														</h6>
-														<div className='d-flex align-items-center justify-content-between price'>
-															<span>78 Pcs</span>
-															<p>$7847</p>
 														</div>
 													</div>
 												</div>
