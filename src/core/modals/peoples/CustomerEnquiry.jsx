@@ -252,7 +252,9 @@ const CustomerEnquiry = () => {
 														</p>
 													)}
 												</div>
-												<div className='col-lg-6'>
+												
+											</div>
+											<div className='col-lg-6'>
 													<div className='mb-3'>
 														<label>Telephone Home</label>
 														<input
@@ -327,7 +329,6 @@ const CustomerEnquiry = () => {
 													</div>
 													<button className='btn btn-submit'>Send Email</button>
 												</div>
-											</div>
 										</div>
 									</div>
 									<div className='col-md-6'>
