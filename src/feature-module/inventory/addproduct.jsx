@@ -31,10 +31,12 @@ import 'react-quill/dist/quill.snow.css';
 import './addProductReactQuill.css';
 import { setToggleHeader } from '../../slices/productListSlice';
 import Table from '../../core/pagination/datatable';
+import { refreshCategories } from '../../slices/categorySlice';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
 	const { toggle_header } = useSelector((state) => state.product);
+	const { categories } = useSelector((state) => state.category);
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
@@ -121,6 +123,14 @@ const AddProduct = () => {
 		{ value: 'No', label: 'No' },
 		{ value: 'One', label: 'One' },
 	];
+
+	const categoryOptions = categories?.map((category) => ({
+		value: category.code, // Code
+		label: `${category.code} - ${category.name}`, // Display both code and name
+		name: category.name, // Name (used later)
+	}));
+
+	console.log(categories);
 
 	const handleImageUpload = (e) => {
 		const file = e.target.files[0];
@@ -247,6 +257,12 @@ const AddProduct = () => {
 	];
 
 	useEffect(() => {
+		// Set the default value of "year" to the current year
+		const currentYear = new Date().getFullYear();
+		setValue('year', currentYear.toString());
+	}, [setValue]);
+
+	useEffect(() => {
 		setValue('longDescription', longDescription);
 	}, [longDescription, setValue]);
 
@@ -371,6 +387,10 @@ const AddProduct = () => {
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
+
+	useEffect(() => {
+		dispatch(refreshCategories());
+	}, [dispatch]);
 
 	useEffect(() => {
 		setValue('images', uploadedImages); // Register images in react-hook-form
@@ -870,10 +890,28 @@ const AddProduct = () => {
 																	<label className='form-label text-start d-block'>
 																		Category A
 																	</label>
+																	<Select
+																		classNamePrefix='react-select'
+																		options={categoryOptions}
+																		onChange={(selectedOption) => {
+																			setValue('catA', selectedOption?.name);
+																			setValue(
+																				'catACode',
+																				selectedOption?.value
+																			);
+																		}}
+																		placeholder='Choose'
+																	/>
+																	{/* Hidden input for validation purposes */}
 																	<input
-																		type='text'
-																		{...register('catA', { required: true })}
-																		className='form-control'
+																		type='hidden'
+																		{...register('catA', { required: true })} // Register for form validation
+																	/>
+																	<input
+																		type='hidden'
+																		{...register('catAcode', {
+																			required: true,
+																		})} // Register for the code
 																	/>
 																	{errors?.catA && (
 																		<div className='text-danger'>
@@ -883,6 +921,88 @@ const AddProduct = () => {
 																</div>
 
 																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Category B
+																	</label>
+																	<Select
+																		classNamePrefix='react-select'
+																		options={categoryOptions}
+																		onChange={(selectedOption) => {
+																			setValue('catB', selectedOption?.name);
+																			setValue(
+																				'catBCode',
+																				selectedOption?.value
+																			);
+																		}}
+																		placeholder='Choose'
+																	/>
+																	<input
+																		type='hidden'
+																		{...register('catB', {
+																			required: 'Category B is required',
+																		})}
+																		className='form-control'
+																	/>
+																	{errors?.catB && (
+																		<div className='text-danger'>
+																			{errors?.catB?.message}
+																		</div>
+																	)}
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Category C
+																	</label>
+																	<Select
+																		classNamePrefix='react-select'
+																		options={categoryOptions}
+																		onChange={(selectedOption) => {
+																			setValue('catC', selectedOption?.name);
+																			setValue(
+																				'catCCode',
+																				selectedOption?.value
+																			);
+																		}}
+																		placeholder='Choose'
+																	/>
+																	<input
+																		type='hidden'
+																		{...register('catC', {
+																			required: 'Category C is required',
+																		})}
+																		className='form-control'
+																	/>
+																	{errors?.catC && (
+																		<div className='text-danger'>
+																			{errors?.catC?.message}
+																		</div>
+																	)}
+																</div>
+
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Print Label
+																	</label>
+																	<Select
+																		id='printLabel'
+																		classNamePrefix='react-select'
+																		options={printLabelOptions}
+																		onChange={(selectedOption) =>
+																			setValue(
+																				'printLabel',
+																				selectedOption?.value
+																			)
+																		}
+																		placeholder='Choose'
+																	/>
+																</div>
+															</div>
+
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
 																	<label className='form-label text-start d-block'>
 																		Barcode
 																	</label>
@@ -894,26 +1014,6 @@ const AddProduct = () => {
 																	{errors?.barcode && (
 																		<div className='text-danger'>
 																			{errors?.barcode?.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-
-															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
-																	<label className='form-label text-start d-block'>
-																		Category B
-																	</label>
-																	<input
-																		type='text'
-																		{...register('catB', {
-																			required: 'Category B is required',
-																		})}
-																		className='form-control'
-																	/>
-																	{errors?.catB && (
-																		<div className='text-danger'>
-																			{errors?.catB?.message}
 																		</div>
 																	)}
 																</div>
@@ -931,43 +1031,6 @@ const AddProduct = () => {
 																	{errors?.range && (
 																		<div className='text-danger'>
 																			{errors?.range?.message}
-																		</div>
-																	)}
-																</div>
-															</div>
-
-															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
-																	<label className='form-label text-start d-block'>
-																		Category C
-																	</label>
-																	<input
-																		type='text'
-																		{...register('catC', {
-																			required: 'Category C is required',
-																		})}
-																		className='form-control'
-																	/>
-																	{errors?.catC && (
-																		<div className='text-danger'>
-																			{errors?.catC?.message}
-																		</div>
-																	)}
-																</div>
-																<div className='flex-grow-1'>
-																	<label className='form-label text-start d-block'>
-																		Year/Style
-																	</label>
-																	<input
-																		type='text'
-																		{...register('year', {
-																			required: 'Year is required',
-																		})}
-																		className='form-control list'
-																	/>
-																	{errors?.year && (
-																		<div className='text-danger'>
-																			{errors?.year?.message}
 																		</div>
 																	)}
 																</div>
@@ -1138,45 +1201,41 @@ const AddProduct = () => {
 																)}
 																<p className='mt-1'>Maximum 60 Characters</p>
 															</div>
-															<div className='row'>
-																<div className='mb-3 add-product col-lg-6 col-sm-4 col-12'>
-																	<div className='flex-grow-1'>
-																		<label className='form-label text-start d-block'>
-																			Finish
-																		</label>
-																		<input
-																			type='text'
-																			{...register('finish', {
-																				required: 'Finish is required',
-																			})}
-																			className='form-control'
-																		/>
-																		{errors?.finish && (
-																			<div className='text-danger'>
-																				{errors?.finish?.message}
-																			</div>
-																		)}
-																	</div>
-																</div>
 
-																<div className='mb-3 add-product col-lg-6 col-sm-4 col-12'>
-																	<div className='flex-grow-1'>
-																		<label className='form-label text-start d-block'>
-																			Print Label
-																		</label>
-																		<Select
-																			id='printLabel'
-																			classNamePrefix='react-select'
-																			options={printLabelOptions}
-																			onChange={(selectedOption) =>
-																				setValue(
-																					'printLabel',
-																					selectedOption?.value
-																				)
-																			}
-																			placeholder='Choose'
-																		/>
-																	</div>
+															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label text-start d-block'>
+																		Finish
+																	</label>
+																	<input
+																		type='text'
+																		{...register('finish', {
+																			required: 'Finish is required',
+																		})}
+																		className='form-control'
+																	/>
+																	{errors?.finish && (
+																		<div className='text-danger'>
+																			{errors?.finish?.message}
+																		</div>
+																	)}
+																</div>
+																<div className='flex-grow-1'>
+																	<label className='form-label text-start d-block'>
+																		Year/Style
+																	</label>
+																	<input
+																		type='text'
+																		{...register('year', {
+																			required: 'Year is required',
+																		})}
+																		className='form-control list'
+																	/>
+																	{errors?.year && (
+																		<div className='text-danger'>
+																			{errors?.year?.message}
+																		</div>
+																	)}
 																</div>
 															</div>
 
