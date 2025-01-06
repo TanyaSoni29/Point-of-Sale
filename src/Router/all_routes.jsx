@@ -149,6 +149,7 @@ export const all_routes = {
 	customerEnquiry: '/customer-enquiry',
 	suppliers: '/suppliers',
 	storelist: '/location-list',
+	stockinput: '/stock-input',
 	managestock: '/manage-stocks',
 	stockadjustment: '/stock-adjustment',
 	stocktransfer: '/stock-transfer',
