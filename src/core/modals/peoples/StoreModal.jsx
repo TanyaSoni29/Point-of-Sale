@@ -1,6 +1,6 @@
 /** @format */
 
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 // import Select from 'react-select';
 // import ImageWithBasePath from '../../img/imagewithbasebath';
 // import { Link } from 'react-router-dom';
@@ -17,7 +17,21 @@ const StoreModal = () => {
 	const { location, locations } = useSelector((state) => state.location);
 	const { token } = useSelector((state) => state.auth);
 	const dispatch = useDispatch();
+	const [selectedCode, setSelectedCode] = useState('');
+	const [isOpen, setIsOpen] = useState(false);
+
 	console.log('store location---', locations);
+
+	const {
+		register: addRegister,
+		handleSubmit: addHandleSubmit,
+		reset: addReset,
+		formState: { errors: addErrors, isSubmitSuccessful: isAddSubmitSuccessful },
+		// getValues,
+		setValue: addSetValue,
+		watch: addWatch,
+	} = useForm();
+
 	const {
 		register: editRegister,
 		handleSubmit: editHandleSubmit,
@@ -26,25 +40,34 @@ const StoreModal = () => {
 			errors: editErrors,
 			isSubmitSuccessful: isEditSubmitSuccessful,
 		},
+		watch: editWatch,
+		setValue: editSetValue,
 	} = useForm();
 
-	const {
-		register: addRegister,
-		handleSubmit: addHandleSubmit,
-		reset: addReset,
-		formState: { errors: addErrors, isSubmitSuccessful: isAddSubmitSuccessful },
-		getValues,
-		setValue,
-	} = useForm();
+	const addModal = useRef(null);
+	const editModal = useRef(null);
+
+	const keyLocation1 = addWatch('keyLocation');
+	const keyLocation2 = editWatch('keyLocation');
 
 	const availableCodes = Array.from({ length: 30 }, (_, i) =>
 		(i + 1).toString().padStart(2, '0')
 	).filter((code) => !locations.some((loc) => loc.code === code));
 
+	// const availableOptions = availableCodes?.map((code) => {
+	// 	return { value: code, label: code };
+	// });
+
+	// console.log(availableOptions);
+	const handleSelect = (code) => {
+		setSelectedCode(code);
+		setIsOpen(false);
+	};
+
 	const onAddSubmit = async (data) => {
 		try {
 			const newData = {
-				code: data?.code,
+				code: selectedCode,
 				companyNumber: data?.companyNumber || '',
 				name: data?.name || '',
 				postcode: data?.postcode || '',
@@ -54,23 +77,27 @@ const StoreModal = () => {
 				address2: data?.address2 || '',
 				address3: data?.address3 || '',
 				address4: data?.address4 || '',
-				storeWebsiteURL: data.storeWebsiteURL || '',
-				adminName: data.adminName || '',
-				adminEmail: data.adminEmail || '',
-				accountName: data.accountName || '',
-				accountEmail: data.accountEmail || '',
-				keyLocation: data.keyLocation || false,
+				storeWebsiteURL: data?.storeWebsiteURL || '',
+				adminName: data?.adminName || '',
+				adminEmail: data?.adminEmail || '',
+				accountName: data?.accountName || '',
+				accountEmail: data?.accountEmail || '',
+				keyLocation: data?.keyLocation || false,
 				isDeleted: false,
 				id: 0,
 				// dateCreated: '2024-11-29T08:08:40.758',
 				// dateUpdated: '2024-11-29T08:08:40.758',
 				// isValid: true,
 			};
+			console.log('reqbody---', newData);
 			const response = await createLocation(token, newData);
 			console.log(response);
 			if (response?.success) {
 				dispatch(addLocation(newData));
-				editReset();
+				if (addModal?.current) {
+					addModal.current.click();
+				}
+				addReset();
 			}
 		} catch (error) {
 			console.log(error);
@@ -88,11 +115,22 @@ const StoreModal = () => {
 				address2: data.address2,
 				address3: data.address3,
 				address4: data.address4,
+				keyLocation: data?.keyLocation,
+				companyNumber: data?.companyNumber || '',
+				postcode: data?.postcode || '',
+				generalEmailAddress: data?.generalEmailAddress || '',
+				storeWebsiteURL: data?.storeWebsiteURL || '',
+				adminName: data?.adminName || '',
+				accountName: data?.accountName || '',
+				accountEmail: data?.accountEmail || '',
 			};
 			const response = await updateLocation(token, newData);
 			console.log(response);
 			if (response?.success) {
 				dispatch(updateLocations(newData));
+				if (editModal?.current) {
+					editModal.current.click();
+				}
 				editReset();
 			}
 		} catch (error) {
@@ -110,9 +148,33 @@ const StoreModal = () => {
 				address2: '',
 				address3: '',
 				address4: '',
+				keyLocation: false,
 			});
 		}
 	}, [addReset, isAddSubmitSuccessful]);
+
+	useEffect(() => {
+		if (location) {
+			editReset({
+				code: location?.code,
+				name: location?.name,
+				adminEmail: location?.adminEmail,
+				mainTelephone: location?.mainTelephone,
+				address1: location?.address1,
+				address2: location?.address2,
+				address3: location?.address3,
+				address4: location?.address4,
+				keyLocation: location?.keyLocation,
+				companyNumber: location?.companyNumber || '',
+				postcode: location?.postcode || '',
+				generalEmailAddress: location?.generalEmailAddress || '',
+				storeWebsiteURL: location?.storeWebsiteURL || '',
+				adminName: location?.adminName || '',
+				accountName: location?.accountName || '',
+				accountEmail: location?.accountEmail || '',
+			});
+		}
+	}, [location, editReset]);
 
 	useEffect(() => {
 		if (isEditSubmitSuccessful) {
@@ -124,6 +186,7 @@ const StoreModal = () => {
 				address2: '',
 				address3: '',
 				address4: '',
+				keyLocation: false,
 			});
 		}
 	}, [editReset, isEditSubmitSuccessful]);
@@ -160,6 +223,7 @@ const StoreModal = () => {
 										className='close'
 										data-bs-dismiss='modal'
 										aria-label='Close'
+										ref={addModal}
 									>
 										<span aria-hidden='true'>×</span>
 									</button>
@@ -192,34 +256,87 @@ const StoreModal = () => {
 										</div> */}
 										<div className='row'>
 											<div className='col-lg-4 pe-0'>
-												<div className='mb-3'>
+												<div className='custom-dropdown'>
 													<label className='form-label'>Location Code</label>
-													<div className='position-relative d-flex align-items-center'>
-														<select
-															className='form-control'
-															{...addRegister('code', {
-																required: 'Location Code is required',
-															})}
+													<div
+														className='custom-dropdown position-relative'
+														style={{
+															display: 'flex',
+															flexDirection: 'column',
+															position: 'relative',
+															width: '100%',
+														}}
+													>
+														{/* Input-like Dropdown Header */}
+														<div
+															className='dropdown-header'
+															onClick={() => setIsOpen(!isOpen)}
+															style={{
+																display: 'flex',
+																alignItems: 'center',
+																justifyContent: 'space-between',
+																border: '1px solid #ced4da',
+																borderRadius: '0.25rem',
+																padding: '0.375rem 0.75rem',
+																height: '38px',
+																cursor: 'pointer',
+																backgroundColor: '#fff',
+																color: '#495057',
+																fontSize: '1rem',
+															}}
 														>
-															<option value=''>Choose</option>
-															{availableCodes.map((code) => (
-																<option
-																	key={code}
-																	value={code}
-																>
-																	{code}
-																</option>
-															))}
-														</select>
-														<IoIosArrowDown
-															className='position-absolute'
-															style={{ left: '120px' }}
-														/>
-													</div>
+															{selectedCode || 'Choose'}
+															<IoIosArrowDown
+																style={{ fontSize: '1.2rem', color: '#495057' }}
+															/>
+														</div>
 
-													{addErrors.code && (
-														<p className=''>{addErrors.code.message}</p>
-													)}
+														{/* Dropdown Options */}
+														{isOpen && (
+															<div
+																className='dropdown-options'
+																style={{
+																	position: 'absolute',
+																	top: '100%',
+																	left: 0,
+																	width: '100%', // Matches input width
+																	backgroundColor: '#fff',
+																	border: '1px solid #ced4da',
+																	borderRadius: '0.25rem',
+																	marginTop: '4px',
+																	zIndex: 1000,
+																	maxHeight: '150px',
+																	overflowY: 'auto',
+																	boxShadow: '0px 4px 6px rgba(0, 0, 0, 0.1)',
+																}}
+															>
+																{availableCodes.map((code) => (
+																	<div
+																		key={code}
+																		onClick={() => handleSelect(code)}
+																		onMouseEnter={(e) => {
+																			e.target.style.backgroundColor =
+																				'#ffa94d';
+																			e.target.style.color = '#fff';
+																		}}
+																		onMouseLeave={(e) => {
+																			e.target.style.backgroundColor = '#fff';
+																			e.target.style.color = '#495057';
+																		}}
+																		style={{
+																			padding: '0.375rem 0.75rem',
+																			cursor: 'pointer',
+																			fontSize: '1rem',
+																			color: '#495057',
+																			backgroundColor: '#fff',
+																		}}
+																	>
+																		{code}
+																	</div>
+																))}
+															</div>
+														)}
+													</div>
 												</div>
 											</div>
 											<div className='col-lg-4 pe-0'>
@@ -230,8 +347,8 @@ const StoreModal = () => {
 														className='form-control'
 														{...addRegister('name', { required: true })}
 													/>
-													{addErrors.name && (
-														<p className=''>{addErrors.name.message}</p>
+													{addErrors?.name && (
+														<p className=''>{addErrors?.name.message}</p>
 													)}
 												</div>
 											</div>
@@ -377,9 +494,9 @@ const StoreModal = () => {
 														className='form-control'
 														{...addRegister('storeWebsiteURL')}
 													/>
-													{addErrors.storeWebsiteURL && (
+													{addErrors?.storeWebsiteURL && (
 														<p className=''>
-															{addErrors.storeWebsiteURL.message}
+															{addErrors?.storeWebsiteURL.message}
 														</p>
 													)}
 												</div>
@@ -431,15 +548,12 @@ const StoreModal = () => {
 												<div className='mb-3'>
 													<label className='form-label'>Key Location</label>
 													<Switch
-														checked={getValues('keyLocation')} // Get the current value of the switch
+														checked={keyLocation1} // Get the current value of the switch
 														onChange={(checked) =>
-															setValue('keyLocation', checked)
+															addSetValue('keyLocation', checked)
 														}
-														{...addRegister('keyLocation')}
+														// {...addRegister('keyLocation', { value: false })}
 													/>
-													{addErrors.keyLocation && (
-														<p className=''>{addErrors.keyLocation.message}</p>
-													)}
 												</div>
 											</div>
 
@@ -514,6 +628,7 @@ const StoreModal = () => {
 										className='close'
 										data-bs-dismiss='modal'
 										aria-label='Close'
+										ref={editModal}
 									>
 										<span aria-hidden='true'>×</span>
 									</button>
@@ -554,11 +669,10 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.name}
 														{...editRegister('name', { required: true })}
 													/>
 													{editErrors?.name && (
-														<p className=''>{editErrors?.name.message}</p>
+														<p className=''>{editErrors?.name?.message}</p>
 													)}
 												</div>
 											</div>
@@ -568,11 +682,12 @@ const StoreModal = () => {
 													<input
 														type='email'
 														className='form-control'
-														defaultValue={location?.adminEmail}
 														{...editRegister('adminEmail', { required: true })}
 													/>
 													{editErrors?.adminEmail && (
-														<p className=''>{editErrors?.adminEmail.message}</p>
+														<p className=''>
+															{editErrors?.adminEmail?.message}
+														</p>
 													)}
 												</div>
 											</div>
@@ -582,7 +697,6 @@ const StoreModal = () => {
 													<input
 														className='form-control form-control-lg group_formcontrol'
 														type='text'
-														defaultValue={location?.mainTelephone}
 														{...editRegister('mainTelephone', {
 															required: true,
 														})}
@@ -600,8 +714,7 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.companyNumber}
-														{...editRegister('componyNumber')}
+														{...editRegister('companyNumber')}
 													/>
 													{editErrors.companyNumber && (
 														<p className=''>
@@ -618,7 +731,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.generalEmailAddress}
 														{...editRegister('generalEmailAddress')}
 													/>
 													{editErrors.generalEmailAddress && (
@@ -634,7 +746,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.address1}
 														{...editRegister('address1', {
 															required: true,
 														})}
@@ -650,10 +761,7 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.address2}
-														{...editRegister('address2', {
-															required: true,
-														})}
+														{...editRegister('address2')}
 													/>
 													{editErrors.address2 && (
 														<p className=''>{editErrors.address2.message}</p>
@@ -666,10 +774,7 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.address3}
-														{...editRegister('address3', {
-															required: true,
-														})}
+														{...editRegister('address3')}
 													/>
 													{editErrors.address3 && (
 														<p className=''>{editErrors.address3.message}</p>
@@ -682,10 +787,7 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.address4}
-														{...editRegister('address4', {
-															required: true,
-														})}
+														{...editRegister('address4')}
 													/>
 													{editErrors.address4 && (
 														<p className=''>{editErrors.address4.message}</p>
@@ -698,7 +800,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.postcode}
 														{...editRegister('postcode')}
 													/>
 													{editErrors.postcode && (
@@ -714,7 +815,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.storeWebsiteURL}
 														{...editRegister('storeWebsiteURL')}
 													/>
 													{editErrors.storeWebsiteURL && (
@@ -731,7 +831,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.adminName}
 														{...editRegister('adminName')}
 													/>
 													{editErrors.adminName && (
@@ -746,7 +845,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.accountName}
 														{...editRegister('accountName')}
 													/>
 													{editErrors.accountName && (
@@ -761,7 +859,6 @@ const StoreModal = () => {
 													<input
 														type='text'
 														className='form-control'
-														defaultValue={location?.accountEmail}
 														{...editRegister('accountEmail')}
 													/>
 													{editErrors.accountEmail && (
@@ -776,15 +873,15 @@ const StoreModal = () => {
 												<div className='mb-3'>
 													<label className='form-label'>Key Location</label>
 													<Switch
-														checked={getValues('keyLocation')} // Get the current value of the switch
+														checked={keyLocation2} // Get the current value of the switch
 														onChange={(checked) =>
-															setValue('keyLocation', checked)
+															editSetValue('keyLocation', checked)
 														}
-														{...editRegister('keyLocation')}
+														// {...editRegister('keyLocation')}
 													/>
-													{editErrors.keyLocation && (
+													{/* {editErrors.keyLocation && (
 														<p className=''>{editErrors.keyLocation.message}</p>
-													)}
+													)} */}
 												</div>
 											</div>
 

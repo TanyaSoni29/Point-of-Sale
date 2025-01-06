@@ -28,6 +28,7 @@ const StoreList = () => {
 	const { token } = useSelector((state) => state.auth);
 	const { locations } = useSelector((state) => state.location);
 	const dispatch = useDispatch();
+	const [searchTerm, setSearchTerm] = useState('');
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const toggleFilterVisibility = () => {
 		setIsFilterVisible((prevVisibility) => !prevVisibility);
@@ -101,6 +102,14 @@ const StoreList = () => {
 			console.log(error);
 		}
 	};
+
+	const filterLocation = locations?.filter((loc) => {
+		const matchLocation =
+			loc?.name &&
+			loc?.name?.toLowerCase().includes(searchTerm?.toLowerCase().trim());
+
+		return matchLocation;
+	});
 
 	useEffect(() => {
 		dispatch(refreshLocations());
@@ -208,6 +217,10 @@ const StoreList = () => {
 									<input
 										type='text'
 										placeholder='Search'
+										value={searchTerm}
+										onChange={(e) => {
+											setSearchTerm(e.target.value);
+										}}
 										className='form-control form-control-sm formsearch'
 									/>
 									<Link
@@ -233,10 +246,6 @@ const StoreList = () => {
 										onClick={toggleFilterVisibility}
 									/>
 									<span onClick={toggleFilterVisibility}>
-										{/* <ImageWithBasePath
-                      src="assets/img/icons/closes.svg"
-                      alt="img"
-                    /> */}
 										<img
 											src={CloseImg}
 											alt='img'
@@ -305,7 +314,7 @@ const StoreList = () => {
 							<Table
 								className='table datanew'
 								columns={columns}
-								dataSource={locations}
+								dataSource={filterLocation}
 								rowKey={(record) => record.id}
 								pagination={true}
 							/>

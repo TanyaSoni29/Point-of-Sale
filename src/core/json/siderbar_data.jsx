@@ -5,48 +5,48 @@ import React from 'react';
 import * as Icon from 'react-feather';
 
 export const SidebarData = [
-	{
-		label: 'Main',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'Main',
-		submenuItems: [
-			{
-				label: 'Dashboard',
-				icon: <Icon.Grid />,
-				submenu: true,
-				showSubRoute: false,
+	// {
+	// 	label: 'Main',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'Main',
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Dashboard',
+	// 			icon: <Icon.Grid />,
+	// 			submenu: true,
+	// 			showSubRoute: false,
 
-				submenuItems: [
-					{ label: 'Admin Dashboard', link: '/admin-dashboard' },
-					{ label: 'Sales Dashboard', link: '/sales-dashboard' },
-				],
-			},
-			// {
-			// 	label: 'Application',
-			// 	icon: <Icon.Smartphone />,
-			// 	submenu: true,
-			// 	showSubRoute: false,
-			// 	submenuItems: [
-			// 		{ label: 'Chat', link: '/chat', showSubRoute: false },
-			// 		{
-			// 			label: 'Call',
-			// 			submenu: true,
-			// 			submenuItems: [
-			// 				{ label: 'Video Call', link: '/video-call' },
-			// 				{ label: 'Audio Call', link: '/audio-call' },
-			// 				{ label: 'Call History', link: '/call-history' },
-			// 			],
-			// 		},
-			// 		{ label: 'Calendar', link: '/calendar', showSubRoute: false },
-			// 		{ label: 'Email', link: '/email', showSubRoute: false },
-			// 		{ label: 'To Do', link: '/todo', showSubRoute: false },
-			// 		{ label: 'Notes', link: '/notes', showSubRoute: false },
-			// 		{ label: 'File Manager', link: '/file-manager', showSubRoute: false },
-			// 	],
-			// },
-		],
-	},
+	// 			submenuItems: [
+	// 				{ label: 'Admin Dashboard', link: '/admin-dashboard' },
+	// 				{ label: 'Sales Dashboard', link: '/sales-dashboard' },
+	// 			],
+	// 		},
+	// 		// {
+	// 		// 	label: 'Application',
+	// 		// 	icon: <Icon.Smartphone />,
+	// 		// 	submenu: true,
+	// 		// 	showSubRoute: false,
+	// 		// 	submenuItems: [
+	// 		// 		{ label: 'Chat', link: '/chat', showSubRoute: false },
+	// 		// 		{
+	// 		// 			label: 'Call',
+	// 		// 			submenu: true,
+	// 		// 			submenuItems: [
+	// 		// 				{ label: 'Video Call', link: '/video-call' },
+	// 		// 				{ label: 'Audio Call', link: '/audio-call' },
+	// 		// 				{ label: 'Call History', link: '/call-history' },
+	// 		// 			],
+	// 		// 		},
+	// 		// 		{ label: 'Calendar', link: '/calendar', showSubRoute: false },
+	// 		// 		{ label: 'Email', link: '/email', showSubRoute: false },
+	// 		// 		{ label: 'To Do', link: '/todo', showSubRoute: false },
+	// 		// 		{ label: 'Notes', link: '/notes', showSubRoute: false },
+	// 		// 		{ label: 'File Manager', link: '/file-manager', showSubRoute: false },
+	// 		// 	],
+	// 		// },
+	// 	],
+	// },
 	{
 		label: 'System Maintenance',
 		submenuOpen: true,
@@ -146,13 +146,13 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Sub Category',
-				link: '/sub-categories',
-				icon: <Icon.Speaker />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Sub Category',
+			// 	link: '/sub-categories',
+			// 	icon: <Icon.Speaker />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Brands',
 				link: '/brand-list',
@@ -167,13 +167,13 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Variant Attributes',
-				link: '/variant-attributes',
-				icon: <Icon.Layers />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Variant Attributes',
+			// 	link: '/variant-attributes',
+			// 	icon: <Icon.Layers />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			// {
 			// 	label: 'Warranties',
 			// 	link: '/warranty',
@@ -181,20 +181,20 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Print Barcode',
-				link: '/barcode',
-				icon: <Icon.AlignJustify />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Print QR Code',
-				link: '/qrcode',
-				icon: <Icon.Maximize />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Print Barcode',
+			// 	link: '/barcode',
+			// 	icon: <Icon.AlignJustify />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
+			// {
+			// 	label: 'Print QR Code',
+			// 	link: '/qrcode',
+			// 	icon: <Icon.Maximize />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 		],
 	},
 	{
@@ -204,13 +204,13 @@ export const SidebarData = [
 		submenu: true,
 		showSubRoute: false,
 		submenuItems: [
-			{
-				label: 'Reorder Level',
-				link: '/low-stocks',
-				icon: <Icon.TrendingDown />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Reorder Level',
+			// 	link: '/low-stocks',
+			// 	icon: <Icon.TrendingDown />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Manage Stock',
 				link: '/manage-stocks',
@@ -218,110 +218,110 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Stock Adjustment',
-				link: '/stock-adjustment',
-				icon: <Icon.Clipboard />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Stock Transfer',
-				link: '/stock-transfer',
-				icon: <Icon.Truck />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Stock Adjustment',
+			// 	link: '/stock-adjustment',
+			// 	icon: <Icon.Clipboard />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
+			// {
+			// 	label: 'Stock Transfer',
+			// 	link: '/stock-transfer',
+			// 	icon: <Icon.Truck />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 		],
 	},
-	{
-		label: 'Sales',
-		submenuOpen: true,
-		submenuHdr: 'Sales',
-		submenu: false,
-		showSubRoute: false,
-		submenuItems: [
-			{
-				label: 'Sales',
-				link: '/sales-list',
-				icon: <Icon.ShoppingCart />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Invoices',
-				link: '/invoice-report',
-				icon: <Icon.FileText />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Sales Return',
-				link: '/sales-returns',
-				icon: <Icon.Copy />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Quotation',
-				link: '/quotation-list',
-				icon: <Icon.Save />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'POS',
-				link: '/pos',
-				icon: <Icon.HardDrive />,
-				showSubRoute: false,
-				submenu: false,
-			},
-		],
-	},
-	{
-		label: 'Promo',
-		submenuOpen: true,
-		submenuHdr: 'Promo',
-		showSubRoute: false,
-		submenuItems: [
-			{
-				label: 'Promos',
-				link: '/coupons',
-				icon: <Icon.ShoppingCart />,
-				showSubRoute: false,
-				submenu: false,
-			},
-		],
-	},
-	{
-		label: 'Purchases',
-		submenuOpen: true,
-		submenuHdr: 'Purchases',
-		showSubRoute: false,
-		submenuItems: [
-			{
-				label: 'Purchases',
-				link: '/purchase-list',
-				icon: <Icon.ShoppingBag />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Purchase Order',
-				link: '/purchase-order-report',
-				icon: <Icon.FileMinus />,
-				showSubRoute: false,
-				submenu: false,
-			},
-			{
-				label: 'Purchase Return',
-				link: '/purchase-returns',
-				icon: <Icon.RefreshCw />,
-				showSubRoute: false,
-				submenu: false,
-			},
-		],
-	},
+	// {
+	// 	label: 'Sales',
+	// 	submenuOpen: true,
+	// 	submenuHdr: 'Sales',
+	// 	submenu: false,
+	// 	showSubRoute: false,
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Sales',
+	// 			link: '/sales-list',
+	// 			icon: <Icon.ShoppingCart />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'Invoices',
+	// 			link: '/invoice-report',
+	// 			icon: <Icon.FileText />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'Sales Return',
+	// 			link: '/sales-returns',
+	// 			icon: <Icon.Copy />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'Quotation',
+	// 			link: '/quotation-list',
+	// 			icon: <Icon.Save />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'POS',
+	// 			link: '/pos',
+	// 			icon: <Icon.HardDrive />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	label: 'Promo',
+	// 	submenuOpen: true,
+	// 	submenuHdr: 'Promo',
+	// 	showSubRoute: false,
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Promos',
+	// 			link: '/coupons',
+	// 			icon: <Icon.ShoppingCart />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 	],
+	// },
+	// {
+	// 	label: 'Purchases',
+	// 	submenuOpen: true,
+	// 	submenuHdr: 'Purchases',
+	// 	showSubRoute: false,
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Purchases',
+	// 			link: '/purchase-list',
+	// 			icon: <Icon.ShoppingBag />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'Purchase Order',
+	// 			link: '/purchase-order-report',
+	// 			icon: <Icon.FileMinus />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 		{
+	// 			label: 'Purchase Return',
+	// 			link: '/purchase-returns',
+	// 			icon: <Icon.RefreshCw />,
+	// 			showSubRoute: false,
+	// 			submenu: false,
+	// 		},
+	// 	],
+	// },
 
 	// {
 	// 	label: 'Finance & Accounts',
@@ -353,13 +353,13 @@ export const SidebarData = [
 		submenuHdr: 'People',
 
 		submenuItems: [
-			{
-				label: 'Customers',
-				link: '/customers',
-				icon: <Icon.User />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Customers',
+			// 	link: '/customers',
+			// 	icon: <Icon.User />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Customer Enquiry',
 				link: '/customer-enquiry',
@@ -380,12 +380,12 @@ export const SidebarData = [
 				icon: <Icon.UserCheck />,
 				showSubRoute: false,
 			},
-			{
-				label: 'Roles & Permissions',
-				link: '/roles-permissions',
-				icon: <Icon.UserCheck />,
-				showSubRoute: false,
-			},
+			// {
+			// 	label: 'Roles & Permissions',
+			// 	link: '/roles-permissions',
+			// 	icon: <Icon.UserCheck />,
+			// 	showSubRoute: false,
+			// },
 			// {
 			// 	label: 'Locations',
 			// 	link: '/store-list',
@@ -393,13 +393,13 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Workshop',
-				link: '/warehouse',
-				icon: <Icon.Archive />,
-				showSubRoute: false,
-				submenu: false,
-			},
+			// {
+			// 	label: 'Workshop',
+			// 	link: '/warehouse',
+			// 	icon: <Icon.Archive />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 		],
 	},
 
@@ -478,74 +478,74 @@ export const SidebarData = [
 	// 		// },
 	// 	],
 	// },
-	{
-		label: 'Reports',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'Reports',
-		submenuItems: [
-			{
-				label: 'Sales Report',
-				link: '/sales-report',
-				icon: <Icon.BarChart2 />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Purchase Report',
-				link: '/purchase-report',
-				icon: <Icon.PieChart />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Inventory Report',
-				link: '/inventory-report',
-				icon: <Icon.Inbox />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Invoice Report',
-				link: '/invoice-report',
-				icon: <Icon.File />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Supplier Report',
-				link: '/supplier-report',
-				icon: <Icon.UserCheck />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Customer Report',
-				link: '/customer-report',
-				icon: <Icon.User />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Expense Report',
-				link: '/expense-report',
-				icon: <Icon.FileText />,
-				showSubRoute: false,
-			},
-			{
-				label: 'Income Report',
-				link: '/income-report',
-				icon: <Icon.BarChart />,
-				showSubRoute: false,
-			},
-			// {
-			// 	label: 'Tax Report',
-			// 	link: '/tax-report',
-			// 	icon: <Icon.Database />,
-			// 	showSubRoute: false,
-			// },
-			{
-				label: 'Profit & Loss',
-				link: '/profit-loss-report',
-				icon: <Icon.TrendingDown />,
-				showSubRoute: false,
-			},
-		],
-	},
+	// {
+	// 	label: 'Reports',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'Reports',
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Sales Report',
+	// 			link: '/sales-report',
+	// 			icon: <Icon.BarChart2 />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Purchase Report',
+	// 			link: '/purchase-report',
+	// 			icon: <Icon.PieChart />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Inventory Report',
+	// 			link: '/inventory-report',
+	// 			icon: <Icon.Inbox />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Invoice Report',
+	// 			link: '/invoice-report',
+	// 			icon: <Icon.File />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Supplier Report',
+	// 			link: '/supplier-report',
+	// 			icon: <Icon.UserCheck />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Customer Report',
+	// 			link: '/customer-report',
+	// 			icon: <Icon.User />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Expense Report',
+	// 			link: '/expense-report',
+	// 			icon: <Icon.FileText />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		{
+	// 			label: 'Income Report',
+	// 			link: '/income-report',
+	// 			icon: <Icon.BarChart />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		// {
+	// 		// 	label: 'Tax Report',
+	// 		// 	link: '/tax-report',
+	// 		// 	icon: <Icon.Database />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		{
+	// 			label: 'Profit & Loss',
+	// 			link: '/profit-loss-report',
+	// 			icon: <Icon.TrendingDown />,
+	// 			showSubRoute: false,
+	// 		},
+	// 	],
+	// },
 
 	// {
 	// 	label: 'User Management',
@@ -1087,56 +1087,56 @@ export const SidebarData = [
 	// 		},
 	// 	],
 	// },
-	{
-		label: 'Help',
-		submenuOpen: true,
-		showSubRoute: false,
-		submenuHdr: 'Help',
-		submenuItems: [
-			{
-				label: 'Support 24X7',
-				link: '#',
-				icon: <Icon.Headphones />,
-				showSubRoute: false,
-			},
-			// {
-			// 	label: 'Documentation',
-			// 	link: '#',
-			// 	icon: <Icon.FileText />,
-			// 	showSubRoute: false,
-			// },
-			// {
-			// 	label: 'Changelog v2.0.7',
-			// 	link: '#',
-			// 	icon: <Icon.Lock />,
-			// 	showSubRoute: false,
-			// },
-			// {
-			// 	label: 'Multi Level',
-			// 	showSubRoute: false,
-			// 	submenu: true,
-			// 	icon: <Icon.FileMinus />,
-			// 	submenuItems: [
-			// 		{ label: 'Level 1.1', link: '#', showSubRoute: false },
-			// 		{
-			// 			label: 'Level 1.2',
-			// 			submenu: true,
-			// 			showSubRoute: false,
-			// 			submenuItems: [
-			// 				{ label: 'Level 2.1', link: '#', showSubRoute: false },
-			// 				{
-			// 					label: 'Level 2.2',
-			// 					submenu: true,
-			// 					showSubRoute: false,
-			// 					submenuItems: [
-			// 						{ label: 'Level 3.1', link: '#', showSubRoute: false },
-			// 						{ label: 'Level 3.2', link: '#', showSubRoute: false },
-			// 					],
-			// 				},
-			// 			],
-			// 		},
-			// 	],
-			// },
-		],
-	},
+	// {
+	// 	label: 'Help',
+	// 	submenuOpen: true,
+	// 	showSubRoute: false,
+	// 	submenuHdr: 'Help',
+	// 	submenuItems: [
+	// 		{
+	// 			label: 'Support 24X7',
+	// 			link: '#',
+	// 			icon: <Icon.Headphones />,
+	// 			showSubRoute: false,
+	// 		},
+	// 		// {
+	// 		// 	label: 'Documentation',
+	// 		// 	link: '#',
+	// 		// 	icon: <Icon.FileText />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Changelog v2.0.7',
+	// 		// 	link: '#',
+	// 		// 	icon: <Icon.Lock />,
+	// 		// 	showSubRoute: false,
+	// 		// },
+	// 		// {
+	// 		// 	label: 'Multi Level',
+	// 		// 	showSubRoute: false,
+	// 		// 	submenu: true,
+	// 		// 	icon: <Icon.FileMinus />,
+	// 		// 	submenuItems: [
+	// 		// 		{ label: 'Level 1.1', link: '#', showSubRoute: false },
+	// 		// 		{
+	// 		// 			label: 'Level 1.2',
+	// 		// 			submenu: true,
+	// 		// 			showSubRoute: false,
+	// 		// 			submenuItems: [
+	// 		// 				{ label: 'Level 2.1', link: '#', showSubRoute: false },
+	// 		// 				{
+	// 		// 					label: 'Level 2.2',
+	// 		// 					submenu: true,
+	// 		// 					showSubRoute: false,
+	// 		// 					submenuItems: [
+	// 		// 						{ label: 'Level 3.1', link: '#', showSubRoute: false },
+	// 		// 						{ label: 'Level 3.2', link: '#', showSubRoute: false },
+	// 		// 					],
+	// 		// 				},
+	// 		// 			],
+	// 		// 		},
+	// 		// 	],
+	// 		// },
+	// 	],
+	// },
 ];
