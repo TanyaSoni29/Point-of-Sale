@@ -5,8 +5,12 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import Customer5Img from '../../assets/img/customer/customer5.jpg';
 import EditSetImg from '../../assets/img/icons/edit-set.svg';
+import { useSelector } from 'react-redux';
 const Profile = () => {
+	const { user } = useSelector((state) => state.auth);
 	const [isPasswordVisible, setPasswordVisible] = useState(false);
+
+	console.log(user);
 
 	const togglePasswordVisibility = () => {
 		setPasswordVisible((prevState) => !prevState);
@@ -56,7 +60,7 @@ const Profile = () => {
 										</div>
 									</div>
 									<div className='profile-contentname'>
-										<h2>William Castillo</h2>
+										<h2>{user?.username}</h2>
 										<h4>Updates Your Photo and Personal Details.</h4>
 									</div>
 								</div>
@@ -69,7 +73,6 @@ const Profile = () => {
 									<input
 										type='text'
 										className='form-control'
-										defaultValue='William'
 									/>
 								</div>
 							</div>
@@ -79,7 +82,6 @@ const Profile = () => {
 									<input
 										type='text'
 										className='form-control'
-										defaultValue='Castilo'
 									/>
 								</div>
 							</div>
@@ -89,17 +91,13 @@ const Profile = () => {
 									<input
 										type='email'
 										className='form-control'
-										defaultValue='william@example.com'
 									/>
 								</div>
 							</div>
 							<div className='col-lg-6 col-sm-12'>
 								<div className='input-blocks'>
 									<label className='form-label'>Phone</label>
-									<input
-										type='text'
-										defaultValue='+1452 876 5432'
-									/>
+									<input type='text' />
 								</div>
 							</div>
 							<div className='col-lg-6 col-sm-12'>
@@ -108,7 +106,6 @@ const Profile = () => {
 									<input
 										type='text'
 										className='form-control'
-										defaultValue='William Castilo'
 									/>
 								</div>
 							</div>
