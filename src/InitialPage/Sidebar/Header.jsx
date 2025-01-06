@@ -4,12 +4,12 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 // import ImageWithBasePath from '../../core/img/imagewithbasebath';
-import { Home, Search, Settings, User, XCircle } from 'react-feather';
+import { Home, Settings, User } from 'react-feather';
 import { all_routes } from '../../Router/all_routes';
 import LogoImg from '../../assets/img/logo.png';
 import LogoWhiteImg from '../../assets/img/logo-white.png';
 import LogoSmallImg from '../../assets/img/logo-small.png';
-import ProfileImg from '../../assets/img/profiles/profile.png';
+// import ProfileImg from '../../assets/img/profiles/profile.png';
 import LogOutImg from '../../assets/img/icons/log-out.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../service/operations/authApi';
@@ -206,7 +206,7 @@ const Header = () => {
 				<ul className='nav user-menu'>
 					{/* Search */}
 					<li className='nav-item nav-searchinputs'>
-						<div className='top-nav-search'>
+						{/* <div className='top-nav-search'>
 							<Link
 								to='#'
 								className='responsive-search'
@@ -317,7 +317,7 @@ const Header = () => {
 									</div>
 								</div>
 							</form>
-						</div>
+						</div> */}
 					</li>
 					{/* /Search */}
 
@@ -437,17 +437,17 @@ const Header = () => {
 						</Link>
 					</li> */}
 					{/* Notifications */}
-					<li className='nav-item dropdown nav-item-box'>
-						<Link
+					{/* <li className='nav-item dropdown nav-item-box'> */}
+					{/* <Link
 							to='#'
 							className='dropdown-toggle nav-link'
 							data-bs-toggle='dropdown'
-						>
-							{/* <i data-feather="bell" /> */}
-							<FeatherIcon icon='bell' />
+						> */}
+					{/* <i data-feather="bell" /> */}
+					{/* <FeatherIcon icon='bell' />
 							<span className='badge rounded-pill'>2</span>
-						</Link>
-						<div className='dropdown-menu notifications'>
+						</Link> */}
+					{/* <div className='dropdown-menu notifications'>
 							<div className='topnav-dropdown-header'>
 								<span className='notification-title'>Notifications</span>
 								<Link
@@ -598,8 +598,8 @@ const Header = () => {
 							<div className='topnav-dropdown-footer'>
 								<Link to='/activities'>View all Notifications</Link>
 							</div>
-						</div>
-					</li>
+						</div> */}
+					{/* </li> */}
 					{/* /Notifications */}
 					<li className='nav-item nav-item-box'>
 						<Link to='/general-settings'>
@@ -615,10 +615,10 @@ const Header = () => {
 						>
 							<span className='user-info'>
 								<span className='user-letter'>
-									<img
+									{/* <img
 										src={ProfileImg}
 										alt='img'
-									/>
+									/> */}
 								</span>
 								<span className='user-detail'>
 									<span className='user-name'>{user?.username}</span>
@@ -630,10 +630,10 @@ const Header = () => {
 							<div className='profilename'>
 								<div className='profileset'>
 									<span className='user-img'>
-										<img
+										{/* <img
 											src={ProfileImg}
 											alt='img'
-										/>
+										/> */}
 										<span className='status online' />
 									</span>
 									<div className='profilesets'>
