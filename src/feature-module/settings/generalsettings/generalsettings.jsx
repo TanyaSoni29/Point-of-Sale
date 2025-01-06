@@ -2,9 +2,9 @@
 
 import {
 	ChevronUp,
-	PlusCircle,
+	// PlusCircle,
 	RotateCcw,
-	User,
+	// User,
 } from 'feather-icons-react/build/IconComponents';
 import React from 'react';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -83,7 +83,7 @@ const GeneralSettings = () => {
 							<div className='settings-wrapper d-flex'>
 								<SettingsSidebar />
 								<div className='settings-page-wrap'>
-									<form>
+									{/* <form>
 										<div className='setting-title'>
 											<h4>Profile Settings</h4>
 										</div>
@@ -236,7 +236,7 @@ const GeneralSettings = () => {
 												Save Changes
 											</Link>
 										</div>
-									</form>
+									</form> */}
 								</div>
 							</div>
 						</div>

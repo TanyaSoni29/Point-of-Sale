@@ -6,12 +6,12 @@ import { all_routes } from '../../../Router/all_routes';
 import { Link, useLocation } from 'react-router-dom';
 import {
 	// Airplay,
-	Archive,
-	FileText,
-	Server,
+	// Archive,
+	// FileText,
+	// Server,
 	Settings,
 } from 'feather-icons-react/build/IconComponents';
-import { CreditCard, Layout } from 'react-feather';
+// import { CreditCard, Layout } from 'react-feather';
 
 const SettingsSideBar = (props) => {
 	const route = all_routes;
@@ -24,40 +24,40 @@ const SettingsSideBar = (props) => {
 		setIsGeneralSettingsOpen(!isGeneralSettingsOpen);
 	};
 
-	const [isUsersSettingsOpen, setIsUsersSettingsOpen] = useState(false);
+	// const [isUsersSettingsOpen, setIsUsersSettingsOpen] = useState(false);
 	// const [isWebsiteSettingsOpen, setIsWebsiteSettingsOpen] = useState(false);
 
-	const toggleUsersSettings = () => {
-		setIsUsersSettingsOpen(!isUsersSettingsOpen);
-	};
+	// const toggleUsersSettings = () => {
+	// 	setIsUsersSettingsOpen(!isUsersSettingsOpen);
+	// };
 	// const toggleWebsiteSettings = () => {
 	// 	setIsWebsiteSettingsOpen(!isWebsiteSettingsOpen);
 	// };
 
-	const [isAppSettingsOpen, setIsAppSettingsOpen] = useState(false);
+	// const [isAppSettingsOpen, setIsAppSettingsOpen] = useState(false);
 
-	const toggleAppSettings = () => {
-		setIsAppSettingsOpen((prev) => !prev);
-	};
-	const [isSystemSettingsOpen, setIsSystemSettingsOpen] = useState(false);
-	const toggleSystemSettings = () => {
-		setIsSystemSettingsOpen((prev) => !prev);
-	};
-	const [isFinancialSettingsOpen, setIsFinancialSettingsOpen] = useState(false);
-	const toggleFinancialSettings = () => {
-		setIsFinancialSettingsOpen((prev) => !prev);
-	};
-	const [isPOSettingsOpen, setIsPOSettingsOpen] = useState(false);
+	// const toggleAppSettings = () => {
+	// 	setIsAppSettingsOpen((prev) => !prev);
+	// };
+	// const [isSystemSettingsOpen, setIsSystemSettingsOpen] = useState(false);
+	// const toggleSystemSettings = () => {
+	// 	setIsSystemSettingsOpen((prev) => !prev);
+	// };
+	// const [isFinancialSettingsOpen, setIsFinancialSettingsOpen] = useState(false);
+	// const toggleFinancialSettings = () => {
+	// 	setIsFinancialSettingsOpen((prev) => !prev);
+	// };
+	// const [isPOSettingsOpen, setIsPOSettingsOpen] = useState(false);
 
-	const togglePOSettings = () => {
-		setIsPOSettingsOpen((prev) => !prev);
-	};
+	// const togglePOSettings = () => {
+	// 	setIsPOSettingsOpen((prev) => !prev);
+	// };
 
-	const [isOtherSettingsOpen, setIsOtherSettingsOpen] = useState(false);
+	// const [isOtherSettingsOpen, setIsOtherSettingsOpen] = useState(false);
 
-	const toggleOtherSettings = () => {
-		setIsOtherSettingsOpen((prev) => !prev);
-	};
+	// const toggleOtherSettings = () => {
+	// 	setIsOtherSettingsOpen((prev) => !prev);
+	// };
 	return (
 		<div>
 			<div
@@ -139,7 +139,7 @@ const SettingsSideBar = (props) => {
 															Security
 														</Link>
 													</li> */}
-													<li>
+													{/* <li>
 														<Link
 															to={route.notification}
 															className={
@@ -162,10 +162,10 @@ const SettingsSideBar = (props) => {
 														>
 															Connected APIs
 														</Link>
-													</li>
+													</li> */}
 												</ul>
 											</li>
-											<li className='submenu'>
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={toggleUsersSettings}
@@ -204,7 +204,7 @@ const SettingsSideBar = (props) => {
 														</Link>
 													</li>
 												</ul>
-											</li>
+											</li> */}
 											{/* <li className='submenu'>
 												<Link
 													to='#'
@@ -317,7 +317,7 @@ const SettingsSideBar = (props) => {
 													</li>
 												</ul>
 											</li> */}
-											<li className='submenu'>
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={toggleAppSettings}
@@ -379,9 +379,9 @@ const SettingsSideBar = (props) => {
 															Custom Fields
 														</Link>
 													</li> */}
-												</ul>
-											</li>
-											<li className='submenu'>
+											{/* </ul> */}
+											{/* </li>  */}
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={toggleSystemSettings}
@@ -444,8 +444,8 @@ const SettingsSideBar = (props) => {
 														</Link>
 													</li>
 												</ul>
-											</li>
-											<li className='submenu'>
+											</li> */}
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													// className={`active ${
@@ -486,7 +486,7 @@ const SettingsSideBar = (props) => {
 															Bank Accounts
 														</Link>
 													</li> */}
-													{/* <li>
+											{/* <li>
 														<Link
 															to={route.taxrates}
 															className={
@@ -498,7 +498,7 @@ const SettingsSideBar = (props) => {
 															Tax Rates
 														</Link>
 													</li> */}
-													{/* <li>
+											{/* <li>
 														<Link
 															to={route.currencysettings}
 															className={
@@ -510,9 +510,9 @@ const SettingsSideBar = (props) => {
 															Currencies
 														</Link>
 													</li> */}
-												</ul>
-											</li>
-											<li className='submenu'>
+											{/* </ul> */}
+											{/* </li>  */}
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={togglePOSettings}
@@ -551,8 +551,8 @@ const SettingsSideBar = (props) => {
 														</Link>
 													</li>
 												</ul>
-											</li>
-											<li className='submenu'>
+											</li> */}
+											{/* <li className='submenu'>
 												<Link
 													to='#'
 													onClick={toggleOtherSettings}
@@ -591,7 +591,7 @@ const SettingsSideBar = (props) => {
 														</Link>
 													</li>
 												</ul>
-											</li>
+											</li> */}
 										</ul>
 									</li>
 								</ul>
