@@ -41,7 +41,16 @@ const AddUsers = () => {
 
 	const onSubmit = async (data) => {
 		try {
-			const response = await createStaffUsers(token, data);
+			const reqBody = {
+				code: data?.code,
+				name: data?.name,
+				pin: data?.pin,
+				allowCredit: data?.allowCredit,
+				allowPriceChange: data?.allowPriceChange,
+				isMechanic: data?.isMechanic,
+				allowDiscount: data?.allowDiscount,
+			};
+			const response = await createStaffUsers(token, reqBody);
 			if (response?.success) {
 				if (modalRef.current) {
 					modalRef.current.click();
@@ -132,6 +141,24 @@ const AddUsers = () => {
                                             </div> */}
 										<div className='mb-3'>
 											<div className='input-blocks'>
+												<label>User Name</label>
+												<input
+													type='text'
+													className='form-control'
+													{...register('username', {
+														required: 'User name is required',
+													})}
+													placeholder='Enter Code'
+												/>
+												{errors?.username && (
+													<p className='text-danger'>
+														{errors?.username?.message}
+													</p>
+												)}
+											</div>
+										</div>
+										<div className='mb-3'>
+											<div className='input-blocks'>
 												<label>Code</label>
 												<input
 													type='text'
@@ -148,17 +175,67 @@ const AddUsers = () => {
 										</div>
 										<div className='mb-3'>
 											<div className='input-blocks'>
-												<label>Name</label>
+												<label>Full Name</label>
 												<input
 													type='text'
 													className='form-control'
 													{...register('name', {
-														required: 'Staff User Name is required',
+														required: 'Staff Name is required',
 													})}
-													placeholder='Enter Staff User Name'
+													placeholder='Enter Staff Name'
 												/>
 												{errors?.name && (
 													<p className='text-danger'>{errors?.name?.message}</p>
+												)}
+											</div>
+										</div>
+										<div className='mb-3'>
+											<div className='input-blocks'>
+												<label>Role Name</label>
+												<input
+													type='text'
+													className='form-control'
+													{...register('rolename', {
+														required: 'Role Name is required',
+													})}
+													placeholder='Enter Roll Name'
+												/>
+												{errors?.rolename && (
+													<p className='text-danger'>
+														{errors?.rolename?.message}
+													</p>
+												)}
+											</div>
+										</div>
+										<div className='mb-3'>
+											<div className='input-blocks'>
+												<label>Email Address</label>
+												<input
+													type='text'
+													className='form-control'
+													{...register('email')}
+													placeholder='Enter email'
+												/>
+												{errors?.email && (
+													<p className='text-danger'>
+														{errors?.email?.message}
+													</p>
+												)}
+											</div>
+										</div>
+										<div className='mb-3'>
+											<div className='input-blocks'>
+												<label>Phone Number</label>
+												<input
+													type='text'
+													className='form-control'
+													{...register('phoneNumber')}
+													placeholder='Enter phone number'
+												/>
+												{errors?.phoneNumber && (
+													<p className='text-danger'>
+														{errors?.phoneNumber?.message}
+													</p>
 												)}
 											</div>
 										</div>
@@ -176,35 +253,7 @@ const AddUsers = () => {
 												)}
 											</div>
 										</div>
-										{/* <div className='col-lg-6'>
-											<div className='input-blocks'>
-												<label>Phone</label>
-												<input
-													type='text'
-													className='form-control'
-												/>
-											</div>
-										</div>
-										<div className='col-lg-6'>
-											<div className='input-blocks'>
-												<label>Email</label>
-												<input
-													type='email'
-													className='form-control'
-												/>
-											</div>
-										</div> */}
-										{/* <div className='col-lg-6'>
-												<div className='input-blocks'>
-													<label>Role</label>
 
-													<Select
-														classNamePrefix='react-select'
-														options={status}
-														placeholder='Choose Status'
-													/>
-												</div>
-											</div> */}
 										{/* <div className='col-lg-6'>
 												<div className='input-blocks'>
 													<label>Password</label>
