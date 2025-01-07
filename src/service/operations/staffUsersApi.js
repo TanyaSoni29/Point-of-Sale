@@ -117,6 +117,7 @@ export const deleteStaffUser = async (token, staffUserId) => {
 
 		console.log('Delete StaffUser Api response---', response);
 		if (response.status !== 200) throw new Error("Couldn't delete staffUser");
+		toast.success('StaffUser deleted successfully');
 		result = true;
 	} catch (error) {
 		console.log('Delete StaffUser Api error', error);

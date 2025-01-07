@@ -200,6 +200,7 @@ export const deleteProduct = async (token, productId) => {
 
 		console.log('Delete Product Api response---', response);
 		if (response.status !== 200) throw new Error("Couldn't delete product");
+		toast.success('Product deleted successfully');
 		result = true;
 	} catch (error) {
 		console.log('Delete Product Api error', error);

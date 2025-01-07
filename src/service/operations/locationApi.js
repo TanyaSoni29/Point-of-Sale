@@ -112,6 +112,7 @@ export const deleteLocation = async (token, locationId) => {
 
 		console.log('Delete Location Api response---', response);
 		if (response.status !== 200) throw new Error("Couldn't delete location");
+		toast.success('Location deleted successfully');
 		result = true;
 	} catch (error) {
 		console.log('Delete Location Api error', error);

@@ -112,6 +112,7 @@ export const deleteCustomer = async (token, customerId) => {
 
 		console.log('Delete Customer Api response---', response);
 		if (response.status !== 200) throw new Error("Couldn't delete customer");
+		toast.success('Customer deleted successfully');
 		result = true;
 	} catch (error) {
 		console.log('Delete Customer Api error', error);

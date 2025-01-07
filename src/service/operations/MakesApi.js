@@ -87,7 +87,7 @@ export const updateMakes = async (token, data) => {
 
 		if (response.status !== 200) throw new Error("Couldn't update makes");
 
-		toast.success('MAKES updated successfully');
+		toast.success('Make updated successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);

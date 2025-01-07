@@ -84,11 +84,11 @@ export const updateSuppliers = async (token, data) => {
 			'Content-Type': 'application/json',
 		});
 
-		console.log('Update StaffUser API RESPONSE---', response.data);
+		console.log('Update Supplier API RESPONSE---', response.data);
 
-		if (response.status !== 200) throw new Error("Couldn't update staffUser");
+		if (response.status !== 200) throw new Error("Couldn't update supplier");
 
-		toast.success('StaffUser updated successfully');
+		toast.success('Supplier updated successfully');
 		return response?.data;
 	} catch (error) {
 		console.log('', error);
@@ -110,11 +110,12 @@ export const deleteSupplier = async (token, supplierId) => {
 			}
 		);
 
-		console.log('Delete StaffUser Api response---', response);
-		if (response.status !== 200) throw new Error("Couldn't delete staffUser");
+		console.log('Delete Supplier Api response---', response);
+		if (response.status !== 200) throw new Error("Couldn't delete supplier");
+		toast.success('Supplier deleted successfully');
 		result = true;
 	} catch (error) {
-		console.log('Delete StaffUser Api error', error);
+		console.log('Delete Supplier Api error', error);
 		if (error.response.status === 404) {
 			const errorMessage = error.response?.data?.error;
 			toast.error(errorMessage);
