@@ -233,8 +233,8 @@ const BrandList = () => {
 					<div className='page-header'>
 						<div className='add-item d-flex'>
 							<div className='page-title'>
-								<h4>Brand</h4>
-								<h6>Manage your brands</h6>
+								<h4>Make</h4>
+								<h6>Manage your Makes</h6>
 							</div>
 						</div>
 						<ul className='table-top-head'>

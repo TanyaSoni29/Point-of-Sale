@@ -55,39 +55,74 @@ export const SidebarData = [
 		submenuItems: [
 			{
 				label: 'Category Maintenance',
-				link: '/add-category',
+				link: '/category-list',
 				icon: <Icon.Codepen />,
 				showSubRoute: false,
 				submenu: false,
 			},
 			{
-				label: 'Brand Maintenance',
-				link: '/add-brand',
+				label: 'Make Maintenance',
+				link: '/brand-list',
 				icon: <Icon.Tag />,
 				showSubRoute: false,
 				submenu: false,
 			},
+			// {
+			// 	label: 'Category Maintenance',
+			// 	link: '/add-category',
+			// 	icon: <Icon.Codepen />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
+			// {
+			// 	label: 'Brand Maintenance',
+			// 	link: '/add-brand',
+			// 	icon: <Icon.Tag />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Customer Maintenance',
-				link: '/add-customer',
+				link: '/customers',
 				icon: <Icon.User />,
 				showSubRoute: false,
 				submenu: false,
 			},
+			// {
+			// 	label: 'Customer Maintenance',
+			// 	link: '/add-customer',
+			// 	icon: <Icon.User />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Supplier Maintenance',
-				link: '/add-supplier',
+				link: '/suppliers',
 				icon: <Icon.Users />,
 				showSubRoute: false,
 				submenu: false,
 			},
+			// {
+			// 	label: 'Supplier Maintenance',
+			// 	link: '/add-supplier',
+			// 	icon: <Icon.Users />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Product Maintenance',
-				link: '/add-product',
-				icon: <Icon.PlusSquare />,
+				link: '/product-list',
+				icon: <Icon.Box />,
 				showSubRoute: false,
 				submenu: false,
 			},
+			// {
+			// 	label: 'Product Maintenance',
+			// 	link: '/add-product',
+			// 	icon: <Icon.PlusSquare />,
+			// 	showSubRoute: false,
+			// 	submenu: false,
+			// },
 			{
 				label: 'Location Maintenance',
 				link: '/location-list',
@@ -104,13 +139,6 @@ export const SidebarData = [
 		showSubRoute: false,
 		submenuHdr: 'Inventory',
 		submenuItems: [
-			{
-				label: 'Products',
-				link: '/product-list',
-				icon: <Icon.Box />,
-				showSubRoute: false,
-				submenu: false,
-			},
 			{
 				label: 'Product Enquiry',
 				link: '/product-enquiry',
@@ -139,13 +167,7 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Category',
-				link: '/category-list',
-				icon: <Icon.Codepen />,
-				showSubRoute: false,
-				submenu: false,
-			},
+
 			// {
 			// 	label: 'Sub Category',
 			// 	link: '/sub-categories',
@@ -153,13 +175,7 @@ export const SidebarData = [
 			// 	showSubRoute: false,
 			// 	submenu: false,
 			// },
-			{
-				label: 'Brands',
-				link: '/brand-list',
-				icon: <Icon.Tag />,
-				showSubRoute: false,
-				submenu: false,
-			},
+
 			// {
 			// 	label: 'Units',
 			// 	link: '/units',
@@ -354,13 +370,6 @@ export const SidebarData = [
 		submenuHdr: 'People',
 
 		submenuItems: [
-			// {
-			// 	label: 'Customers',
-			// 	link: '/customers',
-			// 	icon: <Icon.User />,
-			// 	showSubRoute: false,
-			// 	submenu: false,
-			// },
 			{
 				label: 'Customer Enquiry',
 				link: '/customer-enquiry',
@@ -368,13 +377,7 @@ export const SidebarData = [
 				showSubRoute: false,
 				submenu: false,
 			},
-			{
-				label: 'Suppliers',
-				link: '/suppliers',
-				icon: <Icon.Users />,
-				showSubRoute: false,
-				submenu: false,
-			},
+
 			{
 				label: 'Users',
 				link: '/users',
