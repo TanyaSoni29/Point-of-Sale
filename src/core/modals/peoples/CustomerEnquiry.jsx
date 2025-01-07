@@ -123,7 +123,7 @@ const CustomerEnquiry = () => {
 									</div>
 								</div> */}
 								<div className='row mb-3'>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Customer Account</label>
 											<input
@@ -181,64 +181,72 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-										</div>
-										<div className='mb-3'>
-											<label>Address</label>
-											<input
-												type='text'
-												className='form-control'
-												{...register('address1', {
-													required: 'Address is required',
-												})}
-											/>
-											{errors?.address1 && (
-												<p className='text-danger'>
-													{errors?.address1?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address2')}
-											/>
-											{errors?.address2 && (
-												<p className='text-danger'>
-													{errors?.address2?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address3')}
-											/>
-											{errors?.address3 && (
-												<p className='text-danger'>
-													{errors?.address3?.message}
-												</p>
-											)}
-										</div>
-										<div className='mb-3'>
-											{/* <label>Address</label> */}
-											<input
-												type='text'
-												className='form-control'
-												{...register('address4')}
-											/>
-											{errors?.address4 && (
-												<p className='text-danger'>
-													{errors?.address4?.message}
-												</p>
-											)}
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Address</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('address1', {
+															required: 'Address is required',
+														})}
+													/>
+													{errors?.address1 && (
+														<p className='text-danger'>
+															{errors?.address1?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<label>Address 2</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('address2')}
+													/>
+													{errors?.address2 && (
+														<p className='text-danger'>
+															{errors?.address2?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													{/* <label>Address</label> */}
+													<input
+														type='text'
+														className='form-control'
+														{...register('address3')}
+													/>
+													{errors?.address3 && (
+														<p className='text-danger'>
+															{errors?.address3?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													{/* <label>Address</label> */}
+													<input
+														type='text'
+														className='form-control'
+														{...register('address4')}
+													/>
+													{errors?.address4 && (
+														<p className='text-danger'>
+															{errors?.address4?.message}
+														</p>
+													)}
+												</div>
+											</div>
 										</div>
 
 										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Postcode</label>
 													<input
@@ -252,89 +260,106 @@ const CustomerEnquiry = () => {
 														</p>
 													)}
 												</div>
-												
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Telephone Home</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('telephoneHome', {
+															required: 'Telephone Home is required',
+														})}
+													/>
+													{errors?.telephoneHome && (
+														<p className='text-danger'>
+															{errors?.telephoneHome?.message}
+														</p>
+													)}
+												</div>
+											</div>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Telephone Work</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('workPhone', {
+															required: 'Work Phone is required',
+														})}
+													/>
+													{errors?.workPhone && (
+														<p className='text-danger'>
+															{errors?.workPhone?.message}
+														</p>
+													)}
+												</div>
 											</div>
 											<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Telephone Home</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('telephoneHome', {
-																required: 'Telephone Home is required',
-															})}
-														/>
-														{errors?.telephoneHome && (
-															<p className='text-danger'>
-																{errors?.telephoneHome?.message}
-															</p>
-														)}
+												<div className='row'>
+													<div className='col-lg-8'>
+														<div className='mb-3'>
+															<label>Mobile</label>
+															<input
+																type='text'
+																className='form-control'
+																{...register('mobile', {
+																	required: 'mobile is required',
+																})}
+															/>
+															{errors?.mobile && (
+																<p className='text-danger'>
+																	{errors?.mobile?.message}
+																</p>
+															)}
+														</div>
+													</div>
+													<div className='col-lg-4'>
+														<div className='mt-4'>
+															<button
+																type='button'
+																className='btn btn-submit'
+															>
+																Send Sms
+															</button>
+														</div>
 													</div>
 												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>TelePhone Work</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('workPhone', {
-																required: 'Work Phone is required',
-															})}
-														/>
-														{errors?.workPhone && (
-															<p className='text-danger'>
-																{errors?.workPhone?.message}
-															</p>
-														)}
+											</div>
+											<div className='col-lg-6'>
+												<div className='row'>
+													<div className='col-lg-8'>
+														<div className='mb-3'>
+															<label>Email</label>
+															<input
+																type='email'
+																className='form-control'
+																{...register('email', {
+																	required: 'Email is required',
+																})}
+															/>
+															{errors?.email && (
+																<p className='text-danger'>
+																	{errors?.email?.message}
+																</p>
+															)}
+														</div>
+													</div>
+													<div className='col-lg-4'>
+														<div className='mt-4'>
+															<button className='btn btn-submit'>
+																Send Email
+															</button>
+														</div>
 													</div>
 												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Mobile</label>
-														<input
-															type='text'
-															className='form-control'
-															{...register('mobile', {
-																required: 'mobile is required',
-															})}
-														/>
-														{errors?.mobile && (
-															<p className='text-danger'>
-																{errors?.mobile?.message}
-															</p>
-														)}
-													</div>
-													<button
-														type='button'
-														className='btn btn-submit'
-													>
-														Send Sms
-													</button>
-												</div>
-												<div className='col-lg-6'>
-													<div className='mb-3'>
-														<label>Email</label>
-														<input
-															type='email'
-															className='form-control'
-															{...register('email', {
-																required: 'Email is required',
-															})}
-														/>
-														{errors?.email && (
-															<p className='text-danger'>
-																{errors?.email?.message}
-															</p>
-														)}
-													</div>
-													<button className='btn btn-submit'>Send Email</button>
-												</div>
+											</div>
 										</div>
 									</div>
 									<div className='col-md-6'>
 										<h4 className='mb-3'>Financial</h4>
 										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Balance</label>
 													<input
@@ -351,7 +376,7 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Current</label>
 													<input
@@ -368,10 +393,7 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-										</div>
-
-										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Rental Balance</label>
 													<input
@@ -388,7 +410,10 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+										</div>
+
+										<div className='row'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>1 Month</label>
 													<input
@@ -405,24 +430,8 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>TurnOver</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('turnover', {
-															required: 'Turnover is required',
-														})}
-													/>
-													{errors?.turnover && (
-														<p className='text-danger'>
-															{errors?.turnover?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>2 Months</label>
 													<input
@@ -439,24 +448,7 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Credit Limit</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('creditLimit', {
-															required: 'Credit Limit is required',
-														})}
-													/>
-													{errors?.creditLimit && (
-														<p className='text-danger'>
-															{errors?.creditLimit?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>3 Months</label>
 													<input
@@ -473,24 +465,8 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
-												<div className='mb-3'>
-													<label>Loyalty Points</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('loyaltyPoints', {
-															required: 'Loyalty Points is required',
-														})}
-													/>
-													{errors?.loyaltyPoints && (
-														<p className='text-danger'>
-															{errors?.loyaltyPoints?.message}
-														</p>
-													)}
-												</div>
-											</div>
-											<div className='col-lg-6'>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>4 Months</label>
 													<input
@@ -507,27 +483,62 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
-													<label>Suspense</label>
+													<label>TurnOver</label>
 													<input
 														type='text'
 														className='form-control'
-														{...register('suspense', {
-															required: 'Suspense is required',
+														{...register('turnover', {
+															required: 'Turnover is required',
 														})}
 													/>
-													{errors?.suspense && (
+													{errors?.turnover && (
 														<p className='text-danger'>
-															{errors?.suspense?.message}
+															{errors?.turnover?.message}
 														</p>
 													)}
 												</div>
 											</div>
-										</div>
 
-										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Credit Limit</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('creditLimit', {
+															required: 'Credit Limit is required',
+														})}
+													/>
+													{errors?.creditLimit && (
+														<p className='text-danger'>
+															{errors?.creditLimit?.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Loyalty Points</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('loyaltyPoints', {
+															required: 'Loyalty Points is required',
+														})}
+													/>
+													{errors?.loyaltyPoints && (
+														<p className='text-danger'>
+															{errors?.loyaltyPoints?.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Last Invoice</label>
 													<input
@@ -544,7 +555,8 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Amount</label>
 													<input
@@ -559,7 +571,26 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+
+											<div className='col-lg-4'>
+												<div className='mb-3'>
+													<label>Suspense</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('suspense', {
+															required: 'Suspense is required',
+														})}
+													/>
+													{errors?.suspense && (
+														<p className='text-danger'>
+															{errors?.suspense?.message}
+														</p>
+													)}
+												</div>
+											</div>
+
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Last Payment</label>
 													<input
@@ -576,7 +607,7 @@ const CustomerEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='mb-3'>
 													<label>Amount</label>
 													<input
@@ -596,7 +627,7 @@ const CustomerEnquiry = () => {
 								</div>
 							</div>
 						</div>
-						<div className='modal-footer-btn'>
+						<div className='modal-footer-btn mt-3'>
 							<button
 								type='submit'
 								className='btn btn-submit'
