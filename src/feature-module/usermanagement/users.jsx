@@ -30,7 +30,10 @@ import {
 	updateStaffUser,
 } from '../../slices/staffUserSlice';
 import { Switch } from 'antd';
-import { updateStaffUsers } from '../../service/operations/staffUsersApi';
+import {
+	deleteStaffUser,
+	updateStaffUsers,
+} from '../../service/operations/staffUsersApi';
 
 const Users = () => {
 	const oldandlatestvalue = [
@@ -105,9 +108,14 @@ const Users = () => {
 	);
 
 	const handleDelete = async (user) => {
+		const isConfirmed = await showConfirmationAlert();
+		if (!isConfirmed) return;
 		try {
-			showConfirmationAlert();
 			console.log(user);
+			const response = await deleteStaffUser(token, user?.code);
+			if (response) {
+				dispatch(refreshStaffUsers());
+			}
 		} catch (error) {
 			console.log(error);
 		}
@@ -256,30 +264,18 @@ const Users = () => {
 	];
 	const MySwal = withReactContent(Swal);
 
-	const showConfirmationAlert = () => {
-		MySwal.fire({
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			showCancelButton: true,
+			reverseButtons: true,
 			confirmButtonColor: '#00ff00',
 			confirmButtonText: 'Yes, delete it!',
 			cancelButtonColor: '#ff0000',
 			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
 		});
+		return result.isConfirmed;
 	};
 
 	useEffect(() => {
