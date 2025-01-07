@@ -124,7 +124,7 @@ const ProductEnquiry = () => {
 									</div>
 								</div> */}
 								<div className='row mb-3'>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Part Number</label>
 											<input
@@ -140,7 +140,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>MFR Part Number</label>
 											<input
@@ -158,7 +158,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Barcode</label>
 											<input
@@ -176,7 +176,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Make</label>
 											<input
@@ -192,7 +192,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Search 1/2</label>
 											<input
@@ -210,7 +210,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Size</label>
 											<input
@@ -226,7 +226,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Total Stock Level</label>
 											<input
@@ -244,7 +244,7 @@ const ProductEnquiry = () => {
 											)}
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-2'>
 										<div className='mb-3'>
 											<label className='form-label'>Color</label>
 											<input
@@ -266,7 +266,7 @@ const ProductEnquiry = () => {
 									<div className='col-md-12 border-end'>
 										<h4 className='mb-3'>Product Information</h4>
 										<div className='row'>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Supplier 1</label>
 													<input
@@ -283,7 +283,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Supplier 2</label>
 													<input
@@ -300,7 +300,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Last Sold On</label>
 													<input
@@ -317,7 +317,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Total Quantity Sold</label>
 													<input
@@ -332,7 +332,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Latest Cost Price</label>
 													<input
@@ -347,7 +347,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>R.R.P</label>
 													<input
@@ -362,7 +362,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Average Cost Price</label>
 													<input
@@ -377,7 +377,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Total Cost</label>
 													<input
@@ -392,7 +392,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Total Sales</label>
 													<input
@@ -407,7 +407,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Total Vat</label>
 													<input
@@ -422,7 +422,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Total Revenue</label>
 													<input
@@ -437,7 +437,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Faulty Stock</label>
 													<input
@@ -452,7 +452,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Back Order</label>
 													<input
@@ -467,7 +467,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Xmas Order</label>
 													<input
@@ -482,7 +482,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Min. Stock</label>
 													<input
@@ -497,7 +497,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Max. Stock</label>
 													<input
@@ -512,7 +512,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Allocated Stock</label>
 													<input
@@ -527,7 +527,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Last Stock Check</label>
 													<input
@@ -542,7 +542,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>MFR Part No. 1</label>
 													<input
@@ -557,7 +557,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>MFR Part No. 2</label>
 													<input
@@ -572,7 +572,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Bin Location 1</label>
 													<input
@@ -587,7 +587,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Bin Location 2</label>
 													<input
@@ -602,7 +602,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Margin</label>
 													<input
@@ -617,7 +617,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Category A</label>
 													<input
@@ -634,7 +634,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Category B</label>
 													<input
@@ -649,7 +649,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Category C</label>
 													<input
@@ -664,8 +664,8 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mt-4'>
 													<button className='btn btn-submit'>
 														Ask Admin To Review This Part
 													</button>
@@ -674,10 +674,10 @@ const ProductEnquiry = () => {
 										</div>
 									</div>
 
-									<div className='col-md-8'>
+									<div className='col-md-12'>
 										<h4 className='mb-3'>Supplier Stock Availability</h4>
 										<div className='row'>
-											<div className='col-lg-6'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Availability</label>
 													<input
@@ -694,7 +694,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Lead Time</label>
 													<input
@@ -711,7 +711,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Qty In Stock</label>
 													<input
@@ -726,7 +726,7 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-2'>
 												<div className='mb-3'>
 													<label>Last Updated</label>
 													<input
@@ -743,14 +743,16 @@ const ProductEnquiry = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
-												<button className='btn btn-submit'>Check</button>
+											<div className='col-lg-2'>
+												<div className='mt-4'>
+													<button className='btn btn-submit'>Check</button>
+												</div>
 											</div>
 										</div>
 									</div>
-									<div className='col-md-4'>
+									<div className='col-md-12'>
 										<div className='row'>
-											<div className='d-flex gap-3 flex-column justify-content-center align-items-center'>
+											<div className='d-flex gap-3 justify-content-start align-items-center mb-3'>
 												<div className='d-flex justify-content-center align-items-center'>
 													<button
 														type='button'
@@ -789,7 +791,7 @@ const ProductEnquiry = () => {
 								</div>
 							</div>
 						</div>
-						<div className='modal-footer-btn'>
+						<div className='modal-footer-btn mt-2'>
 							<button
 								type='submit'
 								className='btn btn-submit me-3'
