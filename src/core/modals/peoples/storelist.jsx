@@ -70,7 +70,7 @@ const StoreList = () => {
 	};
 
 	const handleDelete = async (location) => {
-		console.log(location);
+		// console.log(location);
 		try {
 			const isConfirmed = await showConfirmationAlert();
 			if (!isConfirmed) return;
@@ -94,7 +94,7 @@ const StoreList = () => {
 				[field]: checked,
 			};
 			const response = await updateLocation(token, newData);
-			console.log(response);
+			// console.log(response);
 			if (response?.success) {
 				dispatch(updateLocations(newData));
 			}

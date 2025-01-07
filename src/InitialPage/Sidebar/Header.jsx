@@ -19,7 +19,7 @@ const Header = () => {
 	// const navigate = useNavigate();
 	const { user } = useSelector((state) => state.auth);
 	const { locations } = useSelector((state) => state.location);
-	console.log(locations);
+	// console.log(locations);
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
@@ -339,16 +339,15 @@ const Header = () => {
 						</Link>
 						<div className='dropdown-menu dropdown-menu-right'>
 							{locations?.map((location) => (
-								<>
+								<React.Fragment key={location?.code}>
 									<Link
 										to='#'
 										className='dropdown-item'
-										key={location?.code}
 									>
 										<Home />{' '}
 										<span style={{ marginLeft: '6px' }}>{location?.name}</span>
 									</Link>
-								</>
+								</React.Fragment>
 							))}
 						</div>
 					</li>

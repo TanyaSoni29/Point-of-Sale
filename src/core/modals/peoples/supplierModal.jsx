@@ -65,7 +65,7 @@ const SupplierModal = () => {
 	const b2BFileAppendLocationCode = editWatch('b2BFileAppendLocationCode');
 
 	const addOnSubmit = async (data) => {
-		console.log(data);
+		// console.log(data);
 		try {
 			const response = await createSupplier(token, data);
 			if (response.success) {
@@ -80,7 +80,7 @@ const SupplierModal = () => {
 	};
 
 	const editOnSubmit = async (data) => {
-		console.log(data);
+		// console.log(data);
 		try {
 			const response = await updateSuppliers(token, data);
 			if (response.success) {

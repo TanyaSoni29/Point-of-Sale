@@ -4,7 +4,7 @@
 const BASE_URL = 'http://192.168.1.10/api';
 // const BASE_URL =
 // 	'http://abacusonline-002-site4.atempurl.com/swagger/index.html';
-console.log(BASE_URL);
+// console.log(BASE_URL);
 
 export const authEndpoints = {
 	AUTHENTICATE: `${BASE_URL}/Auth/Authenticate`,

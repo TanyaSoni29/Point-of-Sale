@@ -57,7 +57,7 @@ const AddStore = () => {
 				// isValid: true,
 			};
 			const response = await createLocation(token, newData);
-			console.log(response);
+			// console.log(response);
 			if (response?.success) {
 				dispatch(addLocation(newData));
 				addReset();

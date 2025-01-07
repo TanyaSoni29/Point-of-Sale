@@ -54,7 +54,7 @@ const AddSupplier = () => {
 	const addb2BFileAppendLocationCode = addWatch('b2BFileAppendLocationCode');
 
 	const addOnSubmit = async (data) => {
-		console.log(data);
+		// console.log(data);
 		try {
 			const response = await createSupplier(token, data);
 			if (response.success) {

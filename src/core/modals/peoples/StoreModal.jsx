@@ -20,7 +20,7 @@ const StoreModal = () => {
 	const [selectedCode, setSelectedCode] = useState('');
 	const [isOpen, setIsOpen] = useState(false);
 
-	console.log('store location---', locations);
+	// console.log('store location---', locations);
 
 	const {
 		register: addRegister,
@@ -89,9 +89,9 @@ const StoreModal = () => {
 				// dateUpdated: '2024-11-29T08:08:40.758',
 				// isValid: true,
 			};
-			console.log('reqbody---', newData);
+			// console.log('reqbody---', newData);
 			const response = await createLocation(token, newData);
-			console.log(response);
+			// console.log(response);
 			if (response?.success) {
 				dispatch(addLocation(newData));
 				if (addModal?.current) {
@@ -125,7 +125,7 @@ const StoreModal = () => {
 				accountEmail: data?.accountEmail || '',
 			};
 			const response = await updateLocation(token, newData);
-			console.log(response);
+			// console.log(response);
 			if (response?.success) {
 				dispatch(updateLocations(newData));
 				if (editModal?.current) {

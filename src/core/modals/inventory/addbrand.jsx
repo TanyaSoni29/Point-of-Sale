@@ -27,10 +27,10 @@ const AddBrand = () => {
 	});
 
 	const onSubmit = async (data) => {
-		console.log(data);
+		// console.log(data);
 		try {
 			const response = await createMakes(token, data);
-			console.log('create category response.....', response);
+			// console.log('create category response.....', response);
 			if (response?.success) {
 				if (modalRef.current) {
 					modalRef.current.click();
