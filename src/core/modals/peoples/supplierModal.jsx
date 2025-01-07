@@ -188,7 +188,7 @@ const SupplierModal = () => {
 				className='modal fade'
 				id='add-units'
 			>
-				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+				<div className='modal-dialog modal-dialog-centered modal-lg custom-modal-two'>
 					<div className='modal-content'>
 						<div className='page-wrapper-new p-0'>
 							<div className='content'>
@@ -210,30 +210,30 @@ const SupplierModal = () => {
 									<form onSubmit={addHandleSubmit(addOnSubmit)}>
 										<div className='row'>
 											{/* <div className="col-lg-12">
-                        <div className="new-employee-field">
-                          <span>Avatar</span>
-                          <div className="profile-pic-upload mb-2">
-                            <div className="profile-pic">
-                              <span>
-                                <i
-                                  data-feather="plus-circle"
-                                  className="plus-down-add"
-                                />{" "}
-                                Profile Photo
-                              </span>
-                            </div>
-                            <div className="input-blocks mb-0">
-                              <div className="image-upload mb-0">
-                                <input type="file" />
-                                <div className="image-uploads">
-                                  <h4>Change Image</h4>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
-											<div className='col-lg-6'>
+                                               <div className="new-employee-field">
+                                                 <span>Avatar</span>
+                                                 <div className="profile-pic-upload mb-2">
+                                                   <div className="profile-pic">
+                                                     <span>
+                                                       <i
+                                                         data-feather="plus-circle"
+                                                         className="plus-down-add"
+                                                       />{" "}
+                                                       Profile Photo
+                                                     </span>
+                                                   </div>
+                                                   <div className="input-blocks mb-0">
+                                                     <div className="image-upload mb-0">
+                                                       <input type="file" />
+                                                       <div className="image-uploads">
+                                                         <h4>Change Image</h4>
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                             </div> */}
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Account No.</label>
 													<input
@@ -251,7 +251,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Supplier Name</label>
 													<input
@@ -269,7 +269,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Email</label>
 													<input
@@ -287,7 +287,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Phone</label>
 													<input
@@ -305,7 +305,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 1</label>
 													<input
@@ -322,7 +322,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 2</label>
 													<input
@@ -335,7 +335,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 3</label>
 													<input
@@ -348,7 +348,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 4</label>
 													<input
@@ -361,7 +361,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Postcode</label>
 													<input
@@ -375,7 +375,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Fax</label>
 													<input
@@ -387,7 +387,7 @@ const SupplierModal = () => {
 													{addErrors?.fax && <p>{addErrors?.fax?.message}</p>}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>B2B File Name</label>
 													<input
@@ -401,7 +401,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>B2B File Type</label>
 													<input
@@ -415,7 +415,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Settlement Discount</label>
 													<input
@@ -429,7 +429,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Carriage Paid Amount</label>
 													<input
@@ -496,7 +496,7 @@ const SupplierModal = () => {
 												</div>
 											</div> */}
 										</div>
-										<div className='modal-footer-btn'>
+										<div className='modal-footer-btn mt-0'>
 											<button
 												type='button'
 												className='btn btn-cancel me-2'
@@ -524,7 +524,7 @@ const SupplierModal = () => {
 				className='modal fade'
 				id='edit-units'
 			>
-				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+				<div className='modal-dialog modal-dialog-centered modal-lg custom-modal-two'>
 					<div className='modal-content'>
 						<div className='page-wrapper-new p-0'>
 							<div className='content'>
@@ -546,30 +546,30 @@ const SupplierModal = () => {
 									<form onSubmit={editHandleSubmit(editOnSubmit)}>
 										<div className='row'>
 											{/* <div className="col-lg-12">
-                        <div className="new-employee-field">
-                          <span>Avatar</span>
-                          <div className="profile-pic-upload mb-2">
-                            <div className="profile-pic">
-                              <span>
-                                <i
-                                  data-feather="plus-circle"
-                                  className="plus-down-add"
-                                />{" "}
-                                Profile Photo
-                              </span>
-                            </div>
-                            <div className="input-blocks mb-0">
-                              <div className="image-upload mb-0">
-                                <input type="file" />
-                                <div className="image-uploads">
-                                  <h4>Change Image</h4>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-                        </div>
-                      </div> */}
-											<div className='col-lg-6'>
+                                               <div className="new-employee-field">
+                                                 <span>Avatar</span>
+                                                 <div className="profile-pic-upload mb-2">
+                                                   <div className="profile-pic">
+                                                     <span>
+                                                       <i
+                                                         data-feather="plus-circle"
+                                                         className="plus-down-add"
+                                                       />{" "}
+                                                       Profile Photo
+                                                     </span>
+                                                   </div>
+                                                   <div className="input-blocks mb-0">
+                                                     <div className="image-upload mb-0">
+                                                       <input type="file" />
+                                                       <div className="image-uploads">
+                                                         <h4>Change Image</h4>
+                                                       </div>
+                                                     </div>
+                                                   </div>
+                                                 </div>
+                                               </div>
+                                             </div> */}
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Account No.</label>
 													<input
@@ -587,7 +587,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Supplier Name</label>
 													<input
@@ -605,7 +605,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Email</label>
 													<input
@@ -623,7 +623,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Phone</label>
 													<input
@@ -641,7 +641,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 1</label>
 													<input
@@ -658,7 +658,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 2</label>
 													<input
@@ -671,7 +671,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 3</label>
 													<input
@@ -684,7 +684,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Address 4</label>
 													<input
@@ -697,7 +697,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Postcode</label>
 													<input
@@ -711,7 +711,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Fax</label>
 													<input
@@ -723,7 +723,7 @@ const SupplierModal = () => {
 													{editErrors?.fax && <p>{editErrors?.fax?.message}</p>}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>B2B File Name</label>
 													<input
@@ -737,7 +737,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>B2B File Type</label>
 													<input
@@ -751,7 +751,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Settlement Discount</label>
 													<input
@@ -765,7 +765,7 @@ const SupplierModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-6'>
+											<div className='col-lg-4'>
 												<div className='input-blocks'>
 													<label>Carriage Paid Amount</label>
 													<input
@@ -832,7 +832,7 @@ const SupplierModal = () => {
 												</div>
 											</div> */}
 										</div>
-										<div className='modal-footer-btn'>
+										<div className='modal-footer-btn mt-0'>
 											<button
 												type='button'
 												className='btn btn-cancel me-2'
