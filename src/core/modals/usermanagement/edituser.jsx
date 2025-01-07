@@ -104,7 +104,9 @@ const EditUser = () => {
 							<div className='content'>
 								<div className='modal-header border-0 custom-modal-header'>
 									<div className='page-title'>
-										<h4>Edit User</h4>
+										<h4>
+											Edit User<span> {staffUser?.code}</span>
+										</h4>
 									</div>
 									<button
 										type='button'
@@ -146,58 +148,65 @@ const EditUser = () => {
                                                     </div>
                                                 </div>
                                             </div> */}
-											<div className='mb-3'>
-												<div className='input-blocks'>
-													<label>Code</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('code', {
-															required: 'Code is required',
-														})}
-														placeholder='Enter Code'
-													/>
-													{errors?.code && (
-														<p className='text-danger'>
-															{errors?.code?.message}
-														</p>
-													)}
+											{/* <div className='col-lg-4'>
+												<div className='mb-3'>
+													<div className='input-blocks'>
+														<label>Code</label>
+														<input
+															type='text'
+															className='form-control'
+															{...register('code', {
+																required: 'Code is required',
+															})}
+															placeholder='Enter Code'
+														/>
+														{errors?.code && (
+															<p className='text-danger'>
+																{errors?.code?.message}
+															</p>
+														)}
+													</div>
+												</div>
+											</div> */}
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<div className='input-blocks'>
+														<label>Name</label>
+														<input
+															type='text'
+															className='form-control'
+															{...register('name', {
+																required: 'Staff User Name is required',
+															})}
+															placeholder='Enter Staff User Name'
+														/>
+														{errors?.name && (
+															<p className='text-danger'>
+																{errors?.name?.message}
+															</p>
+														)}
+													</div>
 												</div>
 											</div>
-											<div className='mb-3'>
-												<div className='input-blocks'>
-													<label>Name</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('name', {
-															required: 'Staff User Name is required',
-														})}
-														placeholder='Enter Staff User Name'
-													/>
-													{errors?.name && (
-														<p className='text-danger'>
-															{errors?.name?.message}
-														</p>
-													)}
+											<div className='col-lg-6'>
+												<div className='mb-3'>
+													<div className='input-blocks'>
+														<label>Pin</label>
+														<input
+															type='text'
+															className='form-control'
+															{...register('pin')}
+															placeholder='Enter pin'
+														/>
+														{errors?.pin && (
+															<p className='text-danger'>
+																{errors?.pin?.message}
+															</p>
+														)}
+													</div>
 												</div>
 											</div>
-											<div className='mb-3'>
-												<div className='input-blocks'>
-													<label>Pin</label>
-													<input
-														type='text'
-														className='form-control'
-														{...register('pin')}
-														placeholder='Enter pin'
-													/>
-													{errors?.pin && (
-														<p className='text-danger'>
-															{errors?.pin?.message}
-														</p>
-													)}
-												</div>
-											</div>
+
 											{/* <div className="col-lg-6">
                                                 <div className="input-blocks">
                                                     <label>Role</label>
@@ -299,7 +308,7 @@ const EditUser = () => {
 												</label>
 											</div>
 										</div>
-										<div className='modal-footer-btn'>
+										<div className='modal-footer-btn mt-1'>
 											<button
 												type='button'
 												className='btn btn-cancel me-2'
