@@ -210,7 +210,7 @@ const StoreModal = () => {
 				className='modal fade'
 				id='add-units'
 			>
-				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+				<div className='modal-dialog modal-dialog-centered modal-lg custom-modal-two'>
 					<div className='modal-content'>
 						<div className='page-wrapper-new p-0'>
 							<div className='content'>
@@ -414,7 +414,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 1</label>
 													<input
@@ -429,7 +429,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 2</label>
 													<input
@@ -444,7 +444,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 3</label>
 													<input
@@ -457,7 +457,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 4</label>
 													<input
@@ -544,16 +544,17 @@ const StoreModal = () => {
 												</div>
 											</div>
 
-											<div className='col-lg-1 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
-													<label className='form-label'>Key Location</label>
 													<Switch
 														checked={keyLocation1} // Get the current value of the switch
 														onChange={(checked) =>
 															addSetValue('keyLocation', checked)
 														}
+														className='me-2'
 														// {...addRegister('keyLocation', { value: false })}
 													/>
+													<label className='form-label'>Key Location</label>
 												</div>
 											</div>
 
@@ -586,7 +587,7 @@ const StoreModal = () => {
 												</div>
 											</div> */}
 										</div>
-										<div className='modal-footer-btn'>
+										<div className='modal-footer-btn mt-0'>
 											<button
 												type='button'
 												className='btn btn-cancel me-2'
@@ -615,7 +616,7 @@ const StoreModal = () => {
 				className='modal fade'
 				id='edit-units'
 			>
-				<div className='modal-dialog modal-dialog-centered custom-modal-two'>
+				<div className='modal-dialog modal-dialog-centered modal-lg custom-modal-two'>
 					<div className='modal-content'>
 						<div className='page-wrapper-new p-0'>
 							<div className='content'>
@@ -740,7 +741,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 1</label>
 													<input
@@ -755,7 +756,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 2</label>
 													<input
@@ -768,7 +769,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 3</label>
 													<input
@@ -781,7 +782,7 @@ const StoreModal = () => {
 													)}
 												</div>
 											</div>
-											<div className='col-lg-12 pe-0'>
+											<div className='col-lg-4 pe-0'>
 												<div className='mb-3'>
 													<label className='form-label'>Address 4</label>
 													<input
@@ -869,16 +870,17 @@ const StoreModal = () => {
 												</div>
 											</div>
 
-											<div className='col-lg-1 pe-0'>
-												<div className='mb-3'>
-													<label className='form-label'>Key Location</label>
+											<div className='col-lg-4 pe-0'>
+												<div className='mt-4 p-2'>
 													<Switch
 														checked={keyLocation2} // Get the current value of the switch
 														onChange={(checked) =>
 															editSetValue('keyLocation', checked)
 														}
+														className='me-2'
 														// {...editRegister('keyLocation')}
 													/>
+													<label className='form-label'>Key Location</label>
 													{/* {editErrors.keyLocation && (
 														<p className=''>{editErrors.keyLocation.message}</p>
 													)} */}
@@ -914,7 +916,7 @@ const StoreModal = () => {
 												</div>
 											</div> */}
 										</div>
-										<div className='modal-footer-btn'>
+										<div className='modal-footer-btn mt-0'>
 											<button
 												type='button'
 												className='btn btn-cancel me-2'
