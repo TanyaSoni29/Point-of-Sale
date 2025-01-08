@@ -277,27 +277,25 @@ const Pos = () => {
 									className='tabs owl-carousel pos-category'
 								>
 									{categories?.map((category) => (
-										<>
-											<div
-												key={category?.code}
-												// id={category?.code}
-												className={`pos-slick-item ${
-													selectedCategory === category.code ? 'active' : ''
-												}`}
-												onClick={() => setSelectedCategory(category?.code)}
-											>
-												{/* <Link to='#'>
+										<div
+											key={category?.code}
+											// id={category?.code}
+											className={`pos-slick-item ${
+												selectedCategory === category.code ? 'active' : ''
+											}`}
+											onClick={() => setSelectedCategory(category?.code)}
+										>
+											{/* <Link to='#'>
 													<ImageWithBasePath
 														src='assets/img/categories/category-01.png'
 														alt='Categories'
 													/>
 												</Link> */}
-												<h6>
-													<Link to='#'>{category?.name}</Link>
-												</h6>
-												{/* <span>80 Items</span> */}
-											</div>
-										</>
+											<h6>
+												<Link to='#'>{category?.name}</Link>
+											</h6>
+											{/* <span>80 Items</span> */}
+										</div>
 									))}
 								</Slider>
 								<div className='pos-products'>
