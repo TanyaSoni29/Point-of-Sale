@@ -21,6 +21,7 @@ import {
 	PlusCircle,
 	Trash2,
 	X,
+	Search,
 } from 'feather-icons-react/build/IconComponents';
 import { useDispatch, useSelector } from 'react-redux';
 import { OverlayTrigger, Tooltip } from 'react-bootstrap';
@@ -32,6 +33,8 @@ import './addProductReactQuill.css';
 import { setToggleHeader } from '../../slices/productListSlice';
 import Table from '../../core/pagination/datatable';
 import { refreshCategories } from '../../slices/categorySlice';
+import ProductSearch from '../../core/modals/inventory/ProductSearch';
+import { Modal } from 'bootstrap';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
@@ -389,6 +392,35 @@ const AddProduct = () => {
 	}, [reset, isSubmitSuccessful]);
 
 	useEffect(() => {
+		// Add keydown listener
+		const handleKeyDown = (event) => {
+			// Check for F5 key press
+			if (event.key === 'F5') {
+				event.preventDefault(); // Prevent default browser behavior
+
+				// Check if Part Number is empty
+				const partNumber = getValues('partNumber');
+				if (!partNumber) {
+					// Open the Product Search modal
+					const modalElement = document.getElementById('product-search');
+					if (modalElement) {
+						const modalInstance = new Modal(modalElement);
+						modalInstance.show();
+					}
+				}
+			}
+		};
+
+		// Attach the event listener
+		window.addEventListener('keydown', handleKeyDown);
+
+		// Cleanup the event listener on unmount
+		return () => {
+			window.removeEventListener('keydown', handleKeyDown);
+		};
+	}, [getValues]);
+
+	useEffect(() => {
 		dispatch(refreshCategories());
 	}, [dispatch]);
 
@@ -407,6 +439,22 @@ const AddProduct = () => {
 						</div>
 					</div>
 					<ul className='table-top-head'>
+						<li>
+							<div className='page-btn'>
+								<Link
+									to='#'
+									className='btn btn-added'
+									data-bs-toggle='modal'
+									data-bs-target='#product-search'
+								>
+									<Search
+										className='me-2'
+										style={{ color: '#fff' }}
+									/>
+									Product Search
+								</Link>
+							</div>
+						</li>
 						<li>
 							<div className='page-btn'>
 								<Link
@@ -584,6 +632,22 @@ const AddProduct = () => {
 													<div className='row'>
 														<div className='col-lg-4 col-sm-6 col-12'>
 															<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
+																<div className='flex-grow-1 me-3'>
+																	<label className='form-label'>
+																		Part Number{' '}
+																		<span className='text-danger'> F5</span>
+																	</label>
+																	<input
+																		type='text'
+																		{...register('partNumber')}
+																		className='form-control'
+																	/>
+																	{errors?.partNumber && (
+																		<div className='text-danger'>
+																			{errors?.partNumber?.message}
+																		</div>
+																	)}
+																</div>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label'>
 																		Manufacture Part Code
@@ -2734,6 +2798,7 @@ const AddProduct = () => {
 			<Addunits />
 			<AddCategory />
 			<AddBrand />
+			<ProductSearch />
 		</div>
 	);
 };
