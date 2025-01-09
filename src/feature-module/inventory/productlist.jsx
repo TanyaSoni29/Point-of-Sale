@@ -460,6 +460,20 @@ const ProductList = () => {
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
 															<div className='search-input'>
+																<label>MFR No</label>
+
+																<input
+																	type='text'
+																	placeholder='MFR No.'
+																	className='form-control form-control-sm formsearch'
+																	{...register('mfrno')}
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input'>
 																<label>Details</label>
 
 																<input
@@ -471,7 +485,7 @@ const ProductList = () => {
 															</div>
 														</div>
 													</div>
-													<div className='col-lg-2 col-sm-6 col-12'>
+													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
 															<div className='search-input'>
 																<label>Size</label>
@@ -485,7 +499,7 @@ const ProductList = () => {
 															</div>
 														</div>
 													</div>
-													<div className='col-lg-2 col-sm-6 col-12'>
+													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
 															<div className='search-input'>
 																<label>Color</label>
@@ -499,7 +513,7 @@ const ProductList = () => {
 															</div>
 														</div>
 													</div>
-													<div className='col-lg-2 col-sm-6 col-12'>
+													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
 															<div className='search-input'>
 																<label>Gender</label>
@@ -513,7 +527,7 @@ const ProductList = () => {
 															</div>
 														</div>
 													</div>
-													<div className='col-lg-2 col-sm-6 col-12'>
+													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
 															<div className='search-input'>
 																<label>Year</label>
