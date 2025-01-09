@@ -33,17 +33,16 @@ import {
 	setProduct,
 	setToggleHeader,
 } from '../../slices/productListSlice';
+import { useForm } from 'react-hook-form';
 
 const ProductList = () => {
-	const { products } = useSelector((state) => state.product);
+	const route = all_routes;
 	const dispatch = useDispatch();
+	const { products } = useSelector((state) => state.product);
 	const { toggle_header } = useSelector((state) => state.product);
 
 	const [isFilterVisible, setIsFilterVisible] = useState(false);
-	const toggleFilterVisibility = () => {
-		setIsFilterVisible((prevVisibility) => !prevVisibility);
-	};
-	const route = all_routes;
+	const { register, handleSubmit } = useForm();
 	const options = [
 		{ value: 'sortByDate', label: 'Sort by Date' },
 		{ value: '140923', label: '14 09 23' },
@@ -74,6 +73,14 @@ const ProductList = () => {
 		{ value: '12500', label: '$12,500.00' },
 		{ value: '13000', label: '$13,000.00' },
 	];
+
+	const toggleFilterVisibility = () => {
+		setIsFilterVisible((prevVisibility) => !prevVisibility);
+	};
+
+	const onSubmit = async (data) => {
+		console.log(data);
+	};
 
 	const handleDelete = async (product) => {
 		try {
@@ -391,7 +398,7 @@ const ProductList = () => {
 					<div className='card-body'>
 						<div className='table-top mb-0'>
 							<div className='search-set'>
-								<form>
+								<form onSubmit={handleSubmit(onSubmit)}>
 									<div className='card-body pb-0'>
 										<div className='row'>
 											<div className='col-lg-12 col-sm-12'>
@@ -404,6 +411,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Make'
 																	className='form-control form-control-sm formsearch'
+																	{...register('make')}
 																/>
 															</div>
 														</div>
@@ -416,6 +424,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Supplier'
 																	className='form-control form-control-sm formsearch'
+																	{...register('supplier')}
 																/>
 															</div>
 														</div>
@@ -429,6 +438,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Search 1'
 																	className='form-control form-control-sm formsearch'
+																	{...register('search1')}
 																/>
 															</div>
 														</div>
@@ -442,6 +452,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Search 2'
 																	className='form-control form-control-sm formsearch'
+																	{...register('search2')}
 																/>
 															</div>
 														</div>
@@ -455,6 +466,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Details'
 																	className='form-control form-control-sm formsearch'
+																	{...register('details')}
 																/>
 															</div>
 														</div>
@@ -468,6 +480,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Size'
 																	className='form-control form-control-sm formsearch'
+																	{...register('size')}
 																/>
 															</div>
 														</div>
@@ -481,6 +494,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Color'
 																	className='form-control form-control-sm formsearch'
+																	{...register('color')}
 																/>
 															</div>
 														</div>
@@ -494,6 +508,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Gender'
 																	className='form-control form-control-sm formsearch'
+																	{...register('gender')}
 																/>
 															</div>
 														</div>
@@ -507,6 +522,7 @@ const ProductList = () => {
 																	type='text'
 																	placeholder='Year'
 																	className='form-control form-control-sm formsearch'
+																	{...register('year')}
 																/>
 															</div>
 														</div>
