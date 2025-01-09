@@ -391,22 +391,143 @@ const ProductList = () => {
 					<div className='card-body'>
 						<div className='table-top'>
 							<div className='search-set'>
-								<div className='search-input'>
-									<input
-										type='text'
-										placeholder='Search'
-										className='form-control form-control-sm formsearch'
-									/>
-									<Link
-										to
-										className='btn btn-searchset'
-									>
-										<i
-											data-feather='search'
-											className='feather-search'
-										/>
-									</Link>
-								</div>
+								<form>
+									<div className='card-body pb-0'>
+										<div className='row'>
+											<div className='col-lg-12 col-sm-12'>
+												<div className='row'>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Make</label>
+																<input
+																	type='text'
+																	placeholder='Make'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Supplier</label>
+																<input
+																	type='text'
+																	placeholder='Supplier'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Search 1</label>
+
+																<input
+																	type='text'
+																	placeholder='Search 1'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Search 2</label>
+
+																<input
+																	type='text'
+																	placeholder='Search 2'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Details</label>
+
+																<input
+																	type='text'
+																	placeholder='Details'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Size</label>
+
+																<input
+																	type='text'
+																	placeholder='Size'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Color</label>
+
+																<input
+																	type='text'
+																	placeholder='Color'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Gender</label>
+
+																<input
+																	type='text'
+																	placeholder='Gender'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<div className='search-input mb-2'>
+																<label>Year</label>
+
+																<input
+																	type='text'
+																	placeholder='Year'
+																	className='form-control form-control-sm formsearch'
+																/>
+															</div>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='input-blocks'>
+															<Link className='btn btn-filters ms-auto'>
+																{' '}
+																<i
+																	data-feather='search'
+																	className='feather-search'
+																/>{' '}
+																Search{' '}
+															</Link>
+														</div>
+													</div>
+												</div>
+											</div>
+										</div>
+									</div>
+								</form>
 							</div>
 							<div className='search-path'>
 								<Link
