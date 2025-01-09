@@ -389,7 +389,7 @@ const ProductList = () => {
 				{/* /product list */}
 				<div className='card table-list-card'>
 					<div className='card-body'>
-						<div className='table-top'>
+						<div className='table-top mb-0'>
 							<div className='search-set'>
 								<form>
 									<div className='card-body pb-0'>
@@ -398,7 +398,7 @@ const ProductList = () => {
 												<div className='row'>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Make</label>
 																<input
 																	type='text'
@@ -410,7 +410,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Supplier</label>
 																<input
 																	type='text'
@@ -422,7 +422,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Search 1</label>
 
 																<input
@@ -435,7 +435,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Search 2</label>
 
 																<input
@@ -448,7 +448,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Details</label>
 
 																<input
@@ -461,7 +461,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Size</label>
 
 																<input
@@ -474,7 +474,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Color</label>
 
 																<input
@@ -487,7 +487,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Gender</label>
 
 																<input
@@ -500,7 +500,7 @@ const ProductList = () => {
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input mb-2'>
+															<div className='search-input'>
 																<label>Year</label>
 
 																<input
@@ -512,15 +512,18 @@ const ProductList = () => {
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
-														<div className='input-blocks'>
-															<Link className='btn btn-filters ms-auto'>
+														<div className='mt-4 p-1'>
+															<button
+																className='btn btn-submit ms-auto'
+																type='submit'
+															>
 																{' '}
 																<i
 																	data-feather='search'
 																	className='feather-search'
 																/>{' '}
 																Search{' '}
-															</Link>
+															</button>
 														</div>
 													</div>
 												</div>
@@ -529,6 +532,8 @@ const ProductList = () => {
 									</div>
 								</form>
 							</div>
+						</div>
+						<div className='d-flex justify-content-end align-items-end mb-3 mt-0'>
 							<div className='search-path'>
 								<Link
 									className={`btn btn-filter ${
@@ -552,7 +557,7 @@ const ProductList = () => {
 									</span>
 								</Link>
 							</div>
-							<div className='form-sort'>
+							<div className='form-sort me-2'>
 								<Sliders className='info-img' />
 								<Select
 									className='img-select'
@@ -562,6 +567,7 @@ const ProductList = () => {
 								/>
 							</div>
 						</div>
+
 						{/* /Filter */}
 						<div
 							className={`card${isFilterVisible ? ' visible' : ''}`}

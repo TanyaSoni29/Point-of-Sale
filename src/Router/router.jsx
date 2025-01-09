@@ -62,7 +62,6 @@ const AllRoutes = () => {
 					path='/pos'
 					// element={<PrivateRoute element={<Pospages />} />}
 					element={<Pospages />}
-
 				>
 					{posRoutes.map((route, id) => (
 						<Route
