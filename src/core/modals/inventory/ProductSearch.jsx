@@ -2,18 +2,20 @@
 
 // import { PlusCircle } from 'feather-icons-react/build/IconComponents';
 import { Switch } from 'antd';
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { useForm } from 'react-hook-form';
 import Select from 'react-select';
-// import { useDispatch, useSelector } from 'react-redux';
+import Table from '../../../core/pagination/datatable';
+
+// import { useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { createMakes } from '../../../service/operations/MakesApi';
 // import { refreshMakes } from '../../../slices/makesSlice';
 
 const ProductSearch = () => {
+	const [data, setData] = useState([]);
 	// const { token } = useSelector((state) => state.auth);
 	const modalRef = useRef(null);
-	// const dispatch = useDispatch();
 	const {
 		register,
 		handleSubmit,
@@ -38,20 +40,8 @@ const ProductSearch = () => {
 			stockHere: false,
 			stockAt: false,
 			notInStock: false,
-			a: false,
-			b: false,
-			both: true,
-			contains: false,
-			equals: false,
-			startsWith: true,
-			endsWith: false,
 			currentOnly: true,
 			promoOnly: false,
-			dontReorderOnly: false,
-			discontinuedOnly: false,
-			clearance: false,
-			finalClearance: false,
-			exclusive: false,
 		},
 	});
 
@@ -60,20 +50,8 @@ const ProductSearch = () => {
 	const stockHere = watch('stockHere');
 	const stockAt = watch('stockAt');
 	const notInStock = watch('notInStock');
-	const a = watch('a');
-	const b = watch('b');
-	const both = watch('both');
-	const contains = watch('contains');
-	const equals = watch('equals');
-	const startsWith = watch('startsWith');
-	const endsWith = watch('endsWith');
 	const currentOnly = watch('currentOnly');
 	const promoOnly = watch('promoOnly');
-	const dontReorderOnly = watch('dontReorderOnly');
-	const discontinuedOnly = watch('discontinuedOnly');
-	const clearance = watch('clearance');
-	const finalClearance = watch('finalClearance');
-	const exclusive = watch('exclusive');
 
 	const genders = [
 		{ value: 'Unisex', label: 'Unisex' },
@@ -81,20 +59,116 @@ const ProductSearch = () => {
 		{ value: 'Female', label: 'Female' },
 	];
 
+	const majorMinorOption = [
+		{ value: 'Major', label: 'Major' },
+		{ value: 'Minor', label: 'Minor' },
+		{ value: 'Both', label: 'Both' },
+	];
+
+	const priceOptions = [
+		{ value: 0, label: '0' },
+		{ value: 99, label: '99' },
+		{ value: 999, label: '999' },
+		{ value: 9999, label: '9999' },
+		{ value: 99999, label: '99999' },
+	];
+
+	const columns = [
+		{
+			title: 'Code',
+			dataIndex: 'code',
+			sorter: (a, b) => a.code.localCompare(b.code),
+		},
+		{
+			title: 'Make',
+			dataIndex: 'name',
+			sorter: (a, b) => a.name.localCompare(b.name),
+		},
+
+		// {
+		// 	title: 'Logo',
+		// 	dataIndex: 'logo',
+		// 	render: (text, record) => (
+		// 		<span className='productimgname'>
+		// 			<Link
+		// 				to='#'
+		// 				className='product-img stock-img'
+		// 			>
+		// 				<ImageWithBasePath
+		// 					alt=''
+		// 					src={record.logo}
+		// 				/>
+		// 			</Link>
+		// 		</span>
+		// 	),
+		// 	sorter: (a, b) => a.logo.length - b.logo.length,
+		// 	width: '5%',
+		// },
+		// {
+		// 	title: 'Createdon',
+		// 	dataIndex: 'createdon',
+		// 	sorter: (a, b) => a.createdon.length - b.createdon.length,
+		// },
+		// {
+		// 	title: 'Status',
+		// 	dataIndex: 'status',
+		// 	render: (text) => (
+		// 		<span className='badge badge-linesuccess'>
+		// 			<Link to='#'> {text}</Link>
+		// 		</span>
+		// 	),
+		// 	sorter: (a, b) => a.status.length - b.status.length,
+		// },
+		// {
+		// 	title: 'Actions',
+		// 	dataIndex: 'actions',
+		// 	key: 'actions',
+		// 	render: (_, record) => (
+		// 		<div className='action-table-data'>
+		// 			<div className='edit-delete-action'>
+		// 				<Link
+		// 					className='me-2 p-2'
+		// 					to='#'
+		// 					data-bs-toggle='modal'
+		// 					data-bs-target='#edit-brand'
+		// 					onClick={() => handleEdit(record)}
+		// 				>
+		// 					<i
+		// 						data-feather='edit'
+		// 						className='feather-edit'
+		// 					></i>
+		// 				</Link>
+		// 				<Link
+		// 					className='confirm-text p-2'
+		// 					to='#'
+		// 					onClick={() => handleDelete(record)}
+		// 				>
+		// 					<i
+		// 						data-feather='trash-2'
+		// 						className='feather-trash-2'
+		// 						onClick={showConfirmationAlert}
+		// 					></i>
+		// 				</Link>
+		// 			</div>
+		// 		</div>
+		// 	),
+		// },
+	];
+
 	const onSubmit = async (data) => {
 		console.log(data);
-		// try {
-		// 	const response = await createMakes(token, data);
-		// 	// console.log('create category response.....', response);
-		// 	if (response?.success) {
-		// 		if (modalRef.current) {
-		// 			modalRef.current.click();
-		// 		}
-		// 		dispatch(refreshMakes());
-		// 	}
-		// } catch (error) {
-		// 	console.log(error);
-		// }
+		try {
+			// const response = await createMakes(token, data);
+			// console.log('create category response.....', response);
+			// if (response?.success) {
+			// 	if (modalRef.current) {
+			// 		modalRef.current.click();
+			// 	}
+			// }
+			setData(data);
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	useEffect(() => {
@@ -115,20 +189,8 @@ const ProductSearch = () => {
 				stockHere: false,
 				stockAt: false,
 				notInStock: false,
-				a: false,
-				b: false,
-				both: true,
-				contains: false,
-				equals: false,
-				startsWith: true,
-				endsWith: false,
 				currentOnly: true,
 				promoOnly: false,
-				dontReorderOnly: false,
-				discontinuedOnly: false,
-				clearance: false,
-				finalClearance: false,
-				exclusive: false,
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
@@ -139,7 +201,7 @@ const ProductSearch = () => {
 				className='modal fade'
 				id='product-search'
 			>
-				<div className='modal-dialog modal-dialog-centered modal-lg custom-modal-two'>
+				<div className='modal-dialog modal-dialog-centered modal-xl custom-modal-two'>
 					<div className='modal-content'>
 						<div className='page-wrapper-new p-0'>
 							<div className='content'>
@@ -160,8 +222,8 @@ const ProductSearch = () => {
 								<div className='modal-body custom-modal-body new-employee-field'>
 									<form onSubmit={handleSubmit(onSubmit)}>
 										<div className='row'>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>Make</label>
 													<input
 														type='text'
@@ -171,8 +233,8 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>Supplier</label>
 													<input
 														type='text'
@@ -182,8 +244,8 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>Search 1</label>
 													<input
 														type='text'
@@ -193,8 +255,8 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>Search 2</label>
 													<input
 														type='text'
@@ -203,8 +265,8 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>MFR No.</label>
 													<input
 														type='text'
@@ -214,8 +276,8 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
-												<div className='mb-3'>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
 													<label className='form-label'>Details</label>
 													<input
 														type='text'
@@ -225,10 +287,58 @@ const ProductSearch = () => {
 													/>
 												</div>
 											</div>
-											<div className='col-lg-4'>
+
+											<div className='col-lg-2'>
+												<div className='mb-2'>
+													<label className='form-label'>CatA</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('catA')}
+														placeholder='Enter Category A'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
+													<label className='form-label'>CatB</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('catB')}
+														placeholder='Enter Category B'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
+													<label className='form-label'>CatC</label>
+													<input
+														type='text'
+														className='form-control'
+														{...register('catC')}
+														placeholder='Enter Category C'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-2'>
+												<div className='mb-2'>
+													<label className='form-label'>Major/Minor</label>
+													<Select
+														id='majorMinor'
+														classNamePrefix='react-select'
+														options={majorMinorOption}
+														onChange={(selected) =>
+															setValue('majorMinor', selected?.value)
+														}
+														placeholder='Choose'
+													/>
+												</div>
+											</div>
+											<div className='col-lg-2'>
 												<div className='row'>
 													<div className='col-lg-6'>
-														<div className='mb-3'>
+														<div className='mb-2'>
 															<label className='form-label'>Size</label>
 															<input
 																type='text'
@@ -239,7 +349,7 @@ const ProductSearch = () => {
 														</div>
 													</div>
 													<div className='col-lg-6'>
-														<div className='mb-3'>
+														<div className='mb-2'>
 															<label className='form-label'>Color</label>
 															<input
 																type='text'
@@ -252,10 +362,10 @@ const ProductSearch = () => {
 												</div>
 											</div>
 
-											<div className='col-lg-4'>
+											<div className='col-lg-2'>
 												<div className='row'>
 													<div className='col-lg-6'>
-														<div className='mb-3'>
+														<div className='mb-2'>
 															<label className='form-label'>Gender</label>
 															<Select
 																id='gender'
@@ -269,13 +379,46 @@ const ProductSearch = () => {
 														</div>
 													</div>
 													<div className='col-lg-6'>
-														<div className='mb-3'>
+														<div className='mb-2'>
 															<label className='form-label'>Year</label>
 															<input
 																type='text'
 																className='form-control'
 																{...register('year')}
 																placeholder='Enter Year'
+															/>
+														</div>
+													</div>
+												</div>
+											</div>
+
+											<div className='col-lg-4'>
+												<div className='row'>
+													<div className='col-lg-6'>
+														<div className='mb-2'>
+															<label className='form-label'>Price From</label>
+															<Select
+																id='from'
+																classNamePrefix='react-select'
+																options={priceOptions}
+																onChange={(selected) =>
+																	setValue('from', selected?.value)
+																}
+																placeholder='Choose'
+															/>
+														</div>
+													</div>
+													<div className='col-lg-6'>
+														<div className='mb-2'>
+															<label className='form-label'>Price To</label>
+															<Select
+																id='to'
+																classNamePrefix='react-select'
+																options={priceOptions}
+																onChange={(selected) =>
+																	setValue('to', selected?.value)
+																}
+																placeholder='Choose'
 															/>
 														</div>
 													</div>
@@ -297,30 +440,7 @@ const ProductSearch = () => {
 															All Products
 														</label>
 													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={stockAllShops}
-																onChange={(value) => {
-																	setValue('stockAllShops', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Stock (All Shops)
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={stockHere}
-																onChange={(value) => {
-																	setValue('stockHere', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Stock Here
-														</label>
-													</div>
+
 													<div className='mb-1'>
 														<label className=''>
 															<Switch
@@ -331,118 +451,6 @@ const ProductSearch = () => {
 																style={{ marginRight: '6px' }}
 															/>
 															Stock At
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={notInStock}
-																onChange={(value) => {
-																	setValue('notInStock', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Not In Stock (All Shops)
-														</label>
-													</div>
-													<div className='d-flex flex-row gap-2 justify-content-start align-items-start'>
-														<div className='mb-1'>
-															<label className=''>
-																<Switch
-																	checked={a}
-																	onChange={(value) => {
-																		setValue('a', value);
-																	}}
-																	style={{ marginRight: '6px' }}
-																/>
-																A
-															</label>
-														</div>
-														<div className='mb-1'>
-															<label className=''>
-																<Switch
-																	checked={b}
-																	onChange={(value) => {
-																		setValue('b', value);
-																	}}
-																	style={{ marginRight: '6px' }}
-																/>
-																B
-															</label>
-														</div>
-														<div className='mb-1'>
-															<label className=''>
-																<Switch
-																	checked={both}
-																	onChange={(value) => {
-																		setValue('both', value);
-																	}}
-																	style={{ marginRight: '6px' }}
-																/>
-																Both
-															</label>
-														</div>
-													</div>
-												</div>
-												<div className='col-lg-4'>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={contains}
-																onChange={(value) => {
-																	setValue('contains', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Contains
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={equals}
-																onChange={(value) => {
-																	setValue('equals', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Equals
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={startsWith}
-																onChange={(value) => {
-																	setValue('startsWith', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Starts With
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={endsWith}
-																onChange={(value) => {
-																	setValue('endsWith', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Ends With
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={currentOnly}
-																onChange={(value) => {
-																	setValue('currentOnly', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Current Only
 														</label>
 													</div>
 													<div className='mb-1'>
@@ -462,61 +470,51 @@ const ProductSearch = () => {
 													<div className='mb-1'>
 														<label className=''>
 															<Switch
-																checked={dontReorderOnly}
+																checked={stockAllShops}
 																onChange={(value) => {
-																	setValue('dontReorderOnly', value);
+																	setValue('stockAllShops', value);
 																}}
 																style={{ marginRight: '6px' }}
 															/>
-															Dont Reorder Only
+															Stock (All Shops)
 														</label>
 													</div>
 													<div className='mb-1'>
 														<label className=''>
 															<Switch
-																checked={discontinuedOnly}
+																checked={notInStock}
 																onChange={(value) => {
-																	setValue('discontinuedOnly', value);
+																	setValue('notInStock', value);
 																}}
 																style={{ marginRight: '6px' }}
 															/>
-															Discontinued Only
+															Not In Stock (All Shops)
+														</label>
+													</div>
+												</div>
+												<div className='col-lg-4'>
+													<div className='mb-1'>
+														<label className=''>
+															<Switch
+																checked={stockHere}
+																onChange={(value) => {
+																	setValue('stockHere', value);
+																}}
+																style={{ marginRight: '6px' }}
+															/>
+															Stock Here
 														</label>
 													</div>
 													<div className='mb-1'>
 														<label className=''>
 															<Switch
-																checked={clearance}
+																checked={currentOnly}
 																onChange={(value) => {
-																	setValue('clearance', value);
+																	setValue('currentOnly', value);
 																}}
 																style={{ marginRight: '6px' }}
 															/>
-															Clearance
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={finalClearance}
-																onChange={(value) => {
-																	setValue('finalClearance', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Final Clearance
-														</label>
-													</div>
-													<div className='mb-1'>
-														<label className=''>
-															<Switch
-																checked={exclusive}
-																onChange={(value) => {
-																	setValue('exclusive', value);
-																}}
-																style={{ marginRight: '6px' }}
-															/>
-															Exclusive
+															Current Only
 														</label>
 													</div>
 												</div>
@@ -554,13 +552,13 @@ const ProductSearch = () => {
 											</div>
 										</div> */}
 										<div className='modal-footer-btn mt-0'>
-											<button
+											{/* <button
 												type='button'
 												className='btn btn-cancel me-2'
 												data-bs-dismiss='modal'
 											>
 												Cancel
-											</button>
+											</button> */}
 											<button
 												type='submit'
 												className='btn btn-submit'
@@ -569,6 +567,23 @@ const ProductSearch = () => {
 											</button>
 										</div>
 									</form>
+									<div
+										className='table-container mt-2'
+										style={{
+											maxHeight: '300px', // Adjust the height as needed
+											overflowY: 'auto',
+											border: '1px solid #ddd',
+											borderRadius: '4px',
+											padding: '10px',
+										}}
+									>
+										<div className='table-responsive'>
+											<Table
+												columns={columns}
+												dataSource={data}
+											/>
+										</div>
+									</div>
 								</div>
 							</div>
 						</div>
