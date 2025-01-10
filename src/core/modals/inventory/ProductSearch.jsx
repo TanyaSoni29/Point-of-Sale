@@ -4,6 +4,7 @@
 import { Switch } from 'antd';
 import React, { useEffect, useRef } from 'react';
 import { useForm } from 'react-hook-form';
+import Select from 'react-select';
 // import { useDispatch, useSelector } from 'react-redux';
 // import { Link } from 'react-router-dom';
 // import { createMakes } from '../../../service/operations/MakesApi';
@@ -31,12 +32,26 @@ const ProductSearch = () => {
 			size: '',
 			color: '',
 			gender: '',
-			year: '',
+			year: new Date().getFullYear(),
 			allProducts: true,
 			stockAllShops: false,
 			stockHere: false,
 			stockAt: false,
 			notInStock: false,
+			a: false,
+			b: false,
+			both: true,
+			contains: false,
+			equals: false,
+			startsWith: true,
+			endsWith: false,
+			currentOnly: true,
+			promoOnly: false,
+			dontReorderOnly: false,
+			discontinuedOnly: false,
+			clearance: false,
+			finalClearance: false,
+			exclusive: false,
 		},
 	});
 
@@ -59,6 +74,12 @@ const ProductSearch = () => {
 	const clearance = watch('clearance');
 	const finalClearance = watch('finalClearance');
 	const exclusive = watch('exclusive');
+
+	const genders = [
+		{ value: 'Unisex', label: 'Unisex' },
+		{ value: 'Male', label: 'Male' },
+		{ value: 'Female', label: 'Female' },
+	];
 
 	const onSubmit = async (data) => {
 		console.log(data);
@@ -94,6 +115,20 @@ const ProductSearch = () => {
 				stockHere: false,
 				stockAt: false,
 				notInStock: false,
+				a: false,
+				b: false,
+				both: true,
+				contains: false,
+				equals: false,
+				startsWith: true,
+				endsWith: false,
+				currentOnly: true,
+				promoOnly: false,
+				dontReorderOnly: false,
+				discontinuedOnly: false,
+				clearance: false,
+				finalClearance: false,
+				exclusive: false,
 			});
 		}
 	}, [reset, isSubmitSuccessful]);
@@ -222,11 +257,14 @@ const ProductSearch = () => {
 													<div className='col-lg-6'>
 														<div className='mb-3'>
 															<label className='form-label'>Gender</label>
-															<input
-																type='text'
-																className='form-control'
-																{...register('gender')}
-																placeholder='Enter Gender'
+															<Select
+																id='gender'
+																classNamePrefix='react-select'
+																options={genders}
+																onChange={(selected) =>
+																	setValue('gender', selected?.value)
+																}
+																placeholder='Choose'
 															/>
 														</div>
 													</div>
