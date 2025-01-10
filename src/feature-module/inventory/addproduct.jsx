@@ -49,8 +49,6 @@ const AddProduct = () => {
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [apiData, setApiData] = useState(null);
 	const [activeTab, setActiveTab] = useState('product-info');
-	const [selectedDate, setSelectedDate] = useState(new Date());
-	const [selectedDate1, setSelectedDate1] = useState(new Date());
 	// const [allowPoints, setAllowPoints] = useState(false);
 	// const [website, setWebsite] = useState(false);
 	// const [webOnly, setWebOnly] = useState(false);
@@ -67,9 +65,11 @@ const AddProduct = () => {
 		getValues,
 		trigger,
 		formState: { isSubmitSuccessful, errors },
-	} = useForm();
-
-	const partNumber = watch('partNumber');
+	} = useForm({
+		defaultValues: {
+			year: new Date().getFullYear(),
+		},
+	});
 
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
@@ -110,6 +110,9 @@ const AddProduct = () => {
 	const instantlyUpdateOnWebShop = watch('instantlyUpdateOnWebShop');
 	const isDiscontinued = watch('isDiscontinued');
 	const doNotReOrder = watch('doNotReOrder');
+	const partNumber = watch('partNumber');
+	const promoStart = watch('promoStart');
+	const promoEnd = watch('promoEnd');
 	const genders = [
 		{ value: 'Unisex', label: 'Unisex' },
 		{ value: 'Male', label: 'Male' },
@@ -143,7 +146,7 @@ const AddProduct = () => {
 		name: category.name, // Name (used later)
 	}));
 
-	console.log(categories);
+	// console.log(categories);
 
 	const handleImageUpload = (e) => {
 		const file = e.target.files[0];
@@ -160,17 +163,18 @@ const AddProduct = () => {
 		}
 	};
 
-	const handleDateChange = (date) => {
-		setSelectedDate(date);
-	};
-
 	// Update react-hook-form value when React-Quill value changes
 
 	const onSubmit = async (data) => {
 		console.log('Form Data:', data);
 		if (isEditMode) {
 			try {
-				const response = await updateProduct(token, data);
+				const payload = {
+					...data,
+					promoStart: data.promoStart ? data.promoStart.toISOString() : null,
+					promoEnd: data.promoEnd ? data.promoEnd.toISOString() : null,
+				};
+				const response = await updateProduct(token, payload);
 				console.log(response);
 				reset();
 			} catch (error) {
@@ -178,7 +182,12 @@ const AddProduct = () => {
 			}
 		} else {
 			try {
-				const response = await createProduct(token, data);
+				const payload = {
+					...data,
+					promoStart: data.promoStart ? data.promoStart.toISOString() : null,
+					promoEnd: data.promoEnd ? data.promoEnd.toISOString() : null,
+				};
+				const response = await createProduct(token, payload);
 				console.log(response);
 				reset();
 			} catch (error) {
@@ -208,9 +217,6 @@ const AddProduct = () => {
 		}
 	};
 
-	const handleDateChange1 = (date) => {
-		setSelectedDate1(date);
-	};
 	const renderCollapseTooltip = (props) => (
 		<Tooltip
 			id='refresh-tooltip'
@@ -240,6 +246,8 @@ const AddProduct = () => {
 		setValue('mailOrderPrice', storePriceValue);
 		setValue('webPrice', storePriceValue);
 	};
+
+	// Min Max Table data....
 
 	const columns = [
 		{ title: 'Branch', dataIndex: 'branch', key: 'branch' },
@@ -320,11 +328,11 @@ const AddProduct = () => {
 		}
 	}, [apiData, setValue]);
 
-	useEffect(() => {
-		// Set the default value of "year" to the current year
-		const currentYear = new Date().getFullYear();
-		setValue('year', currentYear.toString());
-	}, [setValue]);
+	// useEffect(() => {
+	// 	// Set the default value of "year" to the current year
+	// 	const currentYear = new Date().getFullYear();
+	// 	setValue('year', currentYear.toString());
+	// }, [setValue]);
 
 	useEffect(() => {
 		setValue('longDescription', longDescription);
@@ -641,7 +649,7 @@ const AddProduct = () => {
 						</li>
 					</ul>
 				</div>
-				{/* /add */}(
+				{/* /add */}
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div
 						className='tab-content'
@@ -710,7 +718,7 @@ const AddProduct = () => {
 																</div>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label'>
-																		Manufacture Part Code
+																		Mfr. Part Code
 																	</label>
 																	<input
 																		type='text'
@@ -750,6 +758,13 @@ const AddProduct = () => {
 																	<Select
 																		classNamePrefix='react-select'
 																		options={majorMinorOption}
+																		value={majorMinorOption.find(
+																			(option) =>
+																				option.value === watch('major') // Correct comparison
+																		)}
+																		onChange={(selectedOption) =>
+																			setValue('major', selectedOption?.value)
+																		}
 																		placeholder='Choose'
 																	/>
 																</div>
@@ -762,6 +777,10 @@ const AddProduct = () => {
 																		id='gender'
 																		classNamePrefix='react-select'
 																		options={genders}
+																		value={genders.find(
+																			(option) =>
+																				option.value === watch('gender')
+																		)}
 																		onChange={(selectedOption) =>
 																			setValue('gender', selectedOption?.value)
 																		}
@@ -783,6 +802,10 @@ const AddProduct = () => {
 																	<Select
 																		classNamePrefix='react-select'
 																		options={suitabilityOptions}
+																		value={suitabilityOptions.find(
+																			(option) =>
+																				option.value === watch('suitability')
+																		)}
 																		onChange={(selectedOption) =>
 																			setValue(
 																				'suitability',
@@ -801,6 +824,10 @@ const AddProduct = () => {
 																		id='season'
 																		classNamePrefix='react-select'
 																		options={seasonOptions}
+																		value={seasonOptions.find(
+																			(option) =>
+																				option.value === watch('season')
+																		)}
 																		onChange={(selectedOption) =>
 																			setValue('season', selectedOption?.value)
 																		}
@@ -1019,6 +1046,11 @@ const AddProduct = () => {
 																	<Select
 																		classNamePrefix='react-select'
 																		options={categoryOptions}
+																		value={categoryOptions.find(
+																			(option) =>
+																				option.value === watch('catACode') &&
+																				option.name === watch('catA') // Match both code and name
+																		)}
 																		onChange={(selectedOption) => {
 																			setValue('catA', selectedOption?.name);
 																			setValue(
@@ -1053,6 +1085,11 @@ const AddProduct = () => {
 																	<Select
 																		classNamePrefix='react-select'
 																		options={categoryOptions}
+																		value={categoryOptions.find(
+																			(option) =>
+																				option.value === watch('catBCode') &&
+																				option.name === watch('catB') // Match both code and name
+																		)}
 																		onChange={(selectedOption) => {
 																			setValue('catB', selectedOption?.name);
 																			setValue(
@@ -1085,6 +1122,11 @@ const AddProduct = () => {
 																	<Select
 																		classNamePrefix='react-select'
 																		options={categoryOptions}
+																		value={categoryOptions.find(
+																			(option) =>
+																				option.value === watch('catCCode') &&
+																				option.name === watch('catC') // Match both code and name
+																		)}
 																		onChange={(selectedOption) => {
 																			setValue('catC', selectedOption?.name);
 																			setValue(
@@ -1116,6 +1158,10 @@ const AddProduct = () => {
 																		id='printLabel'
 																		classNamePrefix='react-select'
 																		options={printLabelOptions}
+																		value={printLabelOptions.find(
+																			(option) =>
+																				option.value === watch('printLabel')
+																		)}
 																		onChange={(selectedOption) =>
 																			setValue(
 																				'printLabel',
@@ -1246,11 +1292,12 @@ const AddProduct = () => {
 																	<div className='input-groupicon calender-input'>
 																		<Calendar className='info-img' />
 																		<DatePicker
-																			selected={selectedDate}
-																			onChange={handleDateChange}
-																			type='date'
+																			selected={promoStart}
+																			onChange={(date) =>
+																				setValue('promoStart', date)
+																			}
 																			className='datetimepicker'
-																			dateFormat='dd-MM-yyyy'
+																			type='date'
 																			placeholder='Choose Date'
 																		/>
 																	</div>
@@ -1262,11 +1309,12 @@ const AddProduct = () => {
 																	<div className='input-groupicon calender-input'>
 																		<Calendar className='info-img' />
 																		<DatePicker
-																			selected={selectedDate1}
-																			onChange={handleDateChange1}
+																			selected={promoEnd}
+																			onChange={(date) =>
+																				setValue('promoEnd', date)
+																			}
 																			type='date'
 																			className='datetimepicker'
-																			dateFormat='dd-MM-yyyy'
 																			placeholder='Choose Date'
 																		/>
 																	</div>
@@ -1299,9 +1347,7 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('search2', {
-																			required: 'Second search is required',
-																		})}
+																		{...register('search2')}
 																		className='form-control'
 																	/>
 																	{errors?.search2 && (
@@ -1335,9 +1381,7 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('finish', {
-																			required: 'Finish is required',
-																		})}
+																		{...register('finish')}
 																		className='form-control'
 																	/>
 																	{errors?.finish && (
@@ -2318,6 +2362,17 @@ const AddProduct = () => {
 							<div className='text-end'>
 								<button
 									type='button'
+									className='btn btn-cancel me-3'
+									onClick={() => {
+										setIsEditMode(false); // Turn off edit mode
+										reset(); // Reset the form fields
+										setValue('partNumber', ''); // Clear the partNumber field
+									}}
+								>
+									Cancel
+								</button>
+								<button
+									type='button'
 									className='btn btn-submit'
 									onClick={() =>
 										handleNextTab('minmax', [
@@ -2504,9 +2559,7 @@ const AddProduct = () => {
 															{/* Manually register the input with react-hook-form */}
 															<input
 																type='hidden' // Register hidden input to store Quill's value
-																{...register('longDescription', {
-																	required: 'Long Description is required',
-																})}
+																{...register('longDescription')}
 															/>
 															{/* Show validation error */}
 															{errors.longDescription && (
@@ -2589,9 +2642,7 @@ const AddProduct = () => {
 															{/* Manually register the input with react-hook-form */}
 															<input
 																type='hidden' // Register hidden input to store Quill's value
-																{...register('specifications', {
-																	required: 'Long Description is required',
-																})}
+																{...register('specifications')}
 															/>
 															{errors?.specifications && (
 																<div className='text-danger'>
@@ -2668,9 +2719,7 @@ const AddProduct = () => {
 																{/* Manually register the input with react-hook-form */}
 																<input
 																	type='hidden' // Register hidden input to store Quill's value
-																	{...register('geometry', {
-																		required: 'Geometry is required',
-																	})}
+																	{...register('geometry')}
 																/>
 																{errors?.geometry && (
 																	<div className='text-danger'>
@@ -2747,9 +2796,7 @@ const AddProduct = () => {
 														</label>
 														<input
 															type='text'
-															{...register('tillNote1', {
-																required: 'One Notes is required',
-															})}
+															{...register('tillNote1')}
 															className='form-control'
 														/>
 														{errors?.tillNote1 && (
