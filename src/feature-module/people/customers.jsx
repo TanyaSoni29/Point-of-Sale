@@ -51,8 +51,10 @@ const Customers = () => {
 	};
 
 	const handleDelete = async (customer) => {
+		const isConfirmed = await showConfirmationAlert();
+
+		if (isConfirmed) return;
 		try {
-			showConfirmationAlert();
 			console.log(customer);
 		} catch (error) {
 			console.log(error);
@@ -139,8 +141,8 @@ const Customers = () => {
 
 	const MySwal = withReactContent(Swal);
 
-	const showConfirmationAlert = () => {
-		MySwal.fire({
+	const showConfirmationAlert = async () => {
+		const result = await MySwal.fire({
 			title: 'Are you sure?',
 			text: "You won't be able to revert this!",
 			showCancelButton: true,
@@ -148,21 +150,8 @@ const Customers = () => {
 			confirmButtonText: 'Yes, delete it!',
 			cancelButtonColor: '#ff0000',
 			cancelButtonText: 'Cancel',
-		}).then((result) => {
-			if (result.isConfirmed) {
-				MySwal.fire({
-					title: 'Deleted!',
-					text: 'Your file has been deleted.',
-					className: 'btn btn-success',
-					confirmButtonText: 'OK',
-					customClass: {
-						confirmButton: 'btn btn-success',
-					},
-				});
-			} else {
-				MySwal.close();
-			}
 		});
+		return result.isConfirmed;
 	};
 	return (
 		<div className='page-wrapper'>
