@@ -35,11 +35,19 @@ import Table from '../../core/pagination/datatable';
 import { refreshCategories } from '../../slices/categorySlice';
 import ProductSearch from '../../core/modals/inventory/ProductSearch';
 import { Modal } from 'bootstrap';
+import {
+	createProduct,
+	getProductByPartNo,
+	updateProduct,
+} from '../../service/operations/productApi';
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
 	const { toggle_header } = useSelector((state) => state.product);
 	const { categories } = useSelector((state) => state.category);
+	const { token } = useSelector((state) => state.auth);
+	const [isEditMode, setIsEditMode] = useState(false);
+	const [apiData, setApiData] = useState(null);
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [selectedDate, setSelectedDate] = useState(new Date());
 	const [selectedDate1, setSelectedDate1] = useState(new Date());
@@ -58,9 +66,11 @@ const AddProduct = () => {
 		setValue,
 		getValues,
 		trigger,
-		// watch,
 		formState: { isSubmitSuccessful, errors },
 	} = useForm();
+
+	const partNumber = watch('partNumber');
+
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
 	const [specifications, setSpecifications] = useState('');
@@ -156,10 +166,27 @@ const AddProduct = () => {
 
 	// Update react-hook-form value when React-Quill value changes
 
-	const onSubmit = (data) => {
+	const onSubmit = async (data) => {
 		console.log('Form Data:', data);
+		if (isEditMode) {
+			try {
+				const response = await updateProduct(token, data);
+				console.log(response);
+				reset();
+			} catch (error) {
+				console.log(error);
+			}
+		} else {
+			try {
+				const response = await createProduct(token, data);
+				console.log(response);
+				reset();
+			} catch (error) {
+				console.log(error);
+			}
+		}
 		// Handle form submission (e.g., send data to your backend)
-		reset(); // Reset form after successful submission
+		// Reset form after successful submission
 	};
 
 	const handleInputChange = (key, field, value) => {
@@ -258,6 +285,40 @@ const AddProduct = () => {
 			),
 		},
 	];
+
+	useEffect(() => {
+		if (partNumber) {
+			setIsEditMode(true); // Switch to edit mode
+
+			// Define an async function to fetch product details
+			const fetchProductByPartNumber = async () => {
+				try {
+					const response = await getProductByPartNo(token, partNumber); // Your API call function
+
+					setApiData(response); // Store fetched data
+					Object.keys(data).forEach((key) => {
+						setValue(key, data[key]); // Populate form fields
+					});
+				} catch (error) {
+					console.error('Error fetching product data:', error);
+				}
+			};
+
+			fetchProductByPartNumber(); // Call the async function
+		} else {
+			setIsEditMode(false); // Switch to create mode
+			reset(); // Reset form for new product
+		}
+	}, [partNumber, setValue, reset, token]);
+
+	useEffect(() => {
+		if (apiData) {
+			// Populate the form fields with the data from the API
+			Object.keys(apiData).forEach((key) => {
+				setValue(key, apiData[key]); // Populate form fields
+			});
+		}
+	}, [apiData, setValue]);
 
 	useEffect(() => {
 		// Set the default value of "year" to the current year
@@ -434,8 +495,8 @@ const AddProduct = () => {
 				<div className='page-header'>
 					<div className='add-item d-flex'>
 						<div className='page-title'>
-							<h4>New Product</h4>
-							<h6>Create new product</h6>
+							<h4>{isEditMode ? 'Edit Product' : 'New Product'}</h4>
+							<h6>{isEditMode ? 'Edit the product' : 'Create new product'}</h6>
 						</div>
 					</div>
 					<ul className='table-top-head'>
@@ -487,7 +548,6 @@ const AddProduct = () => {
 						</li>
 					</ul>
 				</div>
-
 				{/* Tab Section */}
 				<div className='tabs-wrapper'>
 					<ul
@@ -581,8 +641,7 @@ const AddProduct = () => {
 						</li>
 					</ul>
 				</div>
-				{/* /add */}
-
+				{/* /add */}(
 				<form onSubmit={handleSubmit(onSubmit)}>
 					<div
 						className='tab-content'
@@ -640,6 +699,7 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('partNumber')}
+																		readOnly={isEditMode}
 																		className='form-control'
 																	/>
 																	{errors?.partNumber && (
@@ -938,7 +998,9 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('weight', { required: true })}
+																		{...register('weight', {
+																			required: true,
+																		})}
 																		className='form-control'
 																	/>
 																	{errors?.weight && (
@@ -2786,7 +2848,7 @@ const AddProduct = () => {
 									type='submit'
 									className='btn btn-submit'
 								>
-									Save and Create
+									{isEditMode ? 'Update Product' : 'Create Product'}
 								</button>
 							</div>
 						</div>
