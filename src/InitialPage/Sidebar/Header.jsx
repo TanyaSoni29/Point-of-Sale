@@ -14,6 +14,8 @@ import LogOutImg from '../../assets/img/icons/log-out.svg';
 import { useDispatch, useSelector } from 'react-redux';
 import { logout } from '../../service/operations/authApi';
 import { refreshLocations } from '../../slices/locationSlice';
+import Select from 'react-select';
+import { IoIosArrowDown } from 'react-icons/io';
 const Header = () => {
 	const dispatch = useDispatch();
 	// const navigate = useNavigate();
@@ -23,9 +25,42 @@ const Header = () => {
 	const route = all_routes;
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
+	const [selectedLocation, setSelectedLocation] = useState(null); // Manage selected store
+	const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+	const locationOptions = locations?.map((location) => ({
+		value: location.code,
+		label: location.name,
+	}));
+
+	// Handle selection change
+	const handleSelectLocation = (selectedOption) => {
+		setSelectedLocation(selectedOption);
+		console.log('Selected Store:', selectedOption); // Perform additional actions here
+	};
 
 	const isElementVisible = (element) => {
 		return element.offsetWidth > 0 || element.offsetHeight > 0;
+	};
+
+	const handleLogOutClick = () => {
+		dispatch(logout());
+		// navigate('/signin');
+	};
+
+	const handlesidebar = () => {
+		document.body.classList.toggle('mini-sidebar');
+		SetToggle((current) => !current);
+	};
+	const expandMenu = () => {
+		document.body.classList.remove('expand-menu');
+	};
+	const expandMenuOpen = () => {
+		document.body.classList.add('expand-menu');
+	};
+	const sidebarOverlay = () => {
+		document?.querySelector('.main-wrapper')?.classList?.toggle('slide-nav');
+		document?.querySelector('.sidebar-overlay')?.classList?.toggle('opened');
+		document?.querySelector('html')?.classList?.toggle('menu-opened');
 	};
 
 	useEffect(() => {
@@ -85,27 +120,6 @@ const Header = () => {
 		};
 	}, []);
 
-	const handleLogOutClick = () => {
-		dispatch(logout());
-		// navigate('/signin');
-	};
-
-	const handlesidebar = () => {
-		document.body.classList.toggle('mini-sidebar');
-		SetToggle((current) => !current);
-	};
-	const expandMenu = () => {
-		document.body.classList.remove('expand-menu');
-	};
-	const expandMenuOpen = () => {
-		document.body.classList.add('expand-menu');
-	};
-	const sidebarOverlay = () => {
-		document?.querySelector('.main-wrapper')?.classList?.toggle('slide-nav');
-		document?.querySelector('.sidebar-overlay')?.classList?.toggle('opened');
-		document?.querySelector('html')?.classList?.toggle('menu-opened');
-	};
-
 	let pathname = location.pathname;
 
 	const exclusionArray = ['/dream-pos/index-three', '/dream-pos/index-one'];
@@ -141,6 +155,74 @@ const Header = () => {
 				document.webkitExitFullscreen();
 			}
 		}
+	};
+
+	const customStyles = {
+		control: (provided) => ({
+			...provided,
+			'animation': 'fadeIn 0.3s ease',
+			'border': '1px solid #ccc',
+			'borderRadius': '4px',
+			'padding': '2px',
+			'minHeight': '32px',
+			'boxShadow': 'none',
+			'&:hover': {
+				borderColor: '#888',
+			},
+		}),
+		menu: (provided) => ({
+			...provided,
+			zIndex: 1000,
+			animation: 'slideDown 0.3s ease', // Apply slide-down animation
+			transformOrigin: 'top',
+		}),
+		option: (provided, state) => ({
+			...provided,
+			'backgroundColor': state.isFocused ? '#f0f0f0' : '#fff',
+			'color': '#333',
+			'animation': 'fadeIn 0.2s ease',
+			'&:hover': {
+				backgroundColor: '#e6e6e6',
+			},
+		}),
+		singleValue: (provided) => ({
+			...provided,
+			color: '#333',
+		}),
+	};
+
+	const CustomOption = (props) => {
+		const { data, innerRef, innerProps } = props;
+		return (
+			<div
+				ref={innerRef}
+				{...innerProps}
+				style={{
+					display: 'flex',
+					alignItems: 'center',
+					padding: '8px 12px',
+					cursor: 'pointer',
+				}}
+			>
+				<Home style={{ marginRight: '6px', color: '#555' }} />
+				{data.label}
+			</div>
+		);
+	};
+
+	// Custom selected value with Home icon
+	const CustomSingleValue = (props) => {
+		const { data } = props;
+		return (
+			<div style={{ display: 'flex', alignItems: 'center' }}>
+				<Home style={{ marginRight: '6px', color: '#555' }} />
+				{data.label}
+			</div>
+		);
+	};
+
+	const toggleDropdown = () => {
+		setIsDropdownOpen(!isDropdownOpen);
 	};
 
 	return (
@@ -322,7 +404,22 @@ const Header = () => {
 					{/* /Search */}
 
 					{/* Select Store */}
-					<li className='nav-item dropdown has-arrow main-drop select-store-dropdown'>
+					<div style={{ display: 'inline-block', minWidth: '170px' }}>
+						<Select
+							id='store-select'
+							options={locationOptions}
+							styles={customStyles} // Apply custom styles
+							value={selectedLocation} // Controlled component
+							onChange={handleSelectLocation} // Handle selection
+							placeholder='Select a store'
+							isClearable
+							components={{
+								Option: CustomOption, // Custom option rendering
+								SingleValue: CustomSingleValue, // Custom single value rendering
+							}} // Allows clearing the selection
+						/>
+					</div>
+					{/* <li className='nav-item dropdown has-arrow main-drop select-store-dropdown'>
 						<Link
 							to='#'
 							className='dropdown-toggle nav-link select-store'
@@ -350,7 +447,7 @@ const Header = () => {
 								</React.Fragment>
 							))}
 						</div>
-					</li>
+					</li> */}
 					{/* /Select Store */}
 
 					{/* Flag */}
@@ -606,19 +703,242 @@ const Header = () => {
 							<FeatherIcon icon='settings' />
 						</Link>
 					</li>
-					<li className='nav-item dropdown has-arrow main-drop'>
+					<li
+						className='nav-item dropdown has-arrow main-drop'
+						style={{ position: 'relative', display: 'inline-block' }}
+					>
+						{/* Dropdown Trigger */}
+						<button
+							// className='dropdown-toggle nav-link userset'
+							onClick={toggleDropdown}
+							style={{
+								background: 'none',
+								border: 'none',
+								cursor: 'pointer',
+								display: 'flex',
+								alignItems: 'center',
+								width: '170px',
+							}}
+						>
+							<span
+								// className='user-info'
+								style={{ display: 'flex', alignItems: 'center' }}
+							>
+								<span className='user-letter'>
+									{/* Replace with user's profile image */}
+									<img
+										src={user?.profileImage || 'https://via.placeholder.com/40'} // Fallback image
+										alt='Profile'
+										style={{
+											width: '40px',
+											height: '40px',
+											borderRadius: '50%',
+											objectFit: 'cover',
+										}}
+									/>
+								</span>
+								<span
+									// className='user-detail'
+									style={{ marginLeft: '10px', textAlign: 'left' }}
+								>
+									<span
+										// className='user-name'
+										style={{
+											display: 'block',
+											fontWeight: 'bold',
+											fontSize: '14px',
+										}}
+									>
+										{user?.username || 'User Name'}
+									</span>
+									<span
+										// className='user-role'
+										style={{
+											display: 'block',
+											fontSize: '12px',
+											color: '#777',
+										}}
+									>
+										{user?.role || 'Super Admin'}
+									</span>
+								</span>
+								{/* Arrow Icon */}
+								<span
+									style={{
+										marginLeft: 'auto',
+										transition: 'transform 0.3s ease',
+										transform: isDropdownOpen
+											? 'rotate(180deg)'
+											: 'rotate(0deg)',
+									}}
+								>
+									<IoIosArrowDown />
+								</span>
+							</span>
+						</button>
+
+						{/* Dropdown Menu */}
+						{isDropdownOpen && (
+							<div
+								className='menu-drop-user'
+								style={{
+									position: 'absolute',
+									top: '50px',
+									right: '0',
+									background: '#fff',
+									boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
+									borderRadius: '5px',
+									width: '170px',
+									zIndex: '1000',
+									animation: 'slideDown 0.3s ease-out',
+								}}
+							>
+								{/* User Profile Section */}
+								<div
+									className='profilename'
+									// style={{ padding: '10px' }}
+								>
+									<div
+										className='profileset'
+										style={{ display: 'flex', alignItems: 'center' }}
+									>
+										<span
+											className='user-img'
+											style={{ marginRight: '10px' }}
+										>
+											<img
+												src={
+													user?.profileImage || 'https://via.placeholder.com/40'
+												} // Fallback image
+												alt='Profile'
+												style={{
+													width: '40px',
+													height: '40px',
+													borderRadius: '50%',
+													objectFit: 'cover',
+												}}
+											/>
+											<span
+												className='status online'
+												style={{
+													position: 'absolute',
+													bottom: '5px',
+													right: '5px',
+													background: 'green',
+													width: '10px',
+													height: '10px',
+													borderRadius: '50%',
+												}}
+											></span>
+										</span>
+										<div
+											className='profilesets'
+											style={{ textAlign: 'left', lineHeight: '1.2' }}
+										>
+											<h6
+												style={{
+													margin: '0',
+													fontSize: '14px',
+													fontWeight: 'bold',
+												}}
+											>
+												{user?.username || 'User Name'}
+											</h6>
+											<h5
+												style={{
+													margin: '0',
+													fontSize: '12px',
+													color: '#777',
+												}}
+											>
+												{user?.role || 'Super Admin'}
+											</h5>
+										</div>
+									</div>
+								</div>
+
+								<hr style={{ margin: '0 0', borderColor: '#ddd' }} />
+
+								{/* Menu Links */}
+								<Link
+									className='dropdown-item'
+									to={route.profile}
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										color: '#333',
+										textDecoration: 'none',
+										fontSize: '14px',
+										animation: 'slideDown 0.3s ease-out',
+									}}
+								>
+									<User
+										className='me-2'
+										style={{ marginRight: '10px' }}
+									/>{' '}
+									My Profile
+								</Link>
+								<Link
+									className='dropdown-item'
+									to={route.generalsettings}
+									style={{
+										display: 'flex',
+										alignItems: 'center',
+										color: '#333',
+										textDecoration: 'none',
+										fontSize: '14px',
+										animation: 'slideDown 0.3s ease-out',
+									}}
+								>
+									<Settings
+										className='me-2'
+										style={{ marginRight: '10px' }}
+									/>
+									Settings
+								</Link>
+
+								<hr style={{ margin: '0 0', borderColor: '#ddd' }} />
+
+								{/* Logout */}
+								<button
+									className='dropdown-item logout pb-0'
+									onClick={handleLogOutClick}
+									style={{
+										color: '#d9534f',
+										border: 'none',
+										cursor: 'pointer',
+										fontSize: '14px',
+										width: '100%',
+										animation: 'slideDown 0.3s ease-out',
+									}}
+								>
+									<img
+										src={LogOutImg}
+										alt='Logout'
+										style={{
+											marginRight: '10px',
+											width: '16px',
+											height: '16px',
+										}}
+									/>
+									Logout
+								</button>
+							</div>
+						)}
+					</li>
+					{/* <li className='nav-item dropdown has-arrow main-drop'>
 						<Link
 							to='#'
 							className='dropdown-toggle nav-link userset'
 							data-bs-toggle='dropdown'
 						>
 							<span className='user-info'>
-								<span className='user-letter'>
-									{/* <img
+								<span className='user-letter'> */}
+					{/* <img
 										src={ProfileImg}
 										alt='img'
 									/> */}
-								</span>
+					{/* </span>
 								<span className='user-detail'>
 									<span className='user-name'>{user?.username}</span>
 									<span className='user-role'>Super Admin</span>
@@ -628,12 +948,12 @@ const Header = () => {
 						<div className='dropdown-menu menu-drop-user'>
 							<div className='profilename'>
 								<div className='profileset'>
-									<span className='user-img'>
-										{/* <img
+									<span className='user-img'> */}
+					{/* <img
 											src={ProfileImg}
 											alt='img'
 										/> */}
-										<span className='status online' />
+					{/* <span className='status online' />
 									</span>
 									<div className='profilesets'>
 										<h6>{user?.username}</h6>
@@ -669,7 +989,7 @@ const Header = () => {
 								</Link>
 							</div>
 						</div>
-					</li>
+					</li> */}
 				</ul>
 				{/* /Header Menu */}
 				{/* Mobile Menu */}
