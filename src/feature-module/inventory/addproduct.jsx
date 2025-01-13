@@ -49,13 +49,7 @@ const AddProduct = () => {
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [apiData, setApiData] = useState(null);
 	const [activeTab, setActiveTab] = useState('product-info');
-	// const [allowPoints, setAllowPoints] = useState(false);
-	// const [website, setWebsite] = useState(false);
-	// const [webOnly, setWebOnly] = useState(false);
-	// const [keyItem, setKeyItem] = useState(false);
-	// const [instantlyUpdateOnWebShop, setInstantlyUpdateWebShop] = useState(false);
-	// const [isDiscontinued, setIsDiscontinued] = useState(false);
-	// const [doNotReOrder, setDoNotReOrder] = useState(false);
+
 	const {
 		register,
 		handleSubmit,
@@ -74,6 +68,7 @@ const AddProduct = () => {
 	const [longDescription, setLongDescription] = useState('');
 	const [geometry, setGeometry] = useState('');
 	const [specifications, setSpecifications] = useState('');
+	const [uploadedImages, setUploadedImages] = useState([]);
 	const [data, setData] = useState([
 		{
 			key: '1',
@@ -100,7 +95,6 @@ const AddProduct = () => {
 			replenish: false,
 		},
 	]);
-	const [uploadedImages, setUploadedImages] = useState([]);
 	const currentProduct = watch('current');
 	const allowDiscount = watch('allowDiscount');
 	const allowPoints = watch('allowPoints');
@@ -197,6 +191,8 @@ const AddProduct = () => {
 		// Handle form submission (e.g., send data to your backend)
 		// Reset form after successful submission
 	};
+
+	console.log('edit Mode Form open...', apiData);
 
 	const handleInputChange = (key, field, value) => {
 		setData((prev) =>
@@ -304,8 +300,8 @@ const AddProduct = () => {
 					const response = await getProductByPartNo(token, partNumber); // Your API call function
 
 					setApiData(response); // Store fetched data
-					Object.keys(data).forEach((key) => {
-						setValue(key, data[key]); // Populate form fields
+					Object.keys(response).forEach((key) => {
+						setValue(key, response[key]); // Populate form fields
 					});
 				} catch (error) {
 					console.error('Error fetching product data:', error);
@@ -318,15 +314,6 @@ const AddProduct = () => {
 			reset(); // Reset form for new product
 		}
 	}, [partNumber, setValue, reset, token]);
-
-	useEffect(() => {
-		if (apiData) {
-			// Populate the form fields with the data from the API
-			Object.keys(apiData).forEach((key) => {
-				setValue(key, apiData[key]); // Populate form fields
-			});
-		}
-	}, [apiData, setValue]);
 
 	// useEffect(() => {
 	// 	// Set the default value of "year" to the current year
@@ -460,6 +447,7 @@ const AddProduct = () => {
 		}
 	}, [reset, isSubmitSuccessful]);
 
+	// key Listener
 	useEffect(() => {
 		// Add keydown listener
 		const handleKeyDown = (event) => {
@@ -489,6 +477,7 @@ const AddProduct = () => {
 		};
 	}, [getValues]);
 
+	// latest Categories come
 	useEffect(() => {
 		dispatch(refreshCategories());
 	}, [dispatch]);
