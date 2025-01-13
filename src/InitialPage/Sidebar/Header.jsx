@@ -23,6 +23,9 @@ const Header = () => {
 	const { locations } = useSelector((state) => state.location);
 	// console.log(locations);
 	const route = all_routes;
+	const [themeMode, setThemeMode] = useState(
+		document.documentElement.getAttribute('data-layout-mode') || 'light_mode'
+	);
 	const [toggle, SetToggle] = useState(false);
 	const [isFullscreen, setIsFullscreen] = useState(false);
 	const [selectedLocation, setSelectedLocation] = useState(null); // Manage selected store
@@ -120,6 +123,19 @@ const Header = () => {
 		};
 	}, []);
 
+	useEffect(() => {
+		const observer = new MutationObserver(() => {
+			setThemeMode(document.documentElement.getAttribute('data-layout-mode'));
+		});
+
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-layout-mode'],
+		});
+
+		return () => observer.disconnect();
+	}, []);
+
 	let pathname = location.pathname;
 
 	const exclusionArray = ['/dream-pos/index-three', '/dream-pos/index-one'];
@@ -157,29 +173,39 @@ const Header = () => {
 		}
 	};
 
-	const customStyles = {
+	const customStyles = (themeMode) => ({
 		control: (provided) => ({
 			...provided,
 			'animation': 'fadeIn 0.3s ease',
-			'border': '1px solid #ccc',
+			'backgroundColor': themeMode === 'dark_mode' ? '#141432' : '#fff',
+			'borderColor': themeMode === 'dark_mode' ? '#353570' : '#ccc',
+			'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
 			'borderRadius': '4px',
 			'padding': '2px',
 			'minHeight': '32px',
 			'boxShadow': 'none',
 			'&:hover': {
-				borderColor: '#888',
+				borderColor: themeMode === 'dark_mode' ? '#495057' : '#888',
 			},
 		}),
 		menu: (provided) => ({
 			...provided,
+			backgroundColor: themeMode === 'dark_mode' ? '#141432' : '#fff',
+			color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
 			zIndex: 1000,
 			animation: 'slideDown 0.3s ease', // Apply slide-down animation
 			transformOrigin: 'top',
 		}),
 		option: (provided, state) => ({
 			...provided,
-			'backgroundColor': state.isFocused ? '#f0f0f0' : '#fff',
-			'color': '#333',
+			'backgroundColor': state.isFocused
+				? themeMode === 'dark_mode'
+					? '#495057'
+					: '#f0f0f0'
+				: themeMode === 'dark_mode'
+				? '#141432'
+				: '#fff',
+			'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
 			'animation': 'fadeIn 0.2s ease',
 			'&:hover': {
 				backgroundColor: '#e6e6e6',
@@ -187,9 +213,9 @@ const Header = () => {
 		}),
 		singleValue: (provided) => ({
 			...provided,
-			color: '#333',
+			color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
 		}),
-	};
+	});
 
 	const CustomOption = (props) => {
 		const { data, innerRef, innerProps } = props;
@@ -408,7 +434,7 @@ const Header = () => {
 						<Select
 							id='store-select'
 							options={locationOptions}
-							styles={customStyles} // Apply custom styles
+							styles={customStyles(themeMode)} // Apply custom styles
 							value={selectedLocation} // Controlled component
 							onChange={handleSelectLocation} // Handle selection
 							placeholder='Select a store'
@@ -718,6 +744,7 @@ const Header = () => {
 											display: 'block',
 											fontWeight: 'bold',
 											fontSize: '14px',
+											color: themeMode === 'dark_mode' ? '#97A2D2' : '#333', // Dynamic color
 										}}
 									>
 										{user?.username || 'User Name'}
@@ -727,7 +754,7 @@ const Header = () => {
 										style={{
 											display: 'block',
 											fontSize: '12px',
-											color: '#777',
+											color: themeMode === 'dark_mode' ? '#adb5bd' : '#777',
 										}}
 									>
 										{user?.role || 'Super Admin'}
@@ -756,7 +783,8 @@ const Header = () => {
 									position: 'absolute',
 									top: '50px',
 									right: '0',
-									background: '#fff',
+									background: themeMode === 'dark_mode' ? '#141432' : '#fff', // Dynamic background
+									color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
 									boxShadow: '0 2px 10px rgba(0, 0, 0, 0.1)',
 									borderRadius: '5px',
 									width: '170px',
@@ -811,6 +839,7 @@ const Header = () => {
 													margin: '0',
 													fontSize: '14px',
 													fontWeight: 'bold',
+													color: themeMode === 'dark_mode' ? '#97A2D2' : '#333', // Dynamic color
 												}}
 											>
 												{user?.username || 'User Name'}
@@ -819,7 +848,7 @@ const Header = () => {
 												style={{
 													margin: '0',
 													fontSize: '12px',
-													color: '#777',
+													color: themeMode === 'dark_mode' ? '#adb5bd' : '#777', // Dynamic color,
 												}}
 											>
 												{user?.role || 'Super Admin'}
@@ -828,7 +857,12 @@ const Header = () => {
 									</div>
 								</div>
 
-								<hr style={{ margin: '0 0', borderColor: '#ddd' }} />
+								<hr
+									style={{
+										margin: '0 0',
+										borderColor: themeMode === 'dark_mode' ? '#495057' : '#ddd',
+									}}
+								/>
 
 								{/* Menu Links */}
 								<Link
@@ -837,7 +871,7 @@ const Header = () => {
 									style={{
 										display: 'flex',
 										alignItems: 'center',
-										color: '#333',
+										color: themeMode === 'dark_mode' ? '#97A2D2' : '#333', // Dynamic color
 										textDecoration: 'none',
 										fontSize: '14px',
 										animation: 'slideDown 0.3s ease-out',
@@ -855,7 +889,7 @@ const Header = () => {
 									style={{
 										display: 'flex',
 										alignItems: 'center',
-										color: '#333',
+										color: themeMode === 'dark_mode' ? '#97A2D2' : '#333', // Dynamic color
 										textDecoration: 'none',
 										fontSize: '14px',
 										animation: 'slideDown 0.3s ease-out',
@@ -868,14 +902,20 @@ const Header = () => {
 									Settings
 								</Link>
 
-								<hr style={{ margin: '0 0', borderColor: '#ddd' }} />
+								<hr
+									style={{
+										margin: '0 0',
+										borderColor: themeMode === 'dark_mode' ? '#495057' : '#ddd',
+									}}
+								/>
 
 								{/* Logout */}
 								<button
 									className='dropdown-item logout pb-0'
 									onClick={handleLogOutClick}
 									style={{
-										color: '#d9534f',
+										color:
+											themeMode === 'dark_mode' ? 'var(--danger)' : '#d9534f',
 										border: 'none',
 										cursor: 'pointer',
 										fontSize: '14px',
