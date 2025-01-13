@@ -419,35 +419,6 @@ const Header = () => {
 							}} // Allows clearing the selection
 						/>
 					</div>
-					{/* <li className='nav-item dropdown has-arrow main-drop select-store-dropdown'>
-						<Link
-							to='#'
-							className='dropdown-toggle nav-link select-store'
-							data-bs-toggle='dropdown'
-						>
-							<span className='user-info'>
-								<span className='user-letter'>
-									<Home />
-								</span>
-								<span className='user-detail'>
-									<span className='user-name'>Select Store</span>
-								</span>
-							</span>
-						</Link>
-						<div className='dropdown-menu dropdown-menu-right'>
-							{locations?.map((location) => (
-								<React.Fragment key={location?.code}>
-									<Link
-										to='#'
-										className='dropdown-item'
-									>
-										<Home />{' '}
-										<span style={{ marginLeft: '6px' }}>{location?.name}</span>
-									</Link>
-								</React.Fragment>
-							))}
-						</div>
-					</li> */}
 					{/* /Select Store */}
 
 					{/* Flag */}
@@ -772,7 +743,7 @@ const Header = () => {
 											: 'rotate(0deg)',
 									}}
 								>
-									<IoIosArrowDown />
+									<IoIosArrowDown fontSize={16} />
 								</span>
 							</span>
 						</button>
@@ -926,70 +897,6 @@ const Header = () => {
 							</div>
 						)}
 					</li>
-					{/* <li className='nav-item dropdown has-arrow main-drop'>
-						<Link
-							to='#'
-							className='dropdown-toggle nav-link userset'
-							data-bs-toggle='dropdown'
-						>
-							<span className='user-info'>
-								<span className='user-letter'> */}
-					{/* <img
-										src={ProfileImg}
-										alt='img'
-									/> */}
-					{/* </span>
-								<span className='user-detail'>
-									<span className='user-name'>{user?.username}</span>
-									<span className='user-role'>Super Admin</span>
-								</span>
-							</span>
-						</Link>
-						<div className='dropdown-menu menu-drop-user'>
-							<div className='profilename'>
-								<div className='profileset'>
-									<span className='user-img'> */}
-					{/* <img
-											src={ProfileImg}
-											alt='img'
-										/> */}
-					{/* <span className='status online' />
-									</span>
-									<div className='profilesets'>
-										<h6>{user?.username}</h6>
-										<h5>Super Admin</h5>
-									</div>
-								</div>
-								<hr className='m-0' />
-								<Link
-									className='dropdown-item'
-									to={route.profile}
-								>
-									<User className='me-2' /> My Profile
-								</Link>
-								<Link
-									className='dropdown-item'
-									to={route.generalsettings}
-								>
-									<Settings className='me-2' />
-									Settings
-								</Link>
-								<hr className='m-0' />
-								<Link
-									className='dropdown-item logout pb-0'
-									to='signin'
-									onClick={handleLogOutClick}
-								>
-									<img
-										src={LogOutImg}
-										alt='img'
-										className='me-2'
-									/>
-									Logout
-								</Link>
-							</div>
-						</div>
-					</li> */}
 				</ul>
 				{/* /Header Menu */}
 				{/* Mobile Menu */}
