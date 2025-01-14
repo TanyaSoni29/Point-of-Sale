@@ -5,12 +5,12 @@ import {
 	ChevronUp,
 	Edit,
 	Eye,
-	// Filter,
+	Filter,
 	// GitMerge,
 	PlusCircle,
 	RotateCcw,
 	// Sliders,
-	// StopCircle,
+	StopCircle,
 	Trash2,
 } from 'feather-icons-react/build/IconComponents';
 import React, { useEffect } from 'react';
@@ -529,7 +529,7 @@ const ProductList = () => {
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<label className='form-label'>Major/Minor</label>
 														<div className='input-blocks'>
-															<Box className='info-img' />
+															<Filter className='info-img' />
 															<Select
 																className='img-select'
 																classNamePrefix='react-select'
@@ -537,7 +537,7 @@ const ProductList = () => {
 																onChange={(selected) =>
 																	setValue('majorMinor', selected?.value)
 																}
-																placeholder='Choose Category'
+																placeholder='Choose'
 															/>
 														</div>
 													</div>
@@ -568,7 +568,7 @@ const ProductList = () => {
 													<div className='col-lg-1 col-sm-4 col-12'>
 														<label className='form-label'>Gender</label>
 														<div className='input-blocks'>
-															<Box className='info-img' />
+															<StopCircle className='info-img' />
 															<Select
 																className='img-select'
 																classNamePrefix='react-select'
@@ -576,7 +576,7 @@ const ProductList = () => {
 																onChange={(selected) =>
 																	setValue('gender', selected?.value)
 																}
-																placeholder='Choose Category'
+																placeholder='Choose'
 															/>
 														</div>
 													</div>
