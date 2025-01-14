@@ -914,8 +914,7 @@ const Header = () => {
 									className='dropdown-item logout pb-0'
 									onClick={handleLogOutClick}
 									style={{
-										color:
-											themeMode === 'dark_mode' ? 'var(--danger)' : '#d9534f',
+										color: themeMode === 'dark_mode' ? '#FF0000' : '#d9534f',
 										border: 'none',
 										cursor: 'pointer',
 										fontSize: '14px',

@@ -49,7 +49,9 @@ const AddProduct = () => {
 	const [isEditMode, setIsEditMode] = useState(false);
 	const [apiData, setApiData] = useState(null);
 	const [activeTab, setActiveTab] = useState('product-info');
-
+	const [themeMode, setThemeMode] = useState(
+		document.documentElement.getAttribute('data-layout-mode') || 'light_mode'
+	);
 	const {
 		register,
 		handleSubmit,
@@ -170,7 +172,6 @@ const AddProduct = () => {
 				};
 				const response = await updateProduct(token, payload);
 				console.log(response);
-				reset();
 			} catch (error) {
 				console.log(error);
 			}
@@ -183,7 +184,6 @@ const AddProduct = () => {
 				};
 				const response = await createProduct(token, payload);
 				console.log(response);
-				reset();
 			} catch (error) {
 				console.log(error);
 			}
@@ -311,9 +311,8 @@ const AddProduct = () => {
 			fetchProductByPartNumber(); // Call the async function
 		} else {
 			setIsEditMode(false); // Switch to create mode
-			reset(); // Reset form for new product
 		}
-	}, [partNumber, setValue, reset, token]);
+	}, [partNumber, setValue, token]);
 
 	// useEffect(() => {
 	// 	// Set the default value of "year" to the current year
@@ -476,6 +475,19 @@ const AddProduct = () => {
 			window.removeEventListener('keydown', handleKeyDown);
 		};
 	}, [getValues]);
+
+	useEffect(() => {
+		const observer = new MutationObserver(() => {
+			setThemeMode(document.documentElement.getAttribute('data-layout-mode'));
+		});
+
+		observer.observe(document.documentElement, {
+			attributes: true,
+			attributeFilter: ['data-layout-mode'],
+		});
+
+		return () => observer.disconnect();
+	}, []);
 
 	// latest Categories come
 	useEffect(() => {
@@ -1279,7 +1291,15 @@ const AddProduct = () => {
 																		From
 																	</label>
 																	<div className='input-groupicon calender-input'>
-																		<Calendar className='info-img' />
+																		<Calendar
+																			className='info-img'
+																			style={{
+																				color:
+																					themeMode === 'dark_mode'
+																						? '#adb5bd'
+																						: '#777',
+																			}}
+																		/>
 																		<DatePicker
 																			selected={promoStart}
 																			onChange={(date) =>
@@ -1296,7 +1316,15 @@ const AddProduct = () => {
 																		To
 																	</label>
 																	<div className='input-groupicon calender-input'>
-																		<Calendar className='info-img' />
+																		<Calendar
+																			className='info-img'
+																			style={{
+																				color:
+																					themeMode === 'dark_mode'
+																						? '#adb5bd'
+																						: '#777',
+																			}}
+																		/>
 																		<DatePicker
 																			selected={promoEnd}
 																			onChange={(date) =>
