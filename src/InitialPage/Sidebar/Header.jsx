@@ -4,7 +4,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FeatherIcon from 'feather-icons-react';
 // import ImageWithBasePath from '../../core/img/imagewithbasebath';
-import { Home, Settings, User } from 'react-feather';
+import { Settings, User } from 'react-feather';
 import { all_routes } from '../../Router/all_routes';
 import LogoImg from '../../assets/img/logo.png';
 import LogoWhiteImg from '../../assets/img/logo-white.png';
@@ -173,79 +173,79 @@ const Header = () => {
 		}
 	};
 
-	const customStyles = (themeMode) => ({
-		control: (provided) => ({
-			...provided,
-			'animation': 'fadeIn 0.3s ease',
-			'backgroundColor': themeMode === 'dark_mode' ? '#141432' : '#fff',
-			'borderColor': themeMode === 'dark_mode' ? '#353570' : '#ccc',
-			'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
-			'borderRadius': '4px',
-			'padding': '2px',
-			'minHeight': '32px',
-			'boxShadow': 'none',
-			'&:hover': {
-				borderColor: themeMode === 'dark_mode' ? '#495057' : '#888',
-			},
-		}),
-		menu: (provided) => ({
-			...provided,
-			backgroundColor: themeMode === 'dark_mode' ? '#141432' : '#fff',
-			color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
-			zIndex: 1000,
-			animation: 'slideDown 0.3s ease', // Apply slide-down animation
-			transformOrigin: 'top',
-		}),
-		option: (provided, state) => ({
-			...provided,
-			'backgroundColor': state.isFocused
-				? themeMode === 'dark_mode'
-					? '#495057'
-					: '#f0f0f0'
-				: themeMode === 'dark_mode'
-				? '#141432'
-				: '#fff',
-			'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
-			'animation': 'fadeIn 0.2s ease',
-			'&:hover': {
-				backgroundColor: '#e6e6e6',
-			},
-		}),
-		singleValue: (provided) => ({
-			...provided,
-			color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
-		}),
-	});
+	// const customStyles = (themeMode) => ({
+	// 	control: (provided) => ({
+	// 		...provided,
+	// 		'animation': 'fadeIn 0.3s ease',
+	// 		'backgroundColor': themeMode === 'dark_mode' ? '#141432' : '#fff',
+	// 		'borderColor': themeMode === 'dark_mode' ? '#353570' : '#ccc',
+	// 		'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
+	// 		'borderRadius': '4px',
+	// 		'padding': '2px',
+	// 		'minHeight': '32px',
+	// 		'boxShadow': 'none',
+	// 		'&:hover': {
+	// 			borderColor: themeMode === 'dark_mode' ? '#495057' : '#888',
+	// 		},
+	// 	}),
+	// 	menu: (provided) => ({
+	// 		...provided,
+	// 		backgroundColor: themeMode === 'dark_mode' ? '#141432' : '#fff',
+	// 		color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
+	// 		zIndex: 1000,
+	// 		animation: 'slideDown 0.3s ease', // Apply slide-down animation
+	// 		transformOrigin: 'top',
+	// 	}),
+	// 	option: (provided, state) => ({
+	// 		...provided,
+	// 		'backgroundColor': state.isFocused
+	// 			? themeMode === 'dark_mode'
+	// 				? '#495057'
+	// 				: '#f0f0f0'
+	// 			: themeMode === 'dark_mode'
+	// 			? '#141432'
+	// 			: '#fff',
+	// 		'color': themeMode === 'dark_mode' ? '#97A2D2' : '#333',
+	// 		'animation': 'fadeIn 0.2s ease',
+	// 		'&:hover': {
+	// 			backgroundColor: '#e6e6e6',
+	// 		},
+	// 	}),
+	// 	singleValue: (provided) => ({
+	// 		...provided,
+	// 		color: themeMode === 'dark_mode' ? '#97A2D2' : '#333',
+	// 	}),
+	// });
 
-	const CustomOption = (props) => {
-		const { data, innerRef, innerProps } = props;
-		return (
-			<div
-				ref={innerRef}
-				{...innerProps}
-				style={{
-					display: 'flex',
-					alignItems: 'center',
-					padding: '8px 12px',
-					cursor: 'pointer',
-				}}
-			>
-				<Home style={{ marginRight: '6px', color: '#555' }} />
-				{data.label}
-			</div>
-		);
-	};
+	// const CustomOption = (props) => {
+	// 	const { data, innerRef, innerProps } = props;
+	// 	return (
+	// 		<div
+	// 			ref={innerRef}
+	// 			{...innerProps}
+	// 			style={{
+	// 				display: 'flex',
+	// 				alignItems: 'center',
+	// 				padding: '8px 12px',
+	// 				cursor: 'pointer',
+	// 			}}
+	// 		>
+	// 			<Home style={{ marginRight: '6px', color: '#97A2D2' }} />
+	// 			{data.label}
+	// 		</div>
+	// 	);
+	// };
 
 	// Custom selected value with Home icon
-	const CustomSingleValue = (props) => {
-		const { data } = props;
-		return (
-			<div style={{ display: 'flex', alignItems: 'center' }}>
-				<Home style={{ marginRight: '6px', color: '#555' }} />
-				{data.label}
-			</div>
-		);
-	};
+	// const CustomSingleValue = (props) => {
+	// 	const { data } = props;
+	// 	return (
+	// 		<div style={{ display: 'flex', alignItems: 'center' }}>
+	// 			<Home style={{ marginRight: '6px', color: '#97A2D2' }} />
+	// 			{data.label}
+	// 		</div>
+	// 	);
+	// };
 
 	const toggleDropdown = () => {
 		setIsDropdownOpen(!isDropdownOpen);
@@ -433,16 +433,17 @@ const Header = () => {
 					<div style={{ display: 'inline-block', minWidth: '170px' }}>
 						<Select
 							id='store-select'
+							classNamePrefix='react-select'
 							options={locationOptions}
-							styles={customStyles(themeMode)} // Apply custom styles
+							// styles={customStyles(themeMode)} // Apply custom styles
 							value={selectedLocation} // Controlled component
 							onChange={handleSelectLocation} // Handle selection
 							placeholder='Select a store'
 							isClearable
-							components={{
-								Option: CustomOption, // Custom option rendering
-								SingleValue: CustomSingleValue, // Custom single value rendering
-							}} // Allows clearing the selection
+							// components={{
+							// 	Option: CustomOption, // Custom option rendering
+							// 	SingleValue: CustomSingleValue, // Custom single value rendering
+							// }} // Allows clearing the selection
 						/>
 					</div>
 					{/* /Select Store */}
