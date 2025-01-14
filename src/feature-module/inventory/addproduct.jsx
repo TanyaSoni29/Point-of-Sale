@@ -752,7 +752,10 @@ const AddProduct = () => {
 																</div>
 															</div>
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
+																<div
+																	className=' me-3'
+																	style={{ width: '245px' }}
+																>
 																	<label className='form-label text-start d-block'>
 																		Major/Minor
 																	</label>
@@ -770,7 +773,7 @@ const AddProduct = () => {
 																	/>
 																</div>
 
-																<div className='flex-grow-1'>
+																<div style={{ width: '245px' }}>
 																	<label className='form-label text-start d-block'>
 																		Gender
 																	</label>
@@ -796,7 +799,10 @@ const AddProduct = () => {
 															</div>
 
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
+																<div
+																	className='me-3'
+																	style={{ width: '245px' }}
+																>
 																	<label className='form-label text-start d-block'>
 																		Suitability
 																	</label>
@@ -817,7 +823,7 @@ const AddProduct = () => {
 																	/>
 																</div>
 
-																<div className='flex-grow-1'>
+																<div style={{ width: '245px' }}>
 																	<label className='form-label text-start d-block'>
 																		Season
 																	</label>
@@ -1040,7 +1046,10 @@ const AddProduct = () => {
 															</div>
 
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
+																<div
+																	className=' me-3'
+																	style={{ width: '245px' }}
+																>
 																	<label className='form-label text-start d-block'>
 																		Category A
 																	</label>
@@ -1079,7 +1088,7 @@ const AddProduct = () => {
 																	)}
 																</div>
 
-																<div className='flex-grow-1'>
+																<div style={{ width: '245px' }}>
 																	<label className='form-label text-start d-block'>
 																		Category B
 																	</label>
@@ -1116,7 +1125,10 @@ const AddProduct = () => {
 															</div>
 
 															<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
-																<div className='flex-grow-1 me-3'>
+																<div
+																	className='me-3'
+																	style={{ width: '245px' }}
+																>
 																	<label className='form-label text-start d-block'>
 																		Category C
 																	</label>
@@ -1151,7 +1163,7 @@ const AddProduct = () => {
 																	)}
 																</div>
 
-																<div className='flex-grow-1'>
+																<div style={{ width: '245px' }}>
 																	<label className='form-label text-start d-block'>
 																		Print Label
 																	</label>

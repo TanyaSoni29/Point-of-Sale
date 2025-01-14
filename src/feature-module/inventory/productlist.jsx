@@ -5,15 +5,15 @@ import {
 	ChevronUp,
 	Edit,
 	Eye,
-	Filter,
-	GitMerge,
+	// Filter,
+	// GitMerge,
 	PlusCircle,
 	RotateCcw,
-	Sliders,
-	StopCircle,
+	// Sliders,
+	// StopCircle,
 	Trash2,
 } from 'feather-icons-react/build/IconComponents';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Select from 'react-select';
@@ -27,56 +27,75 @@ import Table from '../../core/pagination/datatable';
 import { Download } from 'react-feather';
 import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
-import CloseImg from '../../assets/img/icons/closes.svg';
+// import CloseImg from '../../assets/img/icons/closes.svg';
 import {
 	refreshProducts,
 	setProduct,
 	setToggleHeader,
 } from '../../slices/productListSlice';
 import { useForm } from 'react-hook-form';
+import { Switch } from 'antd';
+import { refreshCategories } from '../../slices/categorySlice';
 
 const ProductList = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-	const { products } = useSelector((state) => state.product);
-	const { toggle_header } = useSelector((state) => state.product);
+	const { products, toggle_header } = useSelector((state) => state.product);
+	const { categories } = useSelector((state) => state.category);
 
-	const [isFilterVisible, setIsFilterVisible] = useState(false);
-	const { register, handleSubmit } = useForm();
-	const options = [
-		{ value: 'sortByDate', label: 'Sort by Date' },
-		{ value: '140923', label: '14 09 23' },
-		{ value: '110923', label: '11 09 23' },
+	// const [isFilterVisible, setIsFilterVisible] = useState(false);
+	const { register, handleSubmit, setValue, watch } = useForm();
+
+	const allProducts = watch('allProducts');
+	const stockAllShops = watch('stockAllShops');
+	const stockHere = watch('stockHere');
+	const stockAt = watch('stockAt');
+	const notInStock = watch('notInStock');
+	const currentOnly = watch('currentOnly');
+	const promoOnly = watch('promoOnly');
+
+	const priceOptions = [
+		{ value: 0, label: '0' },
+		{ value: 99, label: '99' },
+		{ value: 999, label: '999' },
+		{ value: 9999, label: '9999' },
+		{ value: 99999, label: '99999' },
 	];
-	const productlist = [
-		{ value: 'choose', label: 'Choose Product' },
-		{ value: 'lenovo', label: 'Lenovo 3rd Generation' },
-		{ value: 'nike', label: 'Nike Jordan' },
-	];
-	const categorylist = [
-		{ value: 'choose', label: 'Choose Category' },
-		{ value: 'laptop', label: 'Laptop' },
-		{ value: 'shoe', label: 'Shoe' },
-	];
-	const subcategorylist = [
-		{ value: 'choose', label: 'Choose Sub Category' },
-		{ value: 'computers', label: 'Computers' },
-		{ value: 'fruits', label: 'Fruits' },
-	];
-	const brandlist = [
-		{ value: 'all', label: 'All Brand' },
-		{ value: 'lenovo', label: 'Lenovo' },
-		{ value: 'nike', label: 'Nike' },
-	];
-	const price = [
-		{ value: 'price', label: 'Price' },
-		{ value: '12500', label: '$12,500.00' },
-		{ value: '13000', label: '$13,000.00' },
+	// const options = [
+	// 	{ value: 'sortByDate', label: 'Sort by Date' },
+	// 	{ value: '140923', label: '14 09 23' },
+	// 	{ value: '110923', label: '11 09 23' },
+	// ];
+	const genders = [
+		{ value: 'Unisex', label: 'Unisex' },
+		{ value: 'Male', label: 'Male' },
+		{ value: 'Female', label: 'Female' },
 	];
 
-	const toggleFilterVisibility = () => {
-		setIsFilterVisible((prevVisibility) => !prevVisibility);
-	};
+	const categorylist = categories?.map((category) => ({
+		value: category.code, // Code
+		label: `${category.code} - ${category.name}`, // Display both code and name
+		name: category.name, // Name (used later)
+	}));
+
+	const majorMinorOption = [
+		{ value: 'Major', label: 'Major' },
+		{ value: 'Minor', label: 'Minor' },
+		{ value: 'Both', label: 'Both' },
+	];
+	// const subcategorylist = [
+	// 	{ value: 'choose', label: 'Choose Sub Category' },
+	// 	{ value: 'computers', label: 'Computers' },
+	// 	{ value: 'fruits', label: 'Fruits' },
+	// ];
+	// const brandlist = [
+	// 	{ value: 'all', label: 'All Brand' },
+	// 	{ value: 'lenovo', label: 'Lenovo' },
+	// 	{ value: 'nike', label: 'Nike' },
+	// ];
+	// const toggleFilterVisibility = () => {
+	// 	setIsFilterVisible((prevVisibility) => !prevVisibility);
+	// };
 
 	const onSubmit = async (data) => {
 		console.log(data);
@@ -102,6 +121,7 @@ const ProductList = () => {
 
 	useEffect(() => {
 		dispatch(refreshProducts());
+		dispatch(refreshCategories());
 	}, [dispatch]);
 
 	const columns = [
@@ -393,142 +413,307 @@ const ProductList = () => {
 												<div className='row'>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Make</label>
-																<input
-																	type='text'
-																	placeholder='Make'
-																	className='form-control form-control-sm formsearch'
-																	{...register('make')}
-																/>
-															</div>
+															<label className='form-label'>Make</label>
+															<input
+																type='text'
+																placeholder='Make'
+																className='form-control form-control-sm formsearch'
+																{...register('make')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Supplier</label>
-																<input
-																	type='text'
-																	placeholder='Supplier'
-																	className='form-control form-control-sm formsearch'
-																	{...register('supplier')}
-																/>
-															</div>
+															<label>Supplier</label>
+															<input
+																type='text'
+																placeholder='Supplier'
+																className='form-control form-control-sm formsearch'
+																{...register('supplier')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Search 1</label>
+															<label>Search 1</label>
 
-																<input
-																	type='text'
-																	placeholder='Search 1'
-																	className='form-control form-control-sm formsearch'
-																	{...register('search1')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Search 1'
+																className='form-control form-control-sm formsearch'
+																{...register('search1')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Search 2</label>
+															<label>Search 2</label>
 
-																<input
-																	type='text'
-																	placeholder='Search 2'
-																	className='form-control form-control-sm formsearch'
-																	{...register('search2')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Search 2'
+																className='form-control form-control-sm formsearch'
+																{...register('search2')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>MFR No</label>
+															<label>MFR No</label>
 
-																<input
-																	type='text'
-																	placeholder='MFR No.'
-																	className='form-control form-control-sm formsearch'
-																	{...register('mfrno')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='MFR No.'
+																className='form-control form-control-sm formsearch'
+																{...register('mfrno')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Details</label>
+															<label>Details</label>
 
-																<input
-																	type='text'
-																	placeholder='Details'
-																	className='form-control form-control-sm formsearch'
-																	{...register('details')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Details'
+																className='form-control form-control-sm formsearch'
+																{...register('details')}
+															/>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<label className='form-label'>CatA</label>
+														<div className='input-blocks'>
+															<Box className='info-img' />
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={categorylist}
+																onChange={(selected) =>
+																	setValue('catA', selected?.value)
+																}
+																placeholder='Choose Category'
+															/>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<label className='form-label'>CatB</label>
+														<div className='input-blocks'>
+															<Box className='info-img' />
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={categorylist}
+																onChange={(selected) =>
+																	setValue('catB', selected?.value)
+																}
+																placeholder='Choose Category'
+															/>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<label className='form-label'>CatC</label>
+														<div className='input-blocks'>
+															<Box className='info-img' />
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={categorylist}
+																onChange={(selected) =>
+																	setValue('catC', selected?.value)
+																}
+																placeholder='Choose Category'
+															/>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<label className='form-label'>Major/Minor</label>
+														<div className='input-blocks'>
+															<Box className='info-img' />
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={majorMinorOption}
+																onChange={(selected) =>
+																	setValue('majorMinor', selected?.value)
+																}
+																placeholder='Choose Category'
+															/>
 														</div>
 													</div>
 													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Size</label>
+															<label>Size</label>
 
-																<input
-																	type='text'
-																	placeholder='Size'
-																	className='form-control form-control-sm formsearch'
-																	{...register('size')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Size'
+																className='form-control form-control-sm formsearch'
+																{...register('size')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Color</label>
+															<label>Color</label>
 
-																<input
-																	type='text'
-																	placeholder='Color'
-																	className='form-control form-control-sm formsearch'
-																	{...register('color')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Color'
+																className='form-control form-control-sm formsearch'
+																{...register('color')}
+															/>
+														</div>
+													</div>
+													<div className='col-lg-1 col-sm-4 col-12'>
+														<label className='form-label'>Gender</label>
+														<div className='input-blocks'>
+															<Box className='info-img' />
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={genders}
+																onChange={(selected) =>
+																	setValue('gender', selected?.value)
+																}
+																placeholder='Choose Category'
+															/>
 														</div>
 													</div>
 													<div className='col-lg-1 col-sm-4 col-12'>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Gender</label>
+															<label>Year</label>
 
-																<input
-																	type='text'
-																	placeholder='Gender'
-																	className='form-control form-control-sm formsearch'
-																	{...register('gender')}
-																/>
-															</div>
+															<input
+																type='text'
+																placeholder='Year'
+																className='form-control form-control-sm formsearch'
+																{...register('year')}
+															/>
 														</div>
 													</div>
 													<div className='col-lg-1 col-sm-4 col-12'>
+														<label className='form-label'>Price From</label>
 														<div className='input-blocks'>
-															<div className='search-input'>
-																<label>Year</label>
+															<i className='fas fa-money-bill info-img' />
 
-																<input
-																	type='text'
-																	placeholder='Year'
-																	className='form-control form-control-sm formsearch'
-																	{...register('year')}
-																/>
-															</div>
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={priceOptions}
+																onChange={(selected) =>
+																	setValue('priceFrom', selected?.value)
+																}
+																placeholder='Price'
+															/>
 														</div>
 													</div>
+													<div className='col-lg-1 col-sm-4 col-12'>
+														<label className='form-label'>Price To</label>
+														<div className='input-blocks'>
+															<i className='fas fa-money-bill info-img' />
+
+															<Select
+																className='img-select'
+																classNamePrefix='react-select'
+																options={priceOptions}
+																onChange={(selected) =>
+																	setValue('priceTo', selected?.value)
+																}
+																placeholder='Price'
+															/>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={allProducts}
+																	onChange={(value) => {
+																		setValue('allProducts', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																All Products
+															</label>
+														</div>
+
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={stockAt}
+																	onChange={(value) => {
+																		setValue('stockAt', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Stock At
+															</label>
+														</div>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={stockAllShops}
+																	onChange={(value) => {
+																		setValue('stockAllShops', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Stock (All Shops)
+															</label>
+														</div>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={stockHere}
+																	onChange={(value) => {
+																		setValue('stockHere', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Stock Here
+															</label>
+														</div>
+													</div>
+													<div className='col-lg-2 col-sm-6 col-12'>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={notInStock}
+																	onChange={(value) => {
+																		setValue('notInStock', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Not In Stock (All Shops)
+															</label>
+														</div>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={promoOnly}
+																	onChange={(value) => {
+																		setValue('promoOnly', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Promo Only
+															</label>
+														</div>
+														<div className='mb-1'>
+															<label className=''>
+																<Switch
+																	checked={currentOnly}
+																	onChange={(value) => {
+																		setValue('currentOnly', value);
+																	}}
+																	style={{ marginRight: '6px' }}
+																/>
+																Current Only
+															</label>
+														</div>
+													</div>
+
 													<div className='col-lg-2 col-sm-6 col-12'>
 														<div className='mt-4 p-1'>
 															<button
@@ -552,7 +737,7 @@ const ProductList = () => {
 							</div>
 						</div>
 						<div className='d-flex justify-content-end align-items-end mb-3 mt-0'>
-							<div className='search-path'>
+							{/* <div className='search-path'>
 								<Link
 									className={`btn btn-filter ${
 										isFilterVisible ? 'setclose' : ''
@@ -568,14 +753,14 @@ const ProductList = () => {
 											src='assets/img/icons/closes.svg'
 											alt='img'
 										/> */}
-										<img
+							{/* <img
 											src={CloseImg}
 											alt='img'
 										/>
 									</span>
 								</Link>
-							</div>
-							<div className='form-sort me-2'>
+							</div> */}
+							{/* <div className='form-sort me-2'>
 								<Sliders className='info-img' />
 								<Select
 									className='img-select'
@@ -583,11 +768,11 @@ const ProductList = () => {
 									options={options}
 									placeholder='14 09 23'
 								/>
-							</div>
+							</div> */}
 						</div>
 
 						{/* /Filter */}
-						<div
+						{/* <div
 							className={`card${isFilterVisible ? ' visible' : ''}`}
 							id='filter_inputs'
 							style={{ display: isFilterVisible ? 'block' : 'none' }}
@@ -596,17 +781,6 @@ const ProductList = () => {
 								<div className='row'>
 									<div className='col-lg-12 col-sm-12'>
 										<div className='row'>
-											<div className='col-lg-2 col-sm-6 col-12'>
-												<div className='input-blocks'>
-													<Box className='info-img' />
-													<Select
-														className='img-select'
-														classNamePrefix='react-select'
-														options={productlist}
-														placeholder='Choose Product'
-													/>
-												</div>
-											</div>
 											<div className='col-lg-2 col-sm-6 col-12'>
 												<div className='input-blocks'>
 													<StopCircle className='info-img' />
@@ -668,7 +842,7 @@ const ProductList = () => {
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> */}
 						{/* /Filter */}
 						<div className='table-responsive'>
 							<Table
