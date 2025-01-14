@@ -968,7 +968,7 @@ const AddProduct = () => {
 																</div>
 															</div>
 
-															<div className='mb-3 d-flex justify-content-between align-items-center input-blocks add-product'>
+															<div className='mb-3 d-flex justify-content-between align-items-center add-product'>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label d-block text-start'>
 																		Promo Name
@@ -1252,7 +1252,7 @@ const AddProduct = () => {
 																</div>
 															</div>
 
-															<div className='mb-3 d-flex justify-content-between align-items-center input-blocks add-product'>
+															<div className='mb-3 d-flex justify-content-between align-items-center add-product'>
 																<div className='flex-grow-1 me-3'>
 																	<label className='form-label d-block text-start'>
 																		Nominal Code
@@ -1711,12 +1711,15 @@ const AddProduct = () => {
 																		</div>
 																	</div>
 
-																	<div className='mb-3 add-product input-blocks d-flex justify-content-between align-items-center'>
+																	<div className='mb-3 add-product d-flex justify-content-between align-items-center'>
 																		<div className='flex-grow-1 me-3 '>
-																			<label>VAT Code</label>
+																			<label className='form-label text-start d-block'>
+																				VAT Code
+																			</label>
 																			<input
 																				type='text'
 																				{...register('vatCode')}
+																				className='form-control'
 																			/>
 																			{errors?.vatCode && (
 																				<div className='text-danger'>
@@ -1732,7 +1735,9 @@ const AddProduct = () => {
 																		</div>
 
 																		<div className='flex-grow-1'>
-																			<label>Markup</label>
+																			<label className='form-label text-start d-block'>
+																				Markup
+																			</label>
 																			<input
 																				type='text'
 																				{...register('markup')}
@@ -1784,7 +1789,7 @@ const AddProduct = () => {
 																		</div>
 																	</div>
 
-																	<div className='mb-3 add-product input-blocks d-flex align-items-center justify-content-between'>
+																	<div className='mb-3 add-product d-flex align-items-center justify-content-between'>
 																		<div className='flex-grow-1 me-3'>
 																			<label className='form-label text-start d-block'>
 																				Settlement Discount
@@ -1793,6 +1798,7 @@ const AddProduct = () => {
 																				type='text'
 																				{...register('discountPercentage')}
 																				placeholder='0.00'
+																				className='form-control'
 																			/>
 																			{errors?.discountPercentage && (
 																				<div className='text-danger'>
@@ -1807,7 +1813,8 @@ const AddProduct = () => {
 																			<input
 																				type='text'
 																				{...register('discount')}
-																				placeholder='Choose'
+																				placeholder='%'
+																				className='form-control'
 																			/>
 																			{errors?.discount && (
 																				<div className='text-danger'>
