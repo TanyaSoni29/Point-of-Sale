@@ -293,6 +293,10 @@ ul.tabs.owl-carousel.pos-category {
 	margin-right: 8px;
 }
 
+.pos-category .slick-slide:hover {
+	border: 1px solid #ff8d1f;
+}
+
 .pos-category .slick-track .slick-slide:last-child {
 	margin-right: 0;
 }
@@ -1000,4 +1004,107 @@ div.rc-slider-handle-dragging.rc-slider-handle-dragging.rc-slider-handle-draggin
 [data-layout-mode='dark_mode'] .ant-picker .ant-picker-clear:hover {
 	color: #ff8d1f !important; /* Add hover effect with accent color */
 	opacity: 1; /* Fully visible on hover */
+}
+
+// [data-layout-mode='dark_mode'] .pos-category .slick-slide {
+// 	background-color: #092c4c;
+// }
+
+// [data-layout-mode='dark_mode'] .pos-category .pos-slick-item h6 a {
+// 	color: #97a2d2;
+// }
+
+/* Default styles for category cards in dark mode */
+[data-layout-mode='dark_mode'] .pos-category .slick-slide {
+	background-color: #092c4c; /* Default background for cards */
+	border: 1px solid #353570; /* Default border */
+	border-radius: 10px; /* Rounded edges */
+	padding: 15px;
+	text-align: center;
+	transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Title and item count default styles */
+[data-layout-mode='dark_mode'] .pos-category .pos-slick-item h6 {
+	color: #97a2d2; /* Default title color */
+	font-size: 16px;
+	font-weight: 600;
+	margin: 10px 0 5px;
+	transition: color 0.3s ease;
+}
+
+[data-layout-mode='dark_mode'] .pos-category .pos-slick-item p {
+	color: #b0b6c1; /* Default item count color */
+	font-size: 14px;
+	margin: 0;
+}
+
+/* Image styles */
+[data-layout-mode='dark_mode'] .pos-category .pos-slick-item img {
+	max-width: 50px;
+	margin-bottom: 10px;
+}
+
+/* Hover effect */
+[data-layout-mode='dark_mode'] .pos-category .slick-slide:hover {
+	// background-color: #1a2238; /* Slightly lighter background on hover */
+	border-color: #ff8d1f; /* Accent border color */
+}
+
+[data-layout-mode='dark_mode']
+	.pos-category
+	.slick-slide:hover
+	.pos-slick-item
+	h6 {
+	color: #ff8d1f; /* Highlight title color on hover */
+}
+
+[data-layout-mode='dark_mode']
+	.pos-category
+	.slick-slide:hover
+	.pos-slick-item
+	p {
+	color: #ffffff; /* Highlight item count color on hover */
+}
+
+/* Default styles for slider buttons in dark mode */
+[data-layout-mode='dark_mode'] .owl-carousel.pos-category .slick-prev,
+[data-layout-mode='dark_mode'] .owl-carousel.pos-category .slick-next {
+	background-color: transparent; /* Transparent background */
+	border: 1px solid #97a2d2; /* Subtle border color */
+	transition: background-color 0.3s ease, color 0.3s ease,
+		border-color 0.3s ease;
+	cursor: pointer;
+}
+
+[data-layout-mode='dark_mode']
+	.pos-design
+	.tabs_wrapper
+	.slick-arrow.slick-prev::before,
+[data-layout-mode='dark_mode']
+	.pos-design
+	.tabs_wrapper
+	.slick-arrow.slick-next::before {
+	color: #97a2d2; /* Default color */
+	transition: color 0.3s ease; /* Smooth transition */
+}
+
+/* Hover effect on the parent element */
+[data-layout-mode='dark_mode']
+	.pos-design
+	.tabs_wrapper
+	.slick-arrow.slick-prev:hover::before,
+[data-layout-mode='dark_mode']
+	.pos-design
+	.tabs_wrapper
+	.slick-arrow.slick-next:hover::before {
+	color: #ffffff; /* Hover color */
+}
+
+/* Hover effect for slider buttons in dark mode */
+[data-layout-mode='dark_mode'] .owl-carousel.pos-category .slick-prev:hover,
+[data-layout-mode='dark_mode'] .owl-carousel.pos-category .slick-next:hover {
+	background-color: #ff8d1f; /* Darker hover background */
+	border-color: #ff8d1f; /* Accent border color */
+	color: #ffffff; /* Accent color for arrows */
 }
