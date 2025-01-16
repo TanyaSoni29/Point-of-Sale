@@ -21,7 +21,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import QrScanImg from '../../assets/img/icons/qr-scan.svg';
 import CreditCardImg from '../../assets/img/icons/credit-card.svg';
 import CashPayImg from '../../assets/img/icons/cash-pay.svg';
-// import cat01Img from '../../assets/img/categories/category-01.png';
+import cat01Img from '../../assets/img/categories/category-01.png';
 import { refreshCategories } from '../../slices/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductByCategory } from '../../service/operations/productApi';
@@ -38,6 +38,16 @@ const Pos = () => {
 	const { token } = useSelector((state) => state.auth);
 	const { categories } = useSelector((state) => state.category);
 	const [selectedCategory, setSelectedCategory] = useState(null);
+	const [selectedProducts, setSelectedProducts] = useState([
+		{
+			id: 1,
+			code: 'PT0005',
+			name: 'Red Nike Laser',
+			price: 2000,
+			quantity: 1,
+			img: 'assets/img/products/pos-product-16.png',
+		},
+	]);
 	const [productList, setProductList] = useState([]);
 	const customers = [
 		{ value: 'walkInCustomer', label: 'Walk in Customer' },
@@ -75,49 +85,37 @@ const Pos = () => {
 		{ value: '30', label: '30%' },
 	];
 
-	const [quantity, setQuantity] = useState(4);
-
-	const handleDecrement = () => {
-		if (quantity > 1) {
-			setQuantity(quantity - 1);
-		}
+	const handleIncrement = (productId) => {
+		setSelectedProducts((prevProducts) =>
+			prevProducts.map((product) =>
+				product.id === productId
+					? { ...product, quantity: product.quantity + 1 }
+					: product
+			)
+		);
 	};
-	const handleIncrement = () => {
-		setQuantity(quantity + 1);
+
+	const handleDecrement = (productId) => {
+		setSelectedProducts((prevProducts) =>
+			prevProducts.map((product) =>
+				product.id === productId && product?.quantity > 1
+					? { ...product, quantity: product.quantity - 1 }
+					: product
+			)
+		);
 	};
-	// const [quantity1, setQuantity1] = useState(3);
 
-	// const handleDecrement1 = () => {
-	// 	if (quantity1 > 1) {
-	// 		setQuantity1(quantity1 - 1);
-	// 	}
-	// };
+	const handleRemoveProduct = async (productId) => {
+		const isConfirmed = await showConfirmationAlert();
+		if (!isConfirmed) return;
+		setSelectedProducts((prevProducts) =>
+			prevProducts.filter((product) => product.id !== productId)
+		);
+	};
 
-	// const handleIncrement1 = () => {
-	// 	setQuantity1(quantity1 + 1);
-	// };
-	// const [quantity2, setQuantity2] = useState(3);
-
-	// const handleDecrement2 = () => {
-	// 	if (quantity2 > 1) {
-	// 		setQuantity2(quantity2 - 1);
-	// 	}
-	// };
-
-	// const handleIncrement2 = () => {
-	// 	setQuantity2(quantity2 + 1);
-	// };
-	// const [quantity3, setQuantity3] = useState(1);
-
-	// const handleDecrement3 = () => {
-	// 	if (quantity3 > 1) {
-	// 		setQuantity3(quantity3 - 1);
-	// 	}
-	// };
-
-	// const handleIncrement3 = () => {
-	// 	setQuantity3(quantity3 + 1);
-	// };
+	const clearAllProducts = () => {
+		setSelectedProducts([]);
+	};
 
 	const MySwal = withReactContent(Swal);
 
@@ -238,7 +236,7 @@ const Pos = () => {
 									{...settings}
 									className='tabs owl-carousel pos-category'
 								>
-									{/* <div
+									<div
 										id='all'
 										className='pos-slick-item'
 									>
@@ -252,7 +250,7 @@ const Pos = () => {
 											<Link to='#'>All Categories</Link>
 										</h6>
 										{/* <span>80 Items</span> */}
-									{/* </div>  */}
+									</div>
 									{categories &&
 										categories?.length > 0 &&
 										categories?.map((category) => (
@@ -385,11 +383,13 @@ const Pos = () => {
 								<div className='product-added block-section'>
 									<div className='head-text d-flex align-items-center justify-content-between'>
 										<h6 className='d-flex align-items-center mb-0'>
-											Product Added<span className='count'>2</span>
+											Product Added
+											<span className='count'>{selectedProducts?.length}</span>
 										</h6>
 										<Link
 											to='#'
 											className='d-flex align-items-center text-danger'
+											onClick={clearAllProducts}
 										>
 											<span className='me-1'>
 												<i
@@ -401,320 +401,95 @@ const Pos = () => {
 										</Link>
 									</div>
 									<div className='product-wrap'>
-										<div className='product-list d-flex align-items-center justify-content-between'>
+										{selectedProducts?.map((product) => (
 											<div
-												className='d-flex align-items-center product-info'
-												data-bs-toggle='modal'
-												data-bs-target='#products'
+												key={product.id}
+												className='product-list d-flex align-items-center justify-content-between'
 											>
-												<Link
-													to='#'
-													className='img-bg'
+												<div
+													className='d-flex align-items-center product-info'
+													data-bs-toggle='modal'
+													data-bs-target='#products'
 												>
-													<ImageWithBasePath
-														src='assets/img/products/pos-product-16.png'
-														alt='Products'
+													<Link
+														to='#'
+														className='img-bg'
+													>
+														{/* <ImageWithBasePath
+															src='assets/img/products/pos-product-16.png'
+															alt='Products'
+														/> */}
+														<img
+															src={product.img}
+															alt='Products'
+														/>
+													</Link>
+													<div className='info'>
+														<span>{product?.code}</span>
+														<h6>
+															<Link to='#'>{product?.name}</Link>
+														</h6>
+														<p>{product?.price}</p>
+													</div>
+												</div>
+												<div className='qty-item text-center'>
+													<OverlayTrigger
+														placement='top'
+														overlay={
+															<Tooltip id='tooltip-minus'>Minus</Tooltip>
+														}
+													>
+														<Link
+															to='#'
+															className='dec d-flex justify-content-center align-items-center'
+															onClick={() => handleDecrement(product.id)}
+														>
+															<MinusCircle className='feather-14' />
+														</Link>
+													</OverlayTrigger>
+
+													<input
+														type='text'
+														className='form-control text-center'
+														name='qty'
+														value={product?.quantity}
+														readOnly
 													/>
-												</Link>
-												<div className='info'>
-													<span>PT0005</span>
-													<h6>
-														<Link to='#'>Red Nike Laser</Link>
-													</h6>
-													<p>$2000</p>
+													<OverlayTrigger
+														placement='top'
+														overlay={<Tooltip id='tooltip-plus'>Plus</Tooltip>}
+													>
+														<Link
+															to='#'
+															onClick={() => handleIncrement(product?.id)}
+															className='inc d-flex justify-content-center align-items-center'
+															data-bs-toggle='tooltip'
+															data-bs-placement='top'
+															title='plus'
+														>
+															<PlusCircle className='feather-14' />
+														</Link>
+													</OverlayTrigger>
+												</div>
+												<div className='d-flex align-items-center action'>
+													<Link
+														className='btn-icon edit-icon me-2'
+														to='#'
+														data-bs-toggle='modal'
+														data-bs-target='#edit-product'
+													>
+														<Edit className='feather-14' />
+													</Link>
+													<Link
+														onClick={() => handleRemoveProduct(product.id)}
+														className='btn-icon delete-icon confirm-text'
+														to='#'
+													>
+														<Trash2 className='feather-14' />
+													</Link>
 												</div>
 											</div>
-											<div className='qty-item text-center'>
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-minus'>Minus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='dec d-flex justify-content-center align-items-center'
-														onClick={handleDecrement}
-													>
-														<MinusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-
-												<input
-													type='text'
-													className='form-control text-center'
-													name='qty'
-													value={quantity}
-													readOnly
-												/>
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-plus'>Plus</Tooltip>}
-												>
-													<Link
-														to='#'
-														onClick={handleIncrement}
-														className='inc d-flex justify-content-center align-items-center'
-														data-bs-toggle='tooltip'
-														data-bs-placement='top'
-														title='plus'
-													>
-														<PlusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-											</div>
-											<div className='d-flex align-items-center action'>
-												<Link
-													className='btn-icon edit-icon me-2'
-													to='#'
-													data-bs-toggle='modal'
-													data-bs-target='#edit-product'
-												>
-													<Edit className='feather-14' />
-												</Link>
-												<Link
-													onClick={showConfirmationAlert}
-													className='btn-icon delete-icon confirm-text'
-													to='#'
-												>
-													<Trash2 className='feather-14' />
-												</Link>
-											</div>
-										</div>
-										{/* <div className='product-list d-flex align-items-center justify-content-between'>
-											<div
-												className='d-flex align-items-center product-info'
-												data-bs-toggle='modal'
-												data-bs-target='#products'
-											>
-												<Link
-													to='#'
-													className='img-bg'
-												>
-													<ImageWithBasePath
-														src='assets/img/products/pos-product-17.png'
-														alt='Products'
-													/>
-												</Link>
-												<div className='info'>
-													<span>PT0235</span>
-													<h6>
-														<Link to='#'>Iphone 14</Link>
-													</h6>
-													<p>$3000</p>
-												</div>
-											</div>
-											<div className='qty-item text-center'>
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-minus'>Minus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='dec d-flex justify-content-center align-items-center'
-														onClick={handleDecrement1}
-													>
-														<MinusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-
-												<input
-													type='text'
-													className='form-control text-center'
-													name='qty'
-													value={quantity1}
-													readOnly
-												/>
-
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-plus'>Plus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='inc d-flex justify-content-center align-items-center'
-														onClick={handleIncrement1}
-													>
-														<PlusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-											</div>
-											<div className='d-flex align-items-center action'>
-												<Link
-													className='btn-icon edit-icon me-2'
-													to='#'
-													data-bs-toggle='modal'
-													data-bs-target='#edit-product'
-												>
-													<Edit className='feather-14' />
-												</Link>
-												<Link
-													onClick={showConfirmationAlert}
-													className='btn-icon delete-icon confirm-text'
-													to='#'
-												>
-													<Trash2 className='feather-14' />
-												</Link>
-											</div>
-										</div> */}
-										{/* <div className='product-list d-flex align-items-center justify-content-between'>
-											<div
-												className='d-flex align-items-center product-info'
-												data-bs-toggle='modal'
-												data-bs-target='#products'
-											>
-												<Link
-													to='#'
-													className='img-bg'
-												>
-													<ImageWithBasePath
-														src='assets/img/products/pos-product-16.png'
-														alt='Products'
-													/>
-												</Link>
-												<div className='info'>
-													<span>PT0005</span>
-													<h6>
-														<Link to='#'>Red Nike Laser</Link>
-													</h6>
-													<p>$2000</p>
-												</div>
-											</div>
-
-											<div className='qty-item text-center'>
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-minus'>Minus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='dec d-flex justify-content-center align-items-center'
-														onClick={handleDecrement2}
-													>
-														<MinusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-
-												<input
-													type='text'
-													className='form-control text-center'
-													name='qty'
-													value={quantity2}
-													readOnly
-												/>
-
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-plus'>Plus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='inc d-flex justify-content-center align-items-center'
-														onClick={handleIncrement2}
-													>
-														<PlusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-											</div>
-
-											<div className='d-flex align-items-center action'>
-												<Link
-													className='btn-icon edit-icon me-2'
-													to='#'
-													data-bs-toggle='modal'
-													data-bs-target='#edit-product'
-												>
-													<Edit className='feather-14' />
-												</Link>
-												<Link
-													className='btn-icon delete-icon confirm-text'
-													to='#'
-													onClick={showConfirmationAlert}
-												>
-													<Trash2 className='feather-14' />
-												</Link>
-											</div>
-										</div> */}
-										{/* <div className='product-list d-flex align-items-center justify-content-between'>
-											<div
-												className='d-flex align-items-center product-info'
-												data-bs-toggle='modal'
-												data-bs-target='#products'
-											>
-												<Link
-													to='#'
-													className='img-bg'
-												>
-													<ImageWithBasePath
-														src='assets/img/products/pos-product-17.png'
-														alt='Products'
-													/>
-												</Link>
-												<div className='info'>
-													<span>PT0005</span>
-													<h6>
-														<Link to='#'>Red Nike Laser</Link>
-													</h6>
-													<p>$2000</p>
-												</div>
-											</div>
-
-											<div className='qty-item text-center'>
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-minus'>Minus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='dec d-flex justify-content-center align-items-center'
-														onClick={handleDecrement3}
-													>
-														<MinusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-
-												<input
-													type='text'
-													className='form-control text-center'
-													name='qty'
-													value={quantity3}
-													readOnly
-												/>
-
-												<OverlayTrigger
-													placement='top'
-													overlay={<Tooltip id='tooltip-plus'>Plus</Tooltip>}
-												>
-													<Link
-														to='#'
-														className='inc d-flex justify-content-center align-items-center'
-														onClick={handleIncrement3}
-													>
-														<PlusCircle className='feather-14' />
-													</Link>
-												</OverlayTrigger>
-											</div>
-
-											<div className='d-flex align-items-center action'>
-												<Link
-													className='btn-icon edit-icon me-2'
-													to='#'
-													data-bs-toggle='modal'
-													data-bs-target='#edit-product'
-												>
-													<i
-														data-feather='edit'
-														className='feather-14'
-													/>
-													<Edit className='feather-14' />
-												</Link>
-												<Link
-													className='btn-icon delete-icon confirm-text'
-													to='#'
-													onClick={showConfirmationAlert}
-												>
-													<Trash2 className='feather-14' />
-												</Link>
-											</div>
-										</div> */}
+										))}
 									</div>
 								</div>
 								<div className='block-section'>
