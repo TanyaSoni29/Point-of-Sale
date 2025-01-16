@@ -21,7 +21,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import QrScanImg from '../../assets/img/icons/qr-scan.svg';
 import CreditCardImg from '../../assets/img/icons/credit-card.svg';
 import CashPayImg from '../../assets/img/icons/cash-pay.svg';
-import cat01Img from '../../assets/img/categories/category-01.png';
+// import cat01Img from '../../assets/img/categories/category-01.png';
 import { refreshCategories } from '../../slices/categorySlice';
 import { useDispatch, useSelector } from 'react-redux';
 import { getProductByCategory } from '../../service/operations/productApi';
@@ -238,7 +238,7 @@ const Pos = () => {
 									{...settings}
 									className='tabs owl-carousel pos-category'
 								>
-									<div
+									{/* <div
 										id='all'
 										className='pos-slick-item'
 									>
@@ -252,28 +252,30 @@ const Pos = () => {
 											<Link to='#'>All Categories</Link>
 										</h6>
 										{/* <span>80 Items</span> */}
-									</div>
-									{categories?.map((category) => (
-										<div
-											key={category?.code}
-											id={category?.code}
-											className={`pos-slick-item ${
-												selectedCategory === category.code ? 'active' : ''
-											}`}
-											onClick={() => setSelectedCategory(category?.code)}
-										>
-											{/* <Link to='#'>
+									{/* </div>  */}
+									{categories &&
+										categories?.length > 0 &&
+										categories?.map((category) => (
+											<div
+												key={category?.code}
+												id={category?.code}
+												className={`pos-slick-item ${
+													selectedCategory === category.code ? 'active' : ''
+												}`}
+												onClick={() => setSelectedCategory(category?.code)}
+											>
+												{/* <Link to='#'>
 													<ImageWithBasePath
 														src='assets/img/categories/category-01.png'
 														alt='Categories'
 													/>
 												</Link> */}
-											<h6>
-												<Link to='#'>{category?.name}</Link>
-											</h6>
-											{/* <span>80 Items</span> */}
-										</div>
-									))}
+												<h6>
+													<Link to='#'>{category?.name}</Link>
+												</h6>
+												{/* <span>80 Items</span> */}
+											</div>
+										))}
 								</Slider>
 								<div className='pos-products'>
 									<div className='d-flex align-items-center justify-content-between'>

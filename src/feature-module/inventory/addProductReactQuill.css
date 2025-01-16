@@ -23,3 +23,90 @@
 	font-style: normal;
 	color: #b9babb; /* Removes the italic style */
 }
+
+[data-layout-mode='dark_mode'] {
+	/** @format */
+
+	/* Overall Quill Editor Styling */
+	.quill {
+		border: 1px solid #353570; /* Slightly lighter dark border */
+		border-radius: 0.35rem; /* Rounded corners */
+		overflow: hidden; /* Prevent content overflow */
+		background-color: #1a1b2f; /* Dark navy background (consistent with your current UI) */
+		color: #5b6670; /* Light text */
+	}
+
+	/* Toolbar Styling for Dark Mode */
+	.quill .ql-toolbar {
+		background-color: #1f2139; /* Slightly darker background for toolbar */
+		border-bottom: 1px solid #353570; /* Border between toolbar and editor */
+	}
+
+	.ql-toolbar.ql-snow {
+		border: 1px solid #353570;
+		padding: 8px;
+	}
+
+	.ql-container.ql-snow {
+		border: 1px solid #353570;
+	}
+
+	/* Toolbar Buttons and Icons */
+	.quill .ql-toolbar button,
+	.quill .ql-toolbar .ql-picker-label,
+	.quill .ql-toolbar .ql-picker-item {
+		color: #5b6670; /* Light text color for buttons */
+		background-color: transparent; /* Transparent background */
+		border: none; /* Remove borders */
+	}
+
+	/* Hover Effect for Toolbar Buttons */
+	.quill .ql-toolbar button:hover,
+	.quill .ql-toolbar .ql-picker-label:hover,
+	.quill .ql-toolbar .ql-picker-item:hover {
+		background-color: #333; /* Darker background on hover */
+		color: #fff; /* Brighter text color */
+	}
+
+	/* Content Container Styling */
+	.quill .ql-container {
+		background-color: #1d1d42; /* Same as editor background */
+		color: #5b6670; /* Light text color */
+		min-height: 200px;
+		max-height: 400px; /* Optional max height */
+		height: auto;
+		padding: 10px; /* Optional padding */
+		border-top: 1px solid #444; /* Border between toolbar and content */
+	}
+
+	/* Placeholder Text Styling */
+	.quill .ql-editor::before {
+		font-style: normal;
+		color: #61647a; /* Dimmed gray for placeholder text */
+	}
+
+	/* Content Text Selection */
+	.quill .ql-editor ::selection {
+		background-color: #444; /* Selection background */
+		color: #fff; /* Selection text color */
+	}
+
+	/* Caret Styling */
+	.quill .ql-editor {
+		caret-color: #5b6670; /* Light caret for visibility */
+	}
+
+	/* Adjust Scrollbar for Dark Mode */
+	.quill .ql-container::-webkit-scrollbar {
+		width: 6px; /* Custom scrollbar width */
+	}
+
+	.quill .ql-container::-webkit-scrollbar-thumb {
+		background: #61647a; /* Dark scrollbar thumb */
+		border-radius: 3px; /* Rounded scrollbar */
+	}
+
+	.quill .ql-container::-webkit-scrollbar-thumb:hover {
+		background: #888; /* Lighter thumb on hover */
+	}
+}
