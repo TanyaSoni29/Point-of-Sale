@@ -13,6 +13,7 @@ const {
 	UPDATE_PRODUCT,
 	DELETE_PRODUCT,
 	CREATE_PRODUCT,
+	PRODUCT_SEARCH,
 } = productEndpoints;
 
 export const createProduct = async (token, data) => {
@@ -183,6 +184,27 @@ export const updateProduct = async (token, data) => {
 		const errorMessage = error.response?.data?.errors || 'An Error Occurred';
 		toast.error(errorMessage);
 	}
+};
+
+export const getProductSearch = async (token, data) => {
+	let result = [];
+	try {
+		const response = await apiConnector('POST', PRODUCT_SEARCH, data, {
+			'Authorization': `Bearer ${token}`,
+			'Content-Type': 'application/json',
+		});
+
+		console.log('Product Search Api response---', response);
+		if (response.status !== 200) throw new Error("Couldn't get products");
+		result = response?.data;
+	} catch (error) {
+		console.log('Product Search Api error', error);
+		if (error.response.status === 404) {
+			const errorMessage = error.response?.data?.error;
+			toast.error(errorMessage);
+		}
+	}
+	return result;
 };
 
 export const deleteProduct = async (token, productId) => {

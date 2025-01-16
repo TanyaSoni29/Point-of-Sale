@@ -76,6 +76,7 @@ export const productEndpoints = {
 	GET_PRODUCT_BY_SUPPLIER: (id) =>
 		`${BASE_URL}/Products/GetProductsBySupplier/${id}`,
 	GET_PRODUCT_BY_MAKE: (id) => `${BASE_URL}/Products/GetProductsByMake/${id}`,
+	PRODUCT_SEARCH: `${BASE_URL}/Products/Search`,
 };
 
 export const customerEndpoints = {
