@@ -29,20 +29,22 @@ import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 // import CloseImg from '../../assets/img/icons/closes.svg';
 import {
-	refreshProducts,
+	// refreshProducts,
 	setProduct,
+	setProducts,
 	setToggleHeader,
 } from '../../slices/productListSlice';
 import { useForm } from 'react-hook-form';
 import { Switch } from 'antd';
 import { refreshCategories } from '../../slices/categorySlice';
+import { getProductSearch } from '../../service/operations/productApi';
 
 const ProductList = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
+	const { token } = useSelector((state) => state.auth);
 	const { products, toggle_header } = useSelector((state) => state.product);
 	const { categories } = useSelector((state) => state.category);
-
 	// const [isFilterVisible, setIsFilterVisible] = useState(false);
 	const { register, handleSubmit, setValue, watch } = useForm();
 
@@ -99,6 +101,36 @@ const ProductList = () => {
 
 	const onSubmit = async (data) => {
 		console.log(data);
+		try {
+			const payload = {
+				makeCode: data?.makeCode || '',
+				supplierCode: data?.supplierCode || '',
+				search1: data?.search1 || '',
+				search2: data?.search2 || '',
+				mfr: data?.mfr || '',
+				details: data?.details || '',
+				size: data?.size || '',
+				color: data?.color || '',
+				gender: data?.gender || 'Unisex',
+				year: data?.year || '',
+				catACode: data?.catACode || '',
+				catBCode: data?.catBCode || '',
+				catCCode: data?.catCCode || '',
+				inventoryType: 'BOTH',
+				priceRangeFrom: data?.priceRangeFrom || 0,
+				priceRangeTo: data?.priceRangeTo || 0,
+				currentOnly: data?.currentOnly || false,
+				promoOnly: data?.promoOnly || false,
+				searchType: 'AllProducts',
+				stockAtLocCode: '',
+			};
+			const response = await getProductSearch(token, payload);
+			if (response.length > 0) {
+				dispatch(setProducts(response));
+			}
+		} catch (error) {
+			console.log(error);
+		}
 	};
 
 	const handleDelete = async (product) => {
@@ -111,7 +143,8 @@ const ProductList = () => {
 	};
 
 	const handleEdit = async (product) => {
-		dispatch(setProduct(product));
+		console.log(product.partNumber);
+		dispatch(setProduct(product.partNumber));
 		// try {
 		// 	console.log(product);
 		// } catch (error) {
@@ -120,7 +153,6 @@ const ProductList = () => {
 	};
 
 	useEffect(() => {
-		dispatch(refreshProducts());
 		dispatch(refreshCategories());
 	}, [dispatch]);
 
@@ -211,7 +243,7 @@ const ProductList = () => {
 						</Link>
 						<Link
 							className='me-2 p-2'
-							to={route.editproduct}
+							to={route.addproduct}
 							onClick={() => handleEdit(record)}
 						>
 							<Edit className='feather-edit' />
@@ -418,7 +450,7 @@ const ProductList = () => {
 																type='text'
 																placeholder='Make'
 																className='form-control form-control-sm formsearch'
-																{...register('make')}
+																{...register('makeCode')}
 															/>
 														</div>
 													</div>
@@ -429,7 +461,7 @@ const ProductList = () => {
 																type='text'
 																placeholder='Supplier'
 																className='form-control form-control-sm formsearch'
-																{...register('supplier')}
+																{...register('supplierCode')}
 															/>
 														</div>
 													</div>
@@ -465,7 +497,7 @@ const ProductList = () => {
 																type='text'
 																placeholder='MFR No.'
 																className='form-control form-control-sm formsearch'
-																{...register('mfrno')}
+																{...register('mfr')}
 															/>
 														</div>
 													</div>
@@ -490,7 +522,7 @@ const ProductList = () => {
 																classNamePrefix='react-select'
 																options={categorylist}
 																onChange={(selected) =>
-																	setValue('catA', selected?.value)
+																	setValue('catACode', selected?.value)
 																}
 																placeholder='Choose Category'
 															/>
@@ -505,7 +537,7 @@ const ProductList = () => {
 																classNamePrefix='react-select'
 																options={categorylist}
 																onChange={(selected) =>
-																	setValue('catB', selected?.value)
+																	setValue('catBCode', selected?.value)
 																}
 																placeholder='Choose Category'
 															/>
@@ -520,7 +552,7 @@ const ProductList = () => {
 																classNamePrefix='react-select'
 																options={categorylist}
 																onChange={(selected) =>
-																	setValue('catC', selected?.value)
+																	setValue('catCCode', selected?.value)
 																}
 																placeholder='Choose Category'
 															/>
@@ -602,7 +634,7 @@ const ProductList = () => {
 																classNamePrefix='react-select'
 																options={priceOptions}
 																onChange={(selected) =>
-																	setValue('priceFrom', selected?.value)
+																	setValue('priceRangeFrom', selected?.value)
 																}
 																placeholder='Price'
 															/>
@@ -618,7 +650,7 @@ const ProductList = () => {
 																classNamePrefix='react-select'
 																options={priceOptions}
 																onChange={(selected) =>
-																	setValue('priceTo', selected?.value)
+																	setValue('priceRangeTo', selected?.value)
 																}
 																placeholder='Price'
 															/>

@@ -30,7 +30,7 @@ import { useForm } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './addProductReactQuill.css';
-import { setToggleHeader } from '../../slices/productListSlice';
+import { setProduct, setToggleHeader } from '../../slices/productListSlice';
 import Table from '../../core/pagination/datatable';
 import { refreshCategories } from '../../slices/categorySlice';
 import ProductSearch from '../../core/modals/inventory/ProductSearch';
@@ -43,11 +43,11 @@ import {
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-	const { toggle_header } = useSelector((state) => state.product);
+	const { toggle_header, product } = useSelector((state) => state.product);
 	const { categories } = useSelector((state) => state.category);
 	const { token } = useSelector((state) => state.auth);
 	const [isEditMode, setIsEditMode] = useState(false);
-	const [apiData, setApiData] = useState(null);
+	const setApiData = useState(null)[1];
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [themeMode, setThemeMode] = useState(
 		document.documentElement.getAttribute('data-layout-mode') || 'light_mode'
@@ -121,7 +121,6 @@ const AddProduct = () => {
 	const majorMinorOption = [
 		{ value: 'Major', label: 'Major' },
 		{ value: 'Minor', label: 'Minor' },
-		{ value: 'Both', label: 'Both' },
 	];
 
 	const seasonOptions = [
@@ -159,16 +158,22 @@ const AddProduct = () => {
 		}
 	};
 
+	console.log('form errors------on submitting', errors);
+
 	// Update react-hook-form value when React-Quill value changes
 
 	const onSubmit = async (data) => {
-		console.log('Form Data:', data);
+		console.log('Form Data:-----------', data);
 		if (isEditMode) {
 			try {
 				const payload = {
 					...data,
-					promoStart: data.promoStart ? data.promoStart.toISOString() : null,
-					promoEnd: data.promoEnd ? data.promoEnd.toISOString() : null,
+					promoStart: data.promoStart
+						? new Date(data.promoStart).toISOString()
+						: null,
+					promoEnd: data.promoEnd
+						? new Date(data.promoEnd).toISOString()
+						: null,
 				};
 				const response = await updateProduct(token, payload);
 				console.log(response);
@@ -179,8 +184,12 @@ const AddProduct = () => {
 			try {
 				const payload = {
 					...data,
-					promoStart: data.promoStart ? data.promoStart.toISOString() : null,
-					promoEnd: data.promoEnd ? data.promoEnd.toISOString() : null,
+					promoStart: data.promoStart
+						? new Date(data.promoStart).toISOString()
+						: null,
+					promoEnd: data.promoEnd
+						? new Date(data.promoEnd).toISOString()
+						: null,
 				};
 				const response = await createProduct(token, payload);
 				console.log(response);
@@ -192,7 +201,7 @@ const AddProduct = () => {
 		// Reset form after successful submission
 	};
 
-	console.log('edit Mode Form open...', apiData);
+	// console.log('edit Mode Form open...', apiData);
 
 	const handleInputChange = (key, field, value) => {
 		setData((prev) =>
@@ -708,6 +717,7 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('partNumber')}
+																		defaultValue={product ? product : ''}
 																		readOnly={isEditMode}
 																		className='form-control'
 																	/>
@@ -1016,7 +1026,7 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('size', { required: true })}
+																		{...register('size')}
 																		className='form-control'
 																	/>
 																	{errors?.size && (
@@ -1077,7 +1087,7 @@ const AddProduct = () => {
 																	/>
 																	<input
 																		type='hidden'
-																		{...register('catAcode', {
+																		{...register('catACode', {
 																			required: true,
 																		})} // Register for the code
 																	/>
@@ -1208,9 +1218,7 @@ const AddProduct = () => {
 																	</label>
 																	<input
 																		type='text'
-																		{...register('range', {
-																			required: 'Range is Required',
-																		})}
+																		{...register('range')}
 																		className='form-control list'
 																	/>
 																	{errors?.range && (
@@ -1844,7 +1852,7 @@ const AddProduct = () => {
 																			</label>
 																			<input
 																				type='text'
-																				{...register('price', {
+																				{...register('costPrice', {
 																					required: 'Cost Price is required',
 																				})}
 																				className='form-control'
@@ -2400,7 +2408,8 @@ const AddProduct = () => {
 									type='button'
 									className='btn btn-cancel me-3'
 									onClick={() => {
-										setIsEditMode(false); // Turn off edit mode
+										setIsEditMode(false);
+										dispatch(setProduct(null)); // Turn off edit mode
 										reset(); // Reset the form fields
 										setValue('partNumber', ''); // Clear the partNumber field
 									}}
