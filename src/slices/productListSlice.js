@@ -9,6 +9,7 @@ const initialState = {
 	toggle_header: false,
 	product: null,
 	loading: false,
+	isEditMode: false,
 	layoutstyledata: localStorage.getItem('layoutStyling'),
 };
 
@@ -57,6 +58,9 @@ const productSlice = createSlice({
 			state.layoutstyledata = action.payload;
 			localStorage.setItem('layoutStyling', action.payload); // Update localStorage
 		},
+		setIsEditMode: (state, action) => {
+			state.isEditMode = action.payload;
+		},
 	},
 });
 
@@ -74,6 +78,7 @@ export function refreshProducts() {
 
 export const {
 	setLoading,
+	setIsEditMode,
 	setProducts,
 	setProduct,
 	addProduct,

@@ -30,7 +30,11 @@ import { useForm } from 'react-hook-form';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './addProductReactQuill.css';
-import { setProduct, setToggleHeader } from '../../slices/productListSlice';
+import {
+	setIsEditMode,
+	setProduct,
+	setToggleHeader,
+} from '../../slices/productListSlice';
 import Table from '../../core/pagination/datatable';
 import { refreshCategories } from '../../slices/categorySlice';
 import ProductSearch from '../../core/modals/inventory/ProductSearch';
@@ -43,10 +47,11 @@ import {
 const AddProduct = () => {
 	const route = all_routes;
 	const dispatch = useDispatch();
-	const { toggle_header, product } = useSelector((state) => state.product);
+	const { toggle_header, product, isEditMode } = useSelector(
+		(state) => state.product
+	);
 	const { categories } = useSelector((state) => state.category);
 	const { token } = useSelector((state) => state.auth);
-	const [isEditMode, setIsEditMode] = useState(false);
 	const setApiData = useState(null)[1];
 	const [activeTab, setActiveTab] = useState('product-info');
 	const [themeMode, setThemeMode] = useState(
@@ -301,7 +306,7 @@ const AddProduct = () => {
 
 	useEffect(() => {
 		if (partNumber) {
-			setIsEditMode(true); // Switch to edit mode
+			dispatch(setIsEditMode(true)); // Switch to edit mode
 
 			// Define an async function to fetch product details
 			const fetchProductByPartNumber = async () => {
@@ -319,7 +324,7 @@ const AddProduct = () => {
 
 			fetchProductByPartNumber(); // Call the async function
 		} else {
-			setIsEditMode(false); // Switch to create mode
+			dispatch(setIsEditMode(false)); // Switch to create mode
 		}
 	}, [partNumber, setValue, token]);
 
@@ -717,7 +722,7 @@ const AddProduct = () => {
 																	<input
 																		type='text'
 																		{...register('partNumber')}
-																		defaultValue={product ? product : ''}
+																		defaultValue={isEditMode ? product : ''}
 																		readOnly={isEditMode}
 																		className='form-control'
 																	/>
@@ -2408,7 +2413,7 @@ const AddProduct = () => {
 									type='button'
 									className='btn btn-cancel me-3'
 									onClick={() => {
-										setIsEditMode(false);
+										dispatch(setIsEditMode(false));
 										dispatch(setProduct(null)); // Turn off edit mode
 										reset(); // Reset the form fields
 										setValue('partNumber', ''); // Clear the partNumber field

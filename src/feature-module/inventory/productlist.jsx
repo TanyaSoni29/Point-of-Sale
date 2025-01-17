@@ -29,6 +29,7 @@ import PdfImg from '../../assets/img/icons/pdf.svg';
 import ExcelImg from '../../assets/img/icons/excel.svg';
 // import CloseImg from '../../assets/img/icons/closes.svg';
 import {
+	setIsEditMode,
 	// refreshProducts,
 	setProduct,
 	setProducts,
@@ -144,6 +145,7 @@ const ProductList = () => {
 
 	const handleEdit = async (product) => {
 		console.log(product.partNumber);
+		dispatch(setIsEditMode(true));
 		dispatch(setProduct(product.partNumber));
 		// try {
 		// 	console.log(product);
